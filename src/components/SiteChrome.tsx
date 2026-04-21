@@ -17,7 +17,13 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="relative flex min-h-dvh flex-col">
+    <div
+      className="relative flex min-h-dvh flex-col"
+      style={{
+        paddingLeft: 'env(safe-area-inset-left)',
+        paddingRight: 'env(safe-area-inset-right)',
+      }}
+    >
       <Header />
       <main className="mx-auto w-full max-w-[1400px] flex-1 px-6 pb-24 md:px-10 lg:px-14">
         {children}

@@ -52,6 +52,39 @@ html, body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+a, button, [role='button'], input[type='submit'], input[type='button'], label[for] {
+  touch-action: manipulation;
+}
+
+img, video, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+@supports (padding: max(0px)) {
+  .safe-px {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+  .safe-pb {
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+  }
 }
 
 .font-display {
@@ -163,10 +196,13 @@ html, body {
   color: var(--fg);
   border-radius: 10px;
   padding: 14px 16px;
-  font-size: 15px;
+  font-size: 16px;
   width: 100%;
   outline: none;
   transition: border-color .2s ease, background .2s ease;
+}
+@media (min-width: 768px) {
+  .input-base { font-size: 15px; }
 }
 .input-base::placeholder { color: color-mix(in oklab, var(--muted) 90%, transparent); }
 .input-base:focus { border-color: color-mix(in oklab, var(--fg) 45%, var(--border)); }
@@ -252,17 +288,22 @@ html[data-theme='dark'] .logo-works { fill: #f2f2f2; }
   .fade-in { animation: fadeIn .5s ease both; }
   @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-  .ticker-track { animation: ticker 55s linear infinite; }
+  .ticker-track { animation: ticker 55s linear infinite; will-change: transform; }
   .ticker-track:hover { animation-play-state: paused; }
   @keyframes ticker {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
   }
 
-  .news-ticker-track { animation: newsTicker 80s linear infinite; }
+  .news-ticker-track { animation: newsTicker 80s linear infinite; will-change: transform; }
   .news-ticker-track:hover { animation-play-state: paused; }
   @keyframes newsTicker {
     from { transform: translateX(0); }
     to { transform: translateX(-50%); }
+  }
+
+  @media (max-width: 767px) {
+    .ticker-track { animation-duration: 90s; }
+    .news-ticker-track { animation-duration: 110s; }
   }
 }

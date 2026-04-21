@@ -141,7 +141,7 @@ export function Comments({
             rows={3}
             maxLength={2000}
             placeholder="Bu yazı sende ne uyandırdı?"
-            className="w-full rounded-[10px] border px-3.5 py-3 text-[14px] outline-none transition focus:border-[color-mix(in_oklab,var(--fg)_55%,var(--border))]"
+            className="w-full rounded-[10px] border px-3.5 py-3 text-[16px] outline-none transition focus:border-[color-mix(in_oklab,var(--fg)_55%,var(--border))] md:text-[14px]"
             style={{
               borderColor: 'var(--border)',
               background: 'transparent',
@@ -272,7 +272,7 @@ export function Comments({
                     </button>
                   )}
                 </div>
-                <p className="mt-1.5 text-[14px] leading-[1.55] whitespace-pre-wrap">{c.body}</p>
+                <p className="mt-1.5 text-[14px] leading-[1.55] whitespace-pre-wrap break-words">{c.body}</p>
               </div>
             </article>
           ))

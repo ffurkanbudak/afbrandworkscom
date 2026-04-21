@@ -1,13 +1,22 @@
 import Link from 'next/link';
 import { Bell } from 'lucide-react';
 import { Avatar } from './Avatar';
+import { MobileNav } from './MobileNav';
 
 export function TopBar({
   admin,
   inboxCount,
+  counts,
 }: {
   admin: { name: string | null; email: string; avatarUrl: string | null; title: string | null; role: string };
   inboxCount: number;
+  counts: {
+    applications: number;
+    sponsorships: number;
+    messages: number;
+    comments: number;
+    news: number;
+  };
 }) {
   return (
     <header
@@ -18,11 +27,14 @@ export function TopBar({
         borderBottom: '1px solid var(--border)',
       }}
     >
-      <div>
-        <p className="eyebrow">Panel</p>
-        <p className="font-display mt-0.5 text-[15px] tracking-tight">
-          Ahmet Furkan Budak · Yönetim
-        </p>
+      <div className="flex items-center gap-3">
+        <MobileNav counts={counts} />
+        <div>
+          <p className="eyebrow">Panel</p>
+          <p className="font-display mt-0.5 text-[15px] tracking-tight">
+            Ahmet Furkan Budak · Yönetim
+          </p>
+        </div>
       </div>
 
       <div className="flex items-center gap-2">
