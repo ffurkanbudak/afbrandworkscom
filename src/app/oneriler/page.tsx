@@ -8,10 +8,26 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
-export const metadata = {
-  title: 'Öneriler',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Öneriler · Kitap, Podcast, Video, Etkinlik',
   description:
-    'Marka stratejisi, iletişim ve yönetim düşüncesini besleyen kitap, podcast, video ve etkinlik önerileri.',
+    'Marka stratejisi, iletişim ve yönetim düşüncesini besleyen kitap, podcast, video ve etkinlik önerileri. Ahmet Furkan Budak seçkisi.',
+  keywords: [
+    'markalaşma kitapları',
+    'marka stratejisi kitap önerileri',
+    'pazarlama podcastleri',
+    'marka konferansları',
+    'marka etkinlikleri',
+  ],
+  alternates: { canonical: '/oneriler' },
+  openGraph: {
+    type: 'website',
+    url: '/oneriler',
+    title: 'Öneriler · Ahmet Furkan Budak',
+    description: 'Kitap, podcast, video, etkinlik.',
+  },
 };
 
 type Section = {

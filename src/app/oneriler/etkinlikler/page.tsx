@@ -1,10 +1,14 @@
 import Link from 'next/link';
 import { ArrowLeft, Calendar } from 'lucide-react';
 
-export const metadata = {
-  title: 'Etkinlik Önerileri',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Etkinlik Önerileri · Markalaşma ve Strateji',
   description:
-    'Markalaşma ve strateji gündemi için takvime eklemeye değer zirve, panel ve atölye önerileri.',
+    'Markalaşma ve strateji gündemi için takvime eklemeye değer zirve, panel ve atölye önerileri. Ahmet Furkan Budak seçkisi.',
+  keywords: ['marka etkinlikleri', 'pazarlama konferansı', 'marka zirvesi', 'strateji paneli'],
+  alternates: { canonical: '/oneriler/etkinlikler' },
 };
 
 export default function EtkinliklerPage() {

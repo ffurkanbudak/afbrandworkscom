@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
+import type { Metadata } from 'next';
 import { ArrowRight, Hash } from 'lucide-react';
 import { auth } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
@@ -12,21 +13,62 @@ import { NewBadge } from '@/components/NewBadge';
 import { PostActions } from '@/components/PostActions';
 import { ViewBeacon } from '@/components/ViewBeacon';
 import { Comments } from '@/components/Comments';
+import { PostJsonLd } from '@/components/PostJsonLd';
 
 const FALLBACK_AUTHOR = 'Ahmet Furkan Budak';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://afbrandworks.com';
 
 export async function generateStaticParams() {
   const posts = await db.post.findMany({ where: { status: 'PUBLISHED' }, select: { slug: true } });
   return posts.map((p) => ({ slug: p.slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const post = await db.post.findUnique({ where: { slug } });
+  const post = await db.post.findUnique({
+    where: { slug },
+    include: { author: true, tags: { include: { tag: true } } },
+  });
   if (!post) return { title: 'Yazı bulunamadı' };
+
+  const title = post.metaTitle ?? post.title;
+  const description = post.metaDescription ?? post.excerpt;
+  const url = `${SITE_URL}/posts/${post.slug}`;
+  const image = post.coverImageUrl
+    ? post.coverImageUrl.startsWith('http')
+      ? post.coverImageUrl
+      : `${SITE_URL}${post.coverImageUrl.startsWith('/') ? '' : '/'}${post.coverImageUrl}`
+    : `${SITE_URL}/ahmetfurkanbudak.jpeg`;
+  const tagLabels = post.tags.map((t) => t.tag.labelTr);
+  const authorName = post.author?.name ?? FALLBACK_AUTHOR;
+
   return {
-    title: post.metaTitle ?? post.title,
-    description: post.metaDescription ?? post.excerpt,
+    title,
+    description,
+    keywords: [...tagLabels, 'Ahmet Furkan Budak', 'markalaşma', 'marka stratejisi'],
+    authors: [{ name: authorName, url: SITE_URL }],
+    alternates: { canonical: `/posts/${post.slug}` },
+    openGraph: {
+      type: 'article',
+      url,
+      title,
+      description,
+      siteName: 'Ahmet Furkan Budak',
+      locale: 'tr_TR',
+      publishedTime: post.publishedAt?.toISOString(),
+      modifiedTime: (post.updatedAt ?? post.publishedAt)?.toISOString(),
+      authors: [authorName],
+      tags: tagLabels,
+      section: tagLabels[0],
+      images: [{ url: image, alt: post.coverImageAlt ?? post.title, width: 1200, height: 630 }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+      creator: '@afurkanbudak',
+    },
   };
 }
 
@@ -48,6 +90,17 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   return (
     <article className="fade-up pt-10 md:pt-16">
+      <PostJsonLd
+        slug={post.slug}
+        title={post.title}
+        description={post.metaDescription ?? post.excerpt}
+        publishedAt={post.publishedAt}
+        updatedAt={post.updatedAt}
+        coverImageUrl={post.coverImageUrl}
+        authorName={post.author?.name ?? FALLBACK_AUTHOR}
+        tags={post.tags.map((t) => ({ slug: t.tag.slug, labelTr: t.tag.labelTr }))}
+        readingMinutes={post.readingMinutes}
+      />
       <ViewBeacon slug={post.slug} />
       <header className="mx-auto max-w-[780px]">
         <div className="flex flex-wrap items-center gap-3">

@@ -3,10 +3,28 @@ import { ArrowRight, Bookmark, Compass, Layers } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { db } from '@/lib/db';
 
-export const metadata = {
-  title: 'Konular',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Konular · Markalaşma',
   description:
-    'Konumlandırma, farklılaşma, marka mimarisi, büyüme mimarisi ve marka iletişimi. Tüm konu başlıkları bir arada.',
+    'Konumlandırma, farklılaşma, marka mimarisi, büyüme mimarisi ve marka iletişimi. Sektör, disiplin ve vaka çalışmaları kategorilerinde tüm konu başlıkları.',
+  keywords: [
+    'marka konuları',
+    'markalaşma kategorileri',
+    'konumlandırma',
+    'farklılaşma',
+    'marka mimarisi',
+    'büyüme mimarisi',
+    'marka iletişimi',
+  ],
+  alternates: { canonical: '/konular' },
+  openGraph: {
+    type: 'website',
+    url: '/konular',
+    title: 'Markalaşma Konuları · Ahmet Furkan Budak',
+    description: 'Sektör, disiplin ve vaka çalışmaları.',
+  },
 };
 
 const GROUP_LABEL: Record<string, string> = {

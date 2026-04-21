@@ -1,10 +1,14 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
-export const metadata = {
-  title: 'Podcast Önerileri',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Podcast Önerileri · Pazarlama ve Strateji',
   description:
-    'Pazarlama, girişimcilik ve yönetim düşüncesi üzerine dinlemeye değer uzun biçimli podcast önerileri.',
+    'Pazarlama, girişimcilik ve yönetim düşüncesi üzerine dinlemeye değer uzun biçimli podcast önerileri. Ahmet Furkan Budak seçkisi.',
+  keywords: ['pazarlama podcasti', 'girişimcilik podcasti', 'strateji podcasti', 'iş dünyası podcast'],
+  alternates: { canonical: '/oneriler/podcastler' },
 };
 
 const SHOWS: string[] = [

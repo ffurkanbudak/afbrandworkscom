@@ -2,9 +2,17 @@ import type { Metadata } from 'next';
 import { WriterApplicationForm } from './WriterApplicationForm';
 
 export const metadata: Metadata = {
-  title: 'Yazar Ol',
+  title: 'Yazar Başvurusu · Ahmet Furkan Budak',
   description:
-    'Markalaşma, girişimcilik ve Türk dünyası üzerine yazmak isteyenler için çağrı. Uygun görülen metinler bu sayfada yayımlanır.',
+    'Markalaşma, girişimcilik ve Türk dünyası üzerine yazmak isteyenler için çağrı. Afbrandworks\'te yayımlanmak üzere yazı başvurusu.',
+  keywords: ['yazar ol', 'yazar başvurusu', 'misafir yazar', 'marka yazarlığı', 'içerik üretimi'],
+  alternates: { canonical: '/yazar' },
+  openGraph: {
+    type: 'website',
+    url: '/yazar',
+    title: 'Yazar Ol · Ahmet Furkan Budak',
+    description: 'Markalaşma üzerine yazmak isteyenler için çağrı.',
+  },
 };
 
 export default function WriterApplyPage() {

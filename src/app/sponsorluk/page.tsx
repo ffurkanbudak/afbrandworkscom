@@ -2,9 +2,17 @@ import type { Metadata } from 'next';
 import { SponsorshipForm } from './SponsorshipForm';
 
 export const metadata: Metadata = {
-  title: 'Sponsor Ol',
+  title: 'Sponsorluk · Ahmet Furkan Budak',
   description:
-    'Markalaşma günlüğüne sponsor olmak isteyen kurumlar için başvuru formu.',
+    'Ahmet Furkan Budak\'ın markalaşma günlüğüne sponsor olmak isteyen kurumlar için başvuru formu. Marka hedef kitleniz için iş birliği fırsatları.',
+  keywords: ['sponsor', 'sponsorluk', 'iş birliği', 'partnerlik', 'marka işbirliği'],
+  alternates: { canonical: '/sponsorluk' },
+  openGraph: {
+    type: 'website',
+    url: '/sponsorluk',
+    title: 'Sponsorluk · Ahmet Furkan Budak',
+    description: 'Markalaşma günlüğüne sponsor olun.',
+  },
 };
 
 export default function SponsorshipPage() {

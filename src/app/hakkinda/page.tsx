@@ -2,10 +2,61 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 
-export const metadata = {
-  title: 'Hakkında',
+import type { Metadata } from 'next';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://afbrandworks.com';
+
+export const metadata: Metadata = {
+  title: 'Hakkında · Ahmet Furkan Budak',
   description:
-    'Ahmet Furkan Budak. Stratejik marka danışmanı, Toganworks kurucusu, Marka İnisiyatifi kurucusu.',
+    'Ahmet Furkan Budak kimdir? Stratejik marka danışmanı, Toganworks ve Marka İnisiyatifi kurucusu. Biyografi, eğitim, sertifikalar ve iletişim.',
+  keywords: [
+    'Ahmet Furkan Budak kimdir',
+    'Ahmet Furkan Budak biyografi',
+    'marka danışmanı',
+    'stratejik marka danışmanı',
+    'Toganworks kurucusu',
+    'Marka İnisiyatifi',
+  ],
+  alternates: { canonical: '/hakkinda' },
+  openGraph: {
+    type: 'profile',
+    url: `${SITE_URL}/hakkinda`,
+    title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
+    description:
+      'Stratejik marka danışmanı, Toganworks kurucusu. Konumlandırma, farklılaşma ve sürdürülebilir büyüme üzerine yazar.',
+    images: [
+      {
+        url: '/ahmetfurkanbudak.jpeg',
+        width: 1200,
+        height: 1200,
+        alt: 'Ahmet Furkan Budak',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
+    description: 'Stratejik marka danışmanı, Toganworks kurucusu.',
+    images: ['/ahmetfurkanbudak.jpeg'],
+  },
+};
+
+const PROFILE_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfilePage',
+  '@id': `${SITE_URL}/hakkinda#profilepage`,
+  mainEntity: { '@id': `${SITE_URL}/#person` },
+  url: `${SITE_URL}/hakkinda`,
+  name: 'Ahmet Furkan Budak · Hakkında',
+  inLanguage: 'tr-TR',
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Hakkında', item: `${SITE_URL}/hakkinda` },
+    ],
+  },
 };
 
 const EDUCATION = [
@@ -101,6 +152,10 @@ const FOCUS: string[] = [
 export default function AboutPage() {
   return (
     <div className="fade-up pt-10 md:pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(PROFILE_JSONLD) }}
+      />
       <section className="max-w-[780px]">
         <p className="eyebrow">Hakkında</p>
         <div

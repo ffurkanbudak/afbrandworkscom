@@ -3,10 +3,26 @@ import { db } from '@/lib/db';
 import { formatDateCaps } from '@/lib/format';
 import { NewsCard, HeroNewsCard } from './NewsCard';
 
-export const metadata = {
-  title: 'Gündem',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Gündem · Marka Haberleri',
   description:
-    'Dünyadan ve Türkiye\'den markalaşma haberleri. Editör tarafından Türkçeleştirilip özetlenir, orijinal kaynağa bağlantıyla yayımlanır.',
+    'Dünyadan ve Türkiye\'den markalaşma haberleri. Editör tarafından Türkçeleştirilip özetlenir, orijinal kaynağa bağlantıyla yayımlanır. Ahmet Furkan Budak seçkisi.',
+  keywords: [
+    'marka haberleri',
+    'markalaşma gündemi',
+    'branding news türkçe',
+    'küresel marka haberleri',
+    'pazarlama haberleri',
+  ],
+  alternates: { canonical: '/gundem' },
+  openGraph: {
+    type: 'website',
+    url: '/gundem',
+    title: 'Gündem · Marka Haberleri',
+    description: 'Dünyadan markalaşma haberleri. Türkçe özet ve editör notuyla.',
+  },
 };
 
 export const revalidate = 600;

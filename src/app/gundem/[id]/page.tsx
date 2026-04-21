@@ -6,15 +6,39 @@ import { db } from '@/lib/db';
 import { formatDateCaps } from '@/lib/format';
 import { Comments } from '@/components/Comments';
 
+import type { Metadata } from 'next';
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://afbrandworks.com';
+
 export const revalidate = 300;
 
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }) {
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
   const { id } = await params;
   const item = await db.newsItem.findUnique({ where: { id }, include: { source: true } });
   if (!item) return { title: 'Haber bulunamadı' };
+  const title = item.titleTr ?? item.originalTitle;
+  const description = item.summaryTr ?? item.originalExcerpt ?? undefined;
+  const url = `${SITE_URL}/gundem/${item.id}`;
+  const image = item.imageUrl ?? `${SITE_URL}/ahmetfurkanbudak.jpeg`;
   return {
-    title: item.titleTr ?? item.originalTitle,
-    description: item.summaryTr ?? undefined,
+    title,
+    description,
+    alternates: { canonical: `/gundem/${item.id}` },
+    openGraph: {
+      type: 'article',
+      url,
+      title,
+      description,
+      publishedTime: item.publishedAt?.toISOString(),
+      modifiedTime: (item.approvedAt ?? item.publishedAt)?.toISOString(),
+      images: [{ url: image }],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      images: [image],
+    },
   };
 }
 

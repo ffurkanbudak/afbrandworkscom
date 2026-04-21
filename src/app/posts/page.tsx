@@ -4,7 +4,29 @@ import { PostListItem } from '@/components/PostListItem';
 import { TopicsInline } from '@/components/TopicRow';
 import { Newsletter } from '@/components/Newsletter';
 
-export const metadata = { title: 'Tüm Yazılar' };
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Tüm Yazılar · Markalaşma Günlüğü',
+  description:
+    'Konumlandırma, farklılaşma, marka kimliği, iletişim ve sürdürülebilir büyüme üzerine günlük markalaşma yazıları. Ahmet Furkan Budak arşivi.',
+  keywords: [
+    'markalaşma yazıları',
+    'marka blogu',
+    'marka stratejisi blog',
+    'Ahmet Furkan Budak yazıları',
+    'konumlandırma',
+    'farklılaşma',
+  ],
+  alternates: { canonical: '/posts' },
+  openGraph: {
+    type: 'website',
+    url: '/posts',
+    title: 'Tüm Yazılar · Markalaşma Günlüğü',
+    description:
+      'Günlük markalaşma yazıları. Konumlandırma, farklılaşma, marka kimliği ve büyüme.',
+  },
+};
 
 type SearchParams = { tag?: string };
 

@@ -1,10 +1,14 @@
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 
-export const metadata = {
-  title: 'Kitap Önerileri',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Kitap Önerileri · Markalaşma',
   description:
-    'Konumlandırma, marka stratejisi ve iletişim düşüncesinin omurgasını oluşturan kitap önerileri.',
+    'Konumlandırma, marka stratejisi ve iletişim düşüncesinin omurgasını oluşturan kitap önerileri. Ahmet Furkan Budak seçkisi.',
+  keywords: ['markalaşma kitapları', 'marka stratejisi kitapları', 'konumlandırma kitabı', 'pazarlama kitapları'],
+  alternates: { canonical: '/oneriler/kitaplar' },
 };
 
 type Book = { title: string; author: string; publisher: string };

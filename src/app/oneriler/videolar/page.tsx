@@ -1,10 +1,14 @@
 import Link from 'next/link';
 import { ArrowLeft, PlayCircle } from 'lucide-react';
 
-export const metadata = {
-  title: 'Video Önerileri',
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Video Önerileri · Konuşmalar ve Analizler',
   description:
-    'Konferans konuşmaları, analizler ve arşivlik yayın kayıtları üzerine video önerileri.',
+    'Konferans konuşmaları, analizler ve arşivlik yayın kayıtları üzerine video önerileri. Ahmet Furkan Budak seçkisi.',
+  keywords: ['pazarlama videoları', 'marka konferansı', 'strateji videoları', 'tedx pazarlama'],
+  alternates: { canonical: '/oneriler/videolar' },
 };
 
 export default function VideolarPage() {
