@@ -34,7 +34,7 @@ export const TAXONOMY: TaxonomyEntry[] = [
   { slug: 'spor-e-spor', labelTr: 'Spor ve E-Spor', labelEn: 'Sports', group: 'SECTOR' },
   { slug: 'telekomunikasyon', labelTr: 'Telekomünikasyon', labelEn: 'Telecom', group: 'SECTOR' },
 
-  { slug: 'stratejik-disiplinler-yaklasimlar', labelTr: 'Stratejik Disiplinler ve Yaklaşımlar', group: 'DISCIPLINE' },
+  { slug: 'stratejik-disiplinler-yaklasimlar', labelTr: 'Stratejik Yaklaşımlar', group: 'DISCIPLINE' },
   { slug: 'noropazarlama-tuketici-psikolojisi', labelTr: 'Nöropazarlama ve Tüketici Psikolojisi', group: 'DISCIPLINE' },
   { slug: 'davranissal-ekonomi', labelTr: 'Davranışsal Ekonomi', group: 'DISCIPLINE' },
   { slug: 'global-marka-konumlandirma', labelTr: 'Global Marka Konumlandırma', group: 'DISCIPLINE' },
