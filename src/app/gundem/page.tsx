@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Gündem · Marka Haberleri',
   description:
-    'Dünyadan ve Türkiye\'den markalaşma haberleri. Editör tarafından Türkçeleştirilip özetlenir, orijinal kaynağa bağlantıyla yayımlanır. Ahmet Furkan Budak seçkisi.',
+    'Dünyadan markalaşma haberleri: Türkçe özet ve editör notuyla, orijinal kaynağa bağlantılı. Ahmet Furkan Budak seçkisi, her gün güncel.',
   keywords: [
     'marka haberleri',
     'markalaşma gündemi',

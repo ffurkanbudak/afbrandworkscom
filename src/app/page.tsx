@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
 import { ArrowRight } from 'lucide-react';
 import { db } from '@/lib/db';
 import { ArticleRowCard } from '@/components/ArticleRowCard';
@@ -11,8 +12,33 @@ import { MarketTicker } from '@/components/MarketTicker';
 import { NewsTicker } from '@/components/NewsTicker';
 import { CommunityStrip } from '@/components/CommunityStrip';
 import { HomeNewsGrid } from '@/components/HomeNewsGrid';
+import { HomeJsonLd } from '@/components/HomeJsonLd';
 
 const AUTHOR = 'Ahmet Furkan Budak';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.afbrandworks.com';
+
+export const metadata: Metadata = {
+  title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
+  description:
+    'Stratejik marka danışmanı Ahmet Furkan Budak. Konumlandırma, marka kimliği ve sürdürülebilir büyüme üzerine günlük yazılar; küresel marka haberleri.',
+  alternates: { canonical: '/' },
+  openGraph: {
+    type: 'website',
+    url: SITE_URL,
+    siteName: 'Ahmet Furkan Budak',
+    locale: 'tr_TR',
+    title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
+    description:
+      'Markalaşma üzerine günlük yazılar, vaka analizleri ve küresel marka haberleri. Toganworks kurucusu.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
+    description:
+      'Markalaşma üzerine günlük yazılar, vaka analizleri ve küresel marka haberleri.',
+    creator: '@afurkanbudak',
+  },
+};
 
 export default async function HomePage() {
   const [topRow, heroPost, spotlight, recent, topics, subscriberCount, latestNews] = await Promise.all([
@@ -54,6 +80,15 @@ export default async function HomePage() {
 
   return (
     <div className="fade-up pt-6 md:pt-10">
+      <HomeJsonLd
+        featured={spotlight.slice(0, 10).map((p) => ({
+          slug: p.slug,
+          title: p.title,
+          excerpt: p.excerpt,
+          publishedAt: p.publishedAt,
+          coverImageUrl: p.coverImageUrl,
+        }))}
+      />
       <div className="-mx-6 md:-mx-10 lg:-mx-14">
         <NewsTicker />
         <MarketTicker />

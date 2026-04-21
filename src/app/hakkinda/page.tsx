@@ -7,16 +7,19 @@ import type { Metadata } from 'next';
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://afbrandworks.com';
 
 export const metadata: Metadata = {
-  title: 'Hakkında · Ahmet Furkan Budak',
+  title: 'Ahmet Furkan Budak Kimdir · Stratejik Marka Danışmanı',
   description:
-    'Ahmet Furkan Budak kimdir? Stratejik marka danışmanı, Toganworks ve Marka İnisiyatifi kurucusu. Biyografi, eğitim, sertifikalar ve iletişim.',
+    'Ahmet Furkan Budak; stratejik marka danışmanı, Toganworks ve Marka İnisiyatifi kurucusu. Biyografi, eğitim, sertifikalar, uzmanlık alanları ve iletişim.',
   keywords: [
+    'Ahmet Furkan Budak',
     'Ahmet Furkan Budak kimdir',
     'Ahmet Furkan Budak biyografi',
+    'Ahmet Furkan Budak hakkında',
     'marka danışmanı',
     'stratejik marka danışmanı',
     'Toganworks kurucusu',
     'Marka İnisiyatifi',
+    'Afbrandworks',
   ],
   alternates: { canonical: '/hakkinda' },
   openGraph: {
@@ -24,7 +27,7 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/hakkinda`,
     title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
     description:
-      'Stratejik marka danışmanı, Toganworks kurucusu. Konumlandırma, farklılaşma ve sürdürülebilir büyüme üzerine yazar.',
+      'Stratejik marka danışmanı, Toganworks kurucusu. Konumlandırma, marka kimliği ve sürdürülebilir büyüme üzerine yazar.',
     images: [
       {
         url: '/ahmetfurkanbudak.jpeg',

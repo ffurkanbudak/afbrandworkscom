@@ -34,12 +34,32 @@ export function SiteJsonLd() {
       '@type': 'Organization',
       '@id': `${SITE_URL}/#toganworks`,
       name: 'Toganworks',
+      url: 'https://toganworks.com',
+    },
+    hasOccupation: {
+      '@type': 'Occupation',
+      name: 'Stratejik Marka Danışmanı',
+      occupationalCategory: 'Marketing and Brand Strategy',
+      skills: [
+        'Marka Stratejisi',
+        'Konumlandırma',
+        'Marka Kimliği',
+        'İsimlendirme',
+        'Pazarlama İletişimi',
+        'Büyüme Stratejisi',
+      ],
+    },
+    subjectOf: {
+      '@type': 'WebSite',
+      '@id': `${SITE_URL}/#website`,
     },
     sameAs: [
       'https://www.linkedin.com/in/ahmetfurkanbudak/',
       'https://twitter.com/afurkanbudak',
+      'https://x.com/afurkanbudakcom',
       'https://www.instagram.com/afurkanbudak/',
       'https://github.com/ffurkanbudak',
+      'https://toganworks.com',
     ],
   };
 

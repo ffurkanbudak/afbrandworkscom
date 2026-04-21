@@ -8,7 +8,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Konular · Markalaşma',
   description:
-    'Konumlandırma, farklılaşma, marka mimarisi, büyüme mimarisi ve marka iletişimi. Sektör, disiplin ve vaka çalışmaları kategorilerinde tüm konu başlıkları.',
+    'Markalaşmanın tüm başlıkları: konumlandırma, farklılaşma, marka mimarisi, iletişim. Sektör, disiplin ve vaka çalışmaları kategorilerinde.',
   keywords: [
     'marka konuları',
     'markalaşma kategorileri',

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: '%s · Ahmet Furkan Budak',
   },
   description:
-    'Ahmet Furkan Budak. Stratejik marka danışmanı, Toganworks kurucusu. Konumlandırma, farklılaşma, marka kimliği ve sürdürülebilir büyüme üzerine günlük markalaşma yazıları, küresel marka haberleri.',
+    'Stratejik marka danışmanı Ahmet Furkan Budak. Konumlandırma, marka kimliği ve sürdürülebilir büyüme üzerine günlük yazılar; küresel marka haberleri.',
   applicationName: 'Ahmet Furkan Budak',
   authors: [{ name: 'Ahmet Furkan Budak', url: SITE_URL }],
   creator: 'Ahmet Furkan Budak',

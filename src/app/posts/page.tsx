@@ -9,7 +9,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Tüm Yazılar · Markalaşma Günlüğü',
   description:
-    'Konumlandırma, farklılaşma, marka kimliği, iletişim ve sürdürülebilir büyüme üzerine günlük markalaşma yazıları. Ahmet Furkan Budak arşivi.',
+    'Günlük markalaşma yazıları: konumlandırma, farklılaşma, marka kimliği, iletişim ve sürdürülebilir büyüme. Ahmet Furkan Budak arşivi.',
   keywords: [
     'markalaşma yazıları',
     'marka blogu',
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     url: '/posts',
     title: 'Tüm Yazılar · Markalaşma Günlüğü',
     description:
-      'Günlük markalaşma yazıları. Konumlandırma, farklılaşma, marka kimliği ve büyüme.',
+      'Günlük markalaşma yazıları. Konumlandırma, farklılaşma, marka kimliği, büyüme.',
   },
 };
 
