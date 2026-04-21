@@ -1,0 +1,136 @@
+import Link from 'next/link';
+import { ArrowRight, Bookmark, Compass, Layers } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import { db } from '@/lib/db';
+
+export const metadata = {
+  title: 'Konular',
+  description:
+    'Konumlandırma, farklılaşma, marka mimarisi, büyüme mimarisi ve marka iletişimi. Tüm konu başlıkları bir arada.',
+};
+
+const GROUP_LABEL: Record<string, string> = {
+  SECTOR: 'Sektörler',
+  DISCIPLINE: 'Disiplinler',
+  CASE_STUDY: 'Vaka çalışmaları',
+};
+
+const GROUP_INTRO: Record<string, string> = {
+  SECTOR: 'Markalaşmanın sektörel farklılaştığı noktalar.',
+  DISCIPLINE: 'Yöntem ve çerçeve odaklı kategoriler.',
+  CASE_STUDY: 'Gerçek markalar, uygulanmış kararlar.',
+};
+
+const GROUP_ICON: Record<string, LucideIcon> = {
+  SECTOR: Compass,
+  DISCIPLINE: Layers,
+  CASE_STUDY: Bookmark,
+};
+
+export default async function TopicsPage() {
+  const [tags, countsRaw] = await Promise.all([
+    db.tag.findMany({ orderBy: [{ group: 'asc' }, { order: 'asc' }] }),
+    db.postTag.groupBy({
+      by: ['tagId'],
+      _count: { _all: true },
+    }),
+  ]);
+
+  const counts = new Map(countsRaw.map((c) => [c.tagId, c._count._all]));
+  const grouped = new Map<string, typeof tags>();
+  for (const t of tags) {
+    const arr = grouped.get(t.group) ?? [];
+    arr.push(t);
+    grouped.set(t.group, arr);
+  }
+
+  return (
+    <div className="fade-up pt-10 md:pt-16">
+      <section className="max-w-[780px]">
+        <p className="eyebrow">Konular</p>
+        <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
+          Markalaşmanın kategorileri.
+        </h1>
+        <p
+          className="mt-6 max-w-[58ch] text-[18px] leading-[1.6]"
+          style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
+        >
+          Konumlandırmadan farklılaşmaya, büyüme mimarisinden marka iletişimine
+          her başlık bir çerçeve sunuyor. İlgi alanınıza göre arşive girin.
+        </p>
+      </section>
+
+      {tags.length === 0 ? (
+        <p
+          className="mt-16 text-[16px]"
+          style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
+        >
+          Henüz kategori tanımlanmamış.
+        </p>
+      ) : (
+        <div className="mt-16 space-y-16">
+          {Array.from(grouped.entries()).map(([group, items]) => (
+            <section
+              key={group}
+              className="grid gap-10 border-t pt-10 md:grid-cols-[1fr_2fr]"
+              style={{ borderColor: 'var(--border)' }}
+            >
+              <div>
+                <p className="eyebrow">{GROUP_LABEL[group] ?? group}</p>
+                <p
+                  className="mt-4 max-w-[32ch] text-[15px] leading-[1.55]"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
+                >
+                  {GROUP_INTRO[group] ?? ''}
+                </p>
+              </div>
+              <ul className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                {items.map((t) => {
+                  const count = counts.get(t.id) ?? 0;
+                  const Icon = GROUP_ICON[t.group] ?? Layers;
+                  return (
+                    <li key={t.id}>
+                      <Link
+                        href={`/posts?tag=${t.slug}`}
+                        className="group flex items-center justify-between rounded-[8px] border px-4 py-3.5 transition hover:bg-[color-mix(in_oklab,var(--fg)_4%,transparent)]"
+                        style={{ borderColor: 'var(--border)' }}
+                      >
+                        <div className="flex items-center gap-3">
+                          <span
+                            className="flex h-7 w-7 shrink-0 items-center justify-center rounded-[6px]"
+                            style={{
+                              background: 'color-mix(in oklab, var(--fg) 4%, transparent)',
+                              color: 'color-mix(in oklab, var(--fg) 75%, transparent)',
+                            }}
+                          >
+                            <Icon className="h-[14px] w-[14px]" strokeWidth={1.75} />
+                          </span>
+                          <div>
+                            <p className="text-[15px] font-medium leading-[1.25] tracking-tight">
+                              {t.labelTr}
+                            </p>
+                            <p
+                              className="mt-0.5 text-[11.5px] font-semibold tracking-[0.1em] uppercase"
+                              style={{ color: 'color-mix(in oklab, var(--fg) 50%, transparent)' }}
+                            >
+                              {count} yazı
+                            </p>
+                          </div>
+                        </div>
+                        <ArrowRight
+                          className="h-[15px] w-[15px] transition group-hover:translate-x-0.5"
+                          strokeWidth={1.75}
+                          style={{ color: 'color-mix(in oklab, var(--fg) 48%, transparent)' }}
+                        />
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
+            </section>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}

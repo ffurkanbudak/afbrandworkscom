@@ -1,0 +1,291 @@
+import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
+
+export const metadata = {
+  title: 'Hakkında',
+  description:
+    'Ahmet Furkan Budak. Stratejik marka danışmanı, Toganworks kurucusu, Marka İnisiyatifi kurucusu.',
+};
+
+const EDUCATION = [
+  ['Lisans', 'İstinye Üniversitesi · Uluslararası Ticaret ve İşletme · 2018–2022'],
+  ['Hazırlık', 'Piri Reis Üniversitesi · English Preparatory · 2018'],
+];
+
+const CERTIFICATIONS = [
+  {
+    title: 'Marketing: Customer Needs and Wants',
+    issuer: 'IESE Business School',
+    date: 'Ağustos 2023',
+  },
+  {
+    title: 'Brand and Product Management',
+    issuer: 'IE Business School',
+    date: 'Ocak 2023',
+  },
+  {
+    title: 'Global Marketing: Building Iconic Brands',
+    issuer: 'University of Illinois Urbana-Champaign · Coursera',
+    date: 'Kasım 2022',
+  },
+  {
+    title: 'Brand Management',
+    issuer: 'Ankara Bilim Üniversitesi',
+    date: 'Ekim 2022',
+  },
+  {
+    title: 'Certified Associate Project Management (CAPM)',
+    issuer: 'PMI Türkiye Chapter',
+    date: 'Ekim 2022',
+  },
+  {
+    title: 'Online World Marketing Summit',
+    issuer: 'Kotler Impact Inc.',
+    date: 'Aralık 2022',
+  },
+  {
+    title: 'Innovation Arising From the User',
+    issuer: 'Massachusetts Institute of Technology · edX',
+    date: 'Mart 2020',
+  },
+  {
+    title: 'Entrepreneur: Get to Know Your Customer',
+    issuer: 'Massachusetts Institute of Technology · edX',
+    date: 'Ocak 2020',
+  },
+];
+
+const ROLES = [
+  {
+    title: 'Toganworks',
+    meta: 'Kurucu · Mart 2025 · Devam ediyor · İstanbul',
+    body: 'Toganworks, markaların hem dijital hem de geleneksel alanlarda güçlü bir varlık oluşturmasına yardımcı olan stratejik çözümler sunar. Marka tasarımından dijital pazarlamaya kadar geniş bir yelpazede hedeflerinize ulaşmanızda size eşlik eder. Her adımda etkin yönetim ve yaratıcı çözümlerle markanızın başarısını ve büyümesini güvence altına alırız.',
+  },
+  {
+    title: 'Marka İnisiyatifi',
+    meta: 'Kurucu · Haziran 2024 · Devam ediyor · İstanbul',
+    body: 'İnisiyatifi al, değişime öncülük et. Markalaşma kültürünü yaygınlaştırmak için kurulan topluluk; üniversite zirveleri, geniş katılımlı organizasyonlar ve akademi ile iş dünyası arasında etkileşim zemini oluşturuyor.',
+  },
+  {
+    title: 'İstinye Garage Incubation Hub',
+    meta: 'Startup Mentoru · Ocak 2025 · Devam ediyor · İstanbul',
+    body: 'Ocak 2025’ten bu yana İstinye Garage Incubation Hub’da startup mentoru olarak erken aşama girişimcilere danışmanlık veriyorum. Bu rolde; markalaşma, kimlik oluşturma, pazarlama stratejileri ve büyüme süreçleri konularında rehberlik sağlıyorum. Girişimcilerin hedef kitlelerini belirlemelerine, etkili konumlanmalarına ve sürdürülebilir marka stratejileri geliştirmelerine destek oluyorum. Ayrıca iş modellerini güçlendirme ve pazara giriş stratejileri oluşturma süreçlerinde kendilerine yol gösteriyorum.',
+  },
+  {
+    title: 'THK & Orion TEKMER',
+    meta: 'Startup Mentoru · Haziran 2025 · Devam ediyor · Ankara',
+    body: 'Haziran 2025’ten bu yana THK & ORION TEKMER bünyesinde startup mentoru olarak erken aşama girişimcilere destek veriyorum. Bu rolde; markalaşma, kimlik oluşturma, pazarlama stratejileri ve büyüme planlaması konularında stratejik rehberlik sunuyorum. Girişimcilerin hedef kitlelerini tanımlamalarına, etkili konumlanmalarına ve sürdürülebilir marka stratejileri inşa etmelerine yardımcı oluyorum. Ayrıca iş modellerini güçlendirme ve go-to-market stratejileri geliştirme süreçlerinde onlara eşlik ediyorum.',
+  },
+  {
+    title: 'Branding Türkiye',
+    meta: 'Yazar · Haziran 2025 · Devam ediyor',
+    body: 'Branding Türkiye’ye yazar olarak katıldım. Pazarlama, iletişim ve marka yönetimi üzerine haftalık yazılarımı buradan takip edebilirsiniz.',
+  },
+  {
+    title: 'Stratejik İşler',
+    meta: 'Stajyer · Şubat 2022 · Eylül 2022 · İstanbul',
+    body: 'Proje yönetimi asistanlığı ve proje asistanlığı süreçlerinde görev aldım. Pazar analizi ve raporlama, B2B pazar araştırması, sektör araştırması, dış ticaret için ülke matrisi hazırlama, SWOT analizi, sosyal medya stratejisi oluşturma, benchmarking ve iş modeli tasarımı çalışmalarına katkı sağladım. Ayrıca iş vakası incelemeleri, yönetim danışmanlığı sunumları ve sosyal sorumluluk projesi geliştirme süreçlerinde yer aldım.',
+  },
+];
+
+const FOCUS: string[] = [
+  'Konumlandırma',
+  'Farklılaşma',
+  'Marka mimarisi',
+  'Büyüme mimarisi',
+  'Rekabet stratejisi',
+  'Marka iletişimi',
+];
+
+export default function AboutPage() {
+  return (
+    <div className="fade-up pt-10 md:pt-16">
+      <section className="max-w-[780px]">
+        <p className="eyebrow">Hakkında</p>
+        <div
+          className="relative mt-8 aspect-[4/5] w-[140px] overflow-hidden rounded-[6px] border md:w-[160px]"
+          style={{ borderColor: 'var(--border)' }}
+        >
+          <Image
+            src="/ahmetfurkanbudak.jpeg"
+            alt="Ahmet Furkan Budak"
+            fill
+            sizes="160px"
+            className="object-cover grayscale"
+            priority
+          />
+        </div>
+        <h1 className="font-display mt-8 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
+          Ahmet Furkan Budak.
+        </h1>
+        <p
+          className="mt-7 max-w-[58ch] text-[20px] leading-[1.55] md:text-[22px]"
+          style={{ color: 'color-mix(in oklab, var(--fg) 72%, transparent)' }}
+        >
+          Stratejik marka danışmanı, mentör, eğitmen ve yayıncıyım. Trabzonlu
+          bir ailenin mensubu olarak İstanbul&rsquo;da doğdum. Markalaşma,
+          bütünleşik pazarlama ve kurumsal iletişimi bir bütün olarak ele
+          alıyor; markaların konumlandırma ve büyüme süreçlerini uçtan uca
+          yönetiyorum.
+        </p>
+        <p
+          className="mt-5 max-w-[58ch] text-[17px] leading-[1.7]"
+          style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
+        >
+          Vizyonumun temelinde, Türk dünyasının küresel potansiyelini harekete
+          geçirmek ve markaların gücüyle kültürel, ekonomik diplomasiye alan
+          açmak yer alıyor. Bağımsız danışmanlık sürecimde ulusal ve global
+          markalar için kurguladığım stratejik modelleri, Mart 2025&rsquo;te
+          kurduğum Toganworks Marka Ofisi&rsquo;ne taşıdım. Burada, şirketleri
+          yarının rekabetine hazırlayan, iş hedefleriyle tam entegre ve
+          doğrudan sonuç üreten marka mimarileri inşa ediyorum.
+        </p>
+        <p
+          className="mt-5 max-w-[58ch] text-[17px] leading-[1.7]"
+          style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
+        >
+          Danışmanlık ve strateji üretiminin yanı sıra Afbrandworks
+          platformuyla yayıncı kimliğimi sürdürüyorum. Bu mecrada sektörel
+          deneyimlerimi, dünyadan güncel marka haberlerini ve stratejik
+          gelişmeleri paylaşarak marka ekosistemine sürekli bir bilgi akışı
+          sağlıyorum.
+        </p>
+      </section>
+
+      <section
+        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
+        style={{ borderColor: 'var(--border)' }}
+      >
+        <div>
+          <p className="eyebrow">Eğitim</p>
+        </div>
+        <dl className="space-y-6">
+          {EDUCATION.map(([label, value]) => (
+            <div key={label} className="grid grid-cols-1 gap-1 sm:grid-cols-[200px_1fr] sm:gap-6">
+              <dt
+                className="text-[13px] font-semibold tracking-[0.12em] uppercase"
+                style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+              >
+                {label}
+              </dt>
+              <dd className="text-[16px] leading-[1.55]" style={{ color: 'var(--fg)' }}>
+                {value}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+
+      <section
+        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
+        style={{ borderColor: 'var(--border)' }}
+      >
+        <div>
+          <p className="eyebrow">Lisans ve Sertifikalar</p>
+        </div>
+        <ul className="space-y-8">
+          {CERTIFICATIONS.map((c) => (
+            <li key={c.title}>
+              <h3 className="font-display text-[18px] leading-[1.25] tracking-tight md:text-[19px]">
+                {c.title}
+              </h3>
+              <p
+                className="mt-1.5 text-[12px] font-semibold tracking-[0.12em] uppercase"
+                style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+              >
+                {c.issuer} · {c.date}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section
+        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
+        style={{ borderColor: 'var(--border)' }}
+      >
+        <div>
+          <p className="eyebrow">Deneyim</p>
+        </div>
+        <ul className="space-y-10">
+          {ROLES.map((r) => (
+            <li key={r.title}>
+              <h3 className="font-display text-[18px] leading-[1.25] tracking-tight md:text-[19px]">
+                {r.title}
+              </h3>
+              <p
+                className="mt-1.5 text-[12px] font-semibold tracking-[0.12em] uppercase"
+                style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+              >
+                {r.meta}
+              </p>
+              <p
+                className="mt-3 max-w-[62ch] text-[16px] leading-[1.65]"
+                style={{ color: 'color-mix(in oklab, var(--fg) 68%, transparent)' }}
+              >
+                {r.body}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section
+        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
+        style={{ borderColor: 'var(--border)' }}
+      >
+        <div>
+          <p className="eyebrow">Çalışma alanları</p>
+        </div>
+        <div>
+          <ul
+            className="flex flex-wrap gap-x-5 gap-y-2 text-[15px]"
+            style={{ color: 'color-mix(in oklab, var(--fg) 78%, transparent)' }}
+          >
+            {FOCUS.map((label) => (
+              <li key={label}>{label}</li>
+            ))}
+          </ul>
+          <p
+            className="mt-6 max-w-[58ch] text-[16px] leading-[1.65]"
+            style={{ color: 'color-mix(in oklab, var(--fg) 68%, transparent)' }}
+          >
+            Çalışmalarımda kısa vadeli görünürlükten ziyade, uzun vadeli marka
+            değeri ve rekabetçi dayanıklılık esas alınıyor. Ulusal ve
+            uluslararası ölçekte faaliyet gösteren markalarla; net, güçlü ve
+            sürdürülebilir konumlar inşa etmek üzere çalışıyorum.
+          </p>
+        </div>
+      </section>
+
+      <section
+        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
+        style={{ borderColor: 'var(--border)' }}
+      >
+        <div>
+          <p className="eyebrow">İletişim</p>
+        </div>
+        <div className="space-y-4">
+          <Link
+            href="/contact"
+            className="btn-red inline-flex items-center gap-2 rounded-[6px] px-4 py-2.5 text-[13px] font-medium"
+          >
+            Merhaba de!
+            <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
+          </Link>
+          <p>
+            <Link
+              href="https://toganworks.com"
+              className="inline-flex items-center gap-1.5 text-[15px] font-medium"
+              style={{ color: 'var(--fg)' }}
+            >
+              Toganworks
+              <ArrowUpRight className="h-[14px] w-[14px]" strokeWidth={1.75} />
+            </Link>
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+}

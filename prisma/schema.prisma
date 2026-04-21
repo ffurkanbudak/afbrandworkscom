@@ -1,0 +1,425 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+enum PostStatus {
+  DRAFT
+  SCHEDULED
+  PUBLISHED
+  ARCHIVED
+}
+
+enum TagGroup {
+  SECTOR
+  DISCIPLINE
+  CASE_STUDY
+}
+
+enum SubscriberStatus {
+  PENDING
+  CONFIRMED
+  UNSUBSCRIBED
+  BOUNCED
+}
+
+enum SubscriberTier {
+  CIRAK
+  KALFA
+  USTA
+  PIR
+}
+
+enum BroadcastStatus {
+  DRAFT
+  QUEUED
+  SENDING
+  SENT
+  FAILED
+}
+
+enum AdminRole {
+  OWNER
+  EDITOR
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWING
+  ACCEPTED
+  REJECTED
+}
+
+enum MessageStatus {
+  UNREAD
+  READ
+  ARCHIVED
+}
+
+enum CommentStatus {
+  PENDING
+  APPROVED
+  HIDDEN
+}
+
+enum NewsSourceType {
+  RSS
+  GOOGLE_NEWS
+}
+
+enum NewsLanguage {
+  EN
+  TR
+}
+
+enum NewsItemStatus {
+  DRAFT
+  PENDING_REVIEW
+  APPROVED
+  REJECTED
+  ARCHIVED
+}
+
+model Admin {
+  id           String       @id @default(cuid())
+  clerkId      String       @unique
+  email        String       @unique
+  name         String?
+  title        String?
+  bio          String?
+  avatarUrl    String?
+  role         AdminRole    @default(EDITOR)
+  createdAt    DateTime     @default(now())
+  updatedAt    DateTime     @default(now()) @updatedAt
+  posts        Post[]
+  broadcasts   Broadcast[]
+  subscriberNotes SubscriberNote[]
+}
+
+model Tag {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  labelTr     String
+  labelEn     String?
+  group       TagGroup
+  order       Int       @default(0)
+  posts       PostTag[]
+
+  @@index([group, order])
+}
+
+model Post {
+  id               String     @id @default(cuid())
+  slug             String     @unique
+  title            String
+  subtitle         String?
+  excerpt          String
+  contentHtml      String
+  contentJson      Json?
+  coverImageUrl    String?
+  coverImageAlt    String?
+  status           PostStatus @default(DRAFT)
+  featured         Boolean    @default(false)
+  readingMinutes   Int        @default(3)
+  metaTitle        String?
+  metaDescription  String?
+  publishedAt      DateTime?
+  scheduledFor     DateTime?
+  viewCount        Int        @default(0)
+  shareCount       Int        @default(0)
+  likeCount        Int        @default(0)
+  favoriteCount    Int        @default(0)
+  commentCount     Int        @default(0)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+  authorId         String
+  author           Admin      @relation(fields: [authorId], references: [id])
+  tags             PostTag[]
+  broadcasts       Broadcast[]
+  views            PostView[]
+  likes            PostLike[]
+  favorites        PostFavorite[]
+  comments         PostComment[]
+
+  @@index([status, publishedAt])
+  @@index([featured, publishedAt])
+}
+
+model PostLike {
+  id           String     @id @default(cuid())
+  postId       String
+  subscriberId String
+  createdAt    DateTime   @default(now())
+  post         Post       @relation(fields: [postId], references: [id], onDelete: Cascade)
+  subscriber   Subscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, subscriberId])
+  @@index([subscriberId, createdAt])
+}
+
+model PostFavorite {
+  id           String     @id @default(cuid())
+  postId       String
+  subscriberId String
+  createdAt    DateTime   @default(now())
+  post         Post       @relation(fields: [postId], references: [id], onDelete: Cascade)
+  subscriber   Subscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+
+  @@unique([postId, subscriberId])
+  @@index([subscriberId, createdAt])
+}
+
+model PostComment {
+  id           String        @id @default(cuid())
+  postId       String
+  subscriberId String
+  body         String
+  status       CommentStatus @default(PENDING)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @default(now()) @updatedAt
+  post         Post          @relation(fields: [postId], references: [id], onDelete: Cascade)
+  subscriber   Subscriber    @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+
+  @@index([postId, status, createdAt])
+  @@index([subscriberId, createdAt])
+  @@index([status, createdAt])
+}
+
+model PostTag {
+  postId String
+  tagId  String
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+  @@index([tagId])
+}
+
+model PostView {
+  id           String   @id @default(cuid())
+  postId       String
+  subscriberId String?
+  country      String?
+  city         String?
+  referer      String?
+  userAgent    String?
+  createdAt    DateTime @default(now())
+  post         Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  subscriber   Subscriber? @relation(fields: [subscriberId], references: [id], onDelete: SetNull)
+
+  @@index([postId, createdAt])
+  @@index([country])
+  @@index([subscriberId])
+}
+
+model Subscriber {
+  id               String           @id @default(cuid())
+  clerkId          String?          @unique
+  email            String           @unique
+  name             String?
+  firstName        String?
+  lastName         String?
+  avatarUrl        String?
+  bio              String?
+  city             String?
+  country          String?
+  status           SubscriberStatus @default(PENDING)
+  tier             SubscriberTier   @default(CIRAK)
+  activityScore    Int              @default(0)
+  lastActiveAt     DateTime?
+  showInCommunity  Boolean          @default(true)
+  source           String?
+  confirmToken     String?          @unique
+  unsubscribeToken String           @unique @default(cuid())
+  confirmedAt      DateTime?
+  unsubscribedAt   DateTime?
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @default(now()) @updatedAt
+  deliveries       BroadcastDelivery[]
+  notes            SubscriberNote[]
+  views            PostView[]
+  likes            PostLike[]
+  favorites        PostFavorite[]
+  comments         PostComment[]
+  newsComments     NewsComment[]
+  messages         ContactMessage[]
+  applications     WriterApplication[]
+  notificationsReadAt DateTime?
+
+  @@index([status])
+  @@index([tier])
+  @@index([lastActiveAt])
+}
+
+model SubscriberNote {
+  id           String     @id @default(cuid())
+  subscriberId String
+  authorId     String
+  body         String
+  createdAt    DateTime   @default(now())
+  subscriber   Subscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+  author       Admin      @relation(fields: [authorId], references: [id])
+
+  @@index([subscriberId, createdAt])
+}
+
+model Broadcast {
+  id             String             @id @default(cuid())
+  subject        String
+  previewText    String?
+  bodyHtml       String
+  bodyJson       Json?
+  status         BroadcastStatus    @default(DRAFT)
+  triggerPostId  String?
+  triggerPost    Post?              @relation(fields: [triggerPostId], references: [id])
+  authorId       String
+  author         Admin              @relation(fields: [authorId], references: [id])
+  sentAt         DateTime?
+  createdAt      DateTime           @default(now())
+  deliveries     BroadcastDelivery[]
+
+  @@index([status, createdAt])
+}
+
+model BroadcastDelivery {
+  id           String     @id @default(cuid())
+  broadcastId  String
+  subscriberId String
+  providerId   String?
+  opened       Boolean    @default(false)
+  clicked      Boolean    @default(false)
+  bounced      Boolean    @default(false)
+  sentAt       DateTime?
+  broadcast    Broadcast  @relation(fields: [broadcastId], references: [id], onDelete: Cascade)
+  subscriber   Subscriber @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+
+  @@unique([broadcastId, subscriberId])
+  @@index([subscriberId])
+}
+
+model ContactMessage {
+  id           String        @id @default(cuid())
+  subscriberId String?
+  name         String
+  email        String
+  topic        String?
+  message      String
+  status       MessageStatus @default(UNREAD)
+  reply        String?
+  repliedAt    DateTime?
+  readAt       DateTime?
+  archivedAt   DateTime?
+  createdAt    DateTime      @default(now())
+  subscriber   Subscriber?   @relation(fields: [subscriberId], references: [id], onDelete: SetNull)
+
+  @@index([status, createdAt])
+  @@index([subscriberId, createdAt])
+}
+
+model WriterApplication {
+  id              String            @id @default(cuid())
+  subscriberId    String?
+  name            String
+  email           String
+  phone           String?
+  linkedinUrl     String?
+  proposedTitle   String
+  pitch           String
+  sampleUrl       String?
+  topics          String?
+  status          ApplicationStatus @default(PENDING)
+  adminNote       String?
+  rejectionReason String?
+  decidedAt       DateTime?
+  reviewedAt      DateTime?
+  createdAt       DateTime          @default(now())
+  subscriber      Subscriber?       @relation(fields: [subscriberId], references: [id], onDelete: SetNull)
+
+  @@index([status, createdAt])
+  @@index([subscriberId, createdAt])
+}
+
+model NewsSource {
+  id              String         @id @default(cuid())
+  name            String
+  slug            String         @unique
+  homepageUrl     String
+  feedUrl         String
+  logoUrl         String?
+  language        NewsLanguage
+  type            NewsSourceType @default(RSS)
+  keywordFilter   String?
+  enabled         Boolean        @default(true)
+  lastFetchedAt   DateTime?
+  lastError       String?
+  createdAt       DateTime       @default(now())
+  updatedAt       DateTime       @default(now()) @updatedAt
+  items           NewsItem[]
+
+  @@index([enabled])
+}
+
+model NewsItem {
+  id              String         @id @default(cuid())
+  sourceId        String
+  externalUrl     String         @unique
+  originalTitle   String
+  originalExcerpt String?
+  imageUrl        String?
+  publishedAt     DateTime
+  fetchedAt       DateTime       @default(now())
+  status          NewsItemStatus @default(DRAFT)
+  titleTr         String?
+  summaryTr       String?
+  editorialNote   String?
+  approvedAt      DateTime?
+  rejectedAt      DateTime?
+  rejectionReason String?
+  approvedById    String?
+  commentCount    Int            @default(0)
+  source          NewsSource     @relation(fields: [sourceId], references: [id], onDelete: Cascade)
+  comments        NewsComment[]
+
+  @@index([status, publishedAt])
+  @@index([sourceId, publishedAt])
+  @@index([approvedAt])
+}
+
+model NewsComment {
+  id           String        @id @default(cuid())
+  newsItemId   String
+  subscriberId String
+  body         String
+  status       CommentStatus @default(PENDING)
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @default(now()) @updatedAt
+  newsItem     NewsItem      @relation(fields: [newsItemId], references: [id], onDelete: Cascade)
+  subscriber   Subscriber    @relation(fields: [subscriberId], references: [id], onDelete: Cascade)
+
+  @@index([newsItemId, status, createdAt])
+  @@index([subscriberId, createdAt])
+  @@index([status, createdAt])
+}
+
+model SponsorshipRequest {
+  id           String            @id @default(cuid())
+  company      String
+  name         String
+  email        String
+  phone        String?
+  website      String?
+  budgetRange  String?
+  goals        String
+  timeline     String?
+  status       ApplicationStatus @default(PENDING)
+  adminNote    String?
+  reviewedAt   DateTime?
+  createdAt    DateTime          @default(now())
+
+  @@index([status, createdAt])
+}
