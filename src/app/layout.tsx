@@ -53,26 +53,16 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'tr_TR',
     url: SITE_URL,
-    siteName: 'Ahmet Furkan Budak',
-    title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
+    siteName: 'Afbrandworks',
+    title: 'Afbrandworks · Markalaşma Günlüğü',
     description:
-      'Konumlandırma, farklılaşma ve sürdürülebilir büyüme üzerine günlük markalaşma yazıları. Stratejik marka danışmanı Ahmet Furkan Budak.',
-    images: [
-      {
-        url: '/ahmetfurkanbudak.jpeg',
-        width: 1200,
-        height: 1200,
-        alt: 'Ahmet Furkan Budak',
-        type: 'image/jpeg',
-      },
-    ],
+      "Ahmet Furkan Budak'ın kişisel web sitesi. Markalaşma üzerine günlük yazılar, vaka analizleri ve küresel marka haberleri.",
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
+    title: 'Afbrandworks · Markalaşma Günlüğü',
     description:
-      'Konumlandırma, farklılaşma ve sürdürülebilir büyüme üzerine günlük markalaşma yazıları.',
-    images: ['/ahmetfurkanbudak.jpeg'],
+      "Ahmet Furkan Budak'ın kişisel web sitesi. Markalaşma üzerine günlük yazılar, vaka analizleri ve küresel marka haberleri.",
     creator: '@afurkanbudak',
   },
   robots: {
@@ -90,10 +80,17 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/afbrandworks-mark.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico', sizes: '16x16 32x32 48x48', type: 'image/vnd.microsoft.icon' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon-16.png', sizes: '16x16', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+      { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
-    shortcut: '/afbrandworks-mark.svg',
-    apple: '/ahmetfurkanbudak.jpeg',
+    shortcut: '/favicon.ico',
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
   manifest: '/manifest.webmanifest',
   verification: {
