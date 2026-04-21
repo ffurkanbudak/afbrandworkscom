@@ -16,7 +16,7 @@ import { Comments } from '@/components/Comments';
 import { PostJsonLd } from '@/components/PostJsonLd';
 
 const FALLBACK_AUTHOR = 'Ahmet Furkan Budak';
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://afbrandworks.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com';
 
 export async function generateStaticParams() {
   const posts = await db.post.findMany({ where: { status: 'PUBLISHED' }, select: { slug: true } });

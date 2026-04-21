@@ -15,7 +15,7 @@ import { HomeNewsGrid } from '@/components/HomeNewsGrid';
 import { HomeJsonLd } from '@/components/HomeJsonLd';
 
 const AUTHOR = 'Ahmet Furkan Budak';
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.afbrandworks.com';
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com';
 
 export const metadata: Metadata = {
   title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
