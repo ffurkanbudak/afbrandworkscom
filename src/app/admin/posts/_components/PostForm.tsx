@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useMemo, useState } from 'react';
+import { useMemo, useRef, useState } from 'react';
 import { Field, inputClass, inputStyle } from '../../_components/FormField';
 
 type Tag = { id: string; labelTr: string; group: string };
@@ -50,6 +50,30 @@ function slugify(s: string) {
     .replace(/-+/g, '-');
 }
 
+function plainTextToHtml(text: string): string {
+  const decoded = text
+    .replace(/&nbsp;/g, ' ')
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, '\'')
+    .replace(/&lt;/g, '<')
+    .replace(/&gt;/g, '>')
+    .replace(/&amp;/g, '&');
+  const stripped = decoded.replace(/<[^>]*>/g, '');
+  const blocks = stripped.split(/\n\s*\n+/);
+  const paragraphs: string[] = [];
+  for (const block of blocks) {
+    const trimmed = block.trim();
+    if (!trimmed) continue;
+    const escaped = trimmed
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;');
+    const withBreaks = escaped.replace(/\n/g, '<br />');
+    paragraphs.push(`<p>${withBreaks}</p>`);
+  }
+  return paragraphs.join('\n\n');
+}
+
 export function PostForm({
   tags,
   mode,
@@ -64,6 +88,9 @@ export function PostForm({
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [success, setSuccess] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const [uploading, setUploading] = useState(false);
+  const [uploadError, setUploadError] = useState<string | null>(null);
 
   const grouped = useMemo(() => {
     const g: Record<string, Tag[]> = {};
@@ -88,6 +115,29 @@ export function PostForm({
         ? prev.tagIds.filter((x) => x !== id)
         : [...prev.tagIds, id],
     }));
+  }
+
+  async function handleFile(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    setUploadError(null);
+    setUploading(true);
+    try {
+      const form = new FormData();
+      form.append('file', file);
+      const res = await fetch('/api/admin/upload', { method: 'POST', body: form });
+      const json = await res.json();
+      if (!res.ok) {
+        setUploadError(json.error ?? 'Yüklenemedi.');
+      } else {
+        update('coverImageUrl', json.url);
+      }
+    } catch {
+      setUploadError('Ağ hatası.');
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+    }
   }
 
   async function onSubmit(e: React.FormEvent) {
@@ -204,7 +254,15 @@ export function PostForm({
             style={inputStyle}
           />
         </Field>
-        <Field label="İçerik (HTML)" required>
+        <Field label="İçerik (HTML)" required hint="Düz metin yapıştır, altındaki butonla HTML'e çevir. Veya doğrudan HTML yaz.">
+          <button
+            type="button"
+            onClick={() => update('contentHtml', plainTextToHtml(data.contentHtml))}
+            className="mb-2 rounded-[6px] border px-2.5 py-1 text-[12px]"
+            style={{ borderColor: 'var(--border)' }}
+          >
+            Düz metinden HTML üret
+          </button>
           <textarea
             value={data.contentHtml}
             onChange={(e) => update('contentHtml', e.target.value)}
@@ -215,13 +273,36 @@ export function PostForm({
           />
         </Field>
         <div className="grid gap-5 sm:grid-cols-2">
-          <Field label="Kapak görseli URL">
+          <Field label="Kapak görseli">
             <input
-              value={data.coverImageUrl}
-              onChange={(e) => update('coverImageUrl', e.target.value)}
-              className={inputClass + ' text-[13px]'}
-              style={inputStyle}
+              type="file"
+              accept="image/*"
+              ref={fileInputRef}
+              onChange={handleFile}
+              className="hidden"
             />
+            <button
+              type="button"
+              onClick={() => fileInputRef.current?.click()}
+              disabled={uploading}
+              className="rounded-[6px] border px-2.5 py-1 text-[12px] disabled:opacity-60"
+              style={{ borderColor: 'var(--border)' }}
+            >
+              {uploading ? 'Yükleniyor…' : data.coverImageUrl ? 'Fotoğrafı Değiştir' : 'Fotoğraf Ekle'}
+            </button>
+            {uploadError && (
+              <p className="mt-2 text-[12.5px]" style={{ color: '#DC2626' }}>
+                {uploadError}
+              </p>
+            )}
+            {data.coverImageUrl && (
+              <p
+                className="mt-2 font-mono text-[11px] break-all"
+                style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+              >
+                {data.coverImageUrl}
+              </p>
+            )}
           </Field>
           <Field label="Kapak alt metni">
             <input
