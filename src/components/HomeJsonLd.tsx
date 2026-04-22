@@ -29,7 +29,7 @@ export function HomeJsonLd({ featured }: { featured: FeaturedPost[] }) {
     '@id': `${SITE_URL}/#sitenav`,
     name: 'Site Gezinmesi',
     itemListElement: [
-      { '@type': 'SiteNavigationElement', position: 1, name: 'Anasayfa', url: SITE_URL },
+      { '@type': 'SiteNavigationElement', position: 1, name: 'Ana Sayfa', url: SITE_URL },
       { '@type': 'SiteNavigationElement', position: 2, name: 'Yazılar', url: `${SITE_URL}/posts` },
       { '@type': 'SiteNavigationElement', position: 3, name: 'Gündem', url: `${SITE_URL}/gundem` },
       { '@type': 'SiteNavigationElement', position: 4, name: 'Konular', url: `${SITE_URL}/konular` },

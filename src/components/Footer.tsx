@@ -3,7 +3,8 @@ import { Logo } from './Logo';
 
 const FOOTER_NAV = [
   { href: '/', label: 'Ana Sayfa' },
-  { href: '/posts', label: 'Blog' },
+  { href: '/posts', label: 'Yazılar' },
+  { href: '/gundem', label: 'Gündem' },
   { href: '/konular', label: 'Konular' },
   { href: '/oneriler', label: 'Öneriler' },
   { href: '/hakkinda', label: 'Hakkında' },
