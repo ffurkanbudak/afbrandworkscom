@@ -24,6 +24,7 @@ const PILLARS: [string, string][] = [
   ['Marka Kimliği', '/marka-kimligi'],
   ['Marka Farklılaşması', '/farklilasma'],
   ['Marka Mimarisi', '/marka-mimarisi'],
+  ['Pazarlama İletişimi', '/pazarlama-iletisimi'],
   ['Marka Sözlüğü', '/sozluk'],
 ];
 
