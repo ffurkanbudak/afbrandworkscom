@@ -21,6 +21,54 @@ const TIER_HEAD: Record<Sponsor['tier'], string> = {
   QUARTERLY: 'Bu Dönemin Sponsoru',
 };
 
+const PHANTOM_SPONSORS: { initial: string; name: string; head: string }[] = [
+  { initial: 'S', name: 'Studio Kavis', head: 'Bu Ayın Sponsoru' },
+  { initial: 'K', name: 'Küre Yayın Grubu', head: 'Bu Haftanın Sponsoru' },
+  { initial: 'B', name: 'Başat Partners', head: 'Bu Dönemin Sponsoru' },
+];
+
+function PhantomPill({
+  initial,
+  name,
+  head,
+}: {
+  initial: string;
+  name: string;
+  head: string;
+}) {
+  return (
+    <aside
+      aria-hidden
+      className="pointer-events-none inline-flex items-center gap-3 rounded-[8px] border px-3 py-2 select-none"
+      style={{
+        borderColor: 'var(--border)',
+        background: 'var(--bg)',
+        opacity: 0.72,
+      }}
+    >
+      <div
+        className="flex h-8 w-8 items-center justify-center rounded-full text-[11px] font-semibold"
+        style={{
+          background: 'color-mix(in oklab, var(--fg) 8%, transparent)',
+          color: 'color-mix(in oklab, var(--fg) 70%, transparent)',
+          filter: 'blur(1.5px)',
+        }}
+      >
+        {initial}
+      </div>
+      <div className="text-left" style={{ filter: 'blur(3px)' }}>
+        <p
+          className="text-[9.5px] font-semibold tracking-[0.1em] uppercase"
+          style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+        >
+          {head}
+        </p>
+        <p className="text-[12px] font-semibold leading-tight">{name}</p>
+      </div>
+    </aside>
+  );
+}
+
 export function SponsorWidget() {
   const [sponsor, setSponsor] = useState<Sponsor | null>(null);
   const [open, setOpen] = useState(false);
@@ -38,10 +86,14 @@ export function SponsorWidget() {
     };
   }, []);
 
-  if (!sponsor) return null;
+  const phantoms = sponsor
+    ? PHANTOM_SPONSORS.filter((p) => p.head !== TIER_HEAD[sponsor.tier]).slice(0, 2)
+    : PHANTOM_SPONSORS;
 
   return (
     <>
+      <div className="flex flex-wrap items-center justify-center gap-2">
+      {sponsor && (
       <aside
         className="inline-flex items-center gap-3 rounded-[8px] border px-3 py-2"
         style={{ borderColor: 'var(--border)', background: 'var(--bg)' }}
@@ -79,8 +131,13 @@ export function SponsorWidget() {
           </div>
         </button>
       </aside>
+      )}
+      {phantoms.map((p) => (
+        <PhantomPill key={p.name} initial={p.initial} name={p.name} head={p.head} />
+      ))}
+      </div>
 
-      {open && (
+      {open && sponsor && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           onClick={() => setOpen(false)}
