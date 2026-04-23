@@ -1,6 +1,6 @@
 import type { Subscriber } from '@prisma/client';
 
-const MIN_BIO_LENGTH = 10;
+const MIN_BIO_LENGTH = 5;
 
 export function isProfileComplete(sub: Pick<Subscriber, 'avatarUrl' | 'bio'>): boolean {
   if (!sub.avatarUrl) return false;
