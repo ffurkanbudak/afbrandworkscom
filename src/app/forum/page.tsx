@@ -9,6 +9,7 @@ import { MarketTicker } from '@/components/MarketTicker';
 import { TagFilter } from './_components/TagFilter';
 import { PostCard, type ForumPostRow } from './_components/PostCard';
 import { GuestGate } from './_components/GuestGate';
+import { MockChatterFeed } from './_components/MockChatterFeed';
 
 export const metadata: Metadata = {
   title: 'Forum · Afbrandworks',
@@ -107,22 +108,16 @@ export default async function ForumPage({
       </div>
 
       <div className="mx-auto mt-6 grid max-w-[1040px] gap-6 md:grid-cols-[1fr_280px]">
-        <div className="space-y-4">
-          {rows.length === 0 ? (
-            <p
-              className="rounded-[12px] border p-8 text-center text-[13.5px]"
-              style={{
-                borderColor: 'var(--border)',
-                color: 'color-mix(in oklab, var(--fg) 60%, transparent)',
-              }}
-            >
-              Bu etiket altında henüz konu yok.
-            </p>
-          ) : (
-            rows.map((r) => (
-              <PostCard key={r.id} row={r} viewerCanSeeAuthor={!isGuest} />
-            ))
+        <div className="space-y-6">
+          {rows.length > 0 && (
+            <div className="space-y-4">
+              {rows.map((r) => (
+                <PostCard key={r.id} row={r} viewerCanSeeAuthor={!isGuest} />
+              ))}
+            </div>
           )}
+
+          <MockChatterFeed />
 
           {isGuest && <GuestGate variant="list" />}
         </div>
