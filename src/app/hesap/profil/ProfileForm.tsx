@@ -2,18 +2,8 @@
 
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
 import { Field, inputClass, inputStyle } from '@/app/admin/_components/FormField';
 import { COUNTRIES, TR_CITIES } from '@/lib/geography';
-
-const selectStyle: React.CSSProperties = {
-  ...inputStyle,
-  WebkitAppearance: 'none',
-  MozAppearance: 'none',
-  appearance: 'none',
-  background: 'var(--bg)',
-  cursor: 'pointer',
-};
 
 type Initial = {
   firstName: string;
@@ -114,50 +104,38 @@ export function ProfileForm({ initial }: { initial: Initial }) {
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Field label="Ülke">
-          <div className="relative">
-            <select
-              value={country}
-              onChange={(e) => {
-                setCountry(e.target.value);
-                if (e.target.value !== 'TR') setCity('');
-              }}
-              className={`${inputClass} pr-10`}
-              style={selectStyle}
-            >
-              <option value="">Seçin…</option>
-              {COUNTRIES.map((c) => (
-                <option key={c.code} value={c.code}>
-                  {c.label}
-                </option>
-              ))}
-            </select>
-            <ChevronDown
-              className="pointer-events-none absolute top-1/2 right-3 h-[14px] w-[14px] -translate-y-1/2 opacity-60"
-              strokeWidth={1.75}
-            />
-          </div>
+          <select
+            value={country}
+            onChange={(e) => {
+              setCountry(e.target.value);
+              if (e.target.value !== 'TR') setCity('');
+            }}
+            className={`${inputClass} select-reset`}
+            style={inputStyle}
+          >
+            <option value="">Seçin…</option>
+            {COUNTRIES.map((c) => (
+              <option key={c.code} value={c.code}>
+                {c.label}
+              </option>
+            ))}
+          </select>
         </Field>
         <Field label="Şehir">
           {country === 'TR' ? (
-            <div className="relative">
-              <select
-                value={city}
-                onChange={(e) => setCity(e.target.value)}
-                className={`${inputClass} pr-10`}
-                style={selectStyle}
-              >
-                <option value="">Seçin…</option>
-                {TR_CITIES.map((c) => (
-                  <option key={c} value={c}>
-                    {c}
-                  </option>
-                ))}
-              </select>
-              <ChevronDown
-                className="pointer-events-none absolute top-1/2 right-3 h-[14px] w-[14px] -translate-y-1/2 opacity-60"
-                strokeWidth={1.75}
-              />
-            </div>
+            <select
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className={`${inputClass} select-reset`}
+              style={inputStyle}
+            >
+              <option value="">Seçin…</option>
+              {TR_CITIES.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
           ) : (
             <input
               value={city}

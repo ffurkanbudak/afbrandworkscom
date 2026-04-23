@@ -230,6 +230,19 @@ select.input-base option[value=""][disabled] {
   color: color-mix(in oklab, var(--muted) 90%, transparent);
 }
 
+.select-reset {
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%238B8B8B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 14px 14px;
+  padding-right: 36px !important;
+  cursor: pointer;
+}
+.select-reset::-ms-expand { display: none; }
+
 .post-body > p {
   margin-top: 1.5em;
   margin-bottom: 1.5em;
