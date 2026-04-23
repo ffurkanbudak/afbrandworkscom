@@ -7,7 +7,6 @@ const FOOTER_NAV = [
   { href: '/gundem', label: 'Gündem' },
   { href: '/konular', label: 'Konular' },
   { href: '/oneriler', label: 'Öneriler' },
-  { href: '/markalardan-hikayeler', label: 'Markalar' },
   { href: '/forum', label: 'Forum' },
   { href: '/uyelik', label: 'Üyelik' },
   { href: '/hediye-et', label: 'Hediye Edin' },
