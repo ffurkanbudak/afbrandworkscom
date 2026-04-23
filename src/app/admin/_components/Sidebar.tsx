@@ -16,6 +16,7 @@ import {
   UserCircle,
   Newspaper,
   Gift,
+  Building2,
   ArrowLeft,
 } from 'lucide-react';
 
@@ -49,6 +50,7 @@ export function Sidebar({
         { href: '/admin/posts', label: 'Yazılar', icon: FileText },
         { href: '/admin/posts/new', label: 'Yeni Yazı', icon: PenSquare },
         { href: '/admin/news', label: 'Gündem', icon: Newspaper, badge: counts.news },
+        { href: '/admin/brand-stories', label: 'Marka Hikayeleri', icon: Building2 },
         { href: '/admin/broadcast', label: 'Yayın (E-posta)', icon: Send },
       ],
     },
