@@ -85,7 +85,7 @@ const SECTIONS: { title: string; paragraphs: string[] }[] = [
   {
     title: 'İletişim',
     paragraphs: [
-      'Platform ile iletişim için aşağıdaki kanallar açıktır. Genel sorular, editoryal başvurular, sponsorluk ve işbirliği önerileri için: iletisim@afbrandworks.com',
+      'Platform ile iletişim için aşağıdaki kanallar açıktır. Genel sorular, editoryal başvurular, sponsorluk ve işbirliği önerileri için: info@afbrandworks.com',
       'Danışmanlık ve mentörlük başvuruları için üyelik panelindeki doğrudan mesaj hattı kullanılabilir. Sosyal medya kanallarından gelen mesajlar da okunur; ancak resmi iletişim kanalı yukarıdaki e-posta adresidir.',
       'Yanıt süresi paket seviyesine göre değişir. Gözlemci için beş iş günü, Ortak için yirmi dört saat, Mimari için aynı gün yanıt verilir.',
     ],
