@@ -8,6 +8,7 @@ import {
   BookOpen,
   Calendar,
   ChevronDown,
+  Gift,
   Headphones,
   Instagram,
   Linkedin,
@@ -153,6 +154,16 @@ export function Header() {
                 <Youtube className="h-[15px] w-[15px]" strokeWidth={1.75} />
               </a>
             </div>
+
+            <Link
+              href="/hediye-et"
+              aria-label="Hediye Edin"
+              title="Hediye Edin"
+              className="hidden h-8 w-8 items-center justify-center rounded-[6px] transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)] sm:inline-flex"
+              style={{ color: 'color-mix(in oklab, var(--fg) 80%, transparent)' }}
+            >
+              <Gift className="h-[15px] w-[15px]" strokeWidth={1.75} />
+            </Link>
 
             <SignedOut>
               <Link

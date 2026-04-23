@@ -6,6 +6,7 @@ import { getCurrentSubscriber } from '@/lib/subscriber';
 import { SponsorWidget } from '@/components/SponsorWidget';
 import { NewsTicker } from '@/components/NewsTicker';
 import { MarketTicker } from '@/components/MarketTicker';
+import { CommunityStrip } from '@/components/CommunityStrip';
 import { TagFilter } from './_components/TagFilter';
 import { PostCard, type ForumPostRow } from './_components/PostCard';
 import { GuestGate } from './_components/GuestGate';
@@ -150,6 +151,8 @@ export default async function ForumPage({
           </div>
         </aside>
       </div>
+
+      <CommunityStrip />
     </div>
   );
 }
