@@ -8,7 +8,7 @@ import { auth } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
 import { getRelatedPosts } from '@/lib/related';
 import { formatDateCaps } from '@/lib/format';
-import { truncateHtmlByPercent } from '@/lib/truncateHtml';
+import { truncateHtmlByParagraphs } from '@/lib/truncateHtml';
 import { Newsletter } from '@/components/Newsletter';
 import { FeaturedCard } from '@/components/FeaturedCard';
 import { NewBadge } from '@/components/NewBadge';
@@ -119,7 +119,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
   const { truncated: renderedHtml, wasCut } = isSubscribed
     ? { truncated: post.contentHtml, wasCut: false }
-    : truncateHtmlByPercent(post.contentHtml, 35);
+    : truncateHtmlByParagraphs(post.contentHtml, 2);
 
   const primaryTag = post.tags[0]?.tag;
 

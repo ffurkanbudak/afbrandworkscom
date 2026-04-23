@@ -1,3 +1,27 @@
+export function truncateHtmlByParagraphs(
+  html: string,
+  paragraphsToKeep: number,
+): { truncated: string; wasCut: boolean } {
+  if (!html) return { truncated: html, wasCut: false };
+  if (paragraphsToKeep <= 0) return { truncated: '', wasCut: true };
+
+  const parts = html.split(/(<\/p>)/i);
+  const paragraphs: string[] = [];
+  for (let i = 0; i < parts.length; i += 2) {
+    const content = parts[i] ?? '';
+    const closer = parts[i + 1] ?? '';
+    const pair = content + closer;
+    if (pair.trim()) paragraphs.push(pair);
+  }
+
+  if (paragraphs.length <= paragraphsToKeep + 1) {
+    return { truncated: html, wasCut: false };
+  }
+
+  const kept = paragraphs.slice(0, paragraphsToKeep);
+  return { truncated: kept.join(''), wasCut: true };
+}
+
 export function truncateHtmlByPercent(
   html: string,
   percent: number,

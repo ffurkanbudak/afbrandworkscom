@@ -1,40 +1,52 @@
-'use client';
+import Link from 'next/link';
+import { ArrowRight, Check } from 'lucide-react';
 
-import { useState } from 'react';
-import { ArrowRight } from 'lucide-react';
+type MiniPlan = {
+  name: string;
+  subtitle: string;
+  tagline: string;
+  bullets: string[];
+  locked?: boolean;
+};
+
+const MINI_PLANS: MiniPlan[] = [
+  {
+    name: 'Gözlemci',
+    subtitle: 'Ücretsiz',
+    tagline: 'Tüm yazılara erişim, yorum ve beğeni hakkı.',
+    bullets: [
+      'Tüm blog yazılarına sınırsız erişim',
+      'Haftalık marka bülteni',
+      'Topluluk alanına katılım',
+    ],
+  },
+  {
+    name: 'Ortak',
+    subtitle: 'Orta Paket · Yakında',
+    tagline: 'Bir danışmanla çalışma ve topluluk içinde görülme.',
+    bullets: [
+      '1 saat birebir mentörlük',
+      'Öncelikli yanıt 24 saat içinde',
+      'Kadın Girişimci Programı hakkı',
+    ],
+    locked: true,
+  },
+  {
+    name: 'Mimari',
+    subtitle: 'Üst Paket · Yakında',
+    tagline: 'Stratejik ortaklık, raporlama ve tanıtım.',
+    bullets: [
+      '2 saat birebir mentörlük',
+      'WhatsApp öncelik hattı',
+      'Yıllık marka sağlık raporu',
+    ],
+    locked: true,
+  },
+];
 
 export function Paywall() {
-  const [email, setEmail] = useState('');
-  const [busy, setBusy] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
-
-  async function onSubmit(e: React.FormEvent) {
-    e.preventDefault();
-    if (busy) return;
-    setError(null);
-    setBusy(true);
-    try {
-      const res = await fetch('/api/subscribe', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ email, source: 'paywall' }),
-      });
-      const json = await res.json();
-      if (!res.ok) {
-        setError(json.error ?? 'Kaydedilemedi.');
-        setBusy(false);
-        return;
-      }
-      setDone(true);
-    } catch {
-      setError('Ağ hatası.');
-      setBusy(false);
-    }
-  }
-
   return (
-    <div className="relative mx-auto mt-4 max-w-[680px]">
+    <div className="relative mx-auto mt-4 max-w-[860px]">
       <div
         aria-hidden
         className="pointer-events-none absolute inset-x-0 -top-40 h-40"
@@ -44,80 +56,102 @@ export function Paywall() {
         }}
       />
       <div
-        className="relative rounded-[12px] border p-7 text-center md:p-10"
+        className="relative rounded-[14px] border p-6 md:p-10"
         style={{ borderColor: 'var(--border)', background: 'var(--bg-soft)' }}
       >
-        {done ? (
-          <>
-            <h3 className="font-display text-[24px] leading-[1.15] md:text-[28px]">
-              Başvurunuz alındı
-            </h3>
-            <p
-              className="mt-4 text-[15px] leading-[1.6]"
-              style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
+        <div className="text-center">
+          <p
+            className="text-[11px] font-semibold tracking-[0.14em] uppercase"
+            style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+          >
+            Okumaya devam et
+          </p>
+          <h3 className="font-display mt-3 text-[24px] leading-[1.15] md:text-[30px]">
+            Yazının tamamı üyeler için
+          </h3>
+          <p
+            className="mx-auto mt-4 max-w-[52ch] text-[14.5px] leading-[1.6]"
+            style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
+          >
+            Üç paketten birini seçin. Gözlemci ücretsizdir; Ortak ve Mimari
+            paketleri için ön kayıt açıktır.
+          </p>
+        </div>
+
+        <div className="mt-8 grid grid-cols-1 gap-3 md:grid-cols-3 md:gap-4">
+          {MINI_PLANS.map((p) => (
+            <div
+              key={p.name}
+              className="relative rounded-[10px] border p-5"
+              style={{
+                borderColor: 'var(--border)',
+                background: 'var(--bg)',
+              }}
             >
-              Yönetici başvurunuzu onayladığında e-posta ile erişim linki göndereceğiz.
-              Linke tıkladığınızda tüm yazıların tamamına erişirsiniz.
-            </p>
-          </>
-        ) : (
-          <>
-            <p
-              className="text-[11px] font-semibold tracking-[0.14em] uppercase"
-              style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
-            >
-              Okumaya devam et
-            </p>
-            <h3 className="mt-3 font-display text-[24px] leading-[1.15] md:text-[30px]">
-              Yazının tamamı aboneler için
-            </h3>
-            <p
-              className="mx-auto mt-4 max-w-[48ch] text-[15px] leading-[1.6]"
-              style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
-            >
-              Ücretsiz abone olun; bu yazının ve tüm yazıların tamamına erişin.
-              Haftalık markalaşma notları doğrudan e-posta kutunuza.
-            </p>
-            <form
-              onSubmit={onSubmit}
-              className="mx-auto mt-7 flex max-w-[440px] flex-col gap-3 sm:flex-row"
-            >
-              <input
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="e-posta adresiniz"
-                className="flex-1 rounded-[8px] border px-4 py-3 text-[14px]"
-                style={{
-                  borderColor: 'var(--border)',
-                  background: 'var(--bg)',
-                  color: 'var(--fg)',
-                }}
-              />
-              <button
-                type="submit"
-                disabled={busy}
-                className="inline-flex items-center justify-center gap-2 rounded-[8px] px-5 py-3 text-[14px] font-medium transition hover:opacity-90 disabled:opacity-60"
-                style={{ background: '#DC2204', color: '#FFFFFF' }}
+              {p.locked && (
+                <span
+                  className="absolute top-3 right-3 rounded-full border px-2 py-[3px] text-[9.5px] font-semibold tracking-[0.12em] uppercase"
+                  style={{
+                    borderColor: 'color-mix(in oklab, var(--fg) 25%, transparent)',
+                    color: 'color-mix(in oklab, var(--fg) 75%, transparent)',
+                  }}
+                >
+                  Yakında
+                </span>
+              )}
+              <p
+                className="text-[10.5px] font-semibold tracking-[0.14em] uppercase"
+                style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
               >
-                {busy ? 'Gönderiliyor…' : 'Abone olun'}
-                <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
-              </button>
-            </form>
-            {error && (
-              <p className="mt-4 text-[13px]" style={{ color: '#DC2626' }}>
-                {error}
+                {p.subtitle}
               </p>
-            )}
-            <p
-              className="mt-6 text-[12px]"
-              style={{ color: 'color-mix(in oklab, var(--fg) 50%, transparent)' }}
-            >
-              Spam yok. İstediğiniz zaman abonelikten çıkabilirsiniz.
-            </p>
-          </>
-        )}
+              <h4 className="font-display mt-2 text-[19px] tracking-tight">
+                {p.name}
+              </h4>
+              <p
+                className="mt-2 text-[12.5px] leading-[1.55]"
+                style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
+              >
+                {p.tagline}
+              </p>
+              <ul className="mt-4 space-y-1.5">
+                {p.bullets.map((b) => (
+                  <li
+                    key={b}
+                    className="flex items-start gap-1.5 text-[12px] leading-[1.5]"
+                  >
+                    <Check
+                      className="mt-[2px] h-[11px] w-[11px] shrink-0"
+                      strokeWidth={2.25}
+                      style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
+                    />
+                    <span style={{ color: 'color-mix(in oklab, var(--fg) 80%, transparent)' }}>
+                      {b}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <Link
+            href="/uyelik"
+            className="inline-flex items-center justify-center gap-2 rounded-[8px] px-5 py-3 text-[14px] font-semibold transition hover:opacity-90"
+            style={{ background: 'var(--fg)', color: 'var(--bg)' }}
+          >
+            Üyelikleri gör
+            <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
+          </Link>
+          <Link
+            href="/sign-in"
+            className="inline-flex items-center justify-center rounded-[8px] border px-5 py-3 text-[13.5px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
+            style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
+          >
+            Zaten üye misiniz? Giriş yap
+          </Link>
+        </div>
       </div>
     </div>
   );
