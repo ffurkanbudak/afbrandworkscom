@@ -6,6 +6,8 @@ import { Newsletter } from '@/components/Newsletter';
 
 import type { Metadata } from 'next';
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com';
+
 export const metadata: Metadata = {
   title: 'Tüm Yazılar · Markalaşma Günlüğü',
   description:
@@ -53,8 +55,68 @@ export default async function PostsPage({
     tag ? db.tag.findUnique({ where: { slug: tag } }) : Promise.resolve(null),
   ]);
 
+  const collectionUrl = tag ? `${SITE_URL}/posts?tag=${tag}` : `${SITE_URL}/posts`;
+  const collectionName = activeTag
+    ? `${activeTag.labelTr} · Yazılar`
+    : 'Tüm Yazılar · Markalaşma Günlüğü';
+
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${collectionUrl}#collection`,
+    url: collectionUrl,
+    name: collectionName,
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    author: { '@id': `${SITE_URL}/#person` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    hasPart: posts.slice(0, 20).map((p) => ({
+      '@type': 'BlogPosting',
+      '@id': `${SITE_URL}/posts/${p.slug}#article`,
+      headline: p.title,
+      url: `${SITE_URL}/posts/${p.slug}`,
+      datePublished: p.publishedAt?.toISOString(),
+      author: { '@id': `${SITE_URL}/#person` },
+    })),
+  };
+
+  const itemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: posts.slice(0, 20).map((p, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${SITE_URL}/posts/${p.slug}`,
+      name: p.title,
+    })),
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Yazılar', item: `${SITE_URL}/posts` },
+      ...(activeTag
+        ? [{ '@type': 'ListItem', position: 3, name: activeTag.labelTr, item: collectionUrl }]
+        : []),
+    ],
+  };
+
   return (
     <div className="fade-up pt-10 md:pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <section className="max-w-[62ch]">
         <p className="eyebrow">Arşiv</p>
         <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
