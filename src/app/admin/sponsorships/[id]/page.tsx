@@ -74,6 +74,42 @@ export default async function SponsorshipDetail({
           </div>
 
           <SponsorshipActions id={r.id} status={r.status} note={r.adminNote ?? ''} />
+
+          <div
+            className="rounded-2xl border p-5"
+            style={{
+              borderColor: r.status === 'ACCEPTED'
+                ? 'color-mix(in oklab, #16A34A 35%, transparent)'
+                : 'var(--border)',
+              background: r.status === 'ACCEPTED'
+                ? 'color-mix(in oklab, #16A34A 4%, transparent)'
+                : 'transparent',
+            }}
+          >
+            <p className="eyebrow">Aktif sponsora çevir</p>
+            <p
+              className="mt-2 text-[12.5px] leading-[1.55]"
+              style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
+            >
+              Anlaşma tamamlandıysa bu talebi doğrudan yayına alınabilir bir
+              sponsor kaydına çevir. Bilgiler forma ön-doldurulur; logo ve
+              tarihleri girmeniz yeterli.
+            </p>
+            <Link
+              href={{
+                pathname: '/admin/sponsors/new',
+                query: {
+                  name: r.company,
+                  website: r.website ?? undefined,
+                  bio: r.goals.slice(0, 400),
+                  sourceRequestId: r.id,
+                },
+              }}
+              className="btn-dark mt-4 inline-flex w-full items-center justify-center gap-2 rounded-[8px] py-2.5 text-[13px] font-semibold"
+            >
+              Sponsora çevir →
+            </Link>
+          </div>
         </aside>
       </div>
     </div>
