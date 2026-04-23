@@ -334,6 +334,7 @@ model Broadcast {
   authorId       String
   author         Admin              @relation(fields: [authorId], references: [id])
   sentAt         DateTime?
+  targetPlans    MembershipPlan[]   @default([])
   createdAt      DateTime           @default(now())
   deliveries     BroadcastDelivery[]
 

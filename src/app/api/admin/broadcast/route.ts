@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
+import type { MembershipPlan } from '@prisma/client';
 import { db } from '@/lib/db';
 import { resend, FROM_ADDRESS, SITE_URL } from '@/lib/email';
 import { renderAnnouncementEmail } from '@/lib/email-templates';
@@ -7,6 +8,7 @@ import { getRecentPostsForEmail } from '@/lib/email-recent-posts';
 
 const KINDS = ['video', 'podcast', 'mail', 'etkinlik', 'yazi', 'duyuru'] as const;
 type Kind = (typeof KINDS)[number];
+const VALID_PLANS = ['GOZLEMCI', 'ORTAK', 'MIMARI'] as const satisfies readonly MembershipPlan[];
 
 export async function POST(req: Request) {
   const { userId } = await auth();
@@ -29,6 +31,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Başlık ve açıklama gerekli.' }, { status: 400 });
   }
 
+  const rawTargetPlans = Array.isArray(body.targetPlans) ? body.targetPlans : [];
+  const targetPlans: MembershipPlan[] = rawTargetPlans.filter(
+    (p: unknown): p is MembershipPlan =>
+      typeof p === 'string' && (VALID_PLANS as readonly string[]).includes(p),
+  );
+  const targetAll = targetPlans.length === 0 || targetPlans.length === VALID_PLANS.length;
+
   const recentPosts = await getRecentPostsForEmail().catch(() => []);
 
   const sampleHtml = renderAnnouncementEmail({
@@ -50,10 +59,16 @@ export async function POST(req: Request) {
       bodyJson: { kind, title, intro, ctaLabel, ctaUrl, previewText },
       status: 'SENDING',
       authorId: admin.id,
+      targetPlans: targetAll ? [] : targetPlans,
     },
   });
 
-  const subscribers = await db.subscriber.findMany({ where: { status: 'CONFIRMED' } });
+  const subscribers = await db.subscriber.findMany({
+    where: {
+      status: 'CONFIRMED',
+      ...(targetAll ? {} : { plan: { in: targetPlans } }),
+    },
+  });
   const BATCH = 80;
   for (let i = 0; i < subscribers.length; i += BATCH) {
     const chunk = subscribers.slice(i, i + BATCH);

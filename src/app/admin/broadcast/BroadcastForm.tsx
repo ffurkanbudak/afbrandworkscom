@@ -14,6 +14,14 @@ const KINDS = [
 
 type Kind = (typeof KINDS)[number]['value'];
 
+const PLANS = [
+  { value: 'GOZLEMCI', label: 'Gözlemci' },
+  { value: 'ORTAK', label: 'Ortak' },
+  { value: 'MIMARI', label: 'Mimari' },
+] as const;
+
+type Plan = (typeof PLANS)[number]['value'];
+
 export function BroadcastForm() {
   const router = useRouter();
   const [kind, setKind] = useState<Kind>('yazi');
@@ -22,8 +30,17 @@ export function BroadcastForm() {
   const [ctaLabel, setCtaLabel] = useState('');
   const [ctaUrl, setCtaUrl] = useState('');
   const [previewText, setPreviewText] = useState('');
+  const [selectedPlans, setSelectedPlans] = useState<Plan[]>(
+    PLANS.map((p) => p.value),
+  );
   const [busy, setBusy] = useState(false);
   const [msg, setMsg] = useState<{ kind: 'ok' | 'err'; text: string } | null>(null);
+
+  function togglePlan(p: Plan) {
+    setSelectedPlans((prev) =>
+      prev.includes(p) ? prev.filter((x) => x !== p) : [...prev, p],
+    );
+  }
 
   async function onSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -36,7 +53,15 @@ export function BroadcastForm() {
       setMsg({ kind: 'err', text: 'CTA için hem etiket hem URL gerekli.' });
       return;
     }
-    if (!confirm('Tüm onaylı abonelere yayın gönderilsin mi?')) return;
+    if (selectedPlans.length === 0) {
+      setMsg({ kind: 'err', text: 'En az bir paket seçin.' });
+      return;
+    }
+    const targetAll = selectedPlans.length === PLANS.length;
+    const planLabel = targetAll
+      ? 'tüm onaylı abonelere'
+      : selectedPlans.map((p) => PLANS.find((x) => x.value === p)?.label).join(', ') + ' paketlerindeki abonelere';
+    if (!confirm(`Yayın ${planLabel} gönderilsin mi?`)) return;
 
     setBusy(true);
     try {
@@ -50,6 +75,7 @@ export function BroadcastForm() {
           ctaLabel: ctaLabel.trim() || null,
           ctaUrl: ctaUrl.trim() || null,
           previewText: previewText.trim() || null,
+          targetPlans: selectedPlans,
         }),
       });
       const data = await res.json();
@@ -149,6 +175,37 @@ export function BroadcastForm() {
         />
       </Field>
 
+      <Field label="Hedef paketler">
+        <div className="flex flex-wrap gap-1.5">
+          {PLANS.map((p) => {
+            const active = selectedPlans.includes(p.value);
+            return (
+              <button
+                type="button"
+                key={p.value}
+                onClick={() => togglePlan(p.value)}
+                className="rounded-full border px-3 py-1.5 text-[12px] transition"
+                style={{
+                  borderColor: active ? 'var(--fg)' : 'var(--border)',
+                  background: active ? 'var(--fg)' : 'transparent',
+                  color: active ? 'var(--bg)' : 'var(--fg)',
+                  fontWeight: active ? 600 : 500,
+                }}
+              >
+                {p.label}
+              </button>
+            );
+          })}
+        </div>
+        <p
+          className="mt-2 text-[11.5px]"
+          style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+        >
+          Seçilen paketlerdeki onaylı abonelere gönderilir. Tümünü seçmek
+          tüm abonelere gönderir.
+        </p>
+      </Field>
+
       {msg && (
         <p
           className="text-[12.5px]"
@@ -163,7 +220,7 @@ export function BroadcastForm() {
         disabled={busy}
         className="btn-red w-full rounded-full py-3 text-[13px] font-semibold tracking-[0.02em]"
       >
-        {busy ? 'Gönderiliyor…' : 'Tüm abonelere gönder'}
+        {busy ? 'Gönderiliyor…' : selectedPlans.length === PLANS.length ? 'Tüm abonelere gönder' : 'Seçili paketlere gönder'}
       </button>
     </form>
   );
