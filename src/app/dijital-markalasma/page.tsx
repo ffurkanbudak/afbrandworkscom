@@ -101,7 +101,7 @@ export default function DijitalMarkalasmaPage() {
         <div className="mt-14 space-y-12 text-[16.5px] leading-[1.75]">
           <section>
             <h2 className="font-display text-[24px] leading-[1.2] tracking-tight md:text-[28px]">
-              Dijital markalaşma nedir
+              Dijital markalaşma nedir?
             </h2>
             <div
               className="mt-4 space-y-4"

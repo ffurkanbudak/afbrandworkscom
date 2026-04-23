@@ -106,10 +106,10 @@ export default function MarkaDanismanligiPage() {
             style={{ color: 'color-mix(in oklab, var(--fg) 72%, transparent)' }}
           >
             <li>
-              <a href="#tanim" className="hover:underline">1. Marka danışmanlığı nedir</a>
+              <a href="#tanim" className="hover:underline">1. Marka danışmanlığı nedir?</a>
             </li>
             <li>
-              <a href="#ne-zaman" className="hover:underline">2. Hangi durumlarda çağırılır</a>
+              <a href="#ne-zaman" className="hover:underline">2. Hangi durumlarda çağırılır?</a>
             </li>
             <li>
               <a href="#surec" className="hover:underline">3. Danışmanlık süreci</a>
@@ -129,7 +129,7 @@ export default function MarkaDanismanligiPage() {
         <div className="mt-14 space-y-12 text-[16.5px] leading-[1.75]">
           <section id="tanim">
             <h2 className="font-display text-[24px] leading-[1.2] tracking-tight md:text-[28px]">
-              1. Marka danışmanlığı nedir
+              1. Marka danışmanlığı nedir?
             </h2>
             <div
               className="mt-4 space-y-4"
@@ -163,7 +163,7 @@ export default function MarkaDanismanligiPage() {
 
           <section id="ne-zaman">
             <h2 className="font-display text-[24px] leading-[1.2] tracking-tight md:text-[28px]">
-              2. Hangi durumlarda çağırılır
+              2. Hangi durumlarda çağırılır?
             </h2>
             <div
               className="mt-4 space-y-4"

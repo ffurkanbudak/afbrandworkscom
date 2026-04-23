@@ -103,7 +103,7 @@ export default function MarkaStratejisiPage() {
         <div className="mt-14 space-y-12 text-[16.5px] leading-[1.75]">
           <section>
             <h2 className="font-display text-[24px] leading-[1.2] tracking-tight md:text-[28px]">
-              Strateji nedir, ne değildir
+              Strateji nedir, ne değildir?
             </h2>
             <div
               className="mt-4 space-y-4"
