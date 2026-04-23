@@ -5,9 +5,10 @@ import Link from 'next/link';
 import { ArrowUpRight, ArrowRight } from 'lucide-react';
 
 const LINKS: [string, string][] = [
-  ['Toganworks · Ajans', 'https://toganworks.com'],
   ['LinkedIn', 'https://www.linkedin.com/in/ahmetfurkanbudak/'],
+  ['Instagram', 'https://www.instagram.com/afbrandworks'],
   ['Twitter / X', 'https://x.com/afurkanbudakcom'],
+  ['YouTube', 'https://www.youtube.com/@ahmetfurkanbudak'],
 ];
 
 export default function ContactPage() {
