@@ -6,6 +6,7 @@ import { db } from '@/lib/db';
 import { getCurrentSubscriber } from '@/lib/subscriber';
 import { PLAN_LABEL } from '@/lib/plan';
 import { GuestGate } from '../_components/GuestGate';
+import { ForumComments } from '../_components/ForumComments';
 
 export const dynamic = 'force-dynamic';
 
@@ -178,7 +179,13 @@ export default async function ForumPostPage({
         {isGuest ? post.body.slice(0, 600) : post.body}
       </div>
 
-      {isGuest && <GuestGate variant="post" />}
+      {isGuest ? (
+        <GuestGate variant="post" />
+      ) : isLive ? (
+        <div className="mt-12">
+          <ForumComments postId={post.id} isSignedIn={!isGuest} />
+        </div>
+      ) : null}
     </article>
   );
 }

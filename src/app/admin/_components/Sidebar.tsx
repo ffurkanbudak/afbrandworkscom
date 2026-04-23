@@ -57,6 +57,7 @@ export function Sidebar({
       items: [
         { href: '/admin/subscribers', label: 'Aboneler', icon: Users },
         { href: '/admin/comments', label: 'Yorumlar', icon: MessageSquare, badge: counts.comments },
+        { href: '/admin/forum-moderation', label: 'Forum Moderasyon', icon: MessageSquare },
         { href: '/admin/gift-codes', label: 'Hediye Kodları', icon: Gift },
       ],
     },

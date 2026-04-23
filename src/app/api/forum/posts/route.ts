@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { getCurrentSubscriber } from '@/lib/subscriber';
 import { db } from '@/lib/db';
 import { computePublishAt, isProfileComplete } from '@/lib/forum-guard';
+import { scanContent, BLOCK_USER_MESSAGE } from '@/lib/forum-moderation';
 
 const MIN_TITLE = 8;
 const MAX_TITLE = 180;
@@ -55,6 +56,11 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Geçersiz etiket.' }, { status: 400 });
   }
 
+  const scan = scanContent(`${title}\n${content}`);
+  if (scan.status === 'BLOCKED') {
+    return NextResponse.json({ error: BLOCK_USER_MESSAGE }, { status: 400 });
+  }
+
   const publishAt = computePublishAt();
 
   const post = await db.forumPost.create({
@@ -67,6 +73,15 @@ export async function POST(req: Request) {
       status: 'PUBLISHED',
     },
   });
+
+  if (scan.status === 'FLAGGED') {
+    await db.forumFlag.create({
+      data: {
+        postId: post.id,
+        reason: `Otomatik uyarı: ${scan.terms.join(', ')}`,
+      },
+    });
+  }
 
   await db.subscriber.update({
     where: { id: sub.id },
