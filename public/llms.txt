@@ -25,6 +25,20 @@ Ahmet Furkan Budak; marka stratejisi, konumlandırma, kimlik inşası ve pazarla
 - [Forum](https://afbrandworks.com/forum): Marka, pazarlama ve girişimcilik üzerine topluluk sohbet alanı.
 - [Öneriler](https://afbrandworks.com/oneriler): Kitap, podcast, video ve etkinlik önerileri.
 
+## Rehberler (pillar sayfalar)
+
+- [Marka Danışmanlığı](https://afbrandworks.com/marka-danismanligi): Stratejik marka danışmanlığı süreci, kapsam, yaklaşım.
+- [Marka Stratejisi](https://afbrandworks.com/marka-stratejisi): Strateji tanımı, temel bileşenler, kurulma süreci, yaygın hatalar.
+- [Marka Yönetimi](https://afbrandworks.com/marka-yonetimi): Günlük marka yönetiminin pratikleri, sağlık sinyalleri, kriz yönetimi.
+- [Dijital Markalaşma](https://afbrandworks.com/dijital-markalasma): Dijital kanalların marka rolü, prensipler, yaygın hatalar.
+- [Marka Konumlandırma](https://afbrandworks.com/konumlandirma): Konumlandırma tanımı, kurulma süreci, klasik formül ve hatalar.
+- [Marka Kimliği](https://afbrandworks.com/marka-kimligi): Kimliğin tanımı, temel bileşenler, marka kitabı, yenileme kararı.
+- [Marka Farklılaşması](https://afbrandworks.com/farklilasma): 7 farklılaşma ekseni, kanıt stratejisi, sürdürülebilirlik.
+- [Marka Mimarisi](https://afbrandworks.com/marka-mimarisi): Branded House, House of Brands, endorsed brand ve hibrit yapılar.
+- [Pazarlama İletişimi](https://afbrandworks.com/pazarlama-iletisimi): Bütünleşik pazarlama iletişimi, 6 kanal ve rolleri, ölçüm çerçevesi.
+- [Marka Sağlığı](https://afbrandworks.com/marka-sagligi): 6 temel metrik, sağlık taraması (brand tracking), yorumlama çerçevesi.
+- [Marka Sözlüğü](https://afbrandworks.com/sozluk): Markalaşma ve pazarlamanın 24 temel kavramı, tanımları.
+
 ## Kimlik ve otorite
 
 - İsim: Ahmet Furkan Budak
