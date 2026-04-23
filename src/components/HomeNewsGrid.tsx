@@ -83,7 +83,7 @@ export function HomeNewsGrid({ items }: { items: Item[] }) {
                     />
                   )}
                   <span
-                    lang={n.source.language === 'EN' ? 'en' : undefined}
+                    lang="en"
                     className="text-[10.5px] font-semibold tracking-[0.12em] uppercase"
                     style={{ color: 'color-mix(in oklab, var(--fg) 58%, transparent)' }}
                   >

@@ -46,7 +46,7 @@ function SourceRow({ item, size = 'sm' }: { item: Item; size?: 'sm' | 'lg' }) {
         />
       )}
       <span
-        lang={item.source.language === 'EN' ? 'en' : undefined}
+        lang="en"
         className={`${textSize} font-semibold tracking-[0.12em] uppercase`}
         style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
       >

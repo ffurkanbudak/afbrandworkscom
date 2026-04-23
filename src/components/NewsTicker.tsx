@@ -76,7 +76,7 @@ export function NewsTicker() {
               )}
             </span>
             <span
-              lang={n.source.language === 'EN' ? 'en' : undefined}
+              lang="en"
               className="font-semibold tracking-[0.06em] uppercase"
               style={{ color: 'color-mix(in oklab, var(--fg) 58%, transparent)' }}
             >
