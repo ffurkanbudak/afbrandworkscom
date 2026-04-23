@@ -4,6 +4,8 @@ import { PenSquare } from 'lucide-react';
 import { db } from '@/lib/db';
 import { getCurrentSubscriber } from '@/lib/subscriber';
 import { SponsorWidget } from '@/components/SponsorWidget';
+import { NewsTicker } from '@/components/NewsTicker';
+import { MarketTicker } from '@/components/MarketTicker';
 import { TagFilter } from './_components/TagFilter';
 import { PostCard, type ForumPostRow } from './_components/PostCard';
 import { GuestGate } from './_components/GuestGate';
@@ -70,8 +72,13 @@ export default async function ForumPage({
   const canPost = !!viewer;
 
   return (
-    <div className="fade-up pt-8 md:pt-12">
-      <div className="mb-6 flex justify-center md:mb-8">
+    <div className="fade-up pt-4 md:pt-6">
+      <div className="-mx-6 md:-mx-10 lg:-mx-14">
+        <NewsTicker />
+        <MarketTicker />
+      </div>
+
+      <div className="mt-8 mb-6 flex justify-center md:mt-10 md:mb-8">
         <SponsorWidget />
       </div>
 

@@ -121,8 +121,7 @@ export function ActivePackageCard({
               <button
                 type="submit"
                 disabled={busy}
-                className="inline-flex items-center justify-center gap-2 rounded-[8px] px-5 py-3 text-[14px] font-semibold transition hover:opacity-90 disabled:opacity-60"
-                style={{ background: 'var(--fg)', color: 'var(--bg)' }}
+                className="btn-red inline-flex items-center justify-center gap-2 rounded-[8px] px-5 py-3 text-[14px] font-semibold"
               >
                 {busy ? 'Gönderiliyor…' : 'Ücretsiz başlayın'}
                 <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
