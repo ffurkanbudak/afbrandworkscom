@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { auth } from '@clerk/nextjs/server';
 import { getCurrentSubscriber } from '@/lib/subscriber';
 import { db } from '@/lib/db';
 import { computePublishAt, isProfileComplete } from '@/lib/forum-guard';
@@ -14,13 +15,19 @@ export async function POST(req: Request) {
   if (!sub) {
     return NextResponse.json({ error: 'Önce giriş yapın.' }, { status: 401 });
   }
-  if (sub.status !== 'CONFIRMED') {
+
+  const { userId } = await auth();
+  const isAdmin = userId
+    ? !!(await db.admin.findUnique({ where: { clerkId: userId }, select: { id: true } }))
+    : false;
+
+  if (!isAdmin && sub.status !== 'CONFIRMED') {
     return NextResponse.json(
       { error: 'Aboneliğiniz onaylanana kadar konu açamazsınız.' },
       { status: 403 },
     );
   }
-  if (!isProfileComplete(sub)) {
+  if (!isAdmin && !isProfileComplete(sub)) {
     return NextResponse.json(
       { error: 'Konu açmak için profil fotoğrafı ve tanıtım metni gerekli.' },
       { status: 403 },

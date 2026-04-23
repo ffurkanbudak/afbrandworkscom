@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import { auth } from '@clerk/nextjs/server';
 import { getCurrentSubscriber } from '@/lib/subscriber';
 import { db } from '@/lib/db';
 import { isProfileComplete } from '@/lib/forum-guard';
@@ -25,8 +26,13 @@ export default async function NewForumPostPage() {
     select: { slug: true, label: true },
   });
 
-  const profileComplete = isProfileComplete(viewer);
-  const notConfirmed = viewer.status !== 'CONFIRMED';
+  const { userId } = await auth();
+  const isAdmin = userId
+    ? !!(await db.admin.findUnique({ where: { clerkId: userId }, select: { id: true } }))
+    : false;
+
+  const profileComplete = isAdmin || isProfileComplete(viewer);
+  const notConfirmed = !isAdmin && viewer.status !== 'CONFIRMED';
 
   return (
     <div className="fade-up mx-auto max-w-[720px] pt-8 md:pt-14">
