@@ -67,6 +67,11 @@ enum SponsorTier {
   QUARTERLY
 }
 
+enum BrandOrigin {
+  GLOBAL
+  LOCAL
+}
+
 enum BroadcastStatus {
   DRAFT
   QUEUED
@@ -603,4 +608,42 @@ model GiftRequest {
 
   @@index([status, createdAt])
   @@index([senderEmail])
+}
+
+model BrandStory {
+  id                     String      @id @default(cuid())
+  slug                   String      @unique
+  name                   String
+  sector                 String
+  foundedYear            Int
+  headquartersCity       String?
+  headquartersCountry    String
+  origin                 BrandOrigin
+
+  logoUrl                String?
+  coverImageUrl          String?
+  founderImageUrl        String?
+
+  positioning            String
+  foundingStory          String
+  founderVision          String
+  strategicDecisions     Json       @default("[]")
+  crisesAndTurningPoints String     @default("")
+  currentPosition        String
+  editorialNote          String
+
+  status                 PostStatus @default(DRAFT)
+  featured               Boolean    @default(false)
+  publishedAt            DateTime?
+  viewCount              Int        @default(0)
+
+  metaTitle              String?
+  metaDescription        String?
+
+  createdAt              DateTime   @default(now())
+  updatedAt              DateTime   @default(now()) @updatedAt
+
+  @@index([status, publishedAt])
+  @@index([origin, sector])
+  @@index([featured, publishedAt])
 }
