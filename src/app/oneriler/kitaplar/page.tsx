@@ -3,6 +3,8 @@ import { ArrowLeft } from 'lucide-react';
 
 import type { Metadata } from 'next';
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com';
+
 export const metadata: Metadata = {
   title: 'Kitap Önerileri · Markalaşma',
   description:
@@ -90,8 +92,65 @@ function pad(n: number): string {
 export default function KitaplarPage() {
   const totalBooks = COLLECTIONS.reduce((n, c) => n + c.books.length, 0);
 
+  const allBooks = COLLECTIONS.flatMap((c) => c.books.map((b) => ({ ...b, category: c.category })));
+
+  const itemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${SITE_URL}/oneriler/kitaplar#list`,
+    name: 'Markalaşma ve Strateji Okuma Listesi',
+    numberOfItems: totalBooks,
+    itemListElement: allBooks.map((b, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      item: {
+        '@type': 'Book',
+        name: b.title,
+        author: { '@type': 'Person', name: b.author },
+        publisher: { '@type': 'Organization', name: b.publisher },
+        inLanguage: 'tr',
+        genre: b.category,
+      },
+    })),
+  };
+
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${SITE_URL}/oneriler/kitaplar#collection`,
+    url: `${SITE_URL}/oneriler/kitaplar`,
+    name: 'Markalaşma Kitapları · Okuma Listesi',
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    author: { '@id': `${SITE_URL}/#person` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+    mainEntity: { '@id': `${SITE_URL}/oneriler/kitaplar#list` },
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Öneriler', item: `${SITE_URL}/oneriler` },
+      { '@type': 'ListItem', position: 3, name: 'Kitaplar', item: `${SITE_URL}/oneriler/kitaplar` },
+    ],
+  };
+
   return (
     <div className="fade-up pt-10 md:pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <section className="max-w-[780px]">
         <Link
           href="/oneriler"

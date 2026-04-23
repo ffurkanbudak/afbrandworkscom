@@ -10,6 +10,8 @@ import type { LucideIcon } from 'lucide-react';
 
 import type { Metadata } from 'next';
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com';
+
 export const metadata: Metadata = {
   title: 'Öneriler · Kitap, Podcast, Video, Etkinlik',
   description:
@@ -69,9 +71,44 @@ const SECTIONS: Section[] = [
   },
 ];
 
+const collectionJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  '@id': `${SITE_URL}/oneriler#collection`,
+  url: `${SITE_URL}/oneriler`,
+  name: 'Öneriler · Kitap, Podcast, Video, Etkinlik',
+  inLanguage: 'tr-TR',
+  isPartOf: { '@id': `${SITE_URL}/#website` },
+  author: { '@id': `${SITE_URL}/#person` },
+  publisher: { '@id': `${SITE_URL}/#organization` },
+  hasPart: SECTIONS.map((s) => ({
+    '@type': 'WebPage',
+    url: `${SITE_URL}${s.href}`,
+    name: s.title,
+    description: s.desc,
+  })),
+};
+
+const breadcrumbJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Öneriler', item: `${SITE_URL}/oneriler` },
+  ],
+};
+
 export default function OnerilerPage() {
   return (
     <div className="fade-up pt-10 md:pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <section className="max-w-[780px]">
         <p className="eyebrow">Öneriler</p>
         <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
