@@ -139,21 +139,6 @@ export default async function BrandStoryDetailPage({
           </div>
         </header>
 
-        {s.coverImageUrl && (
-          <div
-            className="relative mt-10 aspect-[16/9] w-full overflow-hidden rounded-[12px]"
-            style={{ background: 'var(--bg-soft)' }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={s.coverImageUrl}
-              alt={s.name}
-              loading="eager"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        )}
-
         {s.positioning && (
           <blockquote
             className="mt-12 border-l-2 pl-5 font-display text-[22px] leading-[1.3] tracking-tight md:text-[26px]"
