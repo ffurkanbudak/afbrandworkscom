@@ -222,6 +222,47 @@ export default async function HomePage() {
         </section>
       )}
 
+      <section className="mt-20">
+        <p className="eyebrow">Rehberler</p>
+        <h2 className="font-display mt-3 text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
+          Markalaşmanın temel alanları
+        </h2>
+        <p
+          className="mt-4 max-w-[56ch] text-[15px] leading-[1.6]"
+          style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
+        >
+          Marka danışmanlığı, strateji, yönetim ve dijital markalaşma üzerine
+          uçtan uca çerçeveler. Her rehber; tanım, süreç ve sık sorulanlarla
+          bir disiplini bütün olarak ele alıyor.
+        </p>
+        <ul className="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
+          {[
+            ['Marka Danışmanlığı', '/marka-danismanligi', 'Konumlandırma, kimlik ve büyüme için stratejik danışmanlık.'],
+            ['Marka Stratejisi', '/marka-stratejisi', 'Konumlandırma, farklılaşma ve değer önerisinin inşası.'],
+            ['Marka Yönetimi', '/marka-yonetimi', 'Stratejinin günlük uygulamaya dönüştüğü disiplin.'],
+            ['Dijital Markalaşma', '/dijital-markalasma', 'Dijital kanalların markanın yansımasına dönüşmesi.'],
+          ].map(([label, href, desc]) => (
+            <li
+              key={href}
+              className="group border-t pt-5"
+              style={{ borderColor: 'var(--border)' }}
+            >
+              <Link href={href} className="block" style={{ color: 'var(--fg)' }}>
+                <h3 className="font-display text-[18px] leading-[1.25] tracking-tight group-hover:underline">
+                  {label}
+                </h3>
+                <p
+                  className="mt-2 text-[14px] leading-[1.6]"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
+                >
+                  {desc}
+                </p>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       {topics.length > 0 && (
         <section className="mt-20">
           <p className="eyebrow">Konular</p>

@@ -152,12 +152,65 @@ const FOCUS: string[] = [
   'Marka iletişimi',
 ];
 
+const FAQS: { question: string; answer: string }[] = [
+  {
+    question: 'Ahmet Furkan Budak kimdir?',
+    answer:
+      'Ahmet Furkan Budak; stratejik marka danışmanı, Toganworks Marka Ofisi ve Marka İnisiyatifi kurucusudur. Marka konumlandırma, kimlik, iletişim stratejisi ve sürdürülebilir büyüme alanlarında ulusal ve uluslararası markalara danışmanlık yapar; Afbrandworks platformunda markalaşma üzerine yayın yapar.',
+  },
+  {
+    question: 'Hangi alanlarda uzmandır?',
+    answer:
+      'Marka stratejisi, marka yönetimi, marka danışmanlığı, dijital markalaşma, marka mimarisi, konumlandırma, farklılaşma, pazarlama iletişimi ve startup markalaşması temel uzmanlık alanlarıdır. Ayrıca kadın girişimciliği ve satış psikolojisi üzerine çalışmaları vardır.',
+  },
+  {
+    question: 'Hangi eğitim ve sertifikalara sahiptir?',
+    answer:
+      'İstinye Üniversitesi Uluslararası Ticaret ve İşletme lisans mezunudur. IESE Business School, IE Business School, University of Illinois Urbana-Champaign, MIT gibi kurumlardan marka yönetimi, pazarlama ve inovasyon alanlarında sertifikalara sahiptir. Ayrıca PMI Türkiye onaylı CAPM sertifikalıdır.',
+  },
+  {
+    question: 'Hangi kurumların kurucusudur?',
+    answer:
+      'Mart 2025’te kurduğu Toganworks Marka Ofisi’nde stratejik marka danışmanlığı hizmeti verir. Haziran 2024’te kurduğu Marka İnisiyatifi aracılığıyla markalaşma kültürünü yaygınlaştıran topluluk çalışmaları yürütür.',
+  },
+  {
+    question: 'Nerelerde mentörlük yapar?',
+    answer:
+      'İstinye Garage Incubation Hub (Ocak 2025’ten beri, İstanbul) ve THK & Orion TEKMER (Haziran 2025’ten beri, Ankara) programlarında erken aşama girişimcilere markalaşma, konumlandırma, pazarlama ve büyüme stratejileri üzerine mentörlük verir.',
+  },
+  {
+    question: 'Hangi yayın organlarında yazar?',
+    answer:
+      'Branding Türkiye’de Haziran 2025’ten bu yana yazar olarak pazarlama, iletişim ve marka yönetimi üzerine haftalık yazılar kaleme alır. Afbrandworks platformunda kendi markalaşma yazı ve analizlerini yayımlar.',
+  },
+  {
+    question: 'Kendisiyle nasıl iletişime geçilir?',
+    answer:
+      'afbrandworks.com/contact sayfası üzerinden veya info@afbrandworks.com adresinden danışmanlık, konuşma, mentörlük ve iş birliği talepleri için ulaşılabilir.',
+  },
+];
+
+const FAQ_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  '@id': `${SITE_URL}/hakkinda#faq`,
+  mainEntity: FAQS.map((f) => ({
+    '@type': 'Question',
+    name: f.question,
+    acceptedAnswer: { '@type': 'Answer', text: f.answer },
+  })),
+};
+
 export default function AboutPage() {
   return (
     <div className="fade-up pt-10 md:pt-16">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PROFILE_JSONLD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }}
       />
       <section className="max-w-[780px]">
         <p className="eyebrow">Hakkında</p>
@@ -315,6 +368,30 @@ export default function AboutPage() {
             sürdürülebilir konumlar inşa etmek üzere çalışıyorum.
           </p>
         </div>
+      </section>
+
+      <section
+        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
+        style={{ borderColor: 'var(--border)' }}
+      >
+        <div>
+          <p className="eyebrow">Sık sorulan sorular</p>
+        </div>
+        <dl className="space-y-8">
+          {FAQS.map((f) => (
+            <div key={f.question}>
+              <dt className="font-display text-[18px] leading-[1.3] tracking-tight md:text-[19px]">
+                {f.question}
+              </dt>
+              <dd
+                className="mt-2.5 max-w-[62ch] text-[16px] leading-[1.65]"
+                style={{ color: 'color-mix(in oklab, var(--fg) 68%, transparent)' }}
+              >
+                {f.answer}
+              </dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <section

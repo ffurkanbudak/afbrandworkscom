@@ -15,6 +15,13 @@ const FOOTER_NAV = [
   { href: '/contact', label: 'İletişim' },
 ];
 
+const PILLARS: [string, string][] = [
+  ['Marka Danışmanlığı', '/marka-danismanligi'],
+  ['Marka Stratejisi', '/marka-stratejisi'],
+  ['Marka Yönetimi', '/marka-yonetimi'],
+  ['Dijital Markalaşma', '/dijital-markalasma'],
+];
+
 const SOCIAL: [string, string][] = [
   ['Twitter', 'https://x.com/afurkanbudakcom'],
   ['Medium', 'https://medium.com/@ahmetfurkanbudak'],
@@ -31,7 +38,7 @@ export function Footer() {
     >
       <div className="rule-solid opacity-[0.12]" style={{ opacity: 0.12 }} />
 
-      <div className="grid grid-cols-1 gap-12 pt-12 md:grid-cols-[1.2fr_1fr_1fr]">
+      <div className="grid grid-cols-1 gap-12 pt-12 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
         <div>
           <a
             href="/"
@@ -63,6 +70,23 @@ export function Footer() {
                   style={{ color: 'var(--fg)' }}
                 >
                   {n.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <p className="eyebrow">Rehberler</p>
+          <ul className="mt-5 space-y-3 text-[15px]">
+            {PILLARS.map(([label, href]) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className="transition hover:underline"
+                  style={{ color: 'var(--fg)' }}
+                >
+                  {label}
                 </Link>
               </li>
             ))}
