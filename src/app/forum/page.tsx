@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
+import { SponsorWidget } from '@/components/SponsorWidget';
 
 export const metadata: Metadata = {
   title: 'Forum · Afbrandworks',
@@ -12,6 +13,9 @@ export const metadata: Metadata = {
 export default function ForumPage() {
   return (
     <div className="fade-up mx-auto max-w-[720px] pt-10 text-center md:pt-24">
+      <div className="mb-8 flex justify-center">
+        <SponsorWidget />
+      </div>
       <p
         className="text-[11px] font-semibold tracking-[0.14em] uppercase"
         style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
