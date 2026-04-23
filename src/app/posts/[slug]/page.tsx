@@ -13,6 +13,7 @@ import { Newsletter } from '@/components/Newsletter';
 import { FeaturedCard } from '@/components/FeaturedCard';
 import { NewBadge } from '@/components/NewBadge';
 import { PostActions } from '@/components/PostActions';
+import { AuthorBio } from '@/components/AuthorBio';
 import { ViewBeacon } from '@/components/ViewBeacon';
 import { Comments } from '@/components/Comments';
 import { PostJsonLd } from '@/components/PostJsonLd';
@@ -275,6 +276,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           ))}
         </div>
       )}
+
+      <AuthorBio />
 
       <PostActions
         slug={post.slug}
