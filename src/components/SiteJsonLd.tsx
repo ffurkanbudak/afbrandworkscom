@@ -18,17 +18,47 @@ export function SiteJsonLd() {
     knowsLanguage: ['tr', 'en'],
     knowsAbout: [
       'Marka Stratejisi',
+      'Marka Danışmanlığı',
       'Marka Konumlandırma',
       'Marka Kimliği',
+      'Marka Yönetimi',
+      'Dijital Markalaşma',
       'Pazarlama İletişimi',
+      'Stratejik Pazarlama',
+      'Tüketici İçgörüsü',
       'Sürdürülebilir Büyüme',
       'Farklılaşma',
-      'Tüketici İçgörüsü',
       'İsimlendirme',
+      'Kadın Girişimciliği',
+      'Startup Markalaşması',
+      'Satış Psikolojisi',
     ],
     alumniOf: [
       { '@type': 'CollegeOrUniversity', name: 'İstinye Üniversitesi' },
       { '@type': 'CollegeOrUniversity', name: 'Piri Reis Üniversitesi' },
+      { '@type': 'CollegeOrUniversity', name: 'IESE Business School' },
+      { '@type': 'CollegeOrUniversity', name: 'IE Business School' },
+      { '@type': 'CollegeOrUniversity', name: 'University of Illinois Urbana-Champaign' },
+    ],
+    hasCredential: [
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'Certificate',
+        name: 'Marketing: Customer Needs and Wants',
+        recognizedBy: { '@type': 'Organization', name: 'IESE Business School' },
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'Certificate',
+        name: 'Brand and Product Management',
+        recognizedBy: { '@type': 'Organization', name: 'IE Business School' },
+      },
+      {
+        '@type': 'EducationalOccupationalCredential',
+        credentialCategory: 'Certificate',
+        name: 'Digital Marketing Strategy',
+        recognizedBy: { '@type': 'Organization', name: 'University of Illinois Urbana-Champaign' },
+      },
     ],
     worksFor: {
       '@type': 'Organization',
@@ -127,9 +157,93 @@ export function SiteJsonLd() {
     publisher: { '@id': `${SITE_URL}/#organization` },
   };
 
+  const service = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    '@id': `${SITE_URL}/#service`,
+    name: 'Marka Danışmanlığı — Ahmet Furkan Budak',
+    alternateName: [
+      'Stratejik Marka Danışmanlığı',
+      'Marka Stratejisi Danışmanlığı',
+      'Marka Yönetimi Danışmanlığı',
+    ],
+    description:
+      'Erken aşama girişimciler, kurucular ve ölçeklenen markalar için konumlandırma, marka kimliği, iletişim stratejisi ve sürdürülebilir büyüme üzerine stratejik marka danışmanlığı.',
+    serviceType: 'Marka Stratejisi ve Konumlandırma Danışmanlığı',
+    provider: { '@id': `${SITE_URL}/#person` },
+    areaServed: [
+      { '@type': 'Country', name: 'Türkiye' },
+      { '@type': 'Place', name: 'Avrupa' },
+      { '@type': 'Place', name: 'Orta Doğu' },
+    ],
+    url: SITE_URL,
+    image: `${SITE_URL}/ahmetfurkanbudak.jpeg`,
+    logo: `${SITE_URL}/afbrandworks.svg`,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Marka Danışmanlığı Hizmetleri',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Marka Konumlandırma',
+            description:
+              'Markanın zihinde tuttuğu rafı tanımlayan stratejik konumlandırma çerçevesi.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Marka Kimliği ve İsimlendirme',
+            description:
+              'İsim, ses tonu, görsel kimlik ve mesaj çerçeveleri üzerine uçtan uca yapılandırma.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Pazarlama İletişimi Stratejisi',
+            description:
+              'Kanal seçiminden mesaj hiyerarşisine, kampanya ekseninden içerik çerçevesine iletişim planı.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Marka Sağlık Analizi',
+            description:
+              'Konumlandırma, kimlik ve iletişim düzlemlerinde mevcut markanın durum tespiti ve iyileştirme haritası.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Kadın Girişimci Markalaşma Programı',
+            description:
+              'Kadın kurucular için markalaşma odaklı mentörlük programı.',
+          },
+        },
+      ],
+    },
+    knowsAbout: [
+      'Marka Stratejisi',
+      'Marka Konumlandırma',
+      'Marka Kimliği',
+      'Marka Yönetimi',
+      'Dijital Markalaşma',
+      'Pazarlama İletişimi',
+      'Startup Markalaşması',
+    ],
+  };
+
   const graph = {
     '@context': 'https://schema.org',
-    '@graph': [person, organization, website, blog],
+    '@graph': [person, organization, website, blog, service],
   };
 
   return (
