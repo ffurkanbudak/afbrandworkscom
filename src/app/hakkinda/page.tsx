@@ -132,11 +132,6 @@ const ROLES = [
     body: 'Haziran 2025’ten bu yana THK & ORION TEKMER bünyesinde startup mentoru olarak erken aşama girişimcilere destek veriyorum. Bu rolde; markalaşma, kimlik oluşturma, pazarlama stratejileri ve büyüme planlaması konularında stratejik rehberlik sunuyorum. Girişimcilerin hedef kitlelerini tanımlamalarına, etkili konumlanmalarına ve sürdürülebilir marka stratejileri inşa etmelerine yardımcı oluyorum. Ayrıca iş modellerini güçlendirme ve go-to-market stratejileri geliştirme süreçlerinde onlara eşlik ediyorum.',
   },
   {
-    title: 'Branding Türkiye',
-    meta: 'Yazar · Haziran 2025 · Devam ediyor',
-    body: 'Branding Türkiye’ye yazar olarak katıldım. Pazarlama, iletişim ve marka yönetimi üzerine haftalık yazılarımı buradan takip edebilirsiniz.',
-  },
-  {
     title: 'Stratejik İşler',
     meta: 'Stajyer · Şubat 2022 · Eylül 2022 · İstanbul',
     body: 'Proje yönetimi asistanlığı ve proje asistanlığı süreçlerinde görev aldım. Pazar analizi ve raporlama, B2B pazar araştırması, sektör araştırması, dış ticaret için ülke matrisi hazırlama, SWOT analizi, sosyal medya stratejisi oluşturma, benchmarking ve iş modeli tasarımı çalışmalarına katkı sağladım. Ayrıca iş vakası incelemeleri, yönetim danışmanlığı sunumları ve sosyal sorumluluk projesi geliştirme süreçlerinde yer aldım.',
@@ -179,9 +174,9 @@ const FAQS: { question: string; answer: string }[] = [
       'İstinye Garage Incubation Hub (Ocak 2025’ten beri, İstanbul) ve THK & Orion TEKMER (Haziran 2025’ten beri, Ankara) programlarında erken aşama girişimcilere markalaşma, konumlandırma, pazarlama ve büyüme stratejileri üzerine mentörlük verir.',
   },
   {
-    question: 'Hangi yayın organlarında yazar?',
+    question: 'Nerede yazar?',
     answer:
-      'Branding Türkiye’de Haziran 2025’ten bu yana yazar olarak pazarlama, iletişim ve marka yönetimi üzerine haftalık yazılar kaleme alır. Afbrandworks platformunda kendi markalaşma yazı ve analizlerini yayımlar.',
+      'Afbrandworks platformunda markalaşma, pazarlama iletişimi ve marka yönetimi üzerine kendi yazı ve analizlerini yayımlar.',
   },
   {
     question: 'Kendisiyle nasıl iletişime geçilir?',

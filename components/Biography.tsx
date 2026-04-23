@@ -100,7 +100,7 @@ const Biography = () => {
                     Budak, markalaşma kültürünü yaygınlaştırmak amacıyla Marka İnisiyatifi adı altında bir topluluk kurmuş; üniversitelerde marka ve girişimcilik zirveleri düzenlemiş ve onlarca sponsorun katkısıyla geniş katılımlı organizasyonlar gerçekleştirmiştir. Bu çalışmalar, akademi ile iş dünyası arasında sürdürülebilir bir etkileşim zemini oluşturmuştur.
                   </p>
                   <p>
-                    Mentorluk faaliyetlerini İstinye Garage Incubation ve THK & ORION TEKMER bünyesinde sürdürmekte; girişimlere strateji ve markalaşma alanlarında rehberlik etmektedir. Aynı zamanda Branding Türkiye ve Eureflect’de marka, pazarlama ve iletişim alanlarında makaleler yazmakta; yapımcısı ve sunucusu olduğu Me Talks: Markalaşma Sohbetleri ile Stratejiden Pazara: Markalaşma serileri aracılığıyla sektörel bilgi birikimini geniş kitlelerle paylaşmaktadır.
+                    Mentorluk faaliyetlerini İstinye Garage Incubation ve THK & ORION TEKMER bünyesinde sürdürmekte; girişimlere strateji ve markalaşma alanlarında rehberlik etmektedir. Aynı zamanda Eureflect’de marka, pazarlama ve iletişim alanlarında makaleler yazmakta; yapımcısı ve sunucusu olduğu Me Talks: Markalaşma Sohbetleri ile Stratejiden Pazara: Markalaşma serileri aracılığıyla sektörel bilgi birikimini geniş kitlelerle paylaşmaktadır.
                   </p>
                   <p className="pt-5 border-t border-white/5 mt-8">
                     Ulusal ve uluslararası ölçekte faaliyet gösteren markalarla çalışarak; şirketlerin pazarda net, güçlü ve sürdürülebilir konumlar elde etmelerine stratejik katkı sunmaktadır. Çalışmalarında kısa vadeli görünürlükten ziyade, uzun vadeli marka değeri ve rekabetçi dayanıklılık esas alınmaktadır.
