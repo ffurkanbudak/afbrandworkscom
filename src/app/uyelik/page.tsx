@@ -84,9 +84,87 @@ const MIMARI = {
   ],
 };
 
+const WEBPAGE_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${SITE_URL}/uyelik#webpage`,
+  url: `${SITE_URL}/uyelik`,
+  name: 'Üyelik · Afbrandworks',
+  description:
+    'Afbrandworks üyelik paketleri: Gözlemci (ücretsiz), Ortak ve Mimari. İçerik, danışmanlık, mentörlük ve topluluk erişimi farklı seviyelerde.',
+  inLanguage: 'tr-TR',
+  isPartOf: { '@id': `${SITE_URL}/#website` },
+  author: { '@id': `${SITE_URL}/#person` },
+  publisher: { '@id': `${SITE_URL}/#organization` },
+};
+
+const BREADCRUMB_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: SITE_URL },
+    { '@type': 'ListItem', position: 2, name: 'Üyelik', item: `${SITE_URL}/uyelik` },
+  ],
+};
+
+const SERVICE_JSONLD = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${SITE_URL}/uyelik#service`,
+  name: 'Afbrandworks Üyelik',
+  description:
+    'Markalaşma odaklı içerik, danışmanlık ve topluluk üyeliği. Üç paket: Gözlemci, Ortak, Mimari.',
+  provider: { '@id': `${SITE_URL}/#person` },
+  serviceType: 'Markalaşma İçerik ve Danışmanlık Üyeliği',
+  areaServed: { '@type': 'Country', name: 'Türkiye' },
+  offers: [
+    {
+      '@type': 'Offer',
+      name: 'Gözlemci',
+      description:
+        'Giriş paketi. Tüm blog yazılarına erişim, yorum ve beğeni, ekibe ve danışmana mesaj, 30 dk keşif görüşmesi, haftalık bülten, topluluk alanı.',
+      price: '0',
+      priceCurrency: 'TRY',
+      availability: 'https://schema.org/InStock',
+      url: `${SITE_URL}/uyelik`,
+      category: 'Free',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Ortak',
+      description:
+        'Orta paket. Öncelikli danışman yanıtı, 1 saat mentörlük, marka sağlık analizi, Kadın Girişimci Programı, canlı Q&A ve kapalı topluluk. Gelirinin %50\'si Mehmetçik Vakfı ve TEMA Vakfı gibi kurumlara aktarılır.',
+      availability: 'https://schema.org/PreOrder',
+      url: `${SITE_URL}/uyelik`,
+      category: 'Premium',
+    },
+    {
+      '@type': 'Offer',
+      name: 'Mimari',
+      description:
+        'Üst paket. Aynı gün danışman yanıtı, 2 saat mentörlük, tekrarlayan sağlık taraması, Marka İnşa Kontrol Listesi, uzman ağına erişim, WhatsApp öncelik hattı, yıllık atölye, yatırımcı/medya tanıtımı, sektör raporu, dijital üyelik rozeti.',
+      availability: 'https://schema.org/PreOrder',
+      url: `${SITE_URL}/uyelik`,
+      category: 'Premium Plus',
+    },
+  ],
+};
+
 export default function UyelikPage() {
   return (
     <div className="fade-up pt-10 md:pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(WEBPAGE_JSONLD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(BREADCRUMB_JSONLD) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(SERVICE_JSONLD) }}
+      />
       <header className="mx-auto max-w-[760px] text-center">
         <p
           className="text-[11px] font-semibold tracking-[0.14em] uppercase"
