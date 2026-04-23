@@ -61,7 +61,7 @@ export function NewPostForm({ tags }: { tags: Tag[] }) {
                 key={t.slug}
                 type="button"
                 onClick={() => setTagSlug(t.slug)}
-                className="rounded-full border px-3 py-1.5 text-[12.5px] transition"
+                className="rounded-[6px] border px-2.5 py-1 text-[12px] transition"
                 style={{
                   borderColor: on ? 'var(--fg)' : 'var(--border)',
                   background: on
