@@ -35,6 +35,12 @@ enum SubscriberTier {
   PIR
 }
 
+enum MembershipPlan {
+  GOZLEMCI
+  ORTAK
+  MIMARI
+}
+
 enum BroadcastStatus {
   DRAFT
   QUEUED
@@ -230,6 +236,7 @@ model Subscriber {
   country          String?
   status           SubscriberStatus @default(PENDING)
   tier             SubscriberTier   @default(CIRAK)
+  plan             MembershipPlan   @default(GOZLEMCI)
   activityScore    Int              @default(0)
   lastActiveAt     DateTime?
   showInCommunity  Boolean          @default(true)
@@ -253,7 +260,20 @@ model Subscriber {
 
   @@index([status])
   @@index([tier])
+  @@index([plan])
   @@index([lastActiveAt])
+}
+
+model WaitlistEntry {
+  id        String         @id @default(cuid())
+  email     String
+  plan      MembershipPlan
+  source    String?
+  createdAt DateTime       @default(now())
+
+  @@unique([email, plan])
+  @@index([plan])
+  @@index([createdAt])
 }
 
 model SubscriberNote {
