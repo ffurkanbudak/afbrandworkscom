@@ -20,6 +20,7 @@ const PILLARS: [string, string][] = [
   ['Marka Stratejisi', '/marka-stratejisi'],
   ['Marka Yönetimi', '/marka-yonetimi'],
   ['Dijital Markalaşma', '/dijital-markalasma'],
+  ['Marka Sözlüğü', '/sozluk'],
 ];
 
 const SOCIAL: [string, string][] = [
