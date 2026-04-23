@@ -29,14 +29,14 @@ export function Footer() {
 
       <div className="grid grid-cols-1 gap-12 pt-12 md:grid-cols-[1.2fr_1fr_1fr]">
         <div>
-          <Link
+          <a
             href="/"
             aria-label="afbrandworks"
             className="flex items-center"
             style={{ color: 'var(--fg)' }}
           >
             <Logo className="h-[36px] w-auto" />
-          </Link>
+          </a>
           <p
             className="mt-5 max-w-[46ch] text-[14px] leading-[1.65]"
             style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}

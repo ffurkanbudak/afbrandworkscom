@@ -97,14 +97,14 @@ export function Header() {
       >
         <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-6 py-4 md:px-10 lg:px-14">
           <div className="flex items-center gap-4">
-            <Link
+            <a
               href="/"
               aria-label="afbrandworks"
               className="flex items-center"
               style={{ color: 'var(--fg)' }}
             >
               <Logo className="h-[30px] w-auto" />
-            </Link>
+            </a>
             <LiveClock />
           </div>
 
