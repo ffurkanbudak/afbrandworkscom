@@ -116,13 +116,13 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={state === 'loading'}
-              className="btn-dark inline-flex w-full items-center justify-center gap-2 rounded-full py-3.5 text-[13.5px] font-medium tracking-[0.01em] disabled:opacity-60"
+              className="btn-dark inline-flex w-full items-center justify-center gap-2 rounded-[8px] py-3.5 text-[13.5px] font-medium tracking-[0.01em] disabled:opacity-60"
             >
               {state === 'loading'
                 ? 'Gönderiliyor…'
                 : state === 'sent'
                   ? 'Gönderildi ✓'
-                  : 'Gönder'}
+                  : 'Gönderin'}
               {state === 'idle' && (
                 <ArrowRight className="h-[14px] w-[14px]" strokeWidth={2.25} />
               )}
