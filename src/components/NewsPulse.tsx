@@ -113,12 +113,12 @@ function ToastCard({ item, onClose }: { item: Item; onClose: () => void }) {
           src={item.source.logoUrl}
           alt=""
           aria-hidden
-          className="h-9 w-9 shrink-0 rounded-[8px] object-cover"
+          className="h-9 w-9 shrink-0 rounded-full object-cover"
           style={{ border: '1px solid var(--border)' }}
         />
       ) : (
         <div
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-[8px] border"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border"
           style={{
             borderColor: 'var(--border)',
             background: 'color-mix(in oklab, var(--fg) 5%, transparent)',

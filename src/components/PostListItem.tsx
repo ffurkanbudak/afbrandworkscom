@@ -53,15 +53,12 @@ export function PostListItem({
       </div>
       <div className="min-w-0 flex-1 pt-1">
         <p
-          className="text-[11px] font-semibold tracking-[0.08em]"
+          className="space-y-0.5 text-[11px] font-semibold tracking-[0.08em]"
           style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
         >
-          <span className="whitespace-nowrap">{formatDateCaps(publishedAt)}</span>
+          <span className="block truncate">{formatDateCaps(publishedAt)}</span>
           {authorName && (
-            <>
-              <span className="mx-2 opacity-50">/</span>
-              <span className="whitespace-nowrap uppercase">{authorName}</span>
-            </>
+            <span className="block truncate uppercase">{authorName}</span>
           )}
         </p>
         <h3 className="mt-3 font-display text-[18px] leading-[1.25] transition group-hover:opacity-75 md:text-[20px]">
