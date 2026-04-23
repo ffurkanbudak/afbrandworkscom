@@ -152,7 +152,9 @@ export default async function ForumPage({
         </aside>
       </div>
 
-      <CommunityStrip />
+      <div className="mt-20">
+        <CommunityStrip />
+      </div>
     </div>
   );
 }
