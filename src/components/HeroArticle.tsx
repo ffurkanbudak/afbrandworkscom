@@ -33,7 +33,7 @@ export function HeroArticle({
       className="group relative block overflow-hidden rounded-[6px]"
     >
       <div
-        className="relative aspect-[16/9] w-full overflow-hidden"
+        className="relative aspect-[4/5] w-full overflow-hidden md:aspect-[16/9]"
         style={{ background: '#2A2A2A' }}
       >
         {coverImageUrl ? (
@@ -82,11 +82,11 @@ export function HeroArticle({
             <span className="mx-2 opacity-60">/</span>
             <span className="uppercase">{authorName}</span>
           </p>
-          <h2 className="mt-3 font-display text-[24px] leading-[1.1] text-white md:text-[32px] lg:text-[36px]">
+          <h2 className="mt-3 line-clamp-3 font-display text-[22px] leading-[1.1] text-white md:line-clamp-none md:text-[32px] lg:text-[36px]">
             {title}
           </h2>
           {excerpt && (
-            <p className="mt-4 line-clamp-2 max-w-[58ch] text-[15px] leading-[1.55] text-white/80 md:text-[16px]">
+            <p className="mt-3 line-clamp-2 max-w-[58ch] text-[14px] leading-[1.5] text-white/80 md:mt-4 md:text-[16px]">
               {excerpt}
             </p>
           )}
