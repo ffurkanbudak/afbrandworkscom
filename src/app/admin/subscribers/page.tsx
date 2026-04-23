@@ -25,7 +25,11 @@ export default async function SubscribersPage({
         ...(tierFilter ? { tier: tierFilter } : {}),
         ...(statusFilter ? { status: statusFilter } : {}),
       },
-      orderBy: [{ activityScore: 'desc' }, { createdAt: 'desc' }],
+      orderBy: [
+        { status: 'asc' },
+        { activityScore: 'desc' },
+        { createdAt: 'desc' },
+      ],
       take: 1000,
     }),
     db.subscriber.groupBy({
@@ -38,6 +42,8 @@ export default async function SubscribersPage({
       _count: { _all: true },
     }),
   ]);
+
+  const pendingCount = totals.find((t) => t.status === 'PENDING')?._count._all ?? 0;
 
   const tierCount = (t: string) =>
     byTier.find((x) => x.tier === t)?._count._all ?? 0;
@@ -54,8 +60,38 @@ export default async function SubscribersPage({
       <PageHeader
         eyebrow="Topluluk"
         title="Aboneler"
-        description={`${subs.length} kayıt. Aktivite skoruna göre sıralandı.`}
+        description={`${subs.length} kayıt. Onay bekleyenler üstte.`}
       />
+
+      {pendingCount > 0 && (
+        <Link
+          href={statusFilter === 'PENDING' ? '/admin/subscribers' : '/admin/subscribers?status=PENDING'}
+          className="flex items-center justify-between rounded-2xl border p-4 transition hover:bg-[color-mix(in_oklab,#16A34A_6%,transparent)]"
+          style={{
+            borderColor:
+              statusFilter === 'PENDING'
+                ? '#16A34A'
+                : 'color-mix(in oklab, #16A34A 40%, transparent)',
+            background:
+              statusFilter === 'PENDING'
+                ? 'color-mix(in oklab, #16A34A 8%, transparent)'
+                : 'color-mix(in oklab, #16A34A 4%, transparent)',
+          }}
+        >
+          <div>
+            <p className="text-[11px] font-semibold tracking-[0.14em] uppercase" style={{ color: '#16A34A' }}>
+              Onay bekleyen
+            </p>
+            <p className="font-display mt-1 text-[22px] leading-none tabular-nums">
+              {pendingCount} abone
+            </p>
+          </div>
+          <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium" style={{ color: '#16A34A' }}>
+            {statusFilter === 'PENDING' ? 'Filtreyi kaldır' : 'Bekleyenleri göster'}
+            <ArrowUpRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
+          </span>
+        </Link>
+      )}
 
       <div className="grid gap-3 sm:grid-cols-4">
         {TIER_ORDER.map((t) => {

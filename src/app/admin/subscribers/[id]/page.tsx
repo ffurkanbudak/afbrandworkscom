@@ -133,6 +133,8 @@ export default async function SubscriberDetail({
             currentTier={sub.tier}
             showInCommunity={sub.showInCommunity}
             activityScore={sub.activityScore}
+            status={sub.status}
+            email={sub.email}
           />
 
           <SubscriberMessage id={sub.id} email={sub.email} />
