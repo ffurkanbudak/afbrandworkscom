@@ -50,7 +50,11 @@ const NAV: NavItem[] = [
       { href: '/oneriler/etkinlikler', label: 'Etkinlikler', icon: Calendar, desc: 'Takvimdeki buluşmalar' },
     ],
   },
+  { href: '/forum', label: 'Forum', match: (p) => p.startsWith('/forum') },
+  { href: '/uyelik', label: 'Üyelik', match: (p) => p.startsWith('/uyelik') },
+  { href: '/hediye-et', label: 'Hediye Edin', match: (p) => p.startsWith('/hediye-et') },
   { href: '/hakkinda', label: 'Hakkında', match: (p) => p.startsWith('/hakkinda') },
+  { href: '/kunye', label: 'Künye', match: (p) => p.startsWith('/kunye') },
   { href: '/contact', label: 'İletişim', match: (p) => p.startsWith('/contact') },
 ];
 
