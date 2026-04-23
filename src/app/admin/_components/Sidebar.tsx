@@ -15,6 +15,7 @@ import {
   BarChart3,
   UserCircle,
   Newspaper,
+  Gift,
   ArrowLeft,
 } from 'lucide-react';
 
@@ -56,6 +57,7 @@ export function Sidebar({
       items: [
         { href: '/admin/subscribers', label: 'Aboneler', icon: Users },
         { href: '/admin/comments', label: 'Yorumlar', icon: MessageSquare, badge: counts.comments },
+        { href: '/admin/gift-codes', label: 'Hediye Kodları', icon: Gift },
       ],
     },
     {

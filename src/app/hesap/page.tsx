@@ -4,6 +4,7 @@ import { db } from '@/lib/db';
 import { requireSubscriber } from '@/lib/subscriber';
 import { formatDateCaps } from '@/lib/format';
 import { StatusPill, statusTone } from '@/components/StatusPill';
+import { GiftCodeRedeem } from '@/components/GiftCodeRedeem';
 
 const COMMENT_STATUS_LABEL: Record<string, string> = {
   PENDING: 'Onay bekliyor',
@@ -42,6 +43,8 @@ export default async function AccountOverview() {
         <Stat label="Yorum" icon={MessageSquare} value={commentCount} />
         <Stat label="Okuma" icon={Eye} value={viewCount} />
       </section>
+
+      <GiftCodeRedeem currentPlan={sub.plan} />
 
       <section>
         <SectionHead title="Son favorilerin" href="/hesap/favoriler" />
