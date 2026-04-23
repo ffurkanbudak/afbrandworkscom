@@ -11,6 +11,7 @@ import {
   PenLine,
   Inbox,
   Shield,
+  Gem,
 } from 'lucide-react';
 
 type Item = { href: string; label: string; icon: React.ElementType };
@@ -24,6 +25,7 @@ export function AccountNav({ isAdmin = false }: { isAdmin?: boolean }) {
       label: 'Hesap',
       items: [
         { href: '/hesap', label: 'Genel', icon: LayoutDashboard },
+        { href: '/hesap/paketim', label: 'Paketim', icon: Gem },
         { href: '/hesap/profil', label: 'Profilim', icon: UserCircle },
       ],
     },
