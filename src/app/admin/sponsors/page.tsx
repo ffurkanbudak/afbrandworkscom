@@ -110,7 +110,7 @@ export default async function SponsorsPage() {
                   className="rounded-[6px] border px-2.5 py-1 text-[11.5px] font-medium"
                   style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
                 >
-                  Düzenle
+                  Düzenleyin
                 </Link>
               </Td>
             </tr>

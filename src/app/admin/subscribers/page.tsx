@@ -87,7 +87,7 @@ export default async function SubscribersPage({
             </p>
           </div>
           <span className="inline-flex items-center gap-1.5 text-[12.5px] font-medium" style={{ color: '#16A34A' }}>
-            {statusFilter === 'PENDING' ? 'Filtreyi kaldır' : 'Bekleyenleri göster'}
+            {statusFilter === 'PENDING' ? 'Filtreyi kaldırın' : 'Bekleyenleri gösterin'}
             <ArrowUpRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
           </span>
         </Link>

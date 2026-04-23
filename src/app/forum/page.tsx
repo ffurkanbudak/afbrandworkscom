@@ -127,7 +127,7 @@ export default async function ForumPage({
               className="btn-dark flex items-center justify-center gap-2 rounded-[10px] py-3 text-[13px] font-semibold"
             >
               <PenSquare className="h-[13px] w-[13px]" strokeWidth={2.25} />
-              Yeni konu aç
+              Yeni konu açın
             </Link>
           ) : null}
 

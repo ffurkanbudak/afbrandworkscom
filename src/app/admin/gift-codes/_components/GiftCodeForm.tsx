@@ -125,7 +125,7 @@ export function GiftCodeForm() {
         disabled={busy}
         className="btn-dark w-full rounded-[8px] px-4 py-2.5 text-[13px] font-semibold disabled:opacity-60"
       >
-        {busy ? 'Üretiliyor…' : 'Kod üret'}
+        {busy ? 'Üretiliyor…' : 'Kod üretin'}
       </button>
 
       {error && (
@@ -157,7 +157,7 @@ export function GiftCodeForm() {
               style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
             >
               <Copy className="h-[11px] w-[11px]" strokeWidth={2} />
-              Kopyala
+              Kopyalayın
             </button>
           </div>
         </div>

@@ -127,7 +127,7 @@ export function GiftCodeRow({ row }: { row: Row }) {
               color: '#DC2626',
             }}
           >
-            İptal et
+            İptal edin
           </button>
         )}
         {row.status !== 'ACTIVE' && (
@@ -137,7 +137,7 @@ export function GiftCodeRow({ row }: { row: Row }) {
             className="rounded-[6px] border px-2.5 py-1 text-[11.5px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)] disabled:opacity-50"
             style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
           >
-            Sil
+            Silin
           </button>
         )}
       </Td>

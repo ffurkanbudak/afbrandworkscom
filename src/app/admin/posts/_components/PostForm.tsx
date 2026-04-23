@@ -261,7 +261,7 @@ export function PostForm({
             className="mb-2 rounded-[6px] border px-2.5 py-1 text-[12px]"
             style={{ borderColor: 'var(--border)' }}
           >
-            Düz metinden HTML üret
+            Düz metinden HTML üretin
           </button>
           <textarea
             value={data.contentHtml}
@@ -288,7 +288,7 @@ export function PostForm({
               className="rounded-[6px] border px-2.5 py-1 text-[12px] disabled:opacity-60"
               style={{ borderColor: 'var(--border)' }}
             >
-              {uploading ? 'Yükleniyor…' : data.coverImageUrl ? 'Fotoğrafı Değiştir' : 'Fotoğraf Ekle'}
+              {uploading ? 'Yükleniyor…' : data.coverImageUrl ? 'Fotoğrafı Değiştirin' : 'Fotoğraf Ekleyin'}
             </button>
             {uploadError && (
               <p className="mt-2 text-[12.5px]" style={{ color: '#DC2626' }}>
@@ -456,7 +456,7 @@ export function PostForm({
               className="mt-4 w-full rounded-[6px] border py-2 text-[12.5px] font-medium transition hover:bg-[color-mix(in_oklab,#DC2626_8%,transparent)] disabled:opacity-60"
               style={{ borderColor: 'color-mix(in oklab, #DC2626 45%, transparent)', color: '#DC2626' }}
             >
-              Yazıyı sil
+              Yazıyı silin
             </button>
           </div>
         )}

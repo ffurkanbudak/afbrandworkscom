@@ -94,7 +94,7 @@ export default async function NewForumPostPage() {
             className="mt-5 inline-flex items-center gap-2 rounded-[8px] px-4 py-2.5 text-[13px] font-semibold transition hover:opacity-90"
             style={{ background: 'var(--fg)', color: 'var(--bg)' }}
           >
-            Profili tamamla
+            Profili tamamlayın
             <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
           </Link>
         </div>

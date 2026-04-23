@@ -54,7 +54,7 @@ export function FlagActions({
             className="rounded-[6px] border px-3 py-1.5 text-[12px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)] disabled:opacity-50"
             style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
           >
-            İçerik sorunsuz, kapat
+            İçerik sorunsuz, kapatın
           </button>
           {!hidden && (
             <button
@@ -66,7 +66,7 @@ export function FlagActions({
                 color: '#DC2626',
               }}
             >
-              İçeriği gizle
+              İçeriği gizleyin
             </button>
           )}
         </>
@@ -77,7 +77,7 @@ export function FlagActions({
         className="rounded-[6px] px-3 py-1.5 text-[12px]"
         style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
       >
-        Kaydı sil
+        Kaydı silin
       </button>
     </div>
   );

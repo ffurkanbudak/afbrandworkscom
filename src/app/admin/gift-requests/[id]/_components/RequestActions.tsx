@@ -150,7 +150,7 @@ export function RequestActions({
         disabled={busy}
         className="btn-dark mt-4 w-full rounded-[8px] py-2.5 text-[13px] font-semibold disabled:opacity-60"
       >
-        {busy ? 'Kaydediliyor…' : 'Kaydet'}
+        {busy ? 'Kaydediliyor…' : 'Kaydedin'}
       </button>
 
       {msg && (
@@ -176,7 +176,7 @@ export function RequestActions({
             color: '#DC2626',
           }}
         >
-          Talep kaydını sil
+          Talep kaydını silin
         </button>
       </div>
     </div>

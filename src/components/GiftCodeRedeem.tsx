@@ -75,7 +75,7 @@ export function GiftCodeRedeem({ currentPlan }: { currentPlan: 'GOZLEMCI' | 'ORT
           disabled={busy}
           className="btn-dark rounded-[8px] px-5 py-2.5 text-[13px] font-semibold disabled:opacity-60"
         >
-          {busy ? 'Kontrol ediliyor…' : 'Kullan'}
+          {busy ? 'Kontrol ediliyor…' : 'Kullanın'}
         </button>
       </form>
       {msg && (

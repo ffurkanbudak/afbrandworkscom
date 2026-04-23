@@ -202,7 +202,7 @@ export function SponsorForm({
               className="rounded-[8px] border px-3 py-2 text-[12.5px] font-medium disabled:opacity-60"
               style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
             >
-              {uploading ? 'Yükleniyor…' : data.logoUrl ? 'Logoyu değiştir' : 'Logo yükle'}
+              {uploading ? 'Yükleniyor…' : data.logoUrl ? 'Logoyu değiştirin' : 'Logoyu yükleyin'}
             </button>
             {data.logoUrl && (
               <button
@@ -211,7 +211,7 @@ export function SponsorForm({
                 className="rounded-[8px] px-3 py-2 text-[12.5px]"
                 style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
               >
-                Kaldır
+                Kaldırın
               </button>
             )}
           </div>
@@ -352,7 +352,7 @@ export function SponsorForm({
             disabled={busy}
             className="btn-dark mt-5 w-full rounded-[8px] py-2.5 text-[13px] font-semibold disabled:opacity-60"
           >
-            {busy ? 'Kaydediliyor…' : mode.kind === 'create' ? 'Sponsoru kaydet' : 'Değişiklikleri kaydet'}
+            {busy ? 'Kaydediliyor…' : mode.kind === 'create' ? 'Sponsoru kaydedin' : 'Değişiklikleri kaydedin'}
           </button>
         </div>
 
@@ -372,7 +372,7 @@ export function SponsorForm({
                 color: '#DC2626',
               }}
             >
-              Sponsoru sil
+              Sponsoru silin
             </button>
           </div>
         )}

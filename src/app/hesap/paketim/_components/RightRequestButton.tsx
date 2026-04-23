@@ -50,7 +50,7 @@ export function RightRequestButton({
         style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
       >
         <Send className="h-[11px] w-[11px]" strokeWidth={2} />
-        {busy ? 'Gönderiliyor…' : 'Hakkımı talep et'}
+        {busy ? 'Gönderiliyor…' : 'Hakkımı talep edin'}
       </button>
       {msg && (
         <span

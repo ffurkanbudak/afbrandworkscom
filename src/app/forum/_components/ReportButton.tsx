@@ -61,7 +61,7 @@ export function ReportButton({
         style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
       >
         <Flag className={size === 'sm' ? 'h-[11px] w-[11px]' : 'h-[12px] w-[12px]'} strokeWidth={2} />
-        {busy ? 'Gönderiliyor…' : 'Raporla'}
+        {busy ? 'Gönderiliyor…' : 'Raporlayın'}
       </button>
       {msg && (
         <span

@@ -110,7 +110,7 @@ export default async function PaketimPage() {
             href="/uyelik"
             className="btn-dark mt-6 inline-flex items-center gap-2 rounded-[8px] px-4 py-2.5 text-[13px] font-semibold"
           >
-            Paketi yükselt
+            Paketi yükseltin
             <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
           </Link>
         )}
@@ -215,7 +215,7 @@ export default async function PaketimPage() {
             className="inline-flex items-center gap-1.5 rounded-[8px] border px-3 py-2 text-[12.5px] font-medium"
             style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
           >
-            Profilimi düzenle
+            Profilimi düzenleyin
           </Link>
         </div>
       </section>

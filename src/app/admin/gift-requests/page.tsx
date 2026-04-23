@@ -113,7 +113,7 @@ export default async function GiftRequestsPage() {
                 className="inline-flex items-center gap-1 text-[12px] font-medium"
                 style={{ color: 'var(--fg)' }}
               >
-                Aç
+                Açın
                 <ArrowUpRight className="h-[12px] w-[12px]" strokeWidth={2} />
               </Link>
             </Td>

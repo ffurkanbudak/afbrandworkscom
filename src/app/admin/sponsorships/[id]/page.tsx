@@ -107,7 +107,7 @@ export default async function SponsorshipDetail({
               }}
               className="btn-dark mt-4 inline-flex w-full items-center justify-center gap-2 rounded-[8px] py-2.5 text-[13px] font-semibold"
             >
-              Sponsora çevir →
+              Sponsora çevirin →
             </Link>
           </div>
         </aside>

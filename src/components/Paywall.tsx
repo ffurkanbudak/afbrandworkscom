@@ -141,7 +141,7 @@ export function Paywall() {
             className="inline-flex items-center justify-center gap-2 rounded-[8px] px-5 py-3 text-[14px] font-semibold transition hover:opacity-90"
             style={{ background: 'var(--fg)', color: 'var(--bg)' }}
           >
-            Üyelikleri gör
+            Üyelikleri görün
             <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
           </Link>
           <Link
@@ -149,7 +149,7 @@ export function Paywall() {
             className="inline-flex items-center justify-center rounded-[8px] border px-5 py-3 text-[13.5px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
             style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
           >
-            Zaten üye misiniz? Giriş yap
+            Zaten üye misiniz? Giriş yapın
           </Link>
         </div>
       </div>

@@ -93,7 +93,7 @@ export function SubscriberActions({
             className="mt-3 w-full rounded-[8px] px-4 py-2.5 text-[13px] font-semibold transition hover:opacity-90 disabled:opacity-50"
             style={{ background: '#16A34A', color: '#FFFFFF' }}
           >
-            {busy ? 'İşleniyor…' : 'Aboneyi onayla'}
+            {busy ? 'İşleniyor…' : 'Aboneyi onaylayın'}
           </button>
         </div>
       )}
@@ -178,7 +178,7 @@ export function SubscriberActions({
             color: '#DC2626',
           }}
         >
-          Aboneyi sil
+          Aboneyi silin
         </button>
       </div>
     </div>

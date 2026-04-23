@@ -39,7 +39,7 @@ function Chip({
   return (
     <Link
       href={href}
-      className="shrink-0 rounded-full border px-3 py-1.5 text-[12.5px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
+      className="shrink-0 rounded-[6px] border px-2.5 py-1 text-[12px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
       style={{
         borderColor: active ? 'var(--fg)' : 'var(--border)',
         background: active

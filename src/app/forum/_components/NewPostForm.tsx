@@ -131,7 +131,7 @@ export function NewPostForm({ tags }: { tags: Tag[] }) {
         disabled={busy}
         className="btn-dark inline-flex items-center gap-2 rounded-[8px] px-5 py-3 text-[13.5px] font-semibold disabled:opacity-60"
       >
-        {busy ? 'Gönderiliyor…' : 'Konuyu paylaş'}
+        {busy ? 'Gönderiliyor…' : 'Konuyu paylaşın'}
         <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
       </button>
     </form>

@@ -220,7 +220,7 @@ export function BroadcastForm() {
         disabled={busy}
         className="btn-red w-full rounded-full py-3 text-[13px] font-semibold tracking-[0.02em]"
       >
-        {busy ? 'Gönderiliyor…' : selectedPlans.length === PLANS.length ? 'Tüm abonelere gönder' : 'Seçili paketlere gönder'}
+        {busy ? 'Gönderiliyor…' : selectedPlans.length === PLANS.length ? 'Tüm abonelere gönderin' : 'Seçili paketlere gönderin'}
       </button>
     </form>
   );

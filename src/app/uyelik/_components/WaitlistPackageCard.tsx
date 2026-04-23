@@ -163,7 +163,7 @@ export function WaitlistPackageCard({
                 className="inline-flex w-full items-center justify-center gap-2 rounded-[8px] px-5 py-3 text-[13.5px] font-semibold transition hover:opacity-90 disabled:opacity-60"
                 style={{ background: 'var(--fg)', color: 'var(--bg)' }}
               >
-                {busy ? 'Kaydediliyor…' : 'Beni listeye ekle'}
+                {busy ? 'Kaydediliyor…' : 'Beni listeye ekleyin'}
               </button>
               {error && (
                 <p className="text-[12.5px]" style={{ color: '#DC2626' }}>

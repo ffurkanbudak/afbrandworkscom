@@ -203,7 +203,7 @@ function CommentNode({
             style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
           >
             <Reply className="h-[11px] w-[11px]" strokeWidth={2} />
-            Yanıtla
+            Yanıtlayın
           </button>
         )}
         {replying && (
@@ -229,7 +229,7 @@ function CommentNode({
                 disabled={replyBusy}
                 className="btn-dark rounded-[6px] px-3 py-1.5 text-[12px] font-medium disabled:opacity-60"
               >
-                {replyBusy ? 'Gönderiliyor…' : 'Yanıtı gönder'}
+                {replyBusy ? 'Gönderiliyor…' : 'Yanıtı gönderin'}
               </button>
               <button
                 type="button"
@@ -413,7 +413,7 @@ export function Comments({
               disabled={busy}
               className="btn-dark rounded-[8px] px-4 py-2 text-[12.5px] font-medium disabled:opacity-60"
             >
-              {busy ? 'Gönderiliyor…' : 'Gönder'}
+              {busy ? 'Gönderiliyor…' : 'Gönderin'}
             </button>
             {msg && (
               <span

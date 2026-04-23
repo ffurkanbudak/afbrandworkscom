@@ -32,7 +32,7 @@ export function GuestGate({ variant }: { variant: 'list' | 'post' }) {
           className="inline-flex items-center justify-center gap-2 rounded-[8px] px-5 py-3 text-[13.5px] font-semibold transition hover:opacity-90"
           style={{ background: 'var(--fg)', color: 'var(--bg)' }}
         >
-          Kaydol
+          Kaydolun
           <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
         </Link>
         <Link
@@ -40,7 +40,7 @@ export function GuestGate({ variant }: { variant: 'list' | 'post' }) {
           className="inline-flex items-center justify-center rounded-[8px] border px-5 py-3 text-[13px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
           style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
         >
-          Paketleri incele
+          Paketleri inceleyin
         </Link>
       </div>
     </div>
