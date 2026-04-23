@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useMemo, useState } from 'react';
 import { MessageSquare, Reply } from 'lucide-react';
+import { ReportButton } from './ReportButton';
 
 type Plan = 'GOZLEMCI' | 'ORTAK' | 'MIMARI';
 
@@ -414,15 +415,22 @@ function Node({
         <p className="mt-1.5 text-[14px] leading-[1.55] whitespace-pre-wrap break-words">
           {c.body}
         </p>
-        {replyable && !replying && (
-          <button
-            onClick={() => onReply(c.id)}
-            className="mt-2 inline-flex items-center gap-1 text-[11.5px] font-medium"
-            style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
-          >
-            <Reply className="h-[11px] w-[11px]" strokeWidth={2} />
-            Yanıtla
-          </button>
+        {!replying && (
+          <div className="mt-2 flex items-center gap-4">
+            {replyable && (
+              <button
+                onClick={() => onReply(c.id)}
+                className="inline-flex items-center gap-1 text-[11.5px] font-medium"
+                style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
+              >
+                <Reply className="h-[11px] w-[11px]" strokeWidth={2} />
+                Yanıtla
+              </button>
+            )}
+            {isSignedIn && !c.mine && (
+              <ReportButton target="comment" id={c.id} size="sm" />
+            )}
+          </div>
         )}
         {replying && (
           <div className="mt-3">
