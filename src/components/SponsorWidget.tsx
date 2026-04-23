@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ArrowUpRight, X } from 'lucide-react';
 
@@ -135,6 +136,17 @@ export function SponsorWidget() {
       {phantoms.map((p) => (
         <PhantomPill key={p.name} initial={p.initial} name={p.name} head={p.head} />
       ))}
+      <Link
+        href="/sponsorluk"
+        className="inline-flex items-center gap-1.5 rounded-[8px] border border-dashed px-3 py-2 text-[12px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
+        style={{
+          borderColor: 'color-mix(in oklab, var(--fg) 35%, transparent)',
+          color: 'color-mix(in oklab, var(--fg) 75%, transparent)',
+        }}
+      >
+        Siz de sponsor olun
+        <ArrowUpRight className="h-[12px] w-[12px]" strokeWidth={2} />
+      </Link>
       </div>
 
       {open && sponsor && (
