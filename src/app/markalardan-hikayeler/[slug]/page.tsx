@@ -39,12 +39,12 @@ export async function generateMetadata({
   if (!s || s.status !== 'PUBLISHED') return { title: 'Marka bulunamadı' };
   const title = s.metaTitle ?? `${s.name} · Markalardan Hikayeler`;
   const description = s.metaDescription ?? s.positioning.slice(0, 160);
-  const url = `${SITE_URL}/markalar/${s.slug}`;
+  const url = `${SITE_URL}/markalardan-hikayeler/${s.slug}`;
   const image = s.coverImageUrl ?? `${SITE_URL}/ahmetfurkanbudak.jpeg`;
   return {
     title,
     description,
-    alternates: { canonical: `/markalar/${s.slug}` },
+    alternates: { canonical: `/markalardan-hikayeler/${s.slug}` },
     openGraph: {
       type: 'article',
       url,
@@ -73,7 +73,7 @@ export default async function BrandStoryDetailPage({
   if (!s || s.status !== 'PUBLISHED') notFound();
 
   const deciList = decisions(s.strategicDecisions);
-  const url = `${SITE_URL}/markalar/${s.slug}`;
+  const url = `${SITE_URL}/markalardan-hikayeler/${s.slug}`;
 
   return (
     <>
@@ -81,7 +81,7 @@ export default async function BrandStoryDetailPage({
 
       <article className="fade-up mx-auto max-w-[780px] pt-8 md:pt-14">
         <Link
-          href={`/markalar?tab=${s.origin === 'GLOBAL' ? 'global' : 'local'}`}
+          href={`/markalardan-hikayeler?tab=${s.origin === 'GLOBAL' ? 'global' : 'local'}`}
           className="inline-flex items-center gap-1 text-[12px] font-medium"
           style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
         >

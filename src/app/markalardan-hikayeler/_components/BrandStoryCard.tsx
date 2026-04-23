@@ -16,7 +16,7 @@ export type BrandStoryRow = {
 export function BrandStoryCard({ row }: { row: BrandStoryRow }) {
   return (
     <Link
-      href={`/markalar/${row.slug}`}
+      href={`/markalardan-hikayeler/${row.slug}`}
       className="group block overflow-hidden rounded-[12px] border transition hover:bg-[color-mix(in_oklab,var(--fg)_2%,transparent)]"
       style={{ borderColor: 'var(--border)' }}
     >

@@ -9,10 +9,10 @@ export const metadata: Metadata = {
   title: 'Markalardan Hikayeler · Afbrandworks',
   description:
     'Global ve yerel markaların stratejik zihin haritası. Her markanın arkasındaki konumlandırma, kuruluş hikayesi, kriz yönetimi ve afbrandworks editoryal yorumu.',
-  alternates: { canonical: '/markalar' },
+  alternates: { canonical: '/markalardan-hikayeler' },
   openGraph: {
     type: 'website',
-    url: `${SITE_URL}/markalar`,
+    url: `${SITE_URL}/markalardan-hikayeler`,
     title: 'Markalardan Hikayeler · Afbrandworks',
     description:
       'Global ve yerel markaların stratejik zihin haritası.',
@@ -158,7 +158,7 @@ function buildUrl(tab: Tab, sector: string | null): string {
   if (tab !== 'all') p.set('tab', tab);
   if (sector) p.set('sector', sector);
   const qs = p.toString();
-  return qs ? `/markalar?${qs}` : '/markalar';
+  return qs ? `/markalardan-hikayeler?${qs}` : '/markalardan-hikayeler';
 }
 
 function TabChip({ href, label, active }: { href: string; label: string; active: boolean }) {
