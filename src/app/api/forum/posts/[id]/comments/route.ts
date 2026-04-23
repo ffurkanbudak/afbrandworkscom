@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { auth } from '@clerk/nextjs/server';
 import { getCurrentSubscriber } from '@/lib/subscriber';
 import { db } from '@/lib/db';
 import { canReplyToPlan } from '@/lib/plan';
@@ -68,15 +69,21 @@ export async function POST(req: Request, ctx: { params: Promise<{ id: string }> 
   if (!viewer) {
     return NextResponse.json({ error: 'Önce giriş yapın.' }, { status: 401 });
   }
-  if (viewer.status !== 'CONFIRMED') {
+
+  const { userId } = await auth();
+  const isAdmin = userId
+    ? !!(await db.admin.findUnique({ where: { clerkId: userId }, select: { id: true } }))
+    : false;
+
+  if (!isAdmin && viewer.status !== 'CONFIRMED') {
     return NextResponse.json(
       { error: 'Aboneliğiniz onaylanana kadar yanıt veremezsiniz.' },
       { status: 403 },
     );
   }
-  if (!isProfileComplete(viewer)) {
+  if (!isAdmin && !isProfileComplete(viewer)) {
     return NextResponse.json(
-      { error: 'Yanıt vermek için profil fotoğrafı ve tanıtım metni gerekli.' },
+      { error: 'Yanıt vermek için profil fotoğrafı gerekli.' },
       { status: 403 },
     );
   }
