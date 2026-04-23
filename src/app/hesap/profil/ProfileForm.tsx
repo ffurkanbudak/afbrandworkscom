@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { Field, inputClass, inputStyle } from '@/app/admin/_components/FormField';
+import { COUNTRIES, TR_CITIES } from '@/lib/geography';
 
 type Initial = {
   firstName: string;
@@ -102,24 +103,49 @@ export function ProfileForm({ initial }: { initial: Initial }) {
       </Field>
 
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Şehir">
-          <input
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-            className={inputClass}
-            style={inputStyle}
-            placeholder="İstanbul"
-          />
-        </Field>
         <Field label="Ülke">
-          <input
+          <select
             value={country}
-            onChange={(e) => setCountry(e.target.value)}
+            onChange={(e) => {
+              setCountry(e.target.value);
+              if (e.target.value !== 'TR') setCity('');
+            }}
             className={inputClass}
             style={inputStyle}
-            placeholder="TR"
-            maxLength={2}
-          />
+          >
+            <option value="">Seçin…</option>
+            {COUNTRIES.map((c) => (
+              <option key={c.code} value={c.code}>
+                {c.label}
+              </option>
+            ))}
+          </select>
+        </Field>
+        <Field label="Şehir">
+          {country === 'TR' ? (
+            <select
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className={inputClass}
+              style={inputStyle}
+            >
+              <option value="">Seçin…</option>
+              {TR_CITIES.map((c) => (
+                <option key={c} value={c}>
+                  {c}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <input
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+              className={inputClass}
+              style={inputStyle}
+              placeholder="Şehir"
+              disabled={!country}
+            />
+          )}
         </Field>
       </div>
 
