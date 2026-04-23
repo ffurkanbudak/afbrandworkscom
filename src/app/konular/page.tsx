@@ -5,6 +5,8 @@ import { db } from '@/lib/db';
 
 import type { Metadata } from 'next';
 
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com';
+
 export const metadata: Metadata = {
   title: 'Konular · Markalaşma',
   description:
@@ -62,8 +64,57 @@ export default async function TopicsPage() {
     grouped.set(t.group, arr);
   }
 
+  const collectionJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${SITE_URL}/konular#collection`,
+    url: `${SITE_URL}/konular`,
+    name: 'Markalaşma Konuları',
+    description:
+      'Markalaşmanın tüm başlıkları: konumlandırma, farklılaşma, marka mimarisi, iletişim. Sektör, disiplin ve vaka çalışmaları kategorilerinde.',
+    inLanguage: 'tr-TR',
+    isPartOf: { '@id': `${SITE_URL}/#website` },
+    author: { '@id': `${SITE_URL}/#person` },
+    publisher: { '@id': `${SITE_URL}/#organization` },
+  };
+
+  const itemListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    '@id': `${SITE_URL}/konular#itemlist`,
+    name: 'Markalaşma Kategorileri',
+    numberOfItems: tags.length,
+    itemListElement: tags.map((t, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      url: `${SITE_URL}/posts?tag=${t.slug}`,
+      name: t.labelTr,
+    })),
+  };
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Konular', item: `${SITE_URL}/konular` },
+    ],
+  };
+
   return (
     <div className="fade-up pt-10 md:pt-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <section className="max-w-[780px]">
         <p className="eyebrow">Konular</p>
         <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
