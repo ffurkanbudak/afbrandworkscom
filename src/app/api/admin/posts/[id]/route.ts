@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
+import { pingIndexNow, postUrl } from '@/lib/indexnow';
 
 async function requireAdmin() {
   const { userId } = await auth();
@@ -50,6 +51,9 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
   const becamePublished =
     status === 'PUBLISHED' && existing.status !== 'PUBLISHED';
 
+  const slugChanged =
+    slug !== undefined && slug !== existing.slug && existing.status === 'PUBLISHED';
+
   const post = await db.post.update({
     where: { id },
     data: {
@@ -79,6 +83,15 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
         : {}),
     },
   });
+
+  const urlsToPing: string[] = [];
+  if (post.status === 'PUBLISHED') {
+    urlsToPing.push(postUrl(post.slug));
+    if (slugChanged) urlsToPing.push(postUrl(existing.slug));
+  }
+  if (urlsToPing.length > 0) {
+    pingIndexNow(urlsToPing).catch(console.error);
+  }
 
   return NextResponse.json({ post });
 }

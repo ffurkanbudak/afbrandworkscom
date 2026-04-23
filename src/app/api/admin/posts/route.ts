@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { auth } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
 import { triggerPostBroadcast } from '@/server/broadcast';
+import { pingIndexNow, postUrl } from '@/lib/indexnow';
 
 export async function GET() {
   const { userId } = await auth();
@@ -52,6 +53,7 @@ export async function POST(req: Request) {
 
   if (publishing) {
     await triggerPostBroadcast(post.id, admin.id).catch(console.error);
+    pingIndexNow([postUrl(post.slug)]).catch(console.error);
   }
 
   return NextResponse.json({ post });
