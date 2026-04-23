@@ -49,12 +49,12 @@ export function FeaturedCard({
       </div>
       <div className="mt-4">
         <p
-          className="text-[11px] font-semibold tracking-[0.12em]"
+          className="text-[11px] font-semibold tracking-[0.08em]"
           style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
         >
-          {formatDateCaps(publishedAt)}
+          <span className="whitespace-nowrap">{formatDateCaps(publishedAt)}</span>
           <span className="mx-2 opacity-50">/</span>
-          <span className="uppercase">{authorName}</span>
+          <span className="whitespace-nowrap uppercase">{authorName}</span>
         </p>
         <h3 className="mt-2.5 font-display text-[17px] leading-[1.25] transition group-hover:opacity-75">
           {title}

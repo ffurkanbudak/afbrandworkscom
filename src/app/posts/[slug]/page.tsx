@@ -3,7 +3,7 @@ import { cookies } from 'next/headers';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { ArrowRight, Hash } from 'lucide-react';
+import { ArrowRight, Hash, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
 import { auth } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
 import { getRelatedPosts } from '@/lib/related';
@@ -173,7 +173,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         )}
 
         <div
-          className="mt-8 flex items-center gap-3 text-[13px]"
+          className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px]"
           style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
         >
           <Image
@@ -188,6 +188,51 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </span>
           <span className="opacity-40">·</span>
           <span>{formatDateCaps(post.publishedAt)}</span>
+          <span
+            className="ml-1 inline-flex items-center gap-0.5"
+            aria-label="Yazarın sosyal medya hesapları"
+          >
+            <a
+              href="https://www.linkedin.com/in/ahmetfurkanbudak/"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="LinkedIn"
+              className="flex h-7 w-7 items-center justify-center rounded-[6px] transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
+              style={{ color: 'color-mix(in oklab, var(--fg) 70%, transparent)' }}
+            >
+              <Linkedin className="h-[13px] w-[13px]" strokeWidth={1.75} />
+            </a>
+            <a
+              href="https://www.instagram.com/afbrandworks"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Instagram"
+              className="flex h-7 w-7 items-center justify-center rounded-[6px] transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
+              style={{ color: 'color-mix(in oklab, var(--fg) 70%, transparent)' }}
+            >
+              <Instagram className="h-[13px] w-[13px]" strokeWidth={1.75} />
+            </a>
+            <a
+              href="https://x.com/afurkanbudakcom"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="X (Twitter)"
+              className="flex h-7 w-7 items-center justify-center rounded-[6px] transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
+              style={{ color: 'color-mix(in oklab, var(--fg) 70%, transparent)' }}
+            >
+              <Twitter className="h-[13px] w-[13px]" strokeWidth={1.75} />
+            </a>
+            <a
+              href="https://www.youtube.com/@ahmetfurkanbudak"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="YouTube"
+              className="flex h-7 w-7 items-center justify-center rounded-[6px] transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
+              style={{ color: 'color-mix(in oklab, var(--fg) 70%, transparent)' }}
+            >
+              <Youtube className="h-[13px] w-[13px]" strokeWidth={1.75} />
+            </a>
+          </span>
         </div>
       </header>
 
