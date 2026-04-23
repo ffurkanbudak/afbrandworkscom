@@ -43,7 +43,7 @@ export function SponsorWidget() {
   return (
     <>
       <aside
-        className="inline-flex items-center gap-3 rounded-full border px-3 py-2"
+        className="inline-flex items-center gap-3 rounded-[8px] border px-3 py-2"
         style={{ borderColor: 'var(--border)', background: 'var(--bg)' }}
       >
         <button
