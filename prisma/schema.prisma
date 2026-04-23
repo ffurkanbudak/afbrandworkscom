@@ -54,6 +54,13 @@ enum GiftCodeStatus {
   REVOKED
 }
 
+enum GiftRequestStatus {
+  PENDING
+  AWAITING_PAYMENT
+  COMPLETED
+  CANCELLED
+}
+
 enum SponsorTier {
   DAILY
   MONTHLY
@@ -281,6 +288,7 @@ model Subscriber {
   applications     WriterApplication[]
   forumPosts       ForumPost[]
   forumComments    ForumComment[]
+  forumFlagsFiled  ForumFlag[]     @relation("ForumFlagReporter")
   giftCodes        GiftCode[]
   notificationsReadAt DateTime?
 
@@ -520,16 +528,21 @@ model ForumComment {
 }
 
 model ForumFlag {
-  id        String        @id @default(cuid())
-  postId    String?
-  commentId String?
-  reason    String
-  resolved  Boolean       @default(false)
-  createdAt DateTime      @default(now())
-  post      ForumPost?    @relation(fields: [postId], references: [id], onDelete: Cascade)
-  comment   ForumComment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  id         String        @id @default(cuid())
+  postId     String?
+  commentId  String?
+  reporterId String?
+  source     String        @default("AUTO")
+  reason     String
+  resolved   Boolean       @default(false)
+  createdAt  DateTime      @default(now())
+  post       ForumPost?    @relation(fields: [postId], references: [id], onDelete: Cascade)
+  comment    ForumComment? @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  reporter   Subscriber?   @relation("ForumFlagReporter", fields: [reporterId], references: [id], onDelete: SetNull)
 
   @@index([resolved, createdAt])
+  @@index([reporterId])
+  @@index([source, resolved])
 }
 
 model GiftCode {
@@ -570,4 +583,23 @@ model Sponsor {
 
   @@index([active])
   @@index([endDate])
+}
+
+model GiftRequest {
+  id             String            @id @default(cuid())
+  senderName     String
+  senderEmail    String
+  senderPhone    String?
+  recipientName  String?
+  recipientEmail String?
+  plan           MembershipPlan
+  note           String?
+  status         GiftRequestStatus @default(PENDING)
+  adminNote      String?
+  issuedCode     String?
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @default(now()) @updatedAt
+
+  @@index([status, createdAt])
+  @@index([senderEmail])
 }
