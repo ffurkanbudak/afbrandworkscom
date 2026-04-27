@@ -1,4 +1,4 @@
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com';
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
 const INDEXNOW_KEY = 'dc8f40da378c49bbac4c221d76f0b822';
 
 export async function pingIndexNow(urls: string[]): Promise<void> {

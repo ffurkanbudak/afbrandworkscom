@@ -20,7 +20,7 @@ import { PostJsonLd } from '@/components/PostJsonLd';
 import { Paywall } from '@/components/Paywall';
 
 const FALLBACK_AUTHOR = 'Ahmet Furkan Budak';
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com';
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
 
 export async function generateStaticParams() {
   const posts = await db.post.findMany({ where: { status: 'PUBLISHED' }, select: { slug: true } });

@@ -5,7 +5,7 @@ import { SiteChrome } from '@/components/SiteChrome';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { SiteJsonLd } from '@/components/SiteJsonLd';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com';
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { ActivePackageCard } from './_components/ActivePackageCard';
 import { WaitlistPackageCard } from './_components/WaitlistPackageCard';
 
-const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com';
+const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
 
 export const metadata: Metadata = {
   title: 'Üyelik · Afbrandworks',
