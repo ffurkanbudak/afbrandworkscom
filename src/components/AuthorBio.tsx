@@ -31,7 +31,7 @@ export function AuthorBio() {
             className="mt-1 text-[12.5px]"
             style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
           >
-            Stratejik Marka Danışmanı · Toganworks ve Afbrandworks kurucusu
+            Stratejik Marka Danışmanı · Fo. Toganworks
           </p>
         </div>
       </div>
