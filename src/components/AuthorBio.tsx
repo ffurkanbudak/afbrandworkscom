@@ -41,9 +41,9 @@ export function AuthorBio() {
         style={{ color: 'color-mix(in oklab, var(--fg) 80%, transparent)' }}
       >
         Markalaşma, konumlandırma, marka kimliği ve iletişim stratejisi üzerine
-        yazar. Toganworks ve Afbrandworks danışmanlık ofislerinin kurucusu
-        olarak markalara stratejik danışmanlık verir; markalaşma odaklı bir
-        podcast yayını yürütür ve genç marka profesyonellerine mentorluk eder.
+        yazar. Toganworks danışmanlık ofisinin kurucusu olarak markalara
+        stratejik danışmanlık verir; markalaşma odaklı bir podcast yayını
+        yürütür ve genç marka profesyonellerine mentorluk eder.
       </p>
 
       <div
