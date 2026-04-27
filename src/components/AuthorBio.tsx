@@ -10,13 +10,20 @@ export function AuthorBio() {
       aria-label="Yazar hakkında"
     >
       <div className="flex items-start gap-4">
-        <Image
-          src="/ahmetfurkanbudak.jpeg"
-          alt="Ahmet Furkan Budak"
-          width={72}
-          height={72}
-          className="h-[72px] w-[72px] shrink-0 rounded-full object-cover"
-        />
+        <div
+          className="relative h-[80px] w-[80px] shrink-0 overflow-hidden rounded-full"
+          style={{
+            boxShadow: '0 0 0 1px var(--border)',
+          }}
+        >
+          <Image
+            src="/ahmetfurkanbudak.jpeg"
+            alt="Ahmet Furkan Budak"
+            fill
+            sizes="80px"
+            className="object-cover"
+          />
+        </div>
         <div className="min-w-0">
           <p
             className="text-[11px] font-semibold tracking-[0.14em] uppercase"
