@@ -3,6 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { useMemo, useRef, useState } from 'react';
 import { Field, inputClass, inputStyle } from '../../_components/FormField';
+import { InfoTooltip } from '../../_components/InfoTooltip';
 
 type Tag = { id: string; labelTr: string; group: string };
 type Mode = { kind: 'create' } | { kind: 'edit'; postId: string };
@@ -273,7 +274,30 @@ export function PostForm({
           />
         </Field>
         <div className="grid gap-5 sm:grid-cols-2">
-          <Field label="Kapak görseli">
+          <Field
+            label="Kapak görseli"
+            labelExtra={
+              <InfoTooltip title="Önerilen format" width={300}>
+                <span className="block space-y-1.5">
+                  <span className="block">
+                    <strong>Boyut:</strong> 1600×900 px (16:9 oranı). Min. 1200×675 px.
+                  </span>
+                  <span className="block">
+                    <strong>Format:</strong> WebP tercih edilir; JPG kabul edilir. PNG'den kaçının (büyük dosya).
+                  </span>
+                  <span className="block">
+                    <strong>Dosya boyutu:</strong> 8 MB altı; ideal 200-400 KB.
+                  </span>
+                  <span className="block">
+                    <strong>Kompozisyon:</strong> Yatay; metin overlay'i için sade bir alan bırakın.
+                  </span>
+                  <span className="block">
+                    <strong>Alt metni:</strong> Görseli betimleyen kısa bir cümle yazmayı unutmayın (SEO + erişilebilirlik).
+                  </span>
+                </span>
+              </InfoTooltip>
+            }
+          >
             <input
               type="file"
               accept="image/*"

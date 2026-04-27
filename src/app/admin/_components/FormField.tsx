@@ -5,11 +5,13 @@ export function Field({
   hint,
   children,
   required,
+  labelExtra,
 }: {
   label: string;
   hint?: string;
   children: ReactNode;
   required?: boolean;
+  labelExtra?: ReactNode;
 }) {
   return (
     <label className="block">
@@ -20,6 +22,7 @@ export function Field({
             ·zorunlu
           </span>
         )}
+        {labelExtra}
       </span>
       <div className="mt-2">{children}</div>
       {hint && (
