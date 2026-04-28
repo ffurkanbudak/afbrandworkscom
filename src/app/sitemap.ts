@@ -6,13 +6,12 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [posts, tags, news] = await Promise.all([
+  const [posts, news] = await Promise.all([
     db.post.findMany({
       where: { status: 'PUBLISHED' },
       select: { slug: true, updatedAt: true, publishedAt: true },
       orderBy: { publishedAt: 'desc' },
     }),
-    db.tag.findMany({ select: { slug: true } }),
     db.newsItem.findMany({
       where: { status: 'APPROVED' },
       select: { id: true, approvedAt: true, publishedAt: true },
@@ -58,13 +57,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
-  const tagRoutes: MetadataRoute.Sitemap = tags.map((t) => ({
-    url: `${SITE_URL}/posts?tag=${t.slug}`,
-    lastModified: now,
-    changeFrequency: 'weekly',
-    priority: 0.7,
-  }));
-
   const newsRoutes: MetadataRoute.Sitemap = news.map((n) => ({
     url: `${SITE_URL}/gundem/${n.id}`,
     lastModified: n.approvedAt ?? n.publishedAt ?? now,
@@ -72,5 +64,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.55,
   }));
 
-  return [...staticRoutes, ...postRoutes, ...tagRoutes, ...newsRoutes];
+  return [...staticRoutes, ...postRoutes, ...newsRoutes];
 }
