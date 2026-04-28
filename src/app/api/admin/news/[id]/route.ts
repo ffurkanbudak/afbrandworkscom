@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { auth } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
 
@@ -7,6 +8,12 @@ function clean(v: unknown, max: number): string | null {
   const t = v.trim();
   if (!t) return null;
   return t.slice(0, max);
+}
+
+function revalidateNews(itemId?: string) {
+  revalidatePath('/');
+  revalidatePath('/gundem');
+  if (itemId) revalidatePath(`/gundem/${itemId}`);
 }
 
 export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }> }) {
@@ -35,6 +42,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
         status: item.status === 'DRAFT' && titleTr && summaryTr ? 'PENDING_REVIEW' : item.status,
       },
     });
+    if (item.status === 'APPROVED' || updated.status === 'APPROVED') revalidateNews(id);
     return NextResponse.json({ item: updated });
   }
 
@@ -58,6 +66,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
         rejectionReason: null,
       },
     });
+    revalidateNews(id);
     return NextResponse.json({ item: updated });
   }
 
@@ -75,6 +84,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
         approvedAt: null,
       },
     });
+    if (item.status === 'APPROVED') revalidateNews(id);
     return NextResponse.json({ item: updated });
   }
 
@@ -83,6 +93,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
       where: { id },
       data: { status: 'ARCHIVED' },
     });
+    if (item.status === 'APPROVED') revalidateNews(id);
     return NextResponse.json({ item: updated });
   }
 
@@ -96,6 +107,7 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
         approvedAt: null,
       },
     });
+    if (item.status === 'APPROVED') revalidateNews(id);
     return NextResponse.json({ item: updated });
   }
 
