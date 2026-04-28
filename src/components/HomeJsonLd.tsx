@@ -35,7 +35,7 @@ export function HomeJsonLd({ featured }: { featured: FeaturedPost[] }) {
       { '@type': 'SiteNavigationElement', position: 4, name: 'Konular', url: `${SITE_URL}/konular` },
       { '@type': 'SiteNavigationElement', position: 5, name: 'Öneriler', url: `${SITE_URL}/oneriler` },
       { '@type': 'SiteNavigationElement', position: 6, name: 'Hakkında', url: `${SITE_URL}/hakkinda` },
-      { '@type': 'SiteNavigationElement', position: 7, name: 'İletişim', url: `${SITE_URL}/contact` },
+      { '@type': 'SiteNavigationElement', position: 7, name: 'İletişim', url: `${SITE_URL}/iletisim` },
     ],
   };
 

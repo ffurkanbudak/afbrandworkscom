@@ -56,7 +56,7 @@ const NAV: NavItem[] = [
   { href: '/hediye-et', label: 'Hediye Edin', match: (p) => p.startsWith('/hediye-et') },
   { href: '/hakkinda', label: 'Hakkında', match: (p) => p.startsWith('/hakkinda') },
   { href: '/kunye', label: 'Künye', match: (p) => p.startsWith('/kunye') },
-  { href: '/contact', label: 'İletişim', match: (p) => p.startsWith('/contact') },
+  { href: '/iletisim', label: 'İletişim', match: (p) => p.startsWith('/iletisim') },
 ];
 
 function isBranch(item: NavItem): item is NavBranch {
@@ -207,7 +207,7 @@ export function Header() {
             </SignedIn>
 
             <Link
-              href="/contact?konu=sponsor"
+              href="/iletisim?konu=sponsor"
               className="hidden items-center gap-1.5 rounded-[6px] px-3 py-1.5 text-[12px] font-medium tracking-tight transition hover:opacity-90 md:inline-flex"
               style={{ background: '#DC2204', color: '#FFFFFF' }}
             >

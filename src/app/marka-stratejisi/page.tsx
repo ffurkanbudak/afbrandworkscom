@@ -335,7 +335,7 @@ export default function MarkaStratejisiPage() {
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/contact"
+              href="/iletisim"
               className="btn-red inline-flex items-center gap-2 rounded-[8px] px-5 py-3 text-[14px] font-semibold"
             >
               İletişime geçin

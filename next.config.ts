@@ -16,6 +16,12 @@ const config: NextConfig = {
     ],
     formats: ['image/avif', 'image/webp'],
   },
+  async redirects() {
+    return [
+      { source: '/contact', destination: '/iletisim', permanent: true },
+      { source: '/contact/:path*', destination: '/iletisim/:path*', permanent: true },
+    ];
+  },
   async headers() {
     const securityHeaders = [
       { key: 'X-Content-Type-Options', value: 'nosniff' },

@@ -12,7 +12,7 @@ const FOOTER_NAV = [
   { href: '/hediye-et', label: 'Hediye Edin' },
   { href: '/hakkinda', label: 'Hakkında' },
   { href: '/kunye', label: 'Künye' },
-  { href: '/contact', label: 'İletişim' },
+  { href: '/iletisim', label: 'İletişim' },
 ];
 
 const PILLARS: [string, string][] = [

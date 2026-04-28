@@ -181,7 +181,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'Kendisiyle nasıl iletişime geçilir?',
     answer:
-      'afbrandworks.com/contact sayfası üzerinden veya info@afbrandworks.com adresinden danışmanlık, konuşma, mentörlük ve iş birliği talepleri için ulaşılabilir.',
+      'afbrandworks.com/iletisim sayfası üzerinden veya info@afbrandworks.com adresinden danışmanlık, konuşma, mentörlük ve iş birliği talepleri için ulaşılabilir.',
   },
 ];
 
@@ -398,7 +398,7 @@ export default function AboutPage() {
         </div>
         <div className="space-y-4">
           <Link
-            href="/contact"
+            href="/iletisim"
             className="btn-red inline-flex items-center gap-2 rounded-[6px] px-4 py-2.5 text-[13px] font-medium"
           >
             Merhaba de!

@@ -403,7 +403,7 @@ export default function KonumlandirmaPage() {
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/contact"
+              href="/iletisim"
               className="btn-red inline-flex items-center gap-2 rounded-[6px] px-4 py-2.5 text-[13px] font-medium"
             >
               İletişime geçin
