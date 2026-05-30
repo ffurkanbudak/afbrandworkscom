@@ -10,7 +10,6 @@ import { Newsletter } from '@/components/Newsletter';
 import { TopicsInline } from '@/components/TopicRow';
 import { MarketTicker } from '@/components/MarketTicker';
 import { NewsTicker } from '@/components/NewsTicker';
-import { CommunityStrip } from '@/components/CommunityStrip';
 import { HomeNewsGrid } from '@/components/HomeNewsGrid';
 import { HomeJsonLd } from '@/components/HomeJsonLd';
 
@@ -185,8 +184,6 @@ export default async function HomePage() {
       <section className="mt-16">
         <Newsletter readerCount={Math.max(subscriberCount, 300)} />
       </section>
-
-      <CommunityStrip />
 
       {recent.length > 0 && (
         <section className="mt-16">

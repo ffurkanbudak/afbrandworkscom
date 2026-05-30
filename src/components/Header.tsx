@@ -130,10 +130,10 @@ export function Header() {
                   Ahmet Furkan Budak
                 </span>
                 <span
-                  className="mt-[3px] text-[10px] font-medium tracking-[0.06em] uppercase"
+                  className="mt-[3px] text-[10px] font-medium tracking-[0.04em]"
                   style={{ color: 'color-mix(in oklab, var(--fg) 58%, transparent)' }}
                 >
-                  Founder &amp; Brand Consultant
+                  Stratejik Marka Danışmanı · Fo. Toganworks
                 </span>
               </span>
             </Link>
