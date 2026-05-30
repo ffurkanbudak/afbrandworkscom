@@ -11,6 +11,7 @@ type Props = {
   authorName?: string;
   coverImageUrl?: string | null;
   coverImageAlt?: string | null;
+  primaryTag?: string;
 };
 
 export function PostListItem({
@@ -21,15 +22,16 @@ export function PostListItem({
   authorName,
   coverImageUrl,
   coverImageAlt,
+  primaryTag,
 }: Props) {
   return (
     <Link
       href={`/posts/${slug}`}
-      className="group flex items-start gap-6 py-7"
+      className="group flex items-start gap-6 py-6 md:py-7"
       style={{ borderBottom: '1px solid var(--border)' }}
     >
       <div
-        className="relative h-[112px] w-[140px] flex-shrink-0 overflow-hidden rounded-[8px] md:h-[128px] md:w-[180px]"
+        className="relative h-[104px] w-[132px] flex-shrink-0 overflow-hidden rounded-[6px] md:h-[120px] md:w-[170px]"
         style={{ background: 'var(--bg-soft)' }}
       >
         {coverImageUrl ? (
@@ -37,7 +39,7 @@ export function PostListItem({
             src={coverImageUrl}
             alt={coverImageAlt ?? title}
             fill
-            sizes="(min-width: 768px) 180px, 140px"
+            sizes="(min-width: 768px) 170px, 132px"
             className="object-cover transition duration-500 group-hover:scale-[1.04]"
           />
         ) : (
@@ -51,24 +53,36 @@ export function PostListItem({
         )}
         <NewBadge publishedAt={publishedAt} variant="dark" className="absolute left-2 top-2" />
       </div>
-      <div className="min-w-0 flex-1 pt-1">
-        <p
-          className="space-y-0.5 text-[11px] font-semibold tracking-[0.08em]"
-          style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+      <div className="min-w-0 flex-1 pt-0.5">
+        {primaryTag && (
+          <span
+            className="inline-flex items-center rounded-[4px] border px-2 py-[3px] text-[10px] font-semibold tracking-[0.12em] uppercase"
+            style={{
+              borderColor: 'var(--border)',
+              color: 'color-mix(in oklab, var(--fg) 78%, transparent)',
+            }}
+          >
+            {primaryTag}
+          </span>
+        )}
+        <h3
+          className={`font-display text-[18px] leading-[1.25] transition group-hover:opacity-75 md:text-[20px] ${primaryTag ? 'mt-2.5' : ''}`}
         >
-          <span className="block truncate">{formatDateCaps(publishedAt)}</span>
-          {authorName && (
-            <span className="block truncate uppercase">{authorName}</span>
-          )}
-        </p>
-        <h3 className="mt-3 font-display text-[18px] leading-[1.25] transition group-hover:opacity-75 md:text-[20px]">
           {title}
         </h3>
         <p
-          className="mt-2 max-w-[62ch] text-[15px] leading-[1.6] line-clamp-2"
+          className="mt-2 max-w-[62ch] text-[14.5px] leading-[1.6] line-clamp-2"
           style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
         >
           {excerpt}
+        </p>
+        <p
+          className="mt-3 flex flex-wrap items-center gap-x-2 text-[11px] font-medium tracking-[0.04em]"
+          style={{ color: 'color-mix(in oklab, var(--fg) 52%, transparent)' }}
+        >
+          {authorName && <span>{authorName}</span>}
+          {authorName && <span className="opacity-40">·</span>}
+          <span>{formatDateCaps(publishedAt)}</span>
         </p>
       </div>
     </Link>

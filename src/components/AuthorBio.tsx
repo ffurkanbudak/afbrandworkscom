@@ -5,13 +5,13 @@ import { ArrowRight, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react'
 export function AuthorBio() {
   return (
     <aside
-      className="mx-auto mt-16 max-w-[680px] rounded-[14px] border p-6 md:p-8"
+      className="mx-auto mt-14 max-w-[720px] rounded-[10px] border p-6 md:p-7"
       style={{ borderColor: 'var(--border)', background: 'var(--bg-soft)' }}
       aria-label="Yazar hakkında"
     >
       <div className="flex items-start gap-4">
         <div
-          className="relative h-[80px] w-[80px] shrink-0 overflow-hidden rounded-full"
+          className="relative h-[76px] w-[76px] shrink-0 overflow-hidden rounded-[6px]"
           style={{
             boxShadow: '0 0 0 1px var(--border)',
           }}
@@ -20,7 +20,7 @@ export function AuthorBio() {
             src="/ahmetfurkanbudak.jpeg"
             alt="Ahmet Furkan Budak"
             fill
-            sizes="80px"
+            sizes="76px"
             className="object-cover"
           />
         </div>

@@ -56,13 +56,13 @@ export default async function HomePage() {
     db.post.findMany({
       where: { status: 'PUBLISHED' },
       orderBy: { publishedAt: 'desc' },
-      include: { author: true },
+      include: { author: true, tags: { include: { tag: true } } },
       take: 12,
     }),
     db.post.findMany({
       where: { status: 'PUBLISHED' },
       orderBy: { publishedAt: 'desc' },
-      include: { author: true },
+      include: { author: true, tags: { include: { tag: true } } },
       skip: 6,
       take: 4,
     }),
@@ -96,7 +96,7 @@ export default async function HomePage() {
 
       {topRow.length > 0 && (
         <section
-          className="py-8"
+          className="py-6"
           style={{ borderBottom: '1px solid var(--border)' }}
         >
           <div className="-mx-6 md:-mx-10 lg:-mx-14">
@@ -113,6 +113,7 @@ export default async function HomePage() {
                     authorName={p.author?.name ?? AUTHOR}
                     coverImageUrl={p.coverImageUrl}
                     coverImageAlt={p.coverImageAlt}
+                    primaryTag={p.tags?.[0]?.tag.labelTr}
                   />
                 </div>
               ))}
@@ -122,7 +123,7 @@ export default async function HomePage() {
       )}
 
       {hero && (
-        <section className="mt-10">
+        <section className="mt-8">
           <HeroArticle
             slug={hero.slug}
             title={hero.title}
@@ -136,7 +137,7 @@ export default async function HomePage() {
         </section>
       )}
 
-      <section className="mt-20">
+      <section className="mt-16">
         <div className="flex items-end justify-between gap-6">
           <div>
             <p className="eyebrow">Bu hafta öne çıkanlar</p>
@@ -155,7 +156,7 @@ export default async function HomePage() {
         </div>
 
         {spotlight.length > 0 && (
-          <div className="mt-10 -mx-6 md:-mx-10 lg:-mx-14">
+          <div className="mt-8 -mx-6 md:-mx-10 lg:-mx-14">
             <div className="no-scrollbar flex snap-x snap-mandatory gap-8 overflow-x-auto scroll-smooth px-6 md:px-10 lg:px-14">
               {spotlight.map((p) => (
                 <div
@@ -170,6 +171,7 @@ export default async function HomePage() {
                     authorName={p.author?.name ?? AUTHOR}
                     coverImageUrl={p.coverImageUrl}
                     coverImageAlt={p.coverImageAlt}
+                    primaryTag={p.tags?.[0]?.tag.labelTr}
                   />
                 </div>
               ))}
@@ -180,14 +182,14 @@ export default async function HomePage() {
 
       <HomeNewsGrid items={latestNews} />
 
-      <section className="mt-20">
+      <section className="mt-16">
         <Newsletter readerCount={Math.max(subscriberCount, 300)} />
       </section>
 
       <CommunityStrip />
 
       {recent.length > 0 && (
-        <section className="mt-20">
+        <section className="mt-16">
           <div className="flex items-end justify-between gap-6">
             <div>
               <p className="eyebrow">Günün günlükleri</p>
@@ -216,13 +218,14 @@ export default async function HomePage() {
                 authorName={p.author?.name ?? AUTHOR}
                 coverImageUrl={p.coverImageUrl}
                 coverImageAlt={p.coverImageAlt}
+                primaryTag={p.tags?.[0]?.tag.labelTr}
               />
             ))}
           </div>
         </section>
       )}
 
-      <section className="mt-20">
+      <section className="mt-16">
         <p className="eyebrow">Rehberler</p>
         <h2 className="font-display mt-3 text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
           Markalaşmanın temel alanları
@@ -264,7 +267,7 @@ export default async function HomePage() {
       </section>
 
       {topics.length > 0 && (
-        <section className="mt-20">
+        <section className="mt-16">
           <p className="eyebrow">Konular</p>
           <h2 className="font-display mt-3 text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
             Markalaşmanın farklı katmanları

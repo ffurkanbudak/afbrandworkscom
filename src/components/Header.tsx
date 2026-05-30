@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
 import {
@@ -105,6 +106,37 @@ export function Header() {
             >
               <Logo className="h-[30px] w-auto" />
             </a>
+            <Link
+              href="/hakkinda"
+              aria-label="Ahmet Furkan Budak hakkında"
+              className="hidden items-center gap-2.5 border-l pl-4 transition hover:opacity-80 md:flex"
+              style={{ borderColor: 'color-mix(in oklab, var(--border) 80%, transparent)', color: 'var(--fg)' }}
+            >
+              <span
+                className="relative h-[32px] w-[32px] overflow-hidden rounded-[4px]"
+                style={{ boxShadow: '0 0 0 1px color-mix(in oklab, var(--border) 70%, transparent)' }}
+              >
+                <Image
+                  src="/ahmetfurkanbudak.jpeg"
+                  alt="Ahmet Furkan Budak"
+                  fill
+                  sizes="32px"
+                  className="object-cover"
+                  priority
+                />
+              </span>
+              <span className="flex flex-col leading-none">
+                <span className="text-[12px] font-semibold tracking-tight">
+                  Ahmet Furkan Budak
+                </span>
+                <span
+                  className="mt-[3px] text-[10px] font-medium tracking-[0.06em] uppercase"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 58%, transparent)' }}
+                >
+                  Founder &amp; Brand Consultant
+                </span>
+              </span>
+            </Link>
             <LiveClock />
           </div>
 

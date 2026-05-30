@@ -10,6 +10,7 @@ type Props = {
   authorName: string;
   coverImageUrl: string | null;
   coverImageAlt: string | null;
+  primaryTag?: string;
 };
 
 export function ArticleRowCard({
@@ -19,6 +20,7 @@ export function ArticleRowCard({
   authorName,
   coverImageUrl,
   coverImageAlt,
+  primaryTag,
 }: Props) {
   return (
     <Link
@@ -26,7 +28,7 @@ export function ArticleRowCard({
       className="group flex items-center gap-5 transition"
     >
       <div
-        className="relative h-[90px] w-[130px] flex-shrink-0 overflow-hidden rounded-[8px]"
+        className="relative h-[88px] w-[120px] flex-shrink-0 overflow-hidden rounded-[6px]"
         style={{ background: 'var(--bg-soft)' }}
       >
         {coverImageUrl ? (
@@ -34,7 +36,7 @@ export function ArticleRowCard({
             src={coverImageUrl}
             alt={coverImageAlt ?? title}
             fill
-            sizes="130px"
+            sizes="120px"
             className="object-cover transition duration-500 group-hover:scale-[1.05]"
           />
         ) : (
@@ -48,22 +50,34 @@ export function ArticleRowCard({
         )}
       </div>
       <div className="min-w-0 flex-1">
-        <p
-          className="space-y-0.5 text-[11px] font-semibold tracking-[0.08em]"
-          style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
-        >
-          <span className="block truncate">{formatDateCaps(publishedAt)}</span>
-          <span className="block truncate uppercase">{authorName}</span>
-        </p>
-        <div className="mt-2.5 flex items-start gap-2">
-          <h3
-            className="line-clamp-2 flex-1 font-display text-[17px] leading-[1.22] transition group-hover:opacity-75 md:text-[18px]"
-            style={{ color: 'var(--fg)' }}
-          >
-            {title}
-          </h3>
+        <div className="flex items-center gap-2">
+          {primaryTag && (
+            <span
+              className="inline-flex items-center rounded-[4px] border px-2 py-[3px] text-[10px] font-semibold tracking-[0.12em] uppercase"
+              style={{
+                borderColor: 'var(--border)',
+                color: 'color-mix(in oklab, var(--fg) 78%, transparent)',
+              }}
+            >
+              {primaryTag}
+            </span>
+          )}
           <NewBadge publishedAt={publishedAt} />
         </div>
+        <h3
+          className="mt-2 line-clamp-2 font-display text-[16.5px] leading-[1.22] transition group-hover:opacity-75 md:text-[17.5px]"
+          style={{ color: 'var(--fg)' }}
+        >
+          {title}
+        </h3>
+        <p
+          className="mt-2 flex items-center gap-x-2 text-[11px] font-medium tracking-[0.04em]"
+          style={{ color: 'color-mix(in oklab, var(--fg) 52%, transparent)' }}
+        >
+          <span className="truncate">{authorName}</span>
+          <span className="opacity-40">·</span>
+          <span className="truncate">{formatDateCaps(publishedAt)}</span>
+        </p>
       </div>
     </Link>
   );

@@ -11,6 +11,7 @@ type Props = {
   authorName: string;
   coverImageUrl: string | null;
   coverImageAlt: string | null;
+  primaryTag?: string;
 };
 
 export function FeaturedCard({
@@ -21,11 +22,12 @@ export function FeaturedCard({
   authorName,
   coverImageUrl,
   coverImageAlt,
+  primaryTag,
 }: Props) {
   return (
     <Link href={`/posts/${slug}`} className="group block">
       <div
-        className="relative aspect-[4/3] w-full overflow-hidden rounded-[10px]"
+        className="relative aspect-[4/3] w-full overflow-hidden rounded-[8px]"
         style={{ background: 'var(--bg-soft)' }}
       >
         {coverImageUrl ? (
@@ -48,14 +50,20 @@ export function FeaturedCard({
         <NewBadge publishedAt={publishedAt} variant="dark" className="absolute left-3 top-3" />
       </div>
       <div className="mt-4">
-        <p
-          className="space-y-0.5 text-[11px] font-semibold tracking-[0.08em]"
-          style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+        {primaryTag && (
+          <span
+            className="inline-flex items-center rounded-[4px] border px-2 py-[3px] text-[10px] font-semibold tracking-[0.12em] uppercase"
+            style={{
+              borderColor: 'var(--border)',
+              color: 'color-mix(in oklab, var(--fg) 78%, transparent)',
+            }}
+          >
+            {primaryTag}
+          </span>
+        )}
+        <h3
+          className={`font-display text-[17px] leading-[1.25] transition group-hover:opacity-75 ${primaryTag ? 'mt-2.5' : ''}`}
         >
-          <span className="block truncate">{formatDateCaps(publishedAt)}</span>
-          <span className="block truncate uppercase">{authorName}</span>
-        </p>
-        <h3 className="mt-2.5 font-display text-[17px] leading-[1.25] transition group-hover:opacity-75">
           {title}
         </h3>
         <p
@@ -63,6 +71,14 @@ export function FeaturedCard({
           style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
         >
           {excerpt}
+        </p>
+        <p
+          className="mt-3 flex flex-wrap items-center gap-x-2 text-[11px] font-medium tracking-[0.04em]"
+          style={{ color: 'color-mix(in oklab, var(--fg) 52%, transparent)' }}
+        >
+          <span>{authorName}</span>
+          <span className="opacity-40">·</span>
+          <span>{formatDateCaps(publishedAt)}</span>
         </p>
       </div>
     </Link>

@@ -244,11 +244,29 @@ select.input-base option[value=""][disabled] {
 .select-reset::-ms-expand { display: none; }
 
 .post-body > p {
-  margin-top: 1.5em;
-  margin-bottom: 1.5em;
+  margin-top: 1.35em;
+  margin-bottom: 1.35em;
 }
 .post-body > p:first-child { margin-top: 0; }
 .post-body > p:last-child { margin-bottom: 0; }
+.post-body > h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.022em;
+  font-size: 1.45em;
+  line-height: 1.2;
+  margin-top: 2em;
+  margin-bottom: 0.7em;
+}
+.post-body > h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.018em;
+  font-size: 1.2em;
+  line-height: 1.25;
+  margin-top: 1.7em;
+  margin-bottom: 0.55em;
+}
 
 .post-body strong {
   font-weight: 600;

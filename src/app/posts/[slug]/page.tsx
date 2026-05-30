@@ -125,7 +125,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const primaryTag = post.tags[0]?.tag;
 
   return (
-    <article className="fade-up pt-10 md:pt-16">
+    <article className="fade-up pt-8 md:pt-12">
       <PostJsonLd
         slug={post.slug}
         title={post.title}
@@ -138,21 +138,21 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         readingMinutes={post.readingMinutes}
       />
       <ViewBeacon slug={post.slug} />
-      <header className="mx-auto max-w-[780px]">
-        <div className="flex flex-wrap items-center gap-3">
+      <header className="mx-auto max-w-[720px]">
+        <div className="flex flex-wrap items-center gap-2.5">
           {primaryTag && (
             <Link
               href={`/posts?tag=${primaryTag.slug}`}
-              className="inline-flex items-center gap-1.5 rounded-[6px] border px-2.5 py-1 text-[10.5px] font-semibold tracking-[0.08em] uppercase transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
+              className="inline-flex items-center gap-1.5 rounded-[4px] border px-2 py-[3px] text-[10px] font-semibold tracking-[0.12em] uppercase transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
               style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
             >
-              <Hash className="h-[11px] w-[11px] opacity-65" strokeWidth={2} />
+              <Hash className="h-[10px] w-[10px] opacity-65" strokeWidth={2} />
               {primaryTag.labelTr}
             </Link>
           )}
-          <NewBadge publishedAt={post.publishedAt} size="md" />
+          <NewBadge publishedAt={post.publishedAt} size="sm" />
           <p
-            className="text-[12px] font-semibold tracking-[0.14em] uppercase"
+            className="text-[11px] font-semibold tracking-[0.12em] uppercase"
             style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
           >
             {formatDateCaps(post.publishedAt)}
@@ -161,12 +161,12 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </p>
         </div>
 
-        <h1 className="font-display mt-6 text-[34px] leading-[1.05] tracking-tight md:text-[48px] lg:text-[56px]">
+        <h1 className="font-display mt-5 text-[30px] leading-[1.08] tracking-tight md:text-[40px] lg:text-[46px]">
           {post.title}
         </h1>
         {post.subtitle && (
           <p
-            className="mt-6 max-w-[62ch] text-[19px] leading-[1.5]"
+            className="mt-5 max-w-[62ch] text-[18px] leading-[1.5]"
             style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
           >
             {post.subtitle}
@@ -174,16 +174,21 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         )}
 
         <div
-          className="mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px]"
+          className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px]"
           style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
         >
-          <Image
-            src="/ahmetfurkanbudak.jpeg"
-            alt={post.author?.name ?? FALLBACK_AUTHOR}
-            width={32}
-            height={32}
-            className="h-8 w-8 rounded-full object-cover"
-          />
+          <span
+            className="relative inline-block h-9 w-9 overflow-hidden rounded-[4px]"
+            style={{ boxShadow: '0 0 0 1px color-mix(in oklab, var(--border) 80%, transparent)' }}
+          >
+            <Image
+              src="/ahmetfurkanbudak.jpeg"
+              alt={post.author?.name ?? FALLBACK_AUTHOR}
+              fill
+              sizes="36px"
+              className="object-cover"
+            />
+          </span>
           <span style={{ color: 'var(--fg)' }}>
             {post.author?.name ?? FALLBACK_AUTHOR}
           </span>
@@ -239,14 +244,14 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       {post.coverImageUrl && (
         <div
-          className="relative mx-auto mt-12 aspect-[16/9] w-full overflow-hidden rounded-[10px]"
+          className="relative mx-auto mt-8 w-full max-w-[920px] overflow-hidden rounded-[8px] h-[260px] sm:h-[320px] md:h-[440px] lg:h-[520px]"
           style={{ background: 'var(--bg-soft)' }}
         >
           <Image
             src={post.coverImageUrl}
             alt={post.coverImageAlt ?? post.title}
             fill
-            sizes="(min-width: 1024px) 1100px, 100vw"
+            sizes="(min-width: 1024px) 920px, 100vw"
             className="object-cover"
             priority
           />
@@ -254,7 +259,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       )}
 
       <div
-        className="post-body mx-auto mt-12 max-w-[680px] text-[18px] leading-[1.75]"
+        className="post-body mx-auto mt-10 max-w-[720px] text-[18px] leading-[1.78] md:text-[19px]"
         style={{ color: 'var(--fg)' }}
         dangerouslySetInnerHTML={{ __html: renderedHtml }}
       />
@@ -262,7 +267,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       {wasCut && <Paywall />}
 
       {post.tags.length > 1 && (
-        <div className="mx-auto mt-12 flex max-w-[680px] flex-wrap gap-2.5">
+        <div className="mx-auto mt-12 flex max-w-[720px] flex-wrap gap-2.5">
           {post.tags.map(({ tag }) => (
             <Link
               key={tag.id}
@@ -288,7 +293,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         isSignedIn={!!userId}
       />
 
-      <div className="mx-auto mt-16 max-w-[680px]">
+      <div className="mx-auto mt-16 max-w-[720px]">
         <Comments
           listUrl={`/api/posts/${post.slug}/comments`}
           deleteUrlBase="/api/posts/comments"
@@ -298,7 +303,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       </div>
 
       <div
-        className="mx-auto mt-16 max-w-[680px]"
+        className="mx-auto mt-16 max-w-[720px]"
         style={{ borderTop: '1px solid var(--border)' }}
       />
 
@@ -307,7 +312,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <div className="flex items-end justify-between gap-6">
             <div>
               <p className="eyebrow">Okumaya devam et</p>
-              <h2 className="font-display mt-3 text-[32px] leading-[1.08] tracking-tight md:text-[40px]">
+              <h2 className="font-display mt-3 text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
                 İlgili yazılar
               </h2>
             </div>
