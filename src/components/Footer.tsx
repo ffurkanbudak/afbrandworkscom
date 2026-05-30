@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Logo } from './Logo';
 
 const FOOTER_NAV = [
@@ -56,6 +57,38 @@ export function Footer() {
           >
             <Logo className="h-[36px] w-auto" />
           </a>
+
+          <Link
+            href="/hakkinda"
+            aria-label="Ahmet Furkan Budak hakkında"
+            className="mt-5 flex items-center gap-3 transition hover:opacity-85"
+            style={{ color: 'var(--fg)' }}
+          >
+            <span
+              className="relative h-[40px] w-[40px] overflow-hidden rounded-[5px]"
+              style={{ boxShadow: '0 0 0 1px color-mix(in oklab, var(--border) 80%, transparent)' }}
+            >
+              <Image
+                src="/ahmetfurkanbudak.jpeg"
+                alt="Ahmet Furkan Budak"
+                fill
+                sizes="40px"
+                className="object-cover"
+              />
+            </span>
+            <span className="flex flex-col leading-none">
+              <span className="text-[13px] font-semibold tracking-tight">
+                Ahmet Furkan Budak
+              </span>
+              <span
+                className="mt-[4px] text-[11px] font-medium tracking-[0.04em]"
+                style={{ color: 'color-mix(in oklab, var(--fg) 58%, transparent)' }}
+              >
+                Stratejik Marka Danışmanı · Fo. Toganworks
+              </span>
+            </span>
+          </Link>
+
           <p
             className="mt-5 max-w-[46ch] text-[14px] leading-[1.65]"
             style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}

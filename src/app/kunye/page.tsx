@@ -20,7 +20,7 @@ const SECTIONS: { title: string; paragraphs: string[] }[] = [
   {
     title: 'Hakkımızda',
     paragraphs: [
-      'afbrandworks, marka inşası ve konumlandırma üzerine yazan, tartışan ve öğreten bir topluluk alanıdır. Toganworks\'ün içerik ve topluluk kolu olarak kurulmuştur. Marka kuran kurucular, erken aşama girişimciler, iletişim ve pazarlama ekipleri ile strateji üzerine düşünen kurumsal okuyucular için güvenilir bir başvuru noktası olmak temel amaçtır.',
+      'afbrandworks, marka inşası ve konumlandırma üzerine yazan, tartışan ve öğreten bir topluluk alanıdır. Stratejik marka danışmanı Ahmet Furkan Budak tarafından kurulmuş, kişisel editoryal çatısı altında yürütülen bir içerik ve topluluk platformudur. Marka kuran kurucular, erken aşama girişimciler, iletişim ve pazarlama ekipleri ile strateji üzerine düşünen kurumsal okuyucular için güvenilir bir başvuru noktası olmak temel amaçtır.',
       'Yayıncılık, günlük akımlar üzerine değil, sürdürülebilir marka mimarisi üzerine kuruludur. Konumlandırma, marka kimliği, iletişim dili, satış psikolojisi ve sürdürülebilir büyüme ana eksenleri oluşturur. Kısa vadeli pazarlama hareketleri yerine, markanın uzun ömürlü kararlarına odaklanılır.',
       'Platform, bir yayın organının editoryal ciddiyetini bir topluluğun canlılığıyla birleştirmeyi amaçlar. Her içerik editoryal denetimden geçer. Her tartışma belirli bir çerçeveyi korur. Üye olmak rastgele bir listeye eklenmek değil, aynı konuları ciddiye alan bir çemberin içine girmektir.',
     ],
