@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
+import { auth } from '@/lib/admin-auth';
 import { db } from '@/lib/db';
 import { triggerPostBroadcast } from '@/server/broadcast';
 import { pingIndexNow, postUrl } from '@/lib/indexnow';

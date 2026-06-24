@@ -1,9 +1,16 @@
 import type { Metadata, Viewport } from 'next';
-import { ClerkProvider } from '@clerk/nextjs';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import { SiteChrome } from '@/components/SiteChrome';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { SiteJsonLd } from '@/components/SiteJsonLd';
+
+const inter = Inter({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['400', '500', '600', '700', '800'],
+  display: 'swap',
+  variable: '--font-inter',
+});
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
 
@@ -114,17 +121,15 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <ClerkProvider>
-      <html lang="tr" suppressHydrationWarning>
-        <head>
-          <SiteJsonLd />
-        </head>
-        <body>
-          <ThemeProvider>
-            <SiteChrome>{children}</SiteChrome>
-          </ThemeProvider>
-        </body>
-      </html>
-    </ClerkProvider>
+    <html lang="tr" suppressHydrationWarning className={inter.variable}>
+      <head>
+        <SiteJsonLd />
+      </head>
+      <body>
+        <ThemeProvider>
+          <SiteChrome>{children}</SiteChrome>
+        </ThemeProvider>
+      </body>
+    </html>
   );
 }

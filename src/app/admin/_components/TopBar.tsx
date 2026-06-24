@@ -78,6 +78,15 @@ export function TopBar({
             </span>
           </div>
         </Link>
+
+        <a
+          href="/api/admin/logout"
+          title="Çıkış yap"
+          className="rounded-[8px] border px-3 py-2 text-[12.5px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
+          style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
+        >
+          Çıkış
+        </a>
       </div>
     </header>
   );

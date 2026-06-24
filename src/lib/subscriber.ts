@@ -1,4 +1,4 @@
-import { auth, currentUser } from '@clerk/nextjs/server';
+import { auth, currentUser } from '@/lib/admin-auth';
 import { redirect } from 'next/navigation';
 import { db } from '@/lib/db';
 

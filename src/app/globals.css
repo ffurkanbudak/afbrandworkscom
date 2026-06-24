@@ -17,8 +17,9 @@
 
   --color-flame: #EA4E0D;
 
-  --font-sans: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
-  --font-display: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  --font-serif: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  --font-display: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Monaco, 'Cascadia Mono', 'Roboto Mono', monospace;
 }
 
@@ -49,7 +50,7 @@ html[data-theme='dark'] {
 html, body {
   background: var(--bg);
   color: var(--fg);
-  font-family: var(--font-sans);
+  font-family: var(--font-serif);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
@@ -89,8 +90,8 @@ img, video {
 
 .font-display {
   font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.032em;
+  font-weight: 700;
+  letter-spacing: -0.022em;
   line-height: 1.05;
 }
 
@@ -118,6 +119,41 @@ img, video {
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
+}
+
+.logo-on-dark { display: none; }
+.logo-on-light { display: block; }
+html[data-theme='dark'] .logo-on-light { display: none; }
+html[data-theme='dark'] .logo-on-dark { display: block; }
+
+.subscribe-input::placeholder {
+  color: color-mix(in oklab, var(--fg) 50%, transparent);
+  opacity: 1;
+}
+
+.acc {
+  border-top: 1px solid var(--border);
+}
+.acc > summary {
+  list-style: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 16px 2px;
+  user-select: none;
+}
+.acc > summary::-webkit-details-marker { display: none; }
+.acc > summary .acc-icon {
+  flex: none;
+  transition: transform .25s ease;
+  color: color-mix(in oklab, var(--fg) 55%, transparent);
+}
+.acc[open] > summary .acc-icon { transform: rotate(45deg); }
+.acc > summary:hover { color: var(--fg); }
+.acc-body {
+  padding: 2px 2px 22px;
 }
 
 .link-inline {

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight, Plus } from 'lucide-react';
 
 import type { Metadata } from 'next';
 
@@ -196,9 +196,13 @@ const FAQ_JSONLD = {
   })),
 };
 
+function AccIcon() {
+  return <Plus className="acc-icon h-[18px] w-[18px]" strokeWidth={1.75} aria-hidden />;
+}
+
 export default function AboutPage() {
   return (
-    <div className="fade-up pt-10 md:pt-16">
+    <div className="fade-up pt-10 md:pt-14">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(PROFILE_JSONLD) }}
@@ -207,213 +211,209 @@ export default function AboutPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(FAQ_JSONLD) }}
       />
-      <section className="max-w-[780px]">
-        <p className="eyebrow">Hakkında</p>
-        <div
-          className="relative mt-8 aspect-[4/5] w-[140px] overflow-hidden rounded-[6px] border md:w-[160px]"
-          style={{ borderColor: 'var(--border)' }}
-        >
-          <Image
-            src="/ahmetfurkanbudak.jpeg"
-            alt="Ahmet Furkan Budak"
-            fill
-            sizes="160px"
-            className="object-cover grayscale"
-            priority
-          />
-        </div>
-        <h1 className="font-display mt-8 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
-          Ahmet Furkan Budak.
-        </h1>
-        <p
-          className="mt-7 max-w-[58ch] text-[20px] leading-[1.55] md:text-[22px]"
-          style={{ color: 'color-mix(in oklab, var(--fg) 72%, transparent)' }}
-        >
-          Stratejik marka danışmanı, mentör, eğitmen ve yayıncıyım. Trabzonlu
-          bir ailenin mensubu olarak İstanbul&rsquo;da doğdum. Markalaşma,
-          bütünleşik pazarlama ve kurumsal iletişimi bir bütün olarak ele
-          alıyor; markaların konumlandırma ve büyüme süreçlerini uçtan uca
-          yönetiyorum.
-        </p>
-        <p
-          className="mt-5 max-w-[58ch] text-[17px] leading-[1.7]"
-          style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
-        >
-          Vizyonumun temelinde, Türk dünyasının küresel potansiyelini harekete
-          geçirmek ve markaların gücüyle kültürel, ekonomik diplomasiye alan
-          açmak yer alıyor. Bağımsız danışmanlık sürecimde ulusal ve global
-          markalar için kurguladığım stratejik modelleri, Mart 2025&rsquo;te
-          kurduğum Toganworks Marka Ofisi&rsquo;ne taşıdım. Burada, şirketleri
-          yarının rekabetine hazırlayan, iş hedefleriyle tam entegre ve
-          doğrudan sonuç üreten marka mimarileri inşa ediyorum.
-        </p>
-        <p
-          className="mt-5 max-w-[58ch] text-[17px] leading-[1.7]"
-          style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
-        >
-          Danışmanlık ve strateji üretiminin yanı sıra Afbrandworks
-          platformuyla yayıncı kimliğimi sürdürüyorum. Bu mecrada sektörel
-          deneyimlerimi, dünyadan güncel marka haberlerini ve stratejik
-          gelişmeleri paylaşarak marka ekosistemine sürekli bir bilgi akışı
-          sağlıyorum.
-        </p>
-      </section>
 
-      <section
-        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
-        style={{ borderColor: 'var(--border)' }}
-      >
-        <div>
-          <p className="eyebrow">Eğitim</p>
-        </div>
-        <dl className="space-y-6">
-          {EDUCATION.map(([label, value]) => (
-            <div key={label} className="grid grid-cols-1 gap-1 sm:grid-cols-[200px_1fr] sm:gap-6">
-              <dt
-                className="text-[13px] font-semibold tracking-[0.12em] uppercase"
-                style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
-              >
-                {label}
-              </dt>
-              <dd className="text-[16px] leading-[1.55]" style={{ color: 'var(--fg)' }}>
-                {value}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      <section
-        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
-        style={{ borderColor: 'var(--border)' }}
-      >
-        <div>
-          <p className="eyebrow">Lisans ve Sertifikalar</p>
-        </div>
-        <ul className="space-y-8">
-          {CERTIFICATIONS.map((c) => (
-            <li key={c.title}>
-              <h3 className="font-display text-[18px] leading-[1.25] tracking-tight md:text-[19px]">
-                {c.title}
-              </h3>
-              <p
-                className="mt-1.5 text-[12px] font-semibold tracking-[0.12em] uppercase"
-                style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
-              >
-                {c.issuer} · {c.date}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section
-        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
-        style={{ borderColor: 'var(--border)' }}
-      >
-        <div>
-          <p className="eyebrow">Deneyim</p>
-        </div>
-        <ul className="space-y-10">
-          {ROLES.map((r) => (
-            <li key={r.title}>
-              <h3 className="font-display text-[18px] leading-[1.25] tracking-tight md:text-[19px]">
-                {r.title}
-              </h3>
-              <p
-                className="mt-1.5 text-[12px] font-semibold tracking-[0.12em] uppercase"
-                style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
-              >
-                {r.meta}
-              </p>
-              <p
-                className="mt-3 max-w-[62ch] text-[16px] leading-[1.65]"
-                style={{ color: 'color-mix(in oklab, var(--fg) 68%, transparent)' }}
-              >
-                {r.body}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section
-        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
-        style={{ borderColor: 'var(--border)' }}
-      >
-        <div>
-          <p className="eyebrow">Çalışma alanları</p>
-        </div>
-        <div>
-          <ul
-            className="flex flex-wrap gap-x-5 gap-y-2 text-[15px]"
-            style={{ color: 'color-mix(in oklab, var(--fg) 78%, transparent)' }}
+      <section className="max-w-[820px]">
+        <p className="eyebrow">Kimdir</p>
+        <div className="mt-7 flex items-start gap-5 sm:gap-7">
+          <div
+            className="relative aspect-[4/5] w-[104px] shrink-0 overflow-hidden rounded-[6px] border sm:w-[128px]"
+            style={{ borderColor: 'var(--border)' }}
           >
-            {FOCUS.map((label) => (
-              <li key={label}>{label}</li>
+            <Image
+              src="/ahmetfurkanbudak.jpeg"
+              alt="Ahmet Furkan Budak"
+              fill
+              sizes="128px"
+              className="object-cover grayscale"
+              priority
+            />
+          </div>
+          <div>
+            <h1 className="font-display text-[28px] leading-[1.05] tracking-tight sm:text-[36px] md:text-[42px]">
+              Ahmet Furkan Budak
+            </h1>
+            <p
+              className="mt-2 text-[13px] font-semibold tracking-[0.04em]"
+              style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
+            >
+              Stratejik Marka Danışmanı · Toganworks Kurucusu
+            </p>
+            <p
+              className="mt-4 max-w-[56ch] text-[15.5px] leading-[1.6]"
+              style={{ color: 'color-mix(in oklab, var(--fg) 72%, transparent)' }}
+            >
+              Stratejik marka danışmanı, mentör, eğitmen ve yayıncı. Markalaşma,
+              bütünleşik pazarlama ve kurumsal iletişimi bir bütün olarak ele
+              alıyor; markaların konumlandırma ve büyüme süreçlerini uçtan uca
+              yönetiyor.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="mt-10 max-w-[820px]">
+        <details className="acc">
+          <summary>
+            <span className="font-display text-[18px] tracking-tight md:text-[20px]">Biyografi</span>
+            <AccIcon />
+          </summary>
+          <div className="acc-body space-y-4">
+            <p
+              className="max-w-[64ch] text-[15.5px] leading-[1.7]"
+              style={{ color: 'color-mix(in oklab, var(--fg) 70%, transparent)' }}
+            >
+              Vizyonumun temelinde, Türk dünyasının küresel potansiyelini
+              harekete geçirmek ve markaların gücüyle kültürel, ekonomik
+              diplomasiye alan açmak yer alıyor. Bağımsız danışmanlık sürecimde
+              ulusal ve global markalar için kurguladığım stratejik modelleri,
+              Mart 2025&rsquo;te kurduğum Toganworks Marka Ofisi&rsquo;ne taşıdım.
+            </p>
+            <p
+              className="max-w-[64ch] text-[15.5px] leading-[1.7]"
+              style={{ color: 'color-mix(in oklab, var(--fg) 70%, transparent)' }}
+            >
+              Danışmanlık ve strateji üretiminin yanı sıra Afbrandworks
+              platformuyla yayıncı kimliğimi sürdürüyorum; sektörel deneyimlerimi
+              ve dünyadan güncel marka haberlerini paylaşıyorum.
+            </p>
+          </div>
+        </details>
+
+        <details className="acc">
+          <summary>
+            <span className="font-display text-[18px] tracking-tight md:text-[20px]">Eğitim</span>
+            <AccIcon />
+          </summary>
+          <dl className="acc-body space-y-4">
+            {EDUCATION.map(([label, value]) => (
+              <div key={label} className="grid grid-cols-1 gap-1 sm:grid-cols-[160px_1fr] sm:gap-6">
+                <dt
+                  className="text-[12px] font-semibold tracking-[0.12em] uppercase"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+                >
+                  {label}
+                </dt>
+                <dd className="text-[15px] leading-[1.55]" style={{ color: 'var(--fg)' }}>
+                  {value}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </details>
+
+        <details className="acc">
+          <summary>
+            <span className="font-display text-[18px] tracking-tight md:text-[20px]">
+              Lisans ve Sertifikalar
+            </span>
+            <AccIcon />
+          </summary>
+          <ul className="acc-body grid gap-x-8 gap-y-5 sm:grid-cols-2">
+            {CERTIFICATIONS.map((c) => (
+              <li key={c.title}>
+                <h3 className="text-[15px] font-semibold leading-[1.3] tracking-tight">
+                  {c.title}
+                </h3>
+                <p
+                  className="mt-1 text-[11.5px] font-semibold tracking-[0.1em] uppercase"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+                >
+                  {c.issuer} · {c.date}
+                </p>
+              </li>
             ))}
           </ul>
-          <p
-            className="mt-6 max-w-[58ch] text-[16px] leading-[1.65]"
-            style={{ color: 'color-mix(in oklab, var(--fg) 68%, transparent)' }}
-          >
-            Çalışmalarımda kısa vadeli görünürlükten ziyade, uzun vadeli marka
-            değeri ve rekabetçi dayanıklılık esas alınıyor. Ulusal ve
-            uluslararası ölçekte faaliyet gösteren markalarla; net, güçlü ve
-            sürdürülebilir konumlar inşa etmek üzere çalışıyorum.
-          </p>
-        </div>
-      </section>
+        </details>
 
-      <section
-        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
-        style={{ borderColor: 'var(--border)' }}
-      >
-        <div>
-          <p className="eyebrow">Sık sorulan sorular</p>
-        </div>
-        <dl className="space-y-8">
-          {FAQS.map((f) => (
-            <div key={f.question}>
-              <dt className="font-display text-[18px] leading-[1.3] tracking-tight md:text-[19px]">
-                {f.question}
-              </dt>
-              <dd
-                className="mt-2.5 max-w-[62ch] text-[16px] leading-[1.65]"
-                style={{ color: 'color-mix(in oklab, var(--fg) 68%, transparent)' }}
-              >
-                {f.answer}
-              </dd>
-            </div>
-          ))}
-        </dl>
-      </section>
+        <details className="acc">
+          <summary>
+            <span className="font-display text-[18px] tracking-tight md:text-[20px]">Deneyim</span>
+            <AccIcon />
+          </summary>
+          <ul className="acc-body space-y-7">
+            {ROLES.map((r) => (
+              <li key={r.title}>
+                <h3 className="text-[16px] font-semibold leading-[1.25] tracking-tight">
+                  {r.title}
+                </h3>
+                <p
+                  className="mt-1 text-[11.5px] font-semibold tracking-[0.1em] uppercase"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+                >
+                  {r.meta}
+                </p>
+                <p
+                  className="mt-2.5 max-w-[64ch] text-[15px] leading-[1.65]"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 68%, transparent)' }}
+                >
+                  {r.body}
+                </p>
+              </li>
+            ))}
+          </ul>
+        </details>
 
-      <section
-        className="mt-16 grid gap-10 border-t pt-12 md:grid-cols-[1fr_2fr]"
-        style={{ borderColor: 'var(--border)' }}
-      >
-        <div>
-          <p className="eyebrow">İletişim</p>
-        </div>
-        <div className="space-y-4">
+        <details className="acc">
+          <summary>
+            <span className="font-display text-[18px] tracking-tight md:text-[20px]">
+              Çalışma Alanları
+            </span>
+            <AccIcon />
+          </summary>
+          <div className="acc-body">
+            <ul
+              className="flex flex-wrap gap-x-5 gap-y-2 text-[15px]"
+              style={{ color: 'color-mix(in oklab, var(--fg) 78%, transparent)' }}
+            >
+              {FOCUS.map((label) => (
+                <li key={label}>{label}</li>
+              ))}
+            </ul>
+          </div>
+        </details>
+
+        <details className="acc">
+          <summary>
+            <span className="font-display text-[18px] tracking-tight md:text-[20px]">
+              Sık Sorulan Sorular
+            </span>
+            <AccIcon />
+          </summary>
+          <dl className="acc-body space-y-5">
+            {FAQS.map((f) => (
+              <div key={f.question}>
+                <dt className="text-[15px] font-semibold leading-[1.3] tracking-tight">
+                  {f.question}
+                </dt>
+                <dd
+                  className="mt-1.5 max-w-[64ch] text-[15px] leading-[1.65]"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 68%, transparent)' }}
+                >
+                  {f.answer}
+                </dd>
+              </div>
+            ))}
+          </dl>
+        </details>
+
+        <div className="acc" style={{ borderTop: '1px solid var(--border)' }} />
+
+        <div className="mt-8 flex flex-wrap items-center gap-4">
           <Link
             href="/iletisim"
             className="btn-red inline-flex items-center gap-2 rounded-[6px] px-4 py-2.5 text-[13px] font-medium"
           >
-            Merhaba de!
+            Merhaba De
             <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
           </Link>
-          <p>
-            <Link
-              href="https://toganworks.com"
-              className="inline-flex items-center gap-1.5 text-[15px] font-medium"
-              style={{ color: 'var(--fg)' }}
-            >
-              Toganworks
-              <ArrowUpRight className="h-[14px] w-[14px]" strokeWidth={1.75} />
-            </Link>
-          </p>
+          <Link
+            href="https://toganworks.com"
+            className="inline-flex items-center gap-1.5 text-[15px] font-medium"
+            style={{ color: 'var(--fg)' }}
+          >
+            Toganworks
+            <ArrowUpRight className="h-[14px] w-[14px]" strokeWidth={1.75} />
+          </Link>
         </div>
       </section>
     </div>

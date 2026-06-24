@@ -9,6 +9,50 @@ export type RssItem = {
   publishedAt: Date;
 };
 
+/**
+ * Bir makale sayfasını çekip og:image / twitter:image meta görselini döndürür.
+ * RSS beslemesinde görsel olmadığında haberin kendi görselini bulmak için kullanılır.
+ */
+export async function fetchOgImage(pageUrl: string): Promise<string | null> {
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 8000);
+    const res = await fetch(pageUrl, {
+      headers: { 'user-agent': USER_AGENT, accept: 'text/html,application/xhtml+xml' },
+      cache: 'no-store',
+      signal: controller.signal,
+    });
+    clearTimeout(timeout);
+    if (!res.ok) return null;
+    const html = (await res.text()).slice(0, 200_000);
+
+    const candidates = [
+      /<meta[^>]+property=["']og:image:secure_url["'][^>]*content=["']([^"']+)["']/i,
+      /<meta[^>]+property=["']og:image["'][^>]*content=["']([^"']+)["']/i,
+      /<meta[^>]+name=["']og:image["'][^>]*content=["']([^"']+)["']/i,
+      /<meta[^>]+content=["']([^"']+)["'][^>]*property=["']og:image["']/i,
+      /<meta[^>]+name=["']twitter:image["'][^>]*content=["']([^"']+)["']/i,
+      /<meta[^>]+name=["']twitter:image:src["'][^>]*content=["']([^"']+)["']/i,
+    ];
+    for (const re of candidates) {
+      const m = html.match(re);
+      if (m?.[1]) return absolutize(decode(m[1].trim()), pageUrl);
+    }
+    return null;
+  } catch {
+    return null;
+  }
+}
+
+function absolutize(url: string, base: string): string | null {
+  if (!url) return null;
+  try {
+    return new URL(url, base).toString();
+  } catch {
+    return url.startsWith('http') ? url : null;
+  }
+}
+
 export async function fetchRss(feedUrl: string): Promise<RssItem[]> {
   const res = await fetch(feedUrl, {
     headers: { 'user-agent': USER_AGENT, accept: 'application/rss+xml, application/xml, text/xml' },

@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
-import { fetchRss } from '@/lib/news/rss';
+import { fetchRss, fetchOgImage } from '@/lib/news/rss';
 
 export const dynamic = 'force-dynamic';
 export const maxDuration = 60;
@@ -53,13 +53,14 @@ export async function GET(req: Request) {
         if (existing) continue;
         const originalTitle = item.title.slice(0, 500);
         const originalExcerpt = item.excerpt?.slice(0, 1200) ?? null;
+        const imageUrl = item.imageUrl ?? (await fetchOgImage(item.link));
         await db.newsItem.create({
           data: {
             sourceId: source.id,
             externalUrl: item.link,
             originalTitle,
             originalExcerpt,
-            imageUrl: item.imageUrl,
+            imageUrl,
             publishedAt: item.publishedAt,
             status: isTurkish ? 'PENDING_REVIEW' : 'DRAFT',
             titleTr: isTurkish ? originalTitle.slice(0, 140) : null,

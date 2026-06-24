@@ -1,7 +1,6 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Logo } from './Logo';
 import {
@@ -9,7 +8,6 @@ import {
   BookOpen,
   Calendar,
   ChevronDown,
-  Gift,
   Headphones,
   Instagram,
   Linkedin,
@@ -23,10 +21,7 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 import { useTheme } from './ThemeProvider';
-import { LiveClock } from './LiveClock';
-import { AccountLink } from './AccountLink';
 
 type NavLeaf = { href: string; label: string; match: (p: string) => boolean };
 type NavChild = { href: string; label: string; icon: LucideIcon; desc: string };
@@ -52,10 +47,7 @@ const NAV: NavItem[] = [
       { href: '/oneriler/etkinlikler', label: 'Etkinlikler', icon: Calendar, desc: 'Takvimdeki buluşmalar' },
     ],
   },
-  { href: '/forum', label: 'Forum', match: (p) => p.startsWith('/forum') },
-  { href: '/uyelik', label: 'Üyelik', match: (p) => p.startsWith('/uyelik') },
-  { href: '/hediye-et', label: 'Hediye Edin', match: (p) => p.startsWith('/hediye-et') },
-  { href: '/hakkinda', label: 'Hakkında', match: (p) => p.startsWith('/hakkinda') },
+  { href: '/hakkinda', label: 'Kimdir', match: (p) => p.startsWith('/hakkinda') },
   { href: '/kunye', label: 'Künye', match: (p) => p.startsWith('/kunye') },
   { href: '/iletisim', label: 'İletişim', match: (p) => p.startsWith('/iletisim') },
 ];
@@ -88,7 +80,7 @@ export function Header() {
   return (
     <>
       <header
-        className="sticky top-0 z-40"
+        className="font-sans sticky top-0 z-40"
         style={{
           background: 'color-mix(in oklab, var(--bg) 82%, transparent)',
           backdropFilter: 'blur(18px)',
@@ -104,40 +96,8 @@ export function Header() {
               className="flex items-center"
               style={{ color: 'var(--fg)' }}
             >
-              <Logo className="h-[30px] w-auto" />
+              <Logo height={18} />
             </a>
-            <Link
-              href="/hakkinda"
-              aria-label="Ahmet Furkan Budak hakkında"
-              className="hidden items-center gap-2.5 border-l pl-4 transition hover:opacity-80 md:flex"
-              style={{ borderColor: 'color-mix(in oklab, var(--border) 80%, transparent)', color: 'var(--fg)' }}
-            >
-              <span
-                className="relative h-[32px] w-[32px] overflow-hidden rounded-[4px]"
-                style={{ boxShadow: '0 0 0 1px color-mix(in oklab, var(--border) 70%, transparent)' }}
-              >
-                <Image
-                  src="/ahmetfurkanbudak.jpeg"
-                  alt="Ahmet Furkan Budak"
-                  fill
-                  sizes="32px"
-                  className="object-cover"
-                  priority
-                />
-              </span>
-              <span className="flex flex-col leading-none">
-                <span className="text-[12px] font-semibold tracking-tight">
-                  Ahmet Furkan Budak
-                </span>
-                <span
-                  className="mt-[3px] text-[10px] font-medium tracking-[0.04em]"
-                  style={{ color: 'color-mix(in oklab, var(--fg) 58%, transparent)' }}
-                >
-                  Stratejik Marka Danışmanı · Fo. Toganworks
-                </span>
-              </span>
-            </Link>
-            <LiveClock />
           </div>
 
           <div className="flex items-center gap-1.5">
@@ -188,55 +148,21 @@ export function Header() {
             </div>
 
             <Link
-              href="/hediye-et"
-              aria-label="Hediye Edin"
-              title="Hediye Edin"
-              className="hidden h-8 w-8 items-center justify-center rounded-[6px] transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)] sm:inline-flex"
-              style={{ color: 'color-mix(in oklab, var(--fg) 80%, transparent)' }}
+              href="/#bulten"
+              className="btn-dark group inline-flex items-center gap-2 rounded-[6px] px-3 py-1.5 text-[12px] font-medium tracking-tight"
             >
-              <Gift className="h-[15px] w-[15px]" strokeWidth={1.75} />
-            </Link>
-
-            <SignedOut>
-              <Link
-                href="/sign-in"
-                className="hidden items-center rounded-[6px] px-3 py-1.5 text-[12px] font-medium tracking-tight transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)] sm:inline-flex"
-                style={{ color: 'var(--fg)' }}
-              >
-                Giriş
-              </Link>
-              <Link
-                href="/sign-up"
-                className="btn-dark group inline-flex items-center gap-2 rounded-[6px] px-3 py-1.5 text-[12px] font-medium tracking-tight"
-              >
-                <span className="relative flex h-[6px] w-[6px]" aria-hidden>
-                  <span
-                    className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70"
-                    style={{ background: '#22C55E' }}
-                  />
-                  <span
-                    className="relative inline-flex h-[6px] w-[6px] rounded-full"
-                    style={{ background: '#22C55E' }}
-                  />
-                </span>
-                Abone Olun!
-              </Link>
-            </SignedOut>
-
-            <SignedIn>
-              <AccountLink
-                className="hidden items-center gap-1.5 rounded-[6px] border px-3 py-1.5 text-[12px] font-medium tracking-tight transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)] sm:inline-flex"
-                style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
-              />
-              <div className="flex items-center">
-                <UserButton
-                  afterSignOutUrl="/"
-                  appearance={{
-                    elements: { avatarBox: 'h-8 w-8' },
-                  }}
+              <span className="relative flex h-[6px] w-[6px]" aria-hidden>
+                <span
+                  className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70"
+                  style={{ background: '#22C55E' }}
                 />
-              </div>
-            </SignedIn>
+                <span
+                  className="relative inline-flex h-[6px] w-[6px] rounded-full"
+                  style={{ background: '#22C55E' }}
+                />
+              </span>
+              Abone Ol
+            </Link>
 
             <Link
               href="/iletisim?konu=sponsor"
@@ -284,7 +210,7 @@ export function Header() {
 
       <div
         aria-hidden={!open}
-        className="fixed inset-0 z-50 transition-opacity duration-300"
+        className="font-sans fixed inset-0 z-50 transition-opacity duration-300"
         style={{
           pointerEvents: open ? 'auto' : 'none',
           opacity: open ? 1 : 0,
@@ -404,31 +330,13 @@ export function Header() {
             className="border-t px-6 py-4"
             style={{ borderColor: 'var(--border)' }}
           >
-            <SignedOut>
-              <div className="flex gap-2">
-                <Link
-                  href="/sign-in"
-                  onClick={() => setOpen(false)}
-                  className="flex-1 rounded-[6px] border px-3 py-2.5 text-center text-[13px] font-medium"
-                  style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
-                >
-                  Giriş
-                </Link>
-                <Link
-                  href="/sign-up"
-                  onClick={() => setOpen(false)}
-                  className="btn-dark flex-1 rounded-[6px] px-3 py-2.5 text-center text-[13px] font-medium"
-                >
-                  Abone Olun!
-                </Link>
-              </div>
-            </SignedOut>
-            <SignedIn>
-              <AccountLink
-                onClick={() => setOpen(false)}
-                className="btn-dark flex items-center justify-center rounded-[6px] px-3 py-2.5 text-center text-[13px] font-medium"
-              />
-            </SignedIn>
+            <Link
+              href="/#bulten"
+              onClick={() => setOpen(false)}
+              className="btn-dark flex w-full items-center justify-center rounded-[6px] px-3 py-2.5 text-center text-[13px] font-medium"
+            >
+              Abone Ol
+            </Link>
           </div>
 
           <div

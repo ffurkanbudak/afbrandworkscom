@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
+import { auth } from '@/lib/admin-auth';
 import type { MembershipPlan } from '@prisma/client';
 import { db } from '@/lib/db';
 import { resend, FROM_ADDRESS, SITE_URL } from '@/lib/email';

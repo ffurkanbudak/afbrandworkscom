@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
+import { auth } from '@/lib/admin-auth';
 import { db } from '@/lib/db';
 
 export async function POST(req: Request, ctx: { params: Promise<{ id: string }> }) {

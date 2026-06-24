@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { revalidatePath } from 'next/cache';
-import { auth } from '@clerk/nextjs/server';
+import { auth } from '@/lib/admin-auth';
 import { db } from '@/lib/db';
 
 function clean(v: unknown, max: number): string | null {

@@ -3,7 +3,7 @@ import type { MetadataRoute } from 'next';
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
 
 export default function robots(): MetadataRoute.Robots {
-  const disallowed = ['/admin', '/admin/', '/api/', '/hesap/', '/profil/', '/sign-in', '/sign-up'];
+  const disallowed = ['/admin', '/admin/', '/admin-login', '/api/'];
 
   return {
     rules: [

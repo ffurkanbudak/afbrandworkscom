@@ -8,7 +8,6 @@ import { FeaturedCard } from '@/components/FeaturedCard';
 import { PostListItem } from '@/components/PostListItem';
 import { Newsletter } from '@/components/Newsletter';
 import { TopicsInline } from '@/components/TopicRow';
-import { MarketTicker } from '@/components/MarketTicker';
 import { NewsTicker } from '@/components/NewsTicker';
 import { HomeNewsGrid } from '@/components/HomeNewsGrid';
 import { HomeJsonLd } from '@/components/HomeJsonLd';
@@ -90,7 +89,6 @@ export default async function HomePage() {
       />
       <div className="-mx-6 md:-mx-10 lg:-mx-14">
         <NewsTicker />
-        <MarketTicker />
       </div>
 
       {topRow.length > 0 && (
@@ -181,7 +179,7 @@ export default async function HomePage() {
 
       <HomeNewsGrid items={latestNews} />
 
-      <section className="mt-16">
+      <section id="bulten" className="mt-16 scroll-mt-24">
         <Newsletter readerCount={Math.max(subscriberCount, 300)} />
       </section>
 

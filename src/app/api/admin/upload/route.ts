@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { auth } from '@clerk/nextjs/server';
+import { auth } from '@/lib/admin-auth';
 import { v2 as cloudinary } from 'cloudinary';
 import { db } from '@/lib/db';
 

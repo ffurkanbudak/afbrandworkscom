@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import { randomBytes } from 'crypto';
-import { auth } from '@clerk/nextjs/server';
+import { auth } from '@/lib/admin-auth';
 import { db } from '@/lib/db';
 import { calcTier } from '@/app/admin/_lib/tier';
 import { resend, FROM_ADDRESS, SITE_URL } from '@/lib/email';

@@ -1,8 +1,61 @@
 'use client';
 
+import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, ExternalLink, MessageSquare } from 'lucide-react';
+import { ArrowUpRight, ExternalLink, MessageSquare, Newspaper } from 'lucide-react';
 import { formatDateCaps } from '@/lib/format';
+
+/** Haber görseli — bozuk/erişilemeyen URL'lerde kaynak logosuna/placeholder'a düşer. */
+function FallbackImg({
+  src,
+  logoUrl,
+  eager,
+  logoSize,
+}: {
+  src: string | null;
+  logoUrl: string | null;
+  eager?: boolean;
+  logoSize: number;
+}) {
+  const [failed, setFailed] = useState(false);
+
+  if (src && !failed) {
+    return (
+      // eslint-disable-next-line @next/next/no-img-element
+      <img
+        src={src}
+        alt=""
+        loading={eager ? 'eager' : 'lazy'}
+        onError={() => setFailed(true)}
+        className="h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.035]"
+      />
+    );
+  }
+
+  return (
+    <div className="flex h-full w-full items-center justify-center">
+      {logoUrl ? (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={logoUrl}
+          alt=""
+          onError={(e) => {
+            (e.currentTarget as HTMLImageElement).style.display = 'none';
+          }}
+          className="rounded-[8px] opacity-35 transition-opacity duration-500 group-hover:opacity-50"
+          style={{ width: logoSize, height: logoSize }}
+        />
+      ) : (
+        <Newspaper
+          className="opacity-25"
+          style={{ width: logoSize, height: logoSize }}
+          strokeWidth={1.25}
+          aria-hidden
+        />
+      )}
+    </div>
+  );
+}
 
 type Item = {
   id: string;
@@ -174,26 +227,7 @@ export function NewsCard({ item }: { item: Item }) {
             : 'linear-gradient(150deg, color-mix(in oklab, var(--fg) 7%, transparent) 0%, color-mix(in oklab, var(--fg) 2%, transparent) 65%, transparent 100%)',
         }}
       >
-        {item.imageUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={item.imageUrl}
-            alt=""
-            loading="lazy"
-            className="h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.035]"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            {item.source.logoUrl && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={item.source.logoUrl}
-                alt=""
-                className="h-11 w-11 rounded-[8px] opacity-30 transition-opacity duration-500 group-hover:opacity-45"
-              />
-            )}
-          </div>
-        )}
+        <FallbackImg src={item.imageUrl} logoUrl={item.source.logoUrl} logoSize={44} />
       </div>
 
       <div className="flex flex-1 flex-col p-6">
@@ -240,26 +274,7 @@ export function HeroNewsCard({ item }: { item: Item }) {
             'linear-gradient(160deg, color-mix(in oklab, var(--fg) 6%, transparent), color-mix(in oklab, var(--fg) 2%, transparent))',
         }}
       >
-        {item.imageUrl ? (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img
-            src={item.imageUrl}
-            alt=""
-            loading="eager"
-            className="h-full w-full object-cover transition-transform duration-[1000ms] group-hover:scale-[1.03]"
-          />
-        ) : (
-          <div className="flex h-full w-full items-center justify-center">
-            {item.source.logoUrl && (
-              // eslint-disable-next-line @next/next/no-img-element
-              <img
-                src={item.source.logoUrl}
-                alt=""
-                className="h-14 w-14 rounded-[8px] opacity-40"
-              />
-            )}
-          </div>
-        )}
+        <FallbackImg src={item.imageUrl} logoUrl={item.source.logoUrl} logoSize={56} eager />
       </div>
 
       <div className="order-2 flex flex-col p-7 md:p-10">

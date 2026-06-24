@@ -61,6 +61,16 @@ export default async function SubscribersPage({
         eyebrow="Topluluk"
         title="Aboneler"
         description={`${subs.length} kayıt. Onay bekleyenler üstte.`}
+        actions={
+          <a
+            href="/api/admin/subscribers/export"
+            className="inline-flex items-center gap-1.5 rounded-[8px] border px-3.5 py-2 text-[13px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
+            style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
+          >
+            <ArrowUpRight className="h-[14px] w-[14px]" strokeWidth={1.75} />
+            Excel&apos;e Aktar
+          </a>
+        }
       />
 
       {pendingCount > 0 && (

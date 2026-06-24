@@ -1,23 +1,18 @@
 import { notFound } from 'next/navigation';
-import { cookies } from 'next/headers';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
 import { ArrowRight, Hash, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
-import { auth } from '@clerk/nextjs/server';
 import { db } from '@/lib/db';
 import { getRelatedPosts } from '@/lib/related';
 import { formatDateCaps } from '@/lib/format';
-import { truncateHtmlByParagraphs } from '@/lib/truncateHtml';
 import { Newsletter } from '@/components/Newsletter';
 import { FeaturedCard } from '@/components/FeaturedCard';
 import { NewBadge } from '@/components/NewBadge';
-import { PostActions } from '@/components/PostActions';
+import { ShareButtons } from '@/components/ShareButtons';
 import { AuthorBio } from '@/components/AuthorBio';
 import { ViewBeacon } from '@/components/ViewBeacon';
-import { Comments } from '@/components/Comments';
 import { PostJsonLd } from '@/components/PostJsonLd';
-import { Paywall } from '@/components/Paywall';
 
 const FALLBACK_AUTHOR = 'Ahmet Furkan Budak';
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
@@ -84,45 +79,14 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   });
   if (!post || post.status !== 'PUBLISHED') return notFound();
 
-  const cookieStore = await cookies();
-  const [related, subscriberCount, { userId }] = await Promise.all([
+  const [related, subscriberCount] = await Promise.all([
     getRelatedPosts(post.id, 3),
     db.subscriber.count({ where: { status: 'CONFIRMED' } }),
-    auth(),
   ]);
 
-  let isSubscribed = false;
-  if (userId) {
-    const admin = await db.admin.findUnique({
-      where: { clerkId: userId },
-      select: { id: true },
-    });
-    if (admin) {
-      isSubscribed = true;
-    } else {
-      const sub = await db.subscriber.findUnique({
-        where: { clerkId: userId },
-        select: { status: true },
-      });
-      if (sub?.status === 'CONFIRMED') isSubscribed = true;
-    }
-  }
-  if (!isSubscribed) {
-    const cookieToken = cookieStore.get('sub_token')?.value;
-    if (cookieToken) {
-      const sub = await db.subscriber.findUnique({
-        where: { unsubscribeToken: cookieToken },
-        select: { status: true },
-      });
-      if (sub?.status === 'CONFIRMED') isSubscribed = true;
-    }
-  }
-
-  const { truncated: renderedHtml, wasCut } = isSubscribed
-    ? { truncated: post.contentHtml, wasCut: false }
-    : truncateHtmlByParagraphs(post.contentHtml, 2);
-
+  const renderedHtml = post.contentHtml;
   const primaryTag = post.tags[0]?.tag;
+  const shareUrl = `${SITE_URL}/posts/${post.slug}`;
 
   return (
     <article className="fade-up pt-8 md:pt-12">
@@ -264,8 +228,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         dangerouslySetInnerHTML={{ __html: renderedHtml }}
       />
 
-      {wasCut && <Paywall />}
-
       {post.tags.length > 1 && (
         <div className="mx-auto mt-12 flex max-w-[720px] flex-wrap gap-2.5">
           {post.tags.map(({ tag }) => (
@@ -282,25 +244,11 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </div>
       )}
 
-      <AuthorBio />
-
-      <PostActions
-        slug={post.slug}
-        title={post.title}
-        initialLikes={post.likeCount}
-        initialFavorites={post.favoriteCount}
-        initialShares={post.shareCount}
-        isSignedIn={!!userId}
-      />
-
-      <div className="mx-auto mt-16 max-w-[720px]">
-        <Comments
-          listUrl={`/api/posts/${post.slug}/comments`}
-          deleteUrlBase="/api/posts/comments"
-          signInRedirect={`/posts/${post.slug}`}
-          isSignedIn={!!userId}
-        />
+      <div className="mx-auto mt-12 max-w-[720px]">
+        <ShareButtons url={shareUrl} title={post.title} />
       </div>
+
+      <AuthorBio />
 
       <div
         className="mx-auto mt-16 max-w-[720px]"

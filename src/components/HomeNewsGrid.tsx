@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { ArrowRight, ArrowUpRight } from 'lucide-react';
 import { formatDateCaps } from '@/lib/format';
+import { HomeNewsThumb } from './HomeNewsThumb';
 
 type Item = {
   id: string;
@@ -50,26 +51,7 @@ export function HomeNewsGrid({ items }: { items: Item[] }) {
                     : 'linear-gradient(150deg, color-mix(in oklab, var(--fg) 7%, transparent) 0%, color-mix(in oklab, var(--fg) 2%, transparent) 65%, transparent 100%)',
                 }}
               >
-                {n.imageUrl ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={n.imageUrl}
-                    alt=""
-                    loading="lazy"
-                    className="h-full w-full object-cover transition-transform duration-[900ms] group-hover:scale-[1.04]"
-                  />
-                ) : (
-                  <div className="flex h-full w-full items-center justify-center">
-                    {n.source.logoUrl && (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={n.source.logoUrl}
-                        alt=""
-                        className="h-8 w-8 rounded-[6px] opacity-30"
-                      />
-                    )}
-                  </div>
-                )}
+                <HomeNewsThumb src={n.imageUrl} logoUrl={n.source.logoUrl} />
               </div>
 
               <div className="flex flex-1 flex-col p-4">

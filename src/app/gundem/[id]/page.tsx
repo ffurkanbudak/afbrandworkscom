@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, ArrowUpRight, ExternalLink } from 'lucide-react';
-import { auth } from '@clerk/nextjs/server';
+import { auth } from '@/lib/admin-auth';
 import { db } from '@/lib/db';
 import { formatDateCaps } from '@/lib/format';
 import { Comments } from '@/components/Comments';

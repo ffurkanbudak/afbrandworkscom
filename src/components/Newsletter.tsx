@@ -1,6 +1,4 @@
-import { ArrowRight } from 'lucide-react';
-
-const CONTACT_EMAIL = 'info@afbrandworks.com';
+import { SubscribeForm } from './SubscribeForm';
 
 export function Newsletter({ readerCount = 300 }: { readerCount?: number }) {
   return (
@@ -20,7 +18,7 @@ export function Newsletter({ readerCount = 300 }: { readerCount?: number }) {
             Bülten · {readerCount}+ okuyucu
           </p>
           <h3 className="mt-4 font-display text-[24px] leading-[1.15] md:text-[30px]">
-            Marka danışmanından haftalık 5 dakikalık notlara erişin.
+            Marka Danışmanından Haftalık 5 Dakikalık Notlar
           </h3>
           <p
             className="mt-4 text-[15px] leading-[1.6]"
@@ -33,26 +31,19 @@ export function Newsletter({ readerCount = 300 }: { readerCount?: number }) {
           </p>
         </div>
 
-        <div className="w-full md:max-w-[360px]">
+        <div className="w-full md:max-w-[380px]">
           <p
             className="text-[11px] font-semibold tracking-[0.14em] uppercase"
             style={{ color: 'color-mix(in oklab, var(--bg) 65%, transparent)' }}
           >
-            Bültene kaydolun!
+            Bültene Kaydolun
           </p>
-          <a
-            href={`mailto:${CONTACT_EMAIL}?subject=Bülten%20Kaydı`}
-            className="mt-3 inline-flex items-center gap-2 rounded-[8px] px-5 py-3 text-[14px] font-medium transition hover:opacity-90"
-            style={{ background: '#DC2204', color: '#FFFFFF' }}
-          >
-            {CONTACT_EMAIL}
-            <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
-          </a>
+          <SubscribeForm />
           <p
             className="mt-3 text-[12.5px] leading-[1.55]"
             style={{ color: 'color-mix(in oklab, var(--bg) 55%, transparent)' }}
           >
-            Kayıt için yukarıdaki adrese e-posta gönderebilirsiniz.
+            E-postanızı bırakın; sizi bülten listemize ekleyelim. Dilediğiniz an çıkabilirsiniz.
           </p>
         </div>
       </div>

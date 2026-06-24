@@ -3,14 +3,12 @@
 import { usePathname } from 'next/navigation';
 import { Header } from './Header';
 import { Footer } from './Footer';
-import { CommunityPulse } from './CommunityPulse';
 import { NewsPulse } from './NewsPulse';
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith('/admin') ?? false;
-  const isAuthPage =
-    pathname?.startsWith('/sign-in') || pathname?.startsWith('/sign-up') || pathname?.startsWith('/hesap');
+  const isAuthPage = pathname?.startsWith('/sign-in') ?? false;
 
   if (isAdmin) {
     return <div className="min-h-dvh">{children}</div>;
@@ -29,12 +27,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       <Footer />
-      {!isAuthPage && (
-        <>
-          <CommunityPulse />
-          <NewsPulse />
-        </>
-      )}
+      {!isAuthPage && <NewsPulse />}
     </div>
   );
 }

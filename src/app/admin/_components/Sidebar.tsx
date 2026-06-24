@@ -8,14 +8,12 @@ import {
   PenSquare,
   Users,
   Send,
-  FileStack,
   Handshake,
   Mail,
   MessageSquare,
   BarChart3,
   UserCircle,
   Newspaper,
-  Gift,
   ArrowLeft,
 } from 'lucide-react';
 
@@ -57,15 +55,11 @@ export function Sidebar({
       items: [
         { href: '/admin/subscribers', label: 'Aboneler', icon: Users },
         { href: '/admin/comments', label: 'Yorumlar', icon: MessageSquare, badge: counts.comments },
-        { href: '/admin/forum-moderation', label: 'Forum Moderasyon', icon: MessageSquare },
-        { href: '/admin/gift-codes', label: 'Hediye Kodları', icon: Gift },
-        { href: '/admin/gift-requests', label: 'Hediye Talepleri', icon: Gift },
       ],
     },
     {
       label: 'Talepler',
       items: [
-        { href: '/admin/applications', label: 'Yazar Başvuruları', icon: FileStack, badge: counts.applications },
         { href: '/admin/sponsorships', label: 'Sponsorluk Talepleri', icon: Handshake, badge: counts.sponsorships },
         { href: '/admin/sponsors', label: 'Aktif Sponsorlar', icon: Handshake },
         { href: '/admin/messages', label: 'Mesajlar', icon: Mail, badge: counts.messages },
