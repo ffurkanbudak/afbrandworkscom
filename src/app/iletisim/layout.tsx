@@ -5,7 +5,7 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.
 export const metadata: Metadata = {
   title: 'İletişim · Ahmet Furkan Budak',
   description:
-    'Ahmet Furkan Budak ile iletişim. Marka danışmanlığı, işbirliği, medya talepleri ve sorularınız için iletişim formu ve sosyal medya kanalları.',
+    'Ahmet Furkan Budak ile iletişim. Marka danışmanlığı, işbirliği, içerik/telif ve medya talepleriniz için telefon, e-posta ve sosyal medya kanalları.',
   keywords: ['iletişim', 'ahmet furkan budak iletişim', 'marka danışmanı iletişim', 'marka danışmanlığı başvuru'],
   alternates: { canonical: '/iletisim' },
   openGraph: {
@@ -23,7 +23,7 @@ const contactSchema = {
   url: `${SITE_URL}/iletisim`,
   name: 'İletişim · Ahmet Furkan Budak',
   description:
-    'Marka danışmanlığı, işbirliği ve medya talepleri için iletişim formu ve sosyal medya kanalları.',
+    'Marka danışmanlığı, işbirliği, içerik/telif ve medya talepleri için telefon, e-posta ve sosyal medya kanalları.',
   inLanguage: 'tr-TR',
   isPartOf: { '@id': `${SITE_URL}#website` },
   about: {
@@ -35,7 +35,8 @@ const contactSchema = {
     '@type': 'Person',
     name: 'Ahmet Furkan Budak',
     jobTitle: 'Stratejik Marka Danışmanı',
-    email: 'info@afbrandworks.com',
+    email: 'info@toganworks.com',
+    telephone: '+905374349566',
     url: `${SITE_URL}/hakkinda`,
     worksFor: { '@type': 'Organization', name: 'Toganworks' },
     sameAs: [
@@ -47,7 +48,8 @@ const contactSchema = {
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer support',
-      email: 'info@afbrandworks.com',
+      email: 'info@toganworks.com',
+      telephone: '+905374349566',
       availableLanguage: ['Turkish', 'English'],
       areaServed: 'Worldwide',
     },

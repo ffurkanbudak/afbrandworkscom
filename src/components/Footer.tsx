@@ -1,33 +1,6 @@
-import Link from 'next/link';
 import { Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Logo } from './Logo';
-
-const FOOTER_NAV = [
-  { href: '/', label: 'Ana Sayfa' },
-  { href: '/posts', label: 'Yazılar' },
-  { href: '/gundem', label: 'Gündem' },
-  { href: '/konular', label: 'Konular' },
-  { href: '/oneriler', label: 'Öneriler' },
-  { href: '/hakkinda', label: 'Hakkımda' },
-  { href: '/kunye', label: 'Künye' },
-  { href: '/iletisim', label: 'İletişim' },
-];
-
-const PILLARS: [string, string][] = [
-  ['Marka Danışmanlığı', '/marka-danismanligi'],
-  ['Marka Stratejisi', '/marka-stratejisi'],
-  ['Marka Yönetimi', '/marka-yonetimi'],
-  ['Dijital Markalaşma', '/dijital-markalasma'],
-  ['Marka Konumlandırma', '/konumlandirma'],
-  ['Marka Kimliği', '/marka-kimligi'],
-  ['Marka Farklılaşması', '/farklilasma'],
-  ['Marka Mimarisi', '/marka-mimarisi'],
-  ['Pazarlama İletişimi', '/pazarlama-iletisimi'],
-  ['Marka Sağlığı', '/marka-sagligi'],
-  ['Marka Yenilemesi', '/marka-yenilemesi'],
-  ['Marka Sözlüğü', '/sozluk'],
-];
 
 function MediumIcon({ className }: { className?: string }) {
   return (
@@ -98,42 +71,8 @@ export function Footer() {
         </div>
       </div>
 
-      <nav className="mt-10 space-y-6 border-t pt-8" style={{ borderColor: 'var(--border)' }}>
-        <div>
-          <p className="eyebrow">Site</p>
-          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2.5 text-[14px]">
-            {FOOTER_NAV.map((n) => (
-              <Link
-                key={n.href}
-                href={n.href}
-                className="transition hover:underline"
-                style={{ color: 'color-mix(in oklab, var(--fg) 82%, transparent)' }}
-              >
-                {n.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <p className="eyebrow">Rehberler</p>
-          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2.5 text-[14px]">
-            {PILLARS.map(([label, href]) => (
-              <Link
-                key={href}
-                href={href}
-                className="transition hover:underline"
-                style={{ color: 'color-mix(in oklab, var(--fg) 82%, transparent)' }}
-              >
-                {label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </nav>
-
       <div
-        className="mt-16 flex flex-col items-start justify-between gap-3 pt-6 text-[13px] md:flex-row md:items-center"
+        className="mt-12 flex flex-col items-start justify-between gap-3 border-t pt-6 text-[13px] md:flex-row md:items-center"
         style={{
           borderTop: '1px solid var(--border)',
           color: 'color-mix(in oklab, var(--fg) 55%, transparent)',

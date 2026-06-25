@@ -1,230 +1,134 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
-import { ArrowUpRight, ArrowRight } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import { ArrowUpRight, Phone, Mail, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
 
-const LINKS: [string, string][] = [
-  ['LinkedIn', 'https://www.linkedin.com/in/ahmetfurkanbudak/'],
-  ['Instagram', 'https://www.instagram.com/afbrandworks'],
-  ['Twitter / X', 'https://x.com/afurkanbudakcom'],
-  ['YouTube', 'https://www.youtube.com/@ahmetfurkanbudak'],
+const PHONE_DISPLAY = '0537 434 95 66';
+const PHONE_HREF = 'tel:+905374349566';
+const EMAILS = ['info@toganworks.com'];
+
+const LINKS: { label: string; href: string; Icon: LucideIcon }[] = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ahmetfurkanbudak/', Icon: Linkedin },
+  { label: 'Instagram', href: 'https://www.instagram.com/afbrandworks', Icon: Instagram },
+  { label: 'Twitter / X', href: 'https://x.com/afurkanbudakcom', Icon: Twitter },
+  { label: 'YouTube', href: 'https://www.youtube.com/@ahmetfurkanbudak', Icon: Youtube },
 ];
 
 export default function ContactPage() {
-  const [state, setState] = useState<'idle' | 'loading' | 'sent' | 'error'>('idle');
-
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    setState('loading');
-    const form = new FormData(e.currentTarget);
-    try {
-      const res = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(Object.fromEntries(form)),
-      });
-      if (!res.ok) throw new Error();
-      setState('sent');
-      (e.target as HTMLFormElement).reset();
-    } catch {
-      setState('error');
-    }
-  }
-
   return (
     <div className="fade-up pt-10 md:pt-16">
       <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1.05fr_1fr]">
         <section>
           <p className="eyebrow">İletişim</p>
           <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
-            Gündem.
+            İletişime Geçin!
           </h1>
           <div
             className="mt-7 max-w-[56ch] space-y-5 text-[17px] leading-[1.65]"
             style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
           >
             <p>
-              Marka konumlandırma, kurumsal yeniden yapılanma ve büyüme mimarisi
-              alanlarındaki danışmanlık taleplerinizi bu kanal üzerinden
-              iletebilirsiniz. Danışmanlık, mentorluk ve konuşmacı davetleri
-              doğrudan değerlendirilir.
+              Marka konumlandırma, pazarlama iletişimi, marka stratejisi ve
+              sürdürülebilir büyüme gibi başlıklardaki danışmanlık talepleriniz
+              için doğrudan telefon veya e-posta ile ulaşabilirsiniz.
             </p>
             <p>
-              Ortak etkinlik, podcast veya akademik proje önerileriniz için aynı
-              formu kullanın. Tüm taleplere üç iş günü içerisinde yanıt
-              sağlanır.
+              Buradaki içerikleri ve yazıları kullanmak ya da telif konusunda
+              bilgi almak için de bana doğrudan yazabilirsiniz. Talepler kısa
+              sürede değerlendirilir.
             </p>
           </div>
 
           <div className="mt-12">
             <p className="eyebrow">Diğer kanallar</p>
-            <ul className="mt-5 grid grid-cols-1 gap-1 sm:grid-cols-2">
-              {LINKS.map(([label, href]) => (
-                <li key={label}>
-                  <Link
-                    href={href}
-                    className="group flex items-center justify-between gap-4 rounded-[10px] px-4 py-3 transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
-                    style={{ color: 'var(--fg)' }}
-                  >
-                    <span className="text-[15px] font-medium">{label}</span>
-                    <ArrowUpRight
-                      className="h-[15px] w-[15px] transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                      strokeWidth={1.75}
-                      style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
-                    />
-                  </Link>
-                </li>
+            <div className="mt-5 flex items-center gap-2">
+              {LINKS.map(({ label, href, Icon }) => (
+                <Link
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={label}
+                  title={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-[10px] border transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
+                  style={{ borderColor: 'var(--border)', color: 'color-mix(in oklab, var(--fg) 80%, transparent)' }}
+                >
+                  <Icon className="h-[17px] w-[17px]" strokeWidth={1.75} />
+                </Link>
               ))}
-            </ul>
+            </div>
           </div>
         </section>
 
         <section
-          className="rounded-[12px] p-7 md:p-10"
+          className="h-fit rounded-[12px] p-7 md:p-10"
           style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
         >
-          <p className="eyebrow">Talep Formu</p>
-          <h2 className="font-display mt-3 text-[26px] leading-[1.15] tracking-tight">
-            Gündeminizi birkaç satırla paylaşın.
-          </h2>
+          <p className="eyebrow">Doğrudan İletişim</p>
 
-          <form onSubmit={onSubmit} className="mt-7 space-y-4">
-            <div className="grid gap-4 sm:grid-cols-2">
-              <Field name="name" label="İsim ve Kurum" placeholder="Zeynep Yılmaz / Toganworks" />
-              <Select
-                name="topic"
-                label="Gündem/Konu Başlığı"
-                options={[
-                  'Sponsorluk',
-                  'Yazarlık başvurusu',
-                  'Danışmanlık',
-                  'Eğitim',
-                  'Mentörlük',
-                  'Konuşmacı daveti',
-                  'İş birliği',
-                  'Medya / Röportaj',
-                  'Diğer',
-                ]}
-              />
-            </div>
-            <Field name="email" type="email" label="E-posta" placeholder="ornek@marka.com" />
-            <TextArea
-              name="message"
-              label="Mesajınız"
-              placeholder="Markanız, hedefiniz ve mevcut durumunuz hakkında birkaç cümle."
-            />
-            <button
-              type="submit"
-              disabled={state === 'loading'}
-              className="btn-dark inline-flex w-full items-center justify-center gap-2 rounded-[8px] py-3.5 text-[13.5px] font-medium tracking-[0.01em] disabled:opacity-60"
+          <div className="mt-6 space-y-3">
+            <a
+              href={PHONE_HREF}
+              className="group flex items-center gap-4 rounded-[10px] border p-4 transition hover:bg-[color-mix(in_oklab,var(--fg)_4%,transparent)]"
+              style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
             >
-              {state === 'loading'
-                ? 'Gönderiliyor…'
-                : state === 'sent'
-                  ? 'Gönderildi ✓'
-                  : 'Gönderin'}
-              {state === 'idle' && (
-                <ArrowRight className="h-[14px] w-[14px]" strokeWidth={2.25} />
-              )}
-            </button>
-            {state === 'error' && (
-              <p className="text-[13px]" style={{ color: '#C2410C' }}>
-                Bir hata oluştu. Lütfen tekrar deneyin.
-              </p>
-            )}
-          </form>
+              <span
+                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px]"
+                style={{ background: 'color-mix(in oklab, var(--fg) 6%, transparent)' }}
+              >
+                <Phone className="h-[18px] w-[18px]" strokeWidth={1.75} />
+              </span>
+              <span className="min-w-0">
+                <span
+                  className="block text-[11px] font-semibold tracking-[0.12em] uppercase"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+                >
+                  Telefon
+                </span>
+                <span className="mt-0.5 block text-[18px] font-semibold tracking-tight">
+                  {PHONE_DISPLAY}
+                </span>
+              </span>
+              <ArrowUpRight
+                className="ml-auto h-[16px] w-[16px] transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                strokeWidth={1.75}
+                style={{ color: 'color-mix(in oklab, var(--fg) 50%, transparent)' }}
+              />
+            </a>
+
+            {EMAILS.map((email) => (
+              <a
+                key={email}
+                href={`mailto:${email}`}
+                className="group flex items-center gap-4 rounded-[10px] border p-4 transition hover:bg-[color-mix(in_oklab,var(--fg)_4%,transparent)]"
+                style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
+              >
+                <span
+                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-[10px]"
+                  style={{ background: 'color-mix(in oklab, var(--fg) 6%, transparent)' }}
+                >
+                  <Mail className="h-[18px] w-[18px]" strokeWidth={1.75} />
+                </span>
+                <span className="min-w-0">
+                  <span
+                    className="block text-[11px] font-semibold tracking-[0.12em] uppercase"
+                    style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+                  >
+                    E-posta
+                  </span>
+                  <span className="mt-0.5 block truncate text-[18px] font-semibold tracking-tight">
+                    {email}
+                  </span>
+                </span>
+                <ArrowUpRight
+                  className="ml-auto h-[16px] w-[16px] shrink-0 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
+                  strokeWidth={1.75}
+                  style={{ color: 'color-mix(in oklab, var(--fg) 50%, transparent)' }}
+                />
+              </a>
+            ))}
+          </div>
         </section>
       </div>
     </div>
-  );
-}
-
-function Field({
-  name,
-  label,
-  type = 'text',
-  placeholder,
-}: {
-  name: string;
-  label: string;
-  type?: string;
-  placeholder?: string;
-}) {
-  return (
-    <label className="block">
-      <span
-        className="block text-[12px] font-semibold tracking-[0.12em] uppercase"
-        style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
-      >
-        {label}
-      </span>
-      <input
-        name={name}
-        type={type}
-        required
-        placeholder={placeholder}
-        className="input-base mt-2"
-      />
-    </label>
-  );
-}
-
-function Select({
-  name,
-  label,
-  options,
-}: {
-  name: string;
-  label: string;
-  options: string[];
-}) {
-  return (
-    <label className="block">
-      <span
-        className="block text-[12px] font-semibold tracking-[0.12em] uppercase"
-        style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
-      >
-        {label}
-      </span>
-      <select name={name} required defaultValue="" className="input-base mt-2">
-        <option value="" disabled>
-          Seçiniz
-        </option>
-        {options.map((opt) => (
-          <option key={opt} value={opt}>
-            {opt}
-          </option>
-        ))}
-      </select>
-    </label>
-  );
-}
-
-function TextArea({
-  name,
-  label,
-  placeholder,
-}: {
-  name: string;
-  label: string;
-  placeholder?: string;
-}) {
-  return (
-    <label className="block">
-      <span
-        className="block text-[12px] font-semibold tracking-[0.12em] uppercase"
-        style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
-      >
-        {label}
-      </span>
-      <textarea
-        name={name}
-        required
-        rows={6}
-        placeholder={placeholder}
-        className="input-base mt-2 resize-y"
-      />
-    </label>
   );
 }

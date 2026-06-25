@@ -40,7 +40,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [topRow, heroPost, spotlight, recent, topics, subscriberCount, latestNews] = await Promise.all([
+  const [topRow, heroPost, spotlight, recent, topics, subscriberCount, latestNews, tickerNews] = await Promise.all([
     db.post.findMany({
       where: { status: 'PUBLISHED' },
       orderBy: { publishedAt: 'desc' },
@@ -73,7 +73,19 @@ export default async function HomePage() {
       include: { source: true },
       take: 4,
     }),
+    db.newsItem.findMany({
+      where: { status: 'APPROVED' },
+      orderBy: { approvedAt: 'desc' },
+      take: 10,
+      include: { source: { select: { name: true, logoUrl: true, language: true } } },
+    }),
   ]);
+
+  const tickerItems = tickerNews.map((n) => ({
+    id: n.id,
+    title: n.titleTr ?? n.originalTitle,
+    source: { name: n.source.name, logoUrl: n.source.logoUrl, language: n.source.language },
+  }));
 
   const hero = heroPost ?? topRow[0] ?? null;
 
@@ -89,7 +101,7 @@ export default async function HomePage() {
         }))}
       />
       <div className="-mx-6 md:-mx-10 lg:-mx-14">
-        <NewsTicker />
+        <NewsTicker initialItems={tickerItems} />
       </div>
 
       {topRow.length > 0 && (
