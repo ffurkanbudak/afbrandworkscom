@@ -47,7 +47,7 @@ const NAV: NavItem[] = [
       { href: '/oneriler/etkinlikler', label: 'Etkinlikler', icon: Calendar, desc: 'Takvimdeki buluşmalar' },
     ],
   },
-  { href: '/hakkinda', label: 'Kimdir', match: (p) => p.startsWith('/hakkinda') },
+  { href: '/hakkinda', label: 'Hakkımda', match: (p) => p.startsWith('/hakkinda') },
   { href: '/kunye', label: 'Künye', match: (p) => p.startsWith('/kunye') },
   { href: '/iletisim', label: 'İletişim', match: (p) => p.startsWith('/iletisim') },
 ];
@@ -89,15 +89,24 @@ export function Header() {
         }}
       >
         <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-6 py-4 md:px-10 lg:px-14">
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3.5">
             <a
               href="/"
-              aria-label="afbrandworks"
+              aria-label="Ahmet Furkan Budak"
               className="flex items-center"
               style={{ color: 'var(--fg)' }}
             >
               <Logo height={18} />
             </a>
+            <span
+              className="hidden border-l pl-3.5 text-[10.5px] font-medium tracking-[0.03em] md:inline-block"
+              style={{
+                borderColor: 'color-mix(in oklab, var(--border) 85%, transparent)',
+                color: 'color-mix(in oklab, var(--fg) 56%, transparent)',
+              }}
+            >
+              Stratejik Marka Danışmanı • Yazar • Girişimci
+            </span>
           </div>
 
           <div className="flex items-center gap-1.5">
@@ -252,6 +261,19 @@ export function Header() {
             >
               <X className="h-[17px] w-[17px]" strokeWidth={1.75} />
             </button>
+          </div>
+
+          <div
+            className="border-b px-6 py-5"
+            style={{ borderColor: 'var(--border)' }}
+          >
+            <Logo height={20} />
+            <p
+              className="mt-2.5 text-[11px] font-medium tracking-[0.03em]"
+              style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+            >
+              Stratejik Marka Danışmanı • Yazar • Girişimci
+            </p>
           </div>
 
           <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-4 py-6">

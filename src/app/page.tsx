@@ -15,25 +15,26 @@ import { HomeJsonLd } from '@/components/HomeJsonLd';
 const AUTHOR = 'Ahmet Furkan Budak';
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
 
+const HOME_TITLE = 'Ahmet Furkan Budak | Marka • Pazarlama • İletişim';
+const HOME_DESCRIPTION =
+  "Toganworks Stratejik Marka Danışmanlık Ofisi kurucusu ve danışmanıdır. Türkiye'de ve globalde birçok şirkete ve girişime marka, pazarlama ve iletişim alanlarında stratejik danışmanlık hizmetleri sunmaktadır.";
+
 export const metadata: Metadata = {
-  title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
-  description:
-    'Stratejik marka danışmanı Ahmet Furkan Budak. Konumlandırma, marka kimliği ve sürdürülebilir büyüme üzerine günlük yazılar; küresel marka haberleri.',
+  title: { absolute: HOME_TITLE },
+  description: HOME_DESCRIPTION,
   alternates: { canonical: '/' },
   openGraph: {
     type: 'website',
     url: SITE_URL,
     siteName: 'Ahmet Furkan Budak',
     locale: 'tr_TR',
-    title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
-    description:
-      'Markalaşma üzerine günlük yazılar, vaka analizleri ve küresel marka haberleri. Toganworks kurucusu.',
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
-    description:
-      'Markalaşma üzerine günlük yazılar, vaka analizleri ve küresel marka haberleri.',
+    title: HOME_TITLE,
+    description: HOME_DESCRIPTION,
     creator: '@afurkanbudak',
   },
 };

@@ -213,7 +213,7 @@ export default function AboutPage() {
       />
 
       <section className="max-w-[820px]">
-        <p className="eyebrow">Kimdir</p>
+        <p className="eyebrow">Hakkımda</p>
         <div className="mt-7 flex items-start gap-5 sm:gap-7">
           <div
             className="relative aspect-[4/5] w-[104px] shrink-0 overflow-hidden rounded-[6px] border sm:w-[128px]"

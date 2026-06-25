@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { Logo } from './Logo';
 
 const FOOTER_NAV = [
@@ -7,7 +9,7 @@ const FOOTER_NAV = [
   { href: '/gundem', label: 'Gündem' },
   { href: '/konular', label: 'Konular' },
   { href: '/oneriler', label: 'Öneriler' },
-  { href: '/hakkinda', label: 'Kimdir' },
+  { href: '/hakkinda', label: 'Hakkımda' },
   { href: '/kunye', label: 'Künye' },
   { href: '/iletisim', label: 'İletişim' },
 ];
@@ -27,12 +29,22 @@ const PILLARS: [string, string][] = [
   ['Marka Sözlüğü', '/sozluk'],
 ];
 
-const SOCIAL: [string, string][] = [
-  ['Twitter', 'https://x.com/afurkanbudakcom'],
-  ['Medium', 'https://medium.com/@ahmetfurkanbudak'],
-  ['Instagram', 'https://www.instagram.com/afbrandworks'],
-  ['LinkedIn', 'https://www.linkedin.com/in/ahmetfurkanbudak/'],
-  ['YouTube', 'https://www.youtube.com/@ahmetfurkanbudak'],
+function MediumIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} fill="currentColor" aria-hidden role="img">
+      <path d="M13.54 12a6.8 6.8 0 0 1-6.77 6.82A6.8 6.8 0 0 1 0 12a6.8 6.8 0 0 1 6.77-6.82A6.8 6.8 0 0 1 13.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z" />
+    </svg>
+  );
+}
+
+type Social = { label: string; href: string; icon?: LucideIcon };
+
+const SOCIAL: Social[] = [
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/ahmetfurkanbudak/', icon: Linkedin },
+  { label: 'Instagram', href: 'https://www.instagram.com/afbrandworks', icon: Instagram },
+  { label: 'X (Twitter)', href: 'https://x.com/afurkanbudakcom', icon: Twitter },
+  { label: 'YouTube', href: 'https://www.youtube.com/@ahmetfurkanbudak', icon: Youtube },
+  { label: 'Medium', href: 'https://medium.com/@ahmetfurkanbudak' },
 ];
 
 export function Footer() {
@@ -43,79 +55,82 @@ export function Footer() {
     >
       <div className="rule-solid opacity-[0.12]" style={{ opacity: 0.12 }} />
 
-      <div className="grid grid-cols-1 gap-12 pt-12 md:grid-cols-2 lg:grid-cols-[1.2fr_1fr_1fr_1fr]">
+      <div className="flex flex-col gap-6 pt-12 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <a
             href="/"
-            aria-label="afbrandworks"
-            className="flex items-center"
+            aria-label="Ahmet Furkan Budak"
+            className="inline-flex items-center"
             style={{ color: 'var(--fg)' }}
           >
             <Logo height={18} />
           </a>
-
           <p
-            className="mt-5 max-w-[46ch] text-[14px] leading-[1.65]"
-            style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
+            className="mt-3 text-[11px] font-medium tracking-[0.04em]"
+            style={{ color: 'color-mix(in oklab, var(--fg) 52%, transparent)' }}
           >
-            Marka, pazarlama ve strateji gündemi
+            Stratejik Marka Danışmanı • Yazar • Girişimci
           </p>
         </div>
 
+        <div className="flex items-center gap-1.5">
+          {SOCIAL.map((s) => {
+            const Icon = s.icon;
+            return (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={s.label}
+                title={s.label}
+                className="flex h-9 w-9 items-center justify-center rounded-[8px] border transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
+                style={{ borderColor: 'var(--border)', color: 'color-mix(in oklab, var(--fg) 78%, transparent)' }}
+              >
+                {Icon ? (
+                  <Icon className="h-[15px] w-[15px]" strokeWidth={1.75} />
+                ) : (
+                  <MediumIcon className="h-[15px] w-[15px]" />
+                )}
+              </a>
+            );
+          })}
+        </div>
+      </div>
+
+      <nav className="mt-10 space-y-6 border-t pt-8" style={{ borderColor: 'var(--border)' }}>
         <div>
           <p className="eyebrow">Site</p>
-          <ul className="mt-5 space-y-3 text-[15px]">
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2.5 text-[14px]">
             {FOOTER_NAV.map((n) => (
-              <li key={n.href}>
-                <Link
-                  href={n.href}
-                  className="transition hover:underline"
-                  style={{ color: 'var(--fg)' }}
-                >
-                  {n.label}
-                </Link>
-              </li>
+              <Link
+                key={n.href}
+                href={n.href}
+                className="transition hover:underline"
+                style={{ color: 'color-mix(in oklab, var(--fg) 82%, transparent)' }}
+              >
+                {n.label}
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
 
         <div>
           <p className="eyebrow">Rehberler</p>
-          <ul className="mt-5 space-y-3 text-[15px]">
+          <div className="mt-3 flex flex-wrap gap-x-5 gap-y-2.5 text-[14px]">
             {PILLARS.map(([label, href]) => (
-              <li key={href}>
-                <Link
-                  href={href}
-                  className="transition hover:underline"
-                  style={{ color: 'var(--fg)' }}
-                >
-                  {label}
-                </Link>
-              </li>
+              <Link
+                key={href}
+                href={href}
+                className="transition hover:underline"
+                style={{ color: 'color-mix(in oklab, var(--fg) 82%, transparent)' }}
+              >
+                {label}
+              </Link>
             ))}
-          </ul>
+          </div>
         </div>
-
-        <div>
-          <p className="eyebrow">Sosyal</p>
-          <ul className="mt-5 space-y-3 text-[15px]">
-            {SOCIAL.map(([label, href]) => (
-              <li key={label}>
-                <Link
-                  href={href}
-                  className="inline-flex items-center gap-1.5 transition hover:underline"
-                  style={{ color: 'var(--fg)' }}
-                >
-                  {label}
-                  <span aria-hidden className="text-[13px] opacity-60">
-                    ↗
-                  </span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
+      </nav>
 
       <div
         className="mt-16 flex flex-col items-start justify-between gap-3 pt-6 text-[13px] md:flex-row md:items-center"
@@ -125,15 +140,30 @@ export function Footer() {
         }}
       >
         <p>© 2026 Ahmet Furkan Budak. Tüm hakları saklıdır.</p>
-        <p>
-          Powered by{' '}
-          <Link
+        <p className="inline-flex items-center gap-2">
+          <span>Powered by</span>
+          <a
             href="https://toganworks.com"
-            className="transition hover:underline"
-            style={{ color: 'var(--fg)' }}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Toganworks"
+            className="inline-flex items-center transition hover:opacity-80"
           >
-            Toganworks
-          </Link>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/toganworks-light.png"
+              alt="Toganworks"
+              className="logo-on-light"
+              style={{ height: 15, width: 'auto' }}
+            />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/toganworks-dark.png"
+              alt="Toganworks"
+              className="logo-on-dark"
+              style={{ height: 15, width: 'auto' }}
+            />
+          </a>
         </p>
       </div>
     </footer>

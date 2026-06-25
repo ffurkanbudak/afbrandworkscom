@@ -105,7 +105,7 @@ export function AuthorBio() {
             className="inline-flex items-center gap-1 text-[12.5px] font-medium"
             style={{ color: 'var(--fg)' }}
           >
-            Kimdir
+            Hakkımda
             <ArrowRight className="h-[12px] w-[12px]" strokeWidth={2.25} />
           </Link>
         </div>
