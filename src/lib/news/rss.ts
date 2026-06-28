@@ -1,5 +1,5 @@
 const USER_AGENT =
-  'AhmetFurkanBudakBlog/1.0 (+https://afbrandworks.com; contact: merhaba@afbrandworks.com)';
+  'AhmetFurkanBudakBlog/1.0 (+https://afbrandworks.com; contact: info@afbrandworks.com)';
 
 export type RssItem = {
   title: string;

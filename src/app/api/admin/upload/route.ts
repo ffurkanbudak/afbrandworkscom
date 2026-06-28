@@ -1,16 +1,16 @@
 import { NextResponse } from 'next/server';
+import { mkdir, writeFile } from 'node:fs/promises';
+import { join } from 'node:path';
+import { randomBytes } from 'node:crypto';
+import sharp from 'sharp';
 import { auth } from '@/lib/admin-auth';
-import { v2 as cloudinary } from 'cloudinary';
 import { db } from '@/lib/db';
 
 export const runtime = 'nodejs';
 export const maxDuration = 30;
 
-cloudinary.config({
-  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
+// Sharp ile küçültüp sıkıştırdığımız için ham dosya sınırını yüksek tutuyoruz.
+const MAX_BYTES = 30 * 1024 * 1024; // 30MB
 
 export async function POST(req: Request) {
   const { userId } = await auth();
@@ -27,21 +27,41 @@ export async function POST(req: Request) {
   if (!file.type.startsWith('image/')) {
     return NextResponse.json({ error: 'Sadece görsel yükleyebilirsiniz.' }, { status: 400 });
   }
-  if (file.size > 8 * 1024 * 1024) {
-    return NextResponse.json({ error: 'Dosya 8MB sınırını geçiyor.' }, { status: 400 });
+  if (file.size > MAX_BYTES) {
+    return NextResponse.json({ error: 'Dosya 30MB sınırını geçiyor.' }, { status: 400 });
   }
 
-  const bytes = Buffer.from(await file.arrayBuffer());
-  const dataUri = `data:${file.type};base64,${bytes.toString('base64')}`;
-
   try {
-    const result = await cloudinary.uploader.upload(dataUri, {
-      folder: 'afbrandworks/posts',
-      resource_type: 'image',
-    });
-    return NextResponse.json({ url: result.secure_url, width: result.width, height: result.height });
+    const input = Buffer.from(await file.arrayBuffer());
+
+    // En çok 2000px genişliğe küçült, WebP'e sıkıştır (kalite 82) → küçük dosya.
+    const { data, info } = await sharp(input)
+      .rotate()
+      .resize({ width: 2000, height: 2000, fit: 'inside', withoutEnlargement: true })
+      .webp({ quality: 82 })
+      .toBuffer({ resolveWithObject: true });
+
+    const name = `${Date.now()}-${randomBytes(5).toString('hex')}.webp`;
+
+    // Production (Vercel): BLOB_READ_WRITE_TOKEN varsa kalıcı Blob depolama kullan.
+    if (process.env.BLOB_READ_WRITE_TOKEN) {
+      // @ts-expect-error — opsiyonel bağımlılık; production için `npm i @vercel/blob`
+      const { put } = await import('@vercel/blob');
+      const blob = await put(`posts/${name}`, data, {
+        access: 'public',
+        contentType: 'image/webp',
+        token: process.env.BLOB_READ_WRITE_TOKEN,
+      });
+      return NextResponse.json({ url: blob.url, width: info.width, height: info.height });
+    }
+
+    // Geliştirme (yerel): public/uploads klasörüne yaz.
+    const dir = join(process.cwd(), 'public', 'uploads');
+    await mkdir(dir, { recursive: true });
+    await writeFile(join(dir, name), data);
+    return NextResponse.json({ url: `/uploads/${name}`, width: info.width, height: info.height });
   } catch (err) {
-    console.error('cloudinary upload failed', err);
-    return NextResponse.json({ error: 'Yükleme başarısız.' }, { status: 500 });
+    console.error('image upload failed', err);
+    return NextResponse.json({ error: 'Görsel işlenemedi. Farklı bir dosya deneyin.' }, { status: 500 });
   }
 }

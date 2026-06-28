@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { ArrowRight, Hash, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
+import { ArrowRight, Hash, Instagram, Linkedin, Twitter, Youtube, Newspaper } from 'lucide-react';
 import { db } from '@/lib/db';
 import { getRelatedPosts } from '@/lib/related';
 import { formatDateCaps } from '@/lib/format';
@@ -79,9 +79,27 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   });
   if (!post || post.status !== 'PUBLISHED') return notFound();
 
-  const [related, subscriberCount] = await Promise.all([
+  const [related, subscriberCount, newsFeed, latestPosts] = await Promise.all([
     getRelatedPosts(post.id, 3),
     db.subscriber.count({ where: { status: 'CONFIRMED' } }),
+    db.newsItem.findMany({
+      where: { status: 'APPROVED' },
+      orderBy: [{ approvedAt: 'desc' }, { publishedAt: 'desc' }],
+      take: 6,
+      select: {
+        id: true,
+        titleTr: true,
+        originalTitle: true,
+        imageUrl: true,
+        source: { select: { name: true } },
+      },
+    }),
+    db.post.findMany({
+      where: { status: 'PUBLISHED', id: { not: post.id } },
+      orderBy: { publishedAt: 'desc' },
+      take: 6,
+      include: { tags: { include: { tag: true } } },
+    }),
   ]);
 
   const renderedHtml = post.contentHtml;
@@ -89,7 +107,59 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const shareUrl = `${SITE_URL}/posts/${post.slug}`;
 
   return (
-    <article className="fade-up pt-8 md:pt-12">
+    <div className="xl:grid xl:grid-cols-[210px_minmax(0,1fr)_240px] xl:gap-10">
+      <aside className="hidden xl:block">
+        <div className="sticky top-24 pt-8 md:pt-12">
+          <p className="eyebrow">Dünyadan Haberler</p>
+          <ul className="mt-4 space-y-4">
+            {newsFeed.map((n) => (
+              <li key={n.id}>
+                <Link
+                  href={`/gundem/${n.id}`}
+                  className="group flex items-start gap-3"
+                  style={{ color: 'var(--fg)' }}
+                >
+                  <div
+                    className="relative h-[44px] w-[60px] shrink-0 overflow-hidden rounded-[6px]"
+                    style={{ background: 'color-mix(in oklab, var(--fg) 5%, transparent)' }}
+                  >
+                    {n.imageUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={n.imageUrl} alt="" loading="lazy" className="h-full w-full object-cover" />
+                    ) : (
+                      <span className="flex h-full w-full items-center justify-center">
+                        <Newspaper className="h-4 w-4 opacity-25" strokeWidth={1.5} />
+                      </span>
+                    )}
+                  </div>
+                  <div className="min-w-0">
+                    <span
+                      lang="en"
+                      className="block truncate text-[9.5px] font-semibold tracking-[0.1em] uppercase"
+                      style={{ color: 'color-mix(in oklab, var(--fg) 50%, transparent)' }}
+                    >
+                      {n.source.name}
+                    </span>
+                    <h3 className="font-display mt-1 line-clamp-3 text-[12.5px] leading-[1.3] tracking-tight group-hover:underline">
+                      {n.titleTr ?? n.originalTitle}
+                    </h3>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/gundem"
+            className="mt-5 inline-flex items-center gap-1.5 text-[12px] font-medium"
+            style={{ color: 'var(--fg)' }}
+          >
+            Tüm gündem
+            <ArrowRight className="h-[11px] w-[11px]" strokeWidth={2.25} />
+          </Link>
+        </div>
+      </aside>
+
+      <article className="fade-up min-w-0 pt-8 md:pt-12">
       <PostJsonLd
         slug={post.slug}
         title={post.title}
@@ -102,6 +172,17 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         readingMinutes={post.readingMinutes}
       />
       <ViewBeacon slug={post.slug} />
+      <nav
+        aria-label="Breadcrumb"
+        className="mx-auto mb-5 flex max-w-[720px] items-center gap-1.5 text-[12px]"
+        style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
+      >
+        <Link href="/" className="transition hover:underline">Anasayfa</Link>
+        <span className="opacity-50">/</span>
+        <Link href="/posts" className="transition hover:underline">Yazılar</Link>
+        <span className="opacity-50">/</span>
+        <span className="truncate" style={{ color: 'var(--fg)' }}>{post.title}</span>
+      </nav>
       <header className="mx-auto max-w-[720px]">
         <div className="flex flex-wrap items-center gap-2.5">
           {primaryTag && (
@@ -294,6 +375,57 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       <section className="mt-20">
         <Newsletter readerCount={Math.max(subscriberCount, 300)} />
       </section>
-    </article>
+      </article>
+
+      <aside className="hidden xl:block">
+        <div className="sticky top-24 pt-8 md:pt-12">
+          <p className="eyebrow">En Son Eklenenler</p>
+          <ul className="mt-4 space-y-4">
+            {latestPosts.map((p) => (
+              <li key={p.id}>
+                <Link
+                  href={`/posts/${p.slug}`}
+                  className="group flex items-start gap-3"
+                  style={{ color: 'var(--fg)' }}
+                >
+                  <div
+                    className="relative h-[44px] w-[44px] shrink-0 overflow-hidden rounded-[6px]"
+                    style={{ background: 'color-mix(in oklab, var(--fg) 5%, transparent)' }}
+                  >
+                    {p.coverImageUrl ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img src={p.coverImageUrl} alt="" loading="lazy" className="h-full w-full object-cover" />
+                    ) : (
+                      <span className="flex h-full w-full items-center justify-center text-[9px] font-semibold opacity-30">
+                        AFB
+                      </span>
+                    )}
+                  </div>
+                  <div className="min-w-0">
+                    <span
+                      className="block text-[9.5px] font-semibold tracking-[0.1em] uppercase"
+                      style={{ color: 'color-mix(in oklab, var(--fg) 50%, transparent)' }}
+                    >
+                      {p.tags?.[0]?.tag.labelTr ?? formatDateCaps(p.publishedAt)}
+                    </span>
+                    <h3 className="font-display mt-1 line-clamp-3 text-[12.5px] leading-[1.3] tracking-tight group-hover:underline">
+                      {p.title}
+                    </h3>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ul>
+          <Link
+            href="/posts"
+            className="mt-5 inline-flex items-center gap-1.5 text-[12px] font-medium"
+            style={{ color: 'var(--fg)' }}
+          >
+            Tüm yazılar
+            <ArrowRight className="h-[11px] w-[11px]" strokeWidth={2.25} />
+          </Link>
+        </div>
+      </aside>
+    </div>
   );
 }

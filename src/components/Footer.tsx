@@ -1,6 +1,34 @@
+import Link from 'next/link';
 import { Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Logo } from './Logo';
+
+const EXPLORE: [string, string][] = [
+  ['Ana Sayfa', '/'],
+  ['Hizmetler', '/hizmetler'],
+  ['Yazılar', '/posts'],
+  ['Gündem', '/gundem'],
+  ['Konular', '/konular'],
+  ['Öneriler', '/oneriler'],
+  ['Hakkımda', '/hakkinda'],
+  ['Künye', '/kunye'],
+  ['İletişim', '/iletisim'],
+];
+
+const GUIDES: [string, string][] = [
+  ['Marka Danışmanlığı', '/marka-danismanligi'],
+  ['Marka Stratejisi', '/marka-stratejisi'],
+  ['Marka Yönetimi', '/marka-yonetimi'],
+  ['Marka Konumlandırma', '/konumlandirma'],
+  ['Marka Kimliği', '/marka-kimligi'],
+  ['Marka Mimarisi', '/marka-mimarisi'],
+  ['Marka Farklılaşması', '/farklilasma'],
+  ['Dijital Markalaşma', '/dijital-markalasma'],
+  ['Pazarlama İletişimi', '/pazarlama-iletisimi'],
+  ['Marka Sağlığı', '/marka-sagligi'],
+  ['Marka Yenilemesi', '/marka-yenilemesi'],
+  ['Marka Sözlüğü', '/sozluk'],
+];
 
 function MediumIcon({ className }: { className?: string }) {
   return (
@@ -70,6 +98,45 @@ export function Footer() {
           })}
         </div>
       </div>
+
+      <nav
+        className="mt-12 grid gap-x-10 gap-y-10 border-t pt-10 sm:grid-cols-2 lg:grid-cols-3"
+        style={{ borderColor: 'var(--border)' }}
+      >
+        <div>
+          <p className="eyebrow">Keşfet</p>
+          <ul className="mt-4 space-y-2.5 text-[14px]">
+            {EXPLORE.map(([label, href]) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className="inline-block transition hover:translate-x-0.5 hover:opacity-100"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 72%, transparent)' }}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="lg:col-span-2">
+          <p className="eyebrow">Rehberler</p>
+          <ul className="mt-4 grid grid-cols-2 gap-x-8 gap-y-2.5 text-[14px] sm:grid-cols-3">
+            {GUIDES.map(([label, href]) => (
+              <li key={href}>
+                <Link
+                  href={href}
+                  className="inline-block transition hover:translate-x-0.5 hover:opacity-100"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 72%, transparent)' }}
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </nav>
 
       <div
         className="mt-12 flex flex-col items-start justify-between gap-3 border-t pt-6 text-[13px] md:flex-row md:items-center"
