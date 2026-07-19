@@ -5,7 +5,7 @@ import { Resend } from 'resend';
 // bir yer tutucu ile kuruyoruz; gerçek gönderimler zaten try/catch ile sarılı.
 export const resend = new Resend(process.env.RESEND_API_KEY || 're_placeholder_not_configured');
 
-export const FROM_ADDRESS = process.env.EMAIL_FROM ?? 'Ahmet Furkan Budak <info@afbrandworks.com>';
+export const FROM_ADDRESS = process.env.EMAIL_FROM ?? 'Ahmet Furkan Budak <info@toganworks.com>';
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
 
 export function renderBroadcastHtml(opts: {

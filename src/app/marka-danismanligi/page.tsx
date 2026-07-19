@@ -62,7 +62,7 @@ const FAQS = [
   {
     question: 'Ahmet Furkan Budak ile marka danışmanlığı için nasıl iletişime geçilir?',
     answer:
-      'Afbrandworks iletişim sayfasından ya da info@afbrandworks.com adresinden iletişim kurulabilir. Görüşme öncesi kısa bir brief doldurulur; marka büyüklüğü, sektör ve süreç aciliyeti anlaşıldıktan sonra uygun format önerilir.',
+      'Afbrandworks iletişim sayfasından ya da info@toganworks.com adresinden iletişim kurulabilir. Görüşme öncesi kısa bir brief doldurulur; marka büyüklüğü, sektör ve süreç aciliyeti anlaşıldıktan sonra uygun format önerilir.',
   },
 ];
 

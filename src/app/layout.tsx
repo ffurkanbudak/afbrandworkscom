@@ -38,7 +38,6 @@ export const metadata: Metadata = {
     'marka iletişimi',
     'Toganworks',
     'Afbrandworks',
-    'marka inisiyatifi',
     'branding',
     'brand strategy',
     'pazarlama',

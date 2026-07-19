@@ -9,7 +9,7 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.
 export const metadata: Metadata = {
   title: 'Ahmet Furkan Budak Kimdir · Stratejik Marka Danışmanı',
   description:
-    'Ahmet Furkan Budak; stratejik marka danışmanı, Toganworks ve Marka İnisiyatifi kurucusu. Biyografi, eğitim, sertifikalar, uzmanlık alanları ve iletişim.',
+    'Ahmet Furkan Budak; stratejik marka danışmanı, Toganworks kurucusu. Biyografi, eğitim, sertifikalar, uzmanlık alanları ve iletişim.',
   keywords: [
     'Ahmet Furkan Budak',
     'Ahmet Furkan Budak kimdir',
@@ -18,7 +18,6 @@ export const metadata: Metadata = {
     'marka danışmanı',
     'stratejik marka danışmanı',
     'Toganworks kurucusu',
-    'Marka İnisiyatifi',
     'Afbrandworks',
   ],
   alternates: { canonical: '/hakkinda' },
@@ -117,11 +116,6 @@ const ROLES = [
     body: 'Toganworks, markaların hem dijital hem de geleneksel alanlarda güçlü bir varlık oluşturmasına yardımcı olan stratejik çözümler sunar. Marka tasarımından dijital pazarlamaya kadar geniş bir yelpazede hedeflerinize ulaşmanızda size eşlik eder. Her adımda etkin yönetim ve yaratıcı çözümlerle markanızın başarısını ve büyümesini güvence altına alırız.',
   },
   {
-    title: 'Marka İnisiyatifi',
-    meta: 'Kurucu · Haziran 2024 · Devam ediyor · İstanbul',
-    body: 'İnisiyatifi al, değişime öncülük et. Markalaşma kültürünü yaygınlaştırmak için kurulan topluluk; üniversite zirveleri, geniş katılımlı organizasyonlar ve akademi ile iş dünyası arasında etkileşim zemini oluşturuyor.',
-  },
-  {
     title: 'İstinye Garage Incubation Hub',
     meta: 'Startup Mentoru · Ocak 2025 · Devam ediyor · İstanbul',
     body: 'Ocak 2025’ten bu yana İstinye Garage Incubation Hub’da startup mentoru olarak erken aşama girişimcilere danışmanlık veriyorum. Bu rolde; markalaşma, kimlik oluşturma, pazarlama stratejileri ve büyüme süreçleri konularında rehberlik sağlıyorum. Girişimcilerin hedef kitlelerini belirlemelerine, etkili konumlanmalarına ve sürdürülebilir marka stratejileri geliştirmelerine destek oluyorum. Ayrıca iş modellerini güçlendirme ve pazara giriş stratejileri oluşturma süreçlerinde kendilerine yol gösteriyorum.',
@@ -151,7 +145,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'Ahmet Furkan Budak kimdir?',
     answer:
-      'Ahmet Furkan Budak; stratejik marka danışmanı, Toganworks Marka Ofisi ve Marka İnisiyatifi kurucusudur. Marka konumlandırma, kimlik, iletişim stratejisi ve sürdürülebilir büyüme alanlarında ulusal ve uluslararası markalara danışmanlık yapar; Afbrandworks platformunda markalaşma üzerine yayın yapar.',
+      'Ahmet Furkan Budak; stratejik marka danışmanı ve Toganworks Marka Ofisi kurucusudur. Marka konumlandırma, kimlik, iletişim stratejisi ve sürdürülebilir büyüme alanlarında ulusal ve uluslararası markalara danışmanlık yapar; Afbrandworks platformunda markalaşma üzerine yayın yapar.',
   },
   {
     question: 'Hangi alanlarda uzmandır?',
@@ -166,7 +160,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'Hangi kurumların kurucusudur?',
     answer:
-      'Mart 2025’te kurduğu Toganworks Marka Ofisi’nde stratejik marka danışmanlığı hizmeti verir. Haziran 2024’te kurduğu Marka İnisiyatifi aracılığıyla markalaşma kültürünü yaygınlaştıran topluluk çalışmaları yürütür.',
+      'Mart 2025’te kurduğu Toganworks Marka Ofisi’nde stratejik marka danışmanlığı hizmeti verir; kurumlara ve girişimcilere marka stratejisi, konumlandırma ve iletişim alanlarında danışmanlık sunar.',
   },
   {
     question: 'Nerelerde mentörlük yapar?',
@@ -181,7 +175,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'Kendisiyle nasıl iletişime geçilir?',
     answer:
-      'afbrandworks.com/iletisim sayfası üzerinden veya info@afbrandworks.com adresinden danışmanlık, konuşma, mentörlük ve iş birliği talepleri için ulaşılabilir.',
+      'afbrandworks.com/iletisim sayfası üzerinden veya info@toganworks.com adresinden danışmanlık, konuşma, mentörlük ve iş birliği talepleri için ulaşılabilir.',
   },
 ];
 

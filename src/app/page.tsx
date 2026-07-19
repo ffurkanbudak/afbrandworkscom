@@ -166,26 +166,20 @@ export default async function HomePage() {
         </div>
 
         {spotlight.length > 0 && (
-          <div className="mt-8 -mx-6 md:-mx-10 lg:-mx-14">
-            <div className="no-scrollbar flex snap-x snap-mandatory gap-8 overflow-x-auto scroll-smooth px-6 md:px-10 lg:px-14">
-              {spotlight.map((p) => (
-                <div
-                  key={p.id}
-                  className="w-[82%] flex-shrink-0 snap-start sm:w-[calc((100%-32px)/2)] lg:w-[calc((100%-64px)/3)]"
-                >
-                  <FeaturedCard
-                    slug={p.slug}
-                    title={p.title}
-                    excerpt={p.excerpt}
-                    publishedAt={p.publishedAt}
-                    authorName={p.author?.name ?? AUTHOR}
-                    coverImageUrl={p.coverImageUrl}
-                    coverImageAlt={p.coverImageAlt}
-                    primaryTag={p.tags?.[0]?.tag.labelTr}
-                  />
-                </div>
-              ))}
-            </div>
+          <div className="mt-8 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {spotlight.slice(0, 6).map((p) => (
+              <FeaturedCard
+                key={p.id}
+                slug={p.slug}
+                title={p.title}
+                excerpt={p.excerpt}
+                publishedAt={p.publishedAt}
+                authorName={p.author?.name ?? AUTHOR}
+                coverImageUrl={p.coverImageUrl}
+                coverImageAlt={p.coverImageAlt}
+                primaryTag={p.tags?.[0]?.tag.labelTr}
+              />
+            ))}
           </div>
         )}
       </section>

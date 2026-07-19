@@ -12,7 +12,7 @@ export function SiteJsonLd() {
     image: `${SITE_URL}/ahmetfurkanbudak.jpeg`,
     jobTitle: 'Stratejik Marka Danışmanı',
     description:
-      'Stratejik marka danışmanı. Toganworks, Afbrandworks ve Marka İnisiyatifi kurucusu. Konumlandırma, farklılaşma ve sürdürülebilir büyüme üzerine yazar.',
+      'Stratejik marka danışmanı ve Toganworks kurucusu. Konumlandırma, farklılaşma ve sürdürülebilir büyüme üzerine yazar.',
     email: 'mailto:info@toganworks.com',
     nationality: { '@type': 'Country', name: 'Türkiye' },
     knowsLanguage: ['tr', 'en'],
@@ -55,11 +55,6 @@ export function SiteJsonLd() {
         name: 'Afbrandworks',
         url: SITE_URL,
         description: 'Ahmet Furkan Budak’ın kişisel markası; marka, pazarlama ve strateji yayını.',
-      },
-      {
-        '@type': 'Brand',
-        name: 'Marka İnisiyatifi',
-        description: 'Markalaşma kültürünü yaygınlaştıran topluluk.',
       },
     ],
     memberOf: [

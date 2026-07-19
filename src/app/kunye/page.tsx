@@ -72,7 +72,7 @@ const SECTIONS: { title: string; paragraphs: string[] }[] = [
   {
     title: 'İletişim',
     paragraphs: [
-      'İletişim için aşağıdaki kanallar açıktır. Genel sorular, editoryal başvurular, sponsorluk ve işbirliği önerileri için: info@afbrandworks.com',
+      'İletişim için aşağıdaki kanallar açıktır. Genel sorular, editoryal başvurular, sponsorluk ve işbirliği önerileri için: info@toganworks.com',
       'Danışmanlık ve mentörlük başvuruları da aynı e-posta üzerinden iletilebilir. Sosyal medya kanallarından gelen mesajlar da okunur; ancak resmi iletişim kanalı yukarıdaki e-posta adresidir.',
     ],
   },
@@ -138,11 +138,11 @@ export default function KunyePage() {
           </p>
         </div>
         <a
-          href="mailto:info@afbrandworks.com"
+          href="mailto:info@toganworks.com"
           className="inline-flex shrink-0 items-center gap-2 rounded-[8px] px-4 py-2.5 text-[13.5px] font-medium"
           style={{ background: 'var(--fg)', color: 'var(--bg)' }}
         >
-          info@afbrandworks.com
+          info@toganworks.com
           <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
         </a>
       </div>
