@@ -9,7 +9,6 @@ type Counts = {
   sponsorships: number;
   messages: number;
   comments: number;
-  news: number;
 };
 
 export function MobileNav({ counts }: { counts: Counts }) {

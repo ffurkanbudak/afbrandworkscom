@@ -7,9 +7,6 @@ import { HeroArticle } from '@/components/HeroArticle';
 import { FeaturedCard } from '@/components/FeaturedCard';
 import { PostListItem } from '@/components/PostListItem';
 import { Newsletter } from '@/components/Newsletter';
-import { TopicsInline } from '@/components/TopicRow';
-import { NewsTicker } from '@/components/NewsTicker';
-import { HomeNewsGrid } from '@/components/HomeNewsGrid';
 import { HomeJsonLd } from '@/components/HomeJsonLd';
 
 const AUTHOR = 'Ahmet Furkan Budak';
@@ -40,7 +37,7 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [topRow, heroPost, spotlight, recent, topics, subscriberCount, latestNews, tickerNews] = await Promise.all([
+  const [topRow, heroPost, spotlight, recent, subscriberCount] = await Promise.all([
     db.post.findMany({
       where: { status: 'PUBLISHED' },
       orderBy: { publishedAt: 'desc' },
@@ -65,27 +62,8 @@ export default async function HomePage() {
       skip: 6,
       take: 4,
     }),
-    db.tag.findMany({ orderBy: { order: 'asc' }, take: 8 }),
     db.subscriber.count({ where: { status: 'CONFIRMED' } }),
-    db.newsItem.findMany({
-      where: { status: 'APPROVED' },
-      orderBy: [{ approvedAt: 'desc' }, { publishedAt: 'desc' }],
-      include: { source: true },
-      take: 4,
-    }),
-    db.newsItem.findMany({
-      where: { status: 'APPROVED' },
-      orderBy: { approvedAt: 'desc' },
-      take: 10,
-      include: { source: { select: { name: true, logoUrl: true, language: true } } },
-    }),
   ]);
-
-  const tickerItems = tickerNews.map((n) => ({
-    id: n.id,
-    title: n.titleTr ?? n.originalTitle,
-    source: { name: n.source.name, logoUrl: n.source.logoUrl, language: n.source.language },
-  }));
 
   const hero = heroPost ?? topRow[0] ?? null;
 
@@ -100,10 +78,6 @@ export default async function HomePage() {
           coverImageUrl: p.coverImageUrl,
         }))}
       />
-      <div className="-mx-6 md:-mx-10 lg:-mx-14">
-        <NewsTicker initialItems={tickerItems} />
-      </div>
-
       {topRow.length > 0 && (
         <section
           className="py-6"
@@ -151,7 +125,10 @@ export default async function HomePage() {
         <div className="flex items-end justify-between gap-6">
           <div>
             <p className="eyebrow">Bu hafta öne çıkanlar</p>
-            <h2 className="font-display mt-3 text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
+            <h2
+              className="font-display mt-3 text-[22px] leading-[1.12] tracking-tight md:text-[27px]"
+              style={{ fontWeight: 800 }}
+            >
               Markaya dair okumaya değer notlar
             </h2>
           </div>
@@ -184,8 +161,6 @@ export default async function HomePage() {
         )}
       </section>
 
-      <HomeNewsGrid items={latestNews} />
-
       <section id="bulten" className="mt-16 scroll-mt-24">
         <Newsletter readerCount={Math.max(subscriberCount, 300)} />
       </section>
@@ -195,7 +170,10 @@ export default async function HomePage() {
           <div className="flex items-end justify-between gap-6">
             <div>
               <p className="eyebrow">Günün günlükleri</p>
-              <h2 className="font-display mt-3 text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
+              <h2
+                className="font-display mt-3 text-[22px] leading-[1.12] tracking-tight md:text-[27px]"
+                style={{ fontWeight: 800 }}
+              >
                 Son yayımlanan yazılar
               </h2>
             </div>
@@ -229,7 +207,10 @@ export default async function HomePage() {
 
       <section className="mt-16">
         <p className="eyebrow">Rehberler</p>
-        <h2 className="font-display mt-3 text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
+        <h2
+          className="font-display mt-3 text-[22px] leading-[1.12] tracking-tight md:text-[27px]"
+          style={{ fontWeight: 800 }}
+        >
           Markalaşmanın temel alanları
         </h2>
         <p
@@ -268,24 +249,6 @@ export default async function HomePage() {
         </ul>
       </section>
 
-      {topics.length > 0 && (
-        <section className="mt-16">
-          <p className="eyebrow">Konular</p>
-          <h2 className="font-display mt-3 text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
-            Markalaşmanın farklı katmanları
-          </h2>
-          <p
-            className="mt-4 max-w-[56ch] text-[15px] leading-[1.6]"
-            style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
-          >
-            Konumlandırmadan farklılaşmaya, büyüme mimarisinden marka iletişimine
-            her kategori kendi içinde bir çerçeve sunuyor.
-          </p>
-          <div className="mt-6">
-            <TopicsInline topics={topics} />
-          </div>
-        </section>
-      )}
     </div>
   );
 }

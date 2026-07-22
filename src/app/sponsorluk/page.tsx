@@ -21,7 +21,7 @@ export default function SponsorshipPage() {
       <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1fr_1fr]">
         <section>
           <p className="eyebrow">Sponsorluk</p>
-          <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
+          <h1 className="font-display mt-3 text-[30px] leading-[1.04] tracking-tight md:text-[40px] lg:text-[46px]">
             Ortak yolculuk.
           </h1>
 
@@ -56,7 +56,7 @@ export default function SponsorshipPage() {
           style={{ background: 'var(--bg-card)', border: '1px solid var(--border)' }}
         >
           <p className="eyebrow">Sponsor Talebi</p>
-          <h2 className="font-display mt-3 text-[26px] leading-[1.15] tracking-tight">
+          <h2 className="font-display mt-3 text-[22px] leading-[1.15] tracking-tight">
             Markanızı anlatın.
           </h2>
           <div className="mt-7">

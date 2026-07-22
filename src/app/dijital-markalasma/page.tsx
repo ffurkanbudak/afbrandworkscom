@@ -84,7 +84,7 @@ export default function DijitalMarkalasmaPage() {
           >
             Dijital Markalaşma
           </p>
-          <h1 className="font-display mt-4 text-[40px] leading-[1.05] tracking-tight md:text-[54px]">
+          <h1 className="font-display mt-4 text-[33px] leading-[1.05] tracking-tight md:text-[45px]">
             Dijital kanallar markanın yansımasıdır, kendi başına strateji değildir.
           </h1>
           <p
@@ -323,7 +323,7 @@ export default function DijitalMarkalasmaPage() {
           style={{ borderColor: 'var(--border)', background: 'var(--bg-soft)' }}
         >
           <p className="eyebrow">Dijital marka analizi</p>
-          <h2 className="font-display mt-3 text-[26px] leading-[1.15] tracking-tight md:text-[30px]">
+          <h2 className="font-display mt-3 text-[22px] leading-[1.15] tracking-tight md:text-[26px]">
             Markanızın dijital yansımasının sağlığını birlikte değerlendirelim.
           </h2>
           <p

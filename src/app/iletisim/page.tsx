@@ -19,7 +19,7 @@ export default function ContactPage() {
       <div className="grid grid-cols-1 gap-16 lg:grid-cols-[1.05fr_1fr]">
         <section>
           <p className="eyebrow">İletişim</p>
-          <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
+          <h1 className="font-display mt-3 text-[30px] leading-[1.04] tracking-tight md:text-[40px] lg:text-[46px]">
             İletişime Geçin!
           </h1>
           <div

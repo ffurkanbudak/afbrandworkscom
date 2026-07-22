@@ -95,6 +95,10 @@ img, video {
   line-height: 1.05;
 }
 
+h1.font-display { font-weight: 800; }
+h2.font-display { font-weight: 600; }
+h3.font-display { font-weight: 400; }
+
 .font-sans { font-family: var(--font-sans); }
 .font-mono { font-family: var(--font-mono); }
 
@@ -279,9 +283,13 @@ select.input-base option[value=""][disabled] {
 }
 .select-reset::-ms-expand { display: none; }
 
+.post-body {
+  font-weight: 300;
+  color: color-mix(in oklab, var(--fg) 88%, transparent);
+}
 .post-body > p {
-  margin-top: 1.35em;
-  margin-bottom: 1.35em;
+  margin-top: 1.15em;
+  margin-bottom: 1.15em;
 }
 .post-body > p:first-child { margin-top: 0; }
 .post-body > p:last-child { margin-bottom: 0; }
@@ -289,38 +297,41 @@ select.input-base option[value=""][disabled] {
   font-family: var(--font-display);
   font-weight: 600;
   letter-spacing: -0.022em;
-  font-size: 1.45em;
+  font-size: 1.4em;
   line-height: 1.2;
-  margin-top: 2em;
-  margin-bottom: 0.7em;
+  color: var(--fg);
+  margin-top: 1.75em;
+  margin-bottom: 0.6em;
 }
 .post-body > h3 {
   font-family: var(--font-display);
-  font-weight: 600;
+  font-weight: 400;
   letter-spacing: -0.018em;
-  font-size: 1.2em;
+  font-size: 1.15em;
   line-height: 1.25;
-  margin-top: 1.7em;
-  margin-bottom: 0.55em;
+  color: var(--fg);
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
 }
 
 .post-body strong {
-  font-weight: 600;
+  font-weight: 500;
   color: var(--fg);
   letter-spacing: -0.005em;
 }
 
 .post-body em {
   font-style: italic;
-  color: color-mix(in oklab, var(--fg) 88%, transparent);
+  color: color-mix(in oklab, var(--fg) 82%, transparent);
 }
 
 .post-body blockquote {
-  margin: 2em 0;
+  margin: 1.75em 0;
   padding-left: 1.25em;
   border-left: 2px solid color-mix(in oklab, var(--fg) 35%, transparent);
   font-style: italic;
-  color: color-mix(in oklab, var(--fg) 82%, transparent);
+  font-weight: 300;
+  color: color-mix(in oklab, var(--fg) 76%, transparent);
 }
 
 .logo-afb { fill: #ffffff; }

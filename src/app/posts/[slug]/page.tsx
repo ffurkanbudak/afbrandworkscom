@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { ArrowRight, Hash, Instagram, Linkedin, Twitter, Youtube, Newspaper } from 'lucide-react';
+import { ArrowRight, Hash, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
 import { db } from '@/lib/db';
 import { getRelatedPosts } from '@/lib/related';
 import { formatDateCaps } from '@/lib/format';
@@ -79,21 +79,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   });
   if (!post || post.status !== 'PUBLISHED') return notFound();
 
-  const [related, subscriberCount, newsFeed, latestPosts] = await Promise.all([
+  const [related, subscriberCount, latestPosts] = await Promise.all([
     getRelatedPosts(post.id, 3),
     db.subscriber.count({ where: { status: 'CONFIRMED' } }),
-    db.newsItem.findMany({
-      where: { status: 'APPROVED' },
-      orderBy: [{ approvedAt: 'desc' }, { publishedAt: 'desc' }],
-      take: 6,
-      select: {
-        id: true,
-        titleTr: true,
-        originalTitle: true,
-        imageUrl: true,
-        source: { select: { name: true } },
-      },
-    }),
     db.post.findMany({
       where: { status: 'PUBLISHED', id: { not: post.id } },
       orderBy: { publishedAt: 'desc' },
@@ -107,58 +95,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const shareUrl = `${SITE_URL}/posts/${post.slug}`;
 
   return (
-    <div className="xl:grid xl:grid-cols-[210px_minmax(0,1fr)_240px] xl:gap-10">
-      <aside className="hidden xl:block">
-        <div className="sticky top-24 pt-8 md:pt-12">
-          <p className="eyebrow">Dünyadan Haberler</p>
-          <ul className="mt-4 space-y-4">
-            {newsFeed.map((n) => (
-              <li key={n.id}>
-                <Link
-                  href={`/gundem/${n.id}`}
-                  className="group flex items-start gap-3"
-                  style={{ color: 'var(--fg)' }}
-                >
-                  <div
-                    className="relative h-[44px] w-[60px] shrink-0 overflow-hidden rounded-[6px]"
-                    style={{ background: 'color-mix(in oklab, var(--fg) 5%, transparent)' }}
-                  >
-                    {n.imageUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={n.imageUrl} alt="" loading="lazy" className="h-full w-full object-cover" />
-                    ) : (
-                      <span className="flex h-full w-full items-center justify-center">
-                        <Newspaper className="h-4 w-4 opacity-25" strokeWidth={1.5} />
-                      </span>
-                    )}
-                  </div>
-                  <div className="min-w-0">
-                    <span
-                      lang="en"
-                      className="block truncate text-[9.5px] font-semibold tracking-[0.1em] uppercase"
-                      style={{ color: 'color-mix(in oklab, var(--fg) 50%, transparent)' }}
-                    >
-                      {n.source.name}
-                    </span>
-                    <h3 className="font-display mt-1 line-clamp-3 text-[12.5px] leading-[1.3] tracking-tight group-hover:underline">
-                      {n.titleTr ?? n.originalTitle}
-                    </h3>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <Link
-            href="/gundem"
-            className="mt-5 inline-flex items-center gap-1.5 text-[12px] font-medium"
-            style={{ color: 'var(--fg)' }}
-          >
-            Tüm gündem
-            <ArrowRight className="h-[11px] w-[11px]" strokeWidth={2.25} />
-          </Link>
-        </div>
-      </aside>
-
+    <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_240px] xl:gap-10">
       <article className="fade-up min-w-0 pt-8 md:pt-12">
       <PostJsonLd
         slug={post.slug}
@@ -184,63 +121,65 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         <span className="truncate" style={{ color: 'var(--fg)' }}>{post.title}</span>
       </nav>
       <header className="mx-auto max-w-[720px]">
-        <div className="flex flex-wrap items-center gap-2.5">
+        <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
           {primaryTag && (
             <Link
               href={`/posts?tag=${primaryTag.slug}`}
-              className="inline-flex items-center gap-1.5 rounded-[4px] border px-2 py-[3px] text-[10px] font-semibold tracking-[0.12em] uppercase transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
-              style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
+              className="inline-flex items-center gap-1 text-[11px] font-semibold tracking-[0.1em] uppercase transition hover:opacity-70"
+              style={{ color: '#DC2626' }}
             >
-              <Hash className="h-[10px] w-[10px] opacity-65" strokeWidth={2} />
               {primaryTag.labelTr}
             </Link>
           )}
-          <NewBadge publishedAt={post.publishedAt} size="sm" />
+          {primaryTag && <span className="opacity-30 text-[11px]">·</span>}
           <p
-            className="text-[11px] font-semibold tracking-[0.12em] uppercase"
+            className="text-[11px] font-medium tracking-[0.04em]"
             style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
           >
             {formatDateCaps(post.publishedAt)}
-            <span className="mx-2 opacity-60">/</span>
+            <span className="mx-1.5 opacity-50">·</span>
             <span>{post.readingMinutes} dk okuma</span>
           </p>
+          <NewBadge publishedAt={post.publishedAt} size="sm" />
         </div>
 
-        <h1 className="font-display mt-5 text-[30px] leading-[1.08] tracking-tight md:text-[40px] lg:text-[46px]">
+        <h1 className="font-display mt-4 text-[26px] leading-[1.08] tracking-tight md:text-[34px] lg:text-[38px]">
           {post.title}
         </h1>
         {post.subtitle && (
           <p
-            className="mt-5 max-w-[62ch] text-[18px] leading-[1.5]"
-            style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
+            className="mt-4 max-w-[62ch] text-[16.5px] font-light leading-[1.6]"
+            style={{
+              fontFamily: 'var(--font-serif)',
+              fontWeight: 300,
+              color: 'color-mix(in oklab, var(--fg) 62%, transparent)',
+            }}
           >
             {post.subtitle}
           </p>
         )}
 
         <div
-          className="mt-7 flex flex-wrap items-center gap-x-3 gap-y-2 text-[13px]"
-          style={{ color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
+          className="mt-6 flex flex-wrap items-center gap-x-2.5 gap-y-2 border-t pt-5 text-[13px]"
+          style={{ borderColor: 'var(--border)', color: 'color-mix(in oklab, var(--fg) 65%, transparent)' }}
         >
           <span
-            className="relative inline-block h-9 w-9 overflow-hidden rounded-[4px]"
+            className="relative inline-block h-8 w-8 overflow-hidden rounded-full"
             style={{ boxShadow: '0 0 0 1px color-mix(in oklab, var(--border) 80%, transparent)' }}
           >
             <Image
               src="/ahmetfurkanbudak.jpeg"
               alt={post.author?.name ?? FALLBACK_AUTHOR}
               fill
-              sizes="36px"
+              sizes="32px"
               className="object-cover"
             />
           </span>
-          <span style={{ color: 'var(--fg)' }}>
+          <span className="font-medium" style={{ color: 'var(--fg)' }}>
             {post.author?.name ?? FALLBACK_AUTHOR}
           </span>
-          <span className="opacity-40">·</span>
-          <span>{formatDateCaps(post.publishedAt)}</span>
           <span
-            className="ml-1 inline-flex items-center gap-0.5"
+            className="ml-auto inline-flex items-center gap-3"
             aria-label="Yazarın sosyal medya hesapları"
           >
             <a
@@ -248,40 +187,40 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               target="_blank"
               rel="noreferrer"
               aria-label="LinkedIn"
-              className="flex h-7 w-7 items-center justify-center rounded-[6px] transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
-              style={{ color: 'color-mix(in oklab, var(--fg) 70%, transparent)' }}
+              className="transition hover:opacity-60"
+              style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
             >
-              <Linkedin className="h-[13px] w-[13px]" strokeWidth={1.75} />
+              <Linkedin className="h-[15px] w-[15px]" strokeWidth={1.75} />
             </a>
             <a
               href="https://www.instagram.com/afbrandworks"
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
-              className="flex h-7 w-7 items-center justify-center rounded-[6px] transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
-              style={{ color: 'color-mix(in oklab, var(--fg) 70%, transparent)' }}
+              className="transition hover:opacity-60"
+              style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
             >
-              <Instagram className="h-[13px] w-[13px]" strokeWidth={1.75} />
+              <Instagram className="h-[15px] w-[15px]" strokeWidth={1.75} />
             </a>
             <a
               href="https://x.com/afurkanbudakcom"
               target="_blank"
               rel="noreferrer"
               aria-label="X (Twitter)"
-              className="flex h-7 w-7 items-center justify-center rounded-[6px] transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
-              style={{ color: 'color-mix(in oklab, var(--fg) 70%, transparent)' }}
+              className="transition hover:opacity-60"
+              style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
             >
-              <Twitter className="h-[13px] w-[13px]" strokeWidth={1.75} />
+              <Twitter className="h-[15px] w-[15px]" strokeWidth={1.75} />
             </a>
             <a
               href="https://www.youtube.com/@ahmetfurkanbudak"
               target="_blank"
               rel="noreferrer"
               aria-label="YouTube"
-              className="flex h-7 w-7 items-center justify-center rounded-[6px] transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
-              style={{ color: 'color-mix(in oklab, var(--fg) 70%, transparent)' }}
+              className="transition hover:opacity-60"
+              style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
             >
-              <Youtube className="h-[13px] w-[13px]" strokeWidth={1.75} />
+              <Youtube className="h-[15px] w-[15px]" strokeWidth={1.75} />
             </a>
           </span>
         </div>
@@ -289,7 +228,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
       {post.coverImageUrl && (
         <div
-          className="relative mx-auto mt-8 w-full max-w-[920px] overflow-hidden rounded-[8px] h-[260px] sm:h-[320px] md:h-[440px] lg:h-[520px]"
+          className="relative mx-auto mt-8 aspect-[16/9] w-full max-w-[920px] overflow-hidden rounded-[8px]"
           style={{ background: 'var(--bg-soft)' }}
         >
           <Image
@@ -304,7 +243,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       )}
 
       <div
-        className="post-body mx-auto mt-10 max-w-[720px] text-[18px] leading-[1.78] md:text-[19px]"
+        className="post-body mx-auto mt-10 max-w-[720px] text-[16.5px] leading-[1.68] md:text-[17.5px]"
         style={{ color: 'var(--fg)' }}
         dangerouslySetInnerHTML={{ __html: renderedHtml }}
       />
@@ -341,7 +280,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           <div className="flex items-end justify-between gap-6">
             <div>
               <p className="eyebrow">Okumaya devam et</p>
-              <h2 className="font-display mt-3 text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
+              <h2 className="font-display mt-3 text-[22px] leading-[1.12] tracking-tight md:text-[27px]">
                 İlgili yazılar
               </h2>
             </div>

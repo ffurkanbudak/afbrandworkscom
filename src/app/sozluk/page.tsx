@@ -288,7 +288,7 @@ export default function SozlukPage() {
           >
             Marka Sözlüğü
           </p>
-          <h1 className="font-display mt-4 text-[40px] leading-[1.05] tracking-tight md:text-[54px]">
+          <h1 className="font-display mt-4 text-[33px] leading-[1.05] tracking-tight md:text-[45px]">
             Markalaşmanın temel kavramları, kısa ve net tanımlarla.
           </h1>
           <p
@@ -377,7 +377,7 @@ export default function SozlukPage() {
           style={{ borderColor: 'var(--border)' }}
         >
           <p className="eyebrow">Rehberler</p>
-          <h2 className="font-display mt-3 text-[26px] leading-[1.15] tracking-tight md:text-[30px]">
+          <h2 className="font-display mt-3 text-[22px] leading-[1.15] tracking-tight md:text-[26px]">
             Daha derin okumalar için
           </h2>
           <ul

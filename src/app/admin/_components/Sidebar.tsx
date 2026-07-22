@@ -13,7 +13,6 @@ import {
   MessageSquare,
   BarChart3,
   UserCircle,
-  Newspaper,
   ArrowLeft,
 } from 'lucide-react';
 
@@ -28,7 +27,6 @@ export function Sidebar({
     sponsorships: number;
     messages: number;
     comments: number;
-    news: number;
   };
 }) {
   const pathname = usePathname();
@@ -46,7 +44,6 @@ export function Sidebar({
       items: [
         { href: '/admin/posts', label: 'Yazılar', icon: FileText },
         { href: '/admin/posts/new', label: 'Yeni Yazı', icon: PenSquare },
-        { href: '/admin/news', label: 'Gündem', icon: Newspaper, badge: counts.news },
         { href: '/admin/broadcast', label: 'Yayın (E-posta)', icon: Send },
       ],
     },

@@ -161,7 +161,7 @@ export default function KitaplarPage() {
           Tüm önerilere dön
         </Link>
         <p className="eyebrow mt-7">Öneriler · Kitaplar</p>
-        <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
+        <h1 className="font-display mt-3 text-[30px] leading-[1.04] tracking-tight md:text-[40px] lg:text-[46px]">
           Okuma listesi.
         </h1>
         <p
@@ -184,7 +184,7 @@ export default function KitaplarPage() {
               >
                 {pad(ci + 1)}
               </span>
-              <h2 className="font-display text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
+              <h2 className="font-display text-[22px] leading-[1.12] tracking-tight md:text-[27px]">
                 {c.category}
               </h2>
             </div>
@@ -236,7 +236,7 @@ export default function KitaplarPage() {
         >
           Not
         </p>
-        <h2 className="font-display mt-2 text-[22px] leading-[1.2] tracking-tight md:text-[26px]">
+        <h2 className="font-display mt-2 text-[19px] leading-[1.2] tracking-tight md:text-[22px]">
           Koleksiyon zamanla genişliyor.
         </h2>
         <p

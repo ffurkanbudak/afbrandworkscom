@@ -83,7 +83,7 @@ export default function KunyePage() {
     <div className="fade-up mx-auto max-w-[860px] pt-10 md:pt-14">
       <header className="max-w-[640px]">
         <p className="eyebrow">Künye</p>
-        <h1 className="font-display mt-4 text-[32px] leading-[1.05] tracking-tight md:text-[44px]">
+        <h1 className="font-display mt-4 text-[27px] leading-[1.05] tracking-tight md:text-[37px]">
           afbrandworks
         </h1>
         <p
@@ -126,7 +126,7 @@ export default function KunyePage() {
 
       <div
         className="mt-12 flex flex-col items-start justify-between gap-4 rounded-[14px] border p-6 sm:flex-row sm:items-center"
-        style={{ borderColor: 'var(--border)', background: 'var(--bg-soft)' }}
+        style={{ borderColor: 'var(--border)', background: '#FFFFFF' }}
       >
         <div>
           <p className="font-display text-[17px] tracking-tight">İletişime geçin</p>

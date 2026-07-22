@@ -89,7 +89,7 @@ export default function FarklilasmaPage() {
           >
             Marka Farklılaşması
           </p>
-          <h1 className="font-display mt-4 text-[40px] leading-[1.05] tracking-tight md:text-[54px]">
+          <h1 className="font-display mt-4 text-[33px] leading-[1.05] tracking-tight md:text-[45px]">
             Farklılaşma, markanın kategoride hangi eksende ayrıştığını seçme cesaretidir.
           </h1>
           <p
@@ -434,7 +434,7 @@ export default function FarklilasmaPage() {
           }}
         >
           <p className="eyebrow">Danışmanlık</p>
-          <h2 className="font-display mt-3 text-[26px] leading-[1.15] tracking-tight md:text-[30px]">
+          <h2 className="font-display mt-3 text-[22px] leading-[1.15] tracking-tight md:text-[26px]">
             Markanızın farklılaşma ekseni ne?
           </h2>
           <p

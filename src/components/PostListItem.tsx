@@ -31,7 +31,7 @@ export function PostListItem({
       style={{ borderBottom: '1px solid var(--border)' }}
     >
       <div
-        className="relative h-[104px] w-[132px] flex-shrink-0 overflow-hidden rounded-[6px] md:h-[120px] md:w-[170px]"
+        className="relative aspect-[16/9] w-[132px] flex-shrink-0 overflow-hidden rounded-[6px] md:w-[170px]"
         style={{ background: 'var(--bg-soft)' }}
       >
         {coverImageUrl ? (
@@ -40,7 +40,7 @@ export function PostListItem({
             alt={coverImageAlt ?? title}
             fill
             sizes="(min-width: 768px) 170px, 132px"
-            className="object-cover transition duration-500 group-hover:scale-[1.04]"
+            className="object-contain transition duration-500 group-hover:scale-[1.04]"
           />
         ) : (
           <div
@@ -67,6 +67,7 @@ export function PostListItem({
         )}
         <h3
           className={`font-display text-[18px] leading-[1.25] transition group-hover:opacity-75 md:text-[20px] ${primaryTag ? 'mt-2.5' : ''}`}
+          style={{ fontWeight: 700 }}
         >
           {title}
         </h3>

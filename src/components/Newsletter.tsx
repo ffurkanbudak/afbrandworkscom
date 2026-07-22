@@ -17,12 +17,15 @@ export function Newsletter({ readerCount = 300 }: { readerCount?: number }) {
           >
             Bülten · {readerCount}+ okuyucu
           </p>
-          <h3 className="mt-4 font-display text-[24px] leading-[1.15] md:text-[30px]">
+          <h3
+            className="mt-4 font-display text-[24px] leading-[1.15] md:text-[30px]"
+            style={{ fontWeight: 800 }}
+          >
             Marka Danışmanından Haftalık 5 Dakikalık Notlar
           </h3>
           <p
-            className="mt-4 text-[15px] leading-[1.6]"
-            style={{ color: 'color-mix(in oklab, var(--bg) 70%, transparent)' }}
+            className="mt-4 text-[15px] leading-[1.6] font-normal"
+            style={{ color: 'color-mix(in oklab, var(--bg) 70%, transparent)', fontWeight: 400 }}
           >
             Geçici akımları geride bırakın, doğrudan büyüme mimarisine odaklanın.
             Marka inşası üzerine yazılar, sektörel gelişmeler, stratejik yöntemler

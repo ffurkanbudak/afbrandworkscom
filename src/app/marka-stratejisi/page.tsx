@@ -85,7 +85,7 @@ export default function MarkaStratejisiPage() {
           >
             Marka Stratejisi
           </p>
-          <h1 className="font-display mt-4 text-[40px] leading-[1.05] tracking-tight md:text-[54px]">
+          <h1 className="font-display mt-4 text-[33px] leading-[1.05] tracking-tight md:text-[45px]">
             Marka stratejisi, gürültünün üzerinde duran uzun vadeli karar zeminidir.
           </h1>
           <p
@@ -322,7 +322,7 @@ export default function MarkaStratejisiPage() {
           style={{ borderColor: 'var(--border)', background: 'var(--bg-soft)' }}
         >
           <p className="eyebrow">Çalışma fırsatı</p>
-          <h2 className="font-display mt-3 text-[26px] leading-[1.15] tracking-tight md:text-[30px]">
+          <h2 className="font-display mt-3 text-[22px] leading-[1.15] tracking-tight md:text-[26px]">
             Markanızın stratejik çerçevesini birlikte kuralım.
           </h2>
           <p

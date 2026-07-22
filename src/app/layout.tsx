@@ -7,7 +7,7 @@ import { SiteJsonLd } from '@/components/SiteJsonLd';
 
 const inter = Inter({
   subsets: ['latin', 'latin-ext'],
-  weight: ['400', '500', '600', '700', '800'],
+  weight: ['300', '400', '500', '600', '700', '800'],
   display: 'swap',
   variable: '--font-inter',
 });

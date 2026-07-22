@@ -6,7 +6,7 @@ export function AuthorBio() {
   return (
     <aside
       className="mx-auto mt-14 max-w-[720px] rounded-[10px] border p-6 md:p-7"
-      style={{ borderColor: 'var(--border)', background: 'var(--bg-soft)' }}
+      style={{ borderColor: 'var(--border)', background: '#FFFFFF' }}
       aria-label="Yazar hakkında"
     >
       <div className="flex items-start gap-4">

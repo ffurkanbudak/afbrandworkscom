@@ -28,7 +28,7 @@ export function ArticleRowCard({
       className="group flex items-center gap-5 transition"
     >
       <div
-        className="relative h-[88px] w-[120px] flex-shrink-0 overflow-hidden rounded-[6px]"
+        className="relative aspect-[16/9] w-[160px] flex-shrink-0 overflow-hidden rounded-[6px]"
         style={{ background: 'var(--bg-soft)' }}
       >
         {coverImageUrl ? (
@@ -36,8 +36,8 @@ export function ArticleRowCard({
             src={coverImageUrl}
             alt={coverImageAlt ?? title}
             fill
-            sizes="120px"
-            className="object-cover transition duration-500 group-hover:scale-[1.05]"
+            sizes="160px"
+            className="object-contain transition duration-500 group-hover:scale-[1.05]"
           />
         ) : (
           <div
@@ -66,7 +66,7 @@ export function ArticleRowCard({
         </div>
         <h3
           className="mt-2 line-clamp-2 font-display text-[16.5px] leading-[1.22] transition group-hover:opacity-75 md:text-[17.5px]"
-          style={{ color: 'var(--fg)' }}
+          style={{ color: 'var(--fg)', fontWeight: 700 }}
         >
           {title}
         </h3>

@@ -24,7 +24,7 @@ export default function EtkinliklerPage() {
           Tüm önerilere dön
         </Link>
         <p className="eyebrow mt-7">Öneriler · Etkinlikler</p>
-        <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
+        <h1 className="font-display mt-3 text-[30px] leading-[1.04] tracking-tight md:text-[40px] lg:text-[46px]">
           Takvimdeki buluşmalar.
         </h1>
         <p
@@ -57,7 +57,7 @@ export default function EtkinliklerPage() {
           >
             Hazırlanıyor
           </p>
-          <h2 className="font-display mt-2 text-[22px] leading-[1.2] tracking-tight md:text-[26px]">
+          <h2 className="font-display mt-2 text-[19px] leading-[1.2] tracking-tight md:text-[22px]">
             Takvim yakında açılıyor.
           </h2>
           <p

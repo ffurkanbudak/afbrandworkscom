@@ -119,7 +119,7 @@ export default async function PostsPage({
       />
       <section className="max-w-[62ch]">
         <p className="eyebrow">Arşiv</p>
-        <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
+        <h1 className="font-display mt-3 text-[30px] leading-[1.04] tracking-tight md:text-[40px] lg:text-[46px]">
           {activeTag ? activeTag.labelTr : 'Tüm yazılar'}
         </h1>
         <p

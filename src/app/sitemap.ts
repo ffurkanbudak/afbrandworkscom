@@ -6,32 +6,20 @@ const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.
 export const revalidate = 3600;
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const [posts, news] = await Promise.all([
-    db.post.findMany({
-      where: { status: 'PUBLISHED' },
-      select: { slug: true, updatedAt: true, publishedAt: true },
-      orderBy: { publishedAt: 'desc' },
-    }),
-    db.newsItem.findMany({
-      where: { status: 'APPROVED' },
-      select: { id: true, approvedAt: true, publishedAt: true },
-      orderBy: { approvedAt: 'desc' },
-      take: 500,
-    }),
-  ]);
+  const posts = await db.post.findMany({
+    where: { status: 'PUBLISHED' },
+    select: { slug: true, updatedAt: true, publishedAt: true },
+    orderBy: { publishedAt: 'desc' },
+  });
 
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${SITE_URL}/`, lastModified: now, changeFrequency: 'daily', priority: 1.0 },
     { url: `${SITE_URL}/posts`, lastModified: now, changeFrequency: 'daily', priority: 0.95 },
-    { url: `${SITE_URL}/gundem`, lastModified: now, changeFrequency: 'hourly', priority: 0.9 },
-    { url: `${SITE_URL}/konular`, lastModified: now, changeFrequency: 'weekly', priority: 0.85 },
     { url: `${SITE_URL}/oneriler`, lastModified: now, changeFrequency: 'weekly', priority: 0.8 },
     { url: `${SITE_URL}/hakkinda`, lastModified: now, changeFrequency: 'monthly', priority: 0.75 },
     { url: `${SITE_URL}/hizmetler`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
-    { url: `${SITE_URL}/videolar`, lastModified: now, changeFrequency: 'weekly', priority: 0.7 },
-    { url: `${SITE_URL}/kose-yazilari`, lastModified: now, changeFrequency: 'monthly', priority: 0.7 },
     { url: `${SITE_URL}/marka-danismanligi`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${SITE_URL}/marka-stratejisi`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
     { url: `${SITE_URL}/marka-yonetimi`, lastModified: now, changeFrequency: 'monthly', priority: 0.9 },
@@ -59,12 +47,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.85,
   }));
 
-  const newsRoutes: MetadataRoute.Sitemap = news.map((n) => ({
-    url: `${SITE_URL}/gundem/${n.id}`,
-    lastModified: n.approvedAt ?? n.publishedAt ?? now,
-    changeFrequency: 'monthly',
-    priority: 0.55,
-  }));
-
-  return [...staticRoutes, ...postRoutes, ...newsRoutes];
+  return [...staticRoutes, ...postRoutes];
 }

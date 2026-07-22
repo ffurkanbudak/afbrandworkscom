@@ -223,7 +223,7 @@ export default function AboutPage() {
             />
           </div>
           <div>
-            <h1 className="font-display text-[28px] leading-[1.05] tracking-tight sm:text-[36px] md:text-[42px]">
+            <h1 className="font-display text-[24px] leading-[1.05] tracking-tight sm:text-[30px] md:text-[36px]">
               Ahmet Furkan Budak
             </h1>
             <p

@@ -1,6 +1,20 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { ArrowRight, ArrowUpRight } from 'lucide-react';
+import {
+  ArrowRight,
+  Check,
+  Compass,
+  Crosshair,
+  Fingerprint,
+  ShieldCheck,
+  Building2,
+  Megaphone,
+  Smartphone,
+  Activity,
+  Sparkles,
+  RefreshCw,
+  type LucideIcon,
+} from 'lucide-react';
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
 
@@ -28,56 +42,76 @@ export const metadata: Metadata = {
   },
 };
 
-const SERVICES: { title: string; desc: string; href: string }[] = [
+const SERVICES: { title: string; desc: string; href: string; icon: LucideIcon; points: string[] }[] = [
   {
     title: 'Marka Stratejisi',
     desc: 'Konumlandırma, farklılaşma ekseni, değer önerisi ve büyüme yönünü tanımlayan stratejik çerçeve.',
     href: '/marka-stratejisi',
+    icon: Compass,
+    points: ['Konumlandırma ve farklılaşma ekseni', 'Değer önerisi çerçevesi', 'Büyüme yönü ve önceliklendirme'],
   },
   {
     title: 'Marka Konumlandırma',
     desc: 'Kategorideki rekabet haritası, hedef kitle ve farklılaşma ekseniyle net bir konum cümlesi.',
     href: '/konumlandirma',
+    icon: Crosshair,
+    points: ['Kategori rekabet haritası', 'Hedef kitle tanımı', 'Net konum cümlesi'],
   },
   {
     title: 'Marka Kimliği ve İsimlendirme',
     desc: 'İsim, ses tonu, görsel sistem ve mesaj çerçevelerinin bütünlüklü kurgusu.',
     href: '/marka-kimligi',
+    icon: Fingerprint,
+    points: ['İsim ve ses tonu geliştirme', 'Görsel sistem çerçevesi', 'Mesaj mimarisi'],
   },
   {
     title: 'Marka Yönetimi',
     desc: 'Büyüme, değişim ve kriz dönemlerinde marka kimliğinin korunması ve günlük disiplin.',
     href: '/marka-yonetimi',
+    icon: ShieldCheck,
+    points: ['Günlük marka disiplini', 'Değişim ve kriz yönetimi', 'Tutarlılık denetimi'],
   },
   {
     title: 'Marka Mimarisi',
     desc: 'Branded House, House of Brands ve hibrit modeller arasında doğru yapının kurulması.',
     href: '/marka-mimarisi',
+    icon: Building2,
+    points: ['Branded House / House of Brands analizi', 'Portföy yapılandırması', 'Hibrit model tasarımı'],
   },
   {
     title: 'Pazarlama İletişimi',
     desc: 'Bütünleşik pazarlama iletişimi: kanal stratejisi, mesaj hiyerarşisi ve ölçüm çerçevesi.',
     href: '/pazarlama-iletisimi',
+    icon: Megaphone,
+    points: ['Kanal stratejisi', 'Mesaj hiyerarşisi', 'Ölçüm ve performans çerçevesi'],
   },
   {
     title: 'Dijital Markalaşma',
     desc: 'Dijital kanalların marka stratejisinin tutarlı bir yansımasına dönüşmesi.',
     href: '/dijital-markalasma',
+    icon: Smartphone,
+    points: ['Dijital kanal tutarlılığı', 'İçerik ve ses tonu uyarlaması', 'Deneyim haritalaması'],
   },
   {
     title: 'Marka Sağlığı ve Analiz',
     desc: 'Marka sağlık taraması, temel metrikler ve iyileştirme haritası.',
     href: '/marka-sagligi',
+    icon: Activity,
+    points: ['Marka sağlık taraması', 'Temel metrik analizi', 'İyileştirme yol haritası'],
   },
   {
     title: 'Marka Farklılaşması',
     desc: 'Farklılaşma eksenleri, kanıt stratejisi ve sürdürülebilir ayrışma.',
     href: '/farklilasma',
+    icon: Sparkles,
+    points: ['Farklılaşma ekseni tespiti', 'Kanıt stratejisi', 'Sürdürülebilir ayrışma planı'],
   },
   {
     title: 'Marka Yenilemesi (Rebranding)',
     desc: 'Yeniden konumlandırma kararı, süreç adımları ve risk yönetimi.',
     href: '/marka-yenilemesi',
+    icon: RefreshCw,
+    points: ['Yeniden konumlandırma kararı', 'Süreç adımları', 'Risk yönetimi'],
   },
 ];
 
@@ -132,7 +166,7 @@ export default function HizmetlerPage() {
 
       <header className="max-w-[720px]">
         <p className="eyebrow">Hizmetler</p>
-        <h1 className="font-display mt-3 text-[34px] leading-[1.05] tracking-tight md:text-[46px]">
+        <h1 className="font-display mt-3 text-[28px] leading-[1.05] tracking-tight md:text-[38px]">
           Stratejik Marka Danışmanlığı
         </h1>
         <p
@@ -145,34 +179,58 @@ export default function HizmetlerPage() {
         </p>
       </header>
 
-      <ul className="mt-12 grid gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-        {SERVICES.map((s) => (
-          <li key={s.href} className="group border-t pt-5" style={{ borderColor: 'var(--border)' }}>
-            <Link href={s.href} className="block" style={{ color: 'var(--fg)' }}>
-              <h2 className="font-display text-[19px] leading-[1.25] tracking-tight group-hover:underline">
-                {s.title}
-              </h2>
-              <p
-                className="mt-2.5 text-[14.5px] leading-[1.6]"
-                style={{ color: 'color-mix(in oklab, var(--fg) 64%, transparent)' }}
-              >
-                {s.desc}
-              </p>
-              <span
-                className="mt-3 inline-flex items-center gap-1.5 text-[13px] font-medium"
-                style={{ color: 'var(--fg)' }}
-              >
-                Detaylı rehber
-                <ArrowUpRight className="h-[13px] w-[13px] transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5" strokeWidth={2} />
-              </span>
-            </Link>
-          </li>
-        ))}
+      <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {SERVICES.map((s) => {
+          const Icon = s.icon;
+          return (
+            <li
+              key={s.href}
+              className="group h-full rounded-2xl border p-7"
+              style={{ borderColor: 'var(--border)' }}
+            >
+              <Link href={s.href} className="flex h-full flex-col" style={{ color: 'var(--fg)' }}>
+                <div
+                  className="flex h-12 w-12 items-center justify-center rounded-xl border"
+                  style={{ background: '#FFFFFF', borderColor: 'var(--border)' }}
+                >
+                  <Icon className="h-[22px] w-[22px]" style={{ color: '#DC2626' }} strokeWidth={1.75} />
+                </div>
+
+                <h2
+                  className="font-display mt-5 text-[19px] leading-[1.25] tracking-tight group-hover:underline"
+                  style={{ fontWeight: 700 }}
+                >
+                  {s.title}
+                </h2>
+                <p
+                  className="mt-2.5 text-[14.5px] leading-[1.6]"
+                  style={{ color: 'color-mix(in oklab, var(--fg) 64%, transparent)' }}
+                >
+                  {s.desc}
+                </p>
+
+                <ul className="mt-5 flex-1 space-y-2">
+                  {s.points.map((point) => (
+                    <li key={point} className="flex items-start gap-2">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0" style={{ color: '#DC2626' }} strokeWidth={2.25} />
+                      <span
+                        className="text-[13.5px] leading-[1.5]"
+                        style={{ color: 'color-mix(in oklab, var(--fg) 78%, transparent)' }}
+                      >
+                        {point}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </Link>
+            </li>
+          );
+        })}
       </ul>
 
       <div
         className="mt-16 flex flex-col items-start justify-between gap-4 rounded-[14px] border p-7 sm:flex-row sm:items-center"
-        style={{ borderColor: 'var(--border)', background: 'var(--bg-soft)' }}
+        style={{ borderColor: 'var(--border)', background: '#FFFFFF' }}
       >
         <div>
           <p className="font-display text-[20px] tracking-tight">Bir danışmanlık mı planlıyorsunuz?</p>

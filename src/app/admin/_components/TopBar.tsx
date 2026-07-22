@@ -15,7 +15,6 @@ export function TopBar({
     sponsorships: number;
     messages: number;
     comments: number;
-    news: number;
   };
 }) {
   return (

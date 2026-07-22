@@ -27,7 +27,7 @@ export function FeaturedCard({
   return (
     <Link href={`/posts/${slug}`} className="group block">
       <div
-        className="relative aspect-[4/3] w-full overflow-hidden rounded-[8px]"
+        className="relative aspect-[16/9] w-full overflow-hidden rounded-[8px]"
         style={{ background: 'var(--bg-soft)' }}
       >
         {coverImageUrl ? (
@@ -36,7 +36,7 @@ export function FeaturedCard({
             alt={coverImageAlt ?? title}
             fill
             sizes="(min-width: 1024px) 340px, 50vw"
-            className="object-cover transition duration-500 group-hover:scale-[1.03]"
+            className="object-contain transition duration-500 group-hover:scale-[1.03]"
           />
         ) : (
           <div
@@ -63,6 +63,7 @@ export function FeaturedCard({
         )}
         <h3
           className={`font-display text-[17px] leading-[1.25] transition group-hover:opacity-75 ${primaryTag ? 'mt-2.5' : ''}`}
+          style={{ fontWeight: 700 }}
         >
           {title}
         </h3>

@@ -111,7 +111,7 @@ export default function OnerilerPage() {
       />
       <section className="max-w-[780px]">
         <p className="eyebrow">Öneriler</p>
-        <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
+        <h1 className="font-display mt-3 text-[30px] leading-[1.04] tracking-tight md:text-[40px] lg:text-[46px]">
           Düşünceyi besleyen seçki.
         </h1>
         <p
@@ -163,7 +163,7 @@ export default function OnerilerPage() {
                 >
                   {s.meta}
                 </p>
-                <h2 className="font-display mt-2 text-[26px] leading-[1.12] tracking-tight md:text-[30px]">
+                <h2 className="font-display mt-2 text-[22px] leading-[1.12] tracking-tight md:text-[26px]">
                   {s.title}
                 </h2>
                 <p

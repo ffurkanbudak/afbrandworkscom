@@ -35,8 +35,6 @@ type NavItem = NavLeaf | NavBranch;
 const NAV: NavItem[] = [
   { href: '/', label: 'Ana Sayfa', match: (p) => p === '/' },
   { href: '/posts', label: 'Yazılar', match: (p) => p.startsWith('/posts') },
-  { href: '/gundem', label: 'Gündem', match: (p) => p.startsWith('/gundem') },
-  { href: '/konular', label: 'Konular', match: (p) => p.startsWith('/konular') },
   {
     label: 'Öneriler',
     match: (p) => p.startsWith('/oneriler'),
@@ -171,24 +169,6 @@ export function Header() {
                 />
               </span>
               Abone Ol
-            </Link>
-
-            <Link
-              href="/iletisim?konu=sponsor"
-              className="hidden items-center gap-1.5 rounded-[6px] px-3 py-1.5 text-[12px] font-medium tracking-tight transition hover:opacity-90 md:inline-flex"
-              style={{ background: '#DC2204', color: '#FFFFFF' }}
-            >
-              <span className="relative flex h-[6px] w-[6px]" aria-hidden>
-                <span
-                  className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70"
-                  style={{ background: '#FFFFFF' }}
-                />
-                <span
-                  className="relative inline-flex h-[6px] w-[6px] rounded-full"
-                  style={{ background: '#FFFFFF' }}
-                />
-              </span>
-              Partner olun!
             </Link>
 
             <button

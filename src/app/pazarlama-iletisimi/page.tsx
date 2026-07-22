@@ -90,7 +90,7 @@ export default function PazarlamaIletisimiPage() {
           >
             Pazarlama İletişimi
           </p>
-          <h1 className="font-display mt-4 text-[40px] leading-[1.05] tracking-tight md:text-[54px]">
+          <h1 className="font-display mt-4 text-[33px] leading-[1.05] tracking-tight md:text-[45px]">
             Pazarlama iletişimi, markanın sahadaki sesidir; tüm kanalların aynı şarkıyı söylemesidir.
           </h1>
           <p
@@ -432,7 +432,7 @@ export default function PazarlamaIletisimiPage() {
           }}
         >
           <p className="eyebrow">Danışmanlık</p>
-          <h2 className="font-display mt-3 text-[26px] leading-[1.15] tracking-tight md:text-[30px]">
+          <h2 className="font-display mt-3 text-[22px] leading-[1.15] tracking-tight md:text-[26px]">
             Kanallarınız aynı şarkıyı söylüyor mu?
           </h2>
           <p

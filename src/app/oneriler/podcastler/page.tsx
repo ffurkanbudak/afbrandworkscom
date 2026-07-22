@@ -50,7 +50,7 @@ export default function PodcastlerPage() {
           Tüm önerilere dön
         </Link>
         <p className="eyebrow mt-7">Öneriler · Podcastler</p>
-        <h1 className="font-display mt-3 text-[36px] leading-[1.04] tracking-tight md:text-[48px] lg:text-[56px]">
+        <h1 className="font-display mt-3 text-[30px] leading-[1.04] tracking-tight md:text-[40px] lg:text-[46px]">
           Dinlenesi sohbetler.
         </h1>
         <p
@@ -67,7 +67,7 @@ export default function PodcastlerPage() {
         <div className="flex items-end justify-between gap-6">
           <div>
             <p className="eyebrow">Takip Edilecek Seriler</p>
-            <h2 className="font-display mt-3 text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
+            <h2 className="font-display mt-3 text-[22px] leading-[1.12] tracking-tight md:text-[27px]">
               Tek başına okuma listesi kuran yayınlar
             </h2>
           </div>
@@ -94,7 +94,7 @@ export default function PodcastlerPage() {
         <div className="flex items-end justify-between gap-6">
           <div>
             <p className="eyebrow">Seçili Bölümler</p>
-            <h2 className="font-display mt-3 text-[26px] leading-[1.12] tracking-tight md:text-[32px]">
+            <h2 className="font-display mt-3 text-[22px] leading-[1.12] tracking-tight md:text-[27px]">
               Önerilen kayıtlar
             </h2>
             <p

@@ -6,15 +6,12 @@ import { TopBar } from './_components/TopBar';
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const admin = await requireAdmin();
 
-  const [applications, sponsorships, messages, postComments, newsComments, news] = await Promise.all([
+  const [applications, sponsorships, messages, comments] = await Promise.all([
     db.writerApplication.count({ where: { status: 'PENDING' } }),
     db.sponsorshipRequest.count({ where: { status: 'PENDING' } }),
     db.contactMessage.count({ where: { status: 'UNREAD' } }),
     db.postComment.count({ where: { status: 'PENDING' } }),
-    db.newsComment.count({ where: { status: 'PENDING' } }),
-    db.newsItem.count({ where: { status: { in: ['DRAFT', 'PENDING_REVIEW'] } } }),
   ]);
-  const comments = postComments + newsComments;
 
   return (
     <div
@@ -25,7 +22,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         className="hidden md:block"
         style={{ borderRight: '1px solid var(--border)' }}
       >
-        <Sidebar counts={{ applications, sponsorships, messages, comments, news }} />
+        <Sidebar counts={{ applications, sponsorships, messages, comments }} />
       </div>
       <div className="flex min-w-0 flex-col">
         <TopBar
@@ -36,8 +33,8 @@ export default async function AdminLayout({ children }: { children: React.ReactN
             title: admin.title,
             role: admin.role,
           }}
-          inboxCount={applications + sponsorships + messages + comments + news}
-          counts={{ applications, sponsorships, messages, comments, news }}
+          inboxCount={applications + sponsorships + messages + comments}
+          counts={{ applications, sponsorships, messages, comments }}
         />
         <main className="min-w-0 flex-1 px-6 py-10 md:px-10 md:py-12">
           <div className="mx-auto w-full max-w-[1180px]">{children}</div>

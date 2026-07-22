@@ -9,7 +9,6 @@ import { TIER_LABEL } from '../_lib/tier';
 import { CommentRowActions } from './CommentRowActions';
 
 type Status = 'PENDING' | 'APPROVED' | 'HIDDEN';
-type Kind = 'post' | 'news';
 
 type Subscriber = {
   id: string;
@@ -25,7 +24,7 @@ type Row = {
   body: string;
   status: Status;
   createdAt: Date;
-  kind: Kind;
+  kind: 'post';
   target: { href: string; label: string } | null;
   subscriber: Subscriber;
 };
@@ -35,10 +34,7 @@ const subscriberSelect = {
 };
 
 export default async function AdminCommentsPage() {
-  const [
-    postPending, postApproved, postHidden,
-    newsPending, newsApproved, newsHidden,
-  ] = await Promise.all([
+  const [postPending, postApproved, postHidden] = await Promise.all([
     db.postComment.findMany({
       where: { status: 'PENDING' },
       orderBy: { createdAt: 'desc' },
@@ -55,23 +51,6 @@ export default async function AdminCommentsPage() {
       orderBy: { createdAt: 'desc' },
       take: 30,
       include: { post: { select: { slug: true, title: true } }, subscriber: subscriberSelect },
-    }),
-    db.newsComment.findMany({
-      where: { status: 'PENDING' },
-      orderBy: { createdAt: 'desc' },
-      include: { newsItem: { select: { id: true, titleTr: true, originalTitle: true } }, subscriber: subscriberSelect },
-    }),
-    db.newsComment.findMany({
-      where: { status: 'APPROVED' },
-      orderBy: { createdAt: 'desc' },
-      take: 50,
-      include: { newsItem: { select: { id: true, titleTr: true, originalTitle: true } }, subscriber: subscriberSelect },
-    }),
-    db.newsComment.findMany({
-      where: { status: 'HIDDEN' },
-      orderBy: { createdAt: 'desc' },
-      take: 30,
-      include: { newsItem: { select: { id: true, titleTr: true, originalTitle: true } }, subscriber: subscriberSelect },
     }),
   ]);
 
@@ -84,34 +63,17 @@ export default async function AdminCommentsPage() {
     target: c.post ? { href: `/posts/${c.post.slug}`, label: c.post.title } : null,
     subscriber: c.subscriber,
   });
-  const mapNews = (c: typeof newsPending[number]): Row => ({
-    id: c.id,
-    body: c.body,
-    status: c.status,
-    createdAt: c.createdAt,
-    kind: 'news',
-    target: c.newsItem
-      ? { href: `/gundem/${c.newsItem.id}`, label: c.newsItem.titleTr ?? c.newsItem.originalTitle }
-      : null,
-    subscriber: c.subscriber,
-  });
 
-  const pending = [...postPending.map(mapPost), ...newsPending.map(mapNews)].sort(
-    (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
-  );
-  const approved = [...postApproved.map(mapPost), ...newsApproved.map(mapNews)].sort(
-    (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
-  );
-  const hidden = [...postHidden.map(mapPost), ...newsHidden.map(mapNews)].sort(
-    (a, b) => b.createdAt.getTime() - a.createdAt.getTime()
-  );
+  const pending = postPending.map(mapPost);
+  const approved = postApproved.map(mapPost);
+  const hidden = postHidden.map(mapPost);
 
   return (
     <div className="space-y-10">
       <PageHeader
         eyebrow="Topluluk"
         title="Yorumlar"
-        description="Yazılar ve haberler altındaki yorumları incele, onayla veya gizle."
+        description="Yazılar altındaki yorumları incele, onayla veya gizle."
       />
       <Bucket title="Onay bekleyenler" hint="İlk izlenim sende." items={pending} />
       <Bucket title="Yayında" hint="Onaylanmış yorumlar." items={approved} />
@@ -168,15 +130,6 @@ function CommentCard({ c }: { c: Row }) {
               {c.subscriber?.email ?? '·'}
             </span>
             <Pill tone={statusTone(c.status)}>{STATUS_LABEL[c.status] ?? c.status}</Pill>
-            <span
-              className="rounded-[4px] border px-1.5 py-[1px] text-[9.5px] font-semibold tracking-[0.12em] uppercase"
-              style={{
-                borderColor: 'color-mix(in oklab, var(--fg) 20%, transparent)',
-                color: 'color-mix(in oklab, var(--fg) 55%, transparent)',
-              }}
-            >
-              {c.kind === 'news' ? 'Gündem' : 'Yazı'}
-            </span>
           </div>
           {c.target && (
             <p

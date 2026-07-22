@@ -37,7 +37,7 @@ export function HeroArticle({
         className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-8 lg:gap-10"
       >
         <div
-          className="relative overflow-hidden rounded-[6px] md:col-span-7 lg:col-span-7 h-[220px] sm:h-[260px] md:h-[320px] lg:h-[360px]"
+          className="relative aspect-[16/9] overflow-hidden rounded-[6px] md:col-span-7 lg:col-span-7"
           style={{ background: 'var(--bg-soft)' }}
         >
           {coverImageUrl ? (
@@ -46,7 +46,7 @@ export function HeroArticle({
               alt={coverImageAlt ?? title}
               fill
               sizes="(min-width: 1024px) 720px, (min-width: 768px) 60vw, 100vw"
-              className="object-cover transition duration-700 group-hover:scale-[1.02]"
+              className="object-contain transition duration-700 group-hover:scale-[1.02]"
               priority
             />
           ) : (
@@ -91,7 +91,7 @@ export function HeroArticle({
 
           <h2
             className="font-display mt-4 text-[24px] leading-[1.12] tracking-tight transition group-hover:opacity-80 md:mt-5 md:text-[28px] lg:text-[34px]"
-            style={{ color: 'var(--fg)' }}
+            style={{ color: 'var(--fg)', fontWeight: 700 }}
           >
             {title}
           </h2>
