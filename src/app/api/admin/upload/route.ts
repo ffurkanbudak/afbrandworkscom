@@ -45,7 +45,6 @@ export async function POST(req: Request) {
 
     // Production (Vercel): BLOB_READ_WRITE_TOKEN varsa kalıcı Blob depolama kullan.
     if (process.env.BLOB_READ_WRITE_TOKEN) {
-      // @ts-expect-error — opsiyonel bağımlılık; production için `npm i @vercel/blob`
       const { put } = await import('@vercel/blob');
       const blob = await put(`posts/${name}`, data, {
         access: 'public',
