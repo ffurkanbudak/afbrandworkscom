@@ -123,6 +123,10 @@ export const metadata: Metadata = {
       'msvalidate.01': process.env.BING_SITE_VERIFICATION ?? '',
     },
   },
+  // Facebook Insights için opsiyonel; tanımlıysa fb:app_id etiketi eklenir.
+  ...(process.env.NEXT_PUBLIC_FB_APP_ID
+    ? { other: { 'fb:app_id': process.env.NEXT_PUBLIC_FB_APP_ID } }
+    : {}),
 };
 
 export const viewport: Viewport = {
