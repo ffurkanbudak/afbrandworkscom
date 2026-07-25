@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     template: '%s · Ahmet Furkan Budak',
   },
   description:
-    'Stratejik marka danışmanı Ahmet Furkan Budak. Konumlandırma, marka kimliği ve sürdürülebilir büyüme üzerine günlük yazılar; küresel marka haberleri.',
+    "Türkiye'nin stratejik marka danışmanı ve Toganworks Stratejik Marka Danışmanlığı Ofisi kurucusu Ahmet Furkan Budak'ın resmi kişisel web sitesi. Markalaşma, marka yönetimi, pazarlama, kurumsal iletişim ve iş dünyasına yönelik stratejik analizler ile özgün içerikler.",
   applicationName: 'Ahmet Furkan Budak',
   authors: [{ name: 'Ahmet Furkan Budak', url: SITE_URL }],
   creator: 'Ahmet Furkan Budak',
@@ -61,15 +61,31 @@ export const metadata: Metadata = {
     locale: 'tr_TR',
     url: SITE_URL,
     siteName: 'Afbrandworks',
-    title: 'Afbrandworks · Markalaşma Günlüğü',
+    title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
     description:
-      "Ahmet Furkan Budak'ın kişisel web sitesi. Markalaşma üzerine günlük yazılar, vaka analizleri ve küresel marka haberleri.",
+      "Türkiye'nin stratejik marka danışmanı ve Toganworks Stratejik Marka Danışmanlığı Ofisi kurucusu Ahmet Furkan Budak'ın resmi kişisel web sitesi. Markalaşma, marka yönetimi, pazarlama, kurumsal iletişim ve iş dünyasına yönelik stratejik analizler ile özgün içerikler.",
+    images: [
+      {
+        url: '/afbn.png',
+        width: 1200,
+        height: 630,
+        alt: 'Ahmet Furkan Budak',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Afbrandworks · Markalaşma Günlüğü',
+    title: 'Ahmet Furkan Budak · Stratejik Marka Danışmanı',
     description:
-      "Ahmet Furkan Budak'ın kişisel web sitesi. Markalaşma üzerine günlük yazılar, vaka analizleri ve küresel marka haberleri.",
+      "Türkiye'nin stratejik marka danışmanı ve Toganworks Stratejik Marka Danışmanlığı Ofisi kurucusu Ahmet Furkan Budak'ın resmi kişisel web sitesi. Markalaşma, marka yönetimi, pazarlama, kurumsal iletişim ve iş dünyasına yönelik stratejik analizler ile özgün içerikler.",
+    images: [
+      {
+        url: '/afbn.png',
+        width: 1200,
+        height: 630,
+        alt: 'Ahmet Furkan Budak',
+      },
+    ],
     creator: '@afurkanbudak',
   },
   robots: {
