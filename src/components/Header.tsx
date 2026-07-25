@@ -35,6 +35,7 @@ type NavItem = NavLeaf | NavBranch;
 const NAV: NavItem[] = [
   { href: '/', label: 'Ana Sayfa', match: (p) => p === '/' },
   { href: '/posts', label: 'Yazılar', match: (p) => p.startsWith('/posts') },
+  { href: '/1-1', label: 'Marka Masası', match: (p) => p.startsWith('/1-1') },
   {
     label: 'Öneriler',
     match: (p) => p.startsWith('/oneriler'),
@@ -155,8 +156,25 @@ export function Header() {
             </div>
 
             <Link
+              href="/1-1"
+              className="btn-ghost hidden items-center gap-2 whitespace-nowrap rounded-[6px] px-3 py-1.5 text-[12px] font-medium tracking-tight sm:inline-flex"
+            >
+              <span className="relative flex h-[6px] w-[6px]" aria-hidden>
+                <span
+                  className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70"
+                  style={{ background: '#DC2626' }}
+                />
+                <span
+                  className="relative inline-flex h-[6px] w-[6px] rounded-full"
+                  style={{ background: '#DC2626' }}
+                />
+              </span>
+              Marka Masası
+            </Link>
+
+            <Link
               href="/#bulten"
-              className="btn-dark group inline-flex items-center gap-2 rounded-[6px] px-3 py-1.5 text-[12px] font-medium tracking-tight"
+              className="btn-dark group inline-flex items-center gap-2 whitespace-nowrap rounded-[6px] px-3 py-1.5 text-[12px] font-medium tracking-tight"
             >
               <span className="relative flex h-[6px] w-[6px]" aria-hidden>
                 <span
@@ -168,7 +186,7 @@ export function Header() {
                   style={{ background: '#22C55E' }}
                 />
               </span>
-              Abone Ol
+              Bültene Kaydolun!
             </Link>
 
             <button
@@ -264,7 +282,7 @@ export function Header() {
                   <div key={item.label}>
                     <button
                       onClick={() => setMobileDropOpen((v) => !v)}
-                      className="flex w-full items-center justify-between rounded-[8px] px-3 py-3 text-[17px] font-medium tracking-tight transition"
+                      className="flex w-full items-center justify-between rounded-[8px] px-3 py-3 text-[15px] font-medium tracking-tight transition"
                       style={{
                         color: active
                           ? 'var(--fg)'
@@ -308,7 +326,7 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
-                  className="group flex items-center justify-between rounded-[8px] px-3 py-3 text-[17px] font-medium tracking-tight transition"
+                  className="group flex items-center justify-between rounded-[8px] px-3 py-3 text-[15px] font-medium tracking-tight transition"
                   style={{
                     color: active
                       ? 'var(--fg)'
@@ -337,7 +355,7 @@ export function Header() {
               onClick={() => setOpen(false)}
               className="btn-dark flex w-full items-center justify-center rounded-[6px] px-3 py-2.5 text-center text-[13px] font-medium"
             >
-              Abone Ol
+              Bültene Kaydolun!
             </Link>
           </div>
 

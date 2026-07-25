@@ -56,7 +56,7 @@ export function PostListItem({
       <div className="min-w-0 flex-1 pt-0.5">
         {primaryTag && (
           <span
-            className="inline-flex items-center rounded-[4px] border px-2 py-[3px] text-[10px] font-semibold tracking-[0.12em] uppercase"
+            className="inline-flex items-center whitespace-nowrap rounded-[4px] border px-2 py-[3px] text-[9px] font-semibold tracking-[0.1em] uppercase"
             style={{
               borderColor: 'var(--border)',
               color: 'color-mix(in oklab, var(--fg) 78%, transparent)',
@@ -78,7 +78,7 @@ export function PostListItem({
           {excerpt}
         </p>
         <p
-          className="mt-3 flex flex-wrap items-center gap-x-2 text-[11px] font-medium tracking-[0.04em]"
+          className="mt-3 flex flex-wrap items-center gap-x-2 text-[11px] font-medium tracking-[0.01em]"
           style={{ color: 'color-mix(in oklab, var(--fg) 52%, transparent)' }}
         >
           {authorName && <span>{authorName}</span>}

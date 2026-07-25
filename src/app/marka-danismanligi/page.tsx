@@ -345,7 +345,7 @@ export default function MarkaDanismanligiPage() {
 
         <section
           className="mt-20 rounded-[14px] border p-7 md:p-10"
-          style={{ borderColor: 'var(--border)', background: 'var(--bg-soft)' }}
+          style={{ borderColor: 'var(--border)', background: 'var(--bg)' }}
         >
           <p className="eyebrow">İletişim</p>
           <h2 className="font-display mt-3 text-[22px] leading-[1.15] tracking-tight md:text-[26px]">
@@ -368,11 +368,18 @@ export default function MarkaDanismanligiPage() {
               <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
             </Link>
             <Link
-              href="/uyelik"
-              className="inline-flex items-center gap-2 rounded-[8px] border px-5 py-3 text-[13.5px] font-medium"
+              href="/1-1"
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-[8px] border px-5 py-3 text-[13.5px] font-medium"
               style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
             >
-              Üyelik paketlerini inceleyin
+              Marka Masası
+            </Link>
+            <Link
+              href="/#bulten"
+              className="inline-flex items-center gap-2 whitespace-nowrap rounded-[8px] border px-5 py-3 text-[13.5px] font-medium"
+              style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
+            >
+              Bültene Kaydolun!
             </Link>
           </div>
         </section>

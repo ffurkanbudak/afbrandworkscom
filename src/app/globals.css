@@ -385,3 +385,13 @@ html[data-theme='dark'] .logo-works { fill: #f2f2f2; }
     .news-ticker-track { animation-duration: 110s; }
   }
 }
+
+/* GlareHover: hover'da köşeden köşeye parlama süpürmesi */
+.glare-sheen {
+  background: linear-gradient(100deg, transparent 35%, var(--glare-color, rgba(255,255,255,.3)) 50%, transparent 65%);
+  transform: translateX(-130%);
+  transition: transform var(--glare-duration, 700ms) ease;
+}
+.glare-hover:hover .glare-sheen {
+  transform: translateX(130%);
+}

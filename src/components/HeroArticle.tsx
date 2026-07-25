@@ -65,7 +65,7 @@ export function HeroArticle({
           <div className="flex flex-wrap items-center gap-2">
             {primaryTag && (
               <span
-                className="inline-flex items-center rounded-[4px] border px-2 py-[3px] text-[10px] font-semibold tracking-[0.12em] uppercase"
+                className="inline-flex items-center whitespace-nowrap rounded-[4px] border px-2 py-[3px] text-[9px] font-semibold tracking-[0.1em] uppercase"
                 style={{
                   borderColor: 'var(--border)',
                   color: 'color-mix(in oklab, var(--fg) 78%, transparent)',
@@ -110,7 +110,7 @@ export function HeroArticle({
             style={{ borderColor: 'var(--border)' }}
           >
             <p
-              className="text-[11px] font-medium tracking-[0.06em] uppercase"
+              className="text-[11px] font-medium tracking-[0.01em]"
               style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
             >
               {authorName}

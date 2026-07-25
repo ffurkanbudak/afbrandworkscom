@@ -5,7 +5,6 @@ import { Logo } from './Logo';
 
 const EXPLORE: [string, string][] = [
   ['Ana Sayfa', '/'],
-  ['Hizmetler', '/hizmetler'],
   ['Yazılar', '/posts'],
   ['Öneriler', '/oneriler'],
   ['Hakkımda', '/hakkinda'],

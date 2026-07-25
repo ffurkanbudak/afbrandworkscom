@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { SiteChrome } from '@/components/SiteChrome';
 import { ThemeProvider } from '@/components/ThemeProvider';
+import { SmoothCursor } from '@/components/ui/smooth-cursor';
 import { SiteJsonLd } from '@/components/SiteJsonLd';
 
 const inter = Inter({
@@ -126,6 +127,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body>
         <ThemeProvider>
+          <SmoothCursor />
           <SiteChrome>{children}</SiteChrome>
         </ThemeProvider>
       </body>

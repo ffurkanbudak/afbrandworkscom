@@ -324,22 +324,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               <li key={p.id}>
                 <Link
                   href={`/posts/${p.slug}`}
-                  className="group flex items-start gap-3"
+                  className="group block"
                   style={{ color: 'var(--fg)' }}
                 >
-                  <div
-                    className="relative h-[44px] w-[44px] shrink-0 overflow-hidden rounded-[6px]"
-                    style={{ background: 'color-mix(in oklab, var(--fg) 5%, transparent)' }}
-                  >
-                    {p.coverImageUrl ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img src={p.coverImageUrl} alt="" loading="lazy" className="h-full w-full object-cover" />
-                    ) : (
-                      <span className="flex h-full w-full items-center justify-center text-[9px] font-semibold opacity-30">
-                        AFB
-                      </span>
-                    )}
-                  </div>
                   <div className="min-w-0">
                     <span
                       className="block text-[9.5px] font-semibold tracking-[0.1em] uppercase"
