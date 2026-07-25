@@ -1,7 +1,17 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { auth } from '@/lib/admin-auth';
 import { db } from '@/lib/db';
 import { pingIndexNow, postUrl } from '@/lib/indexnow';
+
+/** Yazı değişince statik sayfaları tazele; aksi hâlde site yeni deploy'a kadar eski hâlini gösterir. */
+function refreshPostPages(...slugs: (string | null | undefined)[]) {
+  revalidatePath('/');
+  revalidatePath('/posts');
+  for (const slug of slugs) {
+    if (slug) revalidatePath(`/posts/${slug}`);
+  }
+}
 
 async function requireAdmin() {
   const { userId } = await auth();
@@ -84,6 +94,8 @@ export async function PATCH(req: Request, ctx: { params: Promise<{ id: string }>
     },
   });
 
+  refreshPostPages(post.slug, existing.slug);
+
   const urlsToPing: string[] = [];
   if (post.status === 'PUBLISHED') {
     urlsToPing.push(postUrl(post.slug));
@@ -100,6 +112,7 @@ export async function DELETE(_req: Request, ctx: { params: Promise<{ id: string 
   const guard = await requireAdmin();
   if ('error' in guard) return NextResponse.json({ error: guard.error }, { status: guard.status });
   const { id } = await ctx.params;
-  await db.post.delete({ where: { id } });
+  const deleted = await db.post.delete({ where: { id } });
+  refreshPostPages(deleted.slug);
   return NextResponse.json({ ok: true });
 }

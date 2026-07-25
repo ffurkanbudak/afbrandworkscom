@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { auth } from '@/lib/admin-auth';
 import { db } from '@/lib/db';
 import { triggerPostBroadcast } from '@/server/broadcast';
@@ -55,6 +56,10 @@ export async function POST(req: Request) {
     await triggerPostBroadcast(post.id, admin.id).catch(console.error);
     pingIndexNow([postUrl(post.slug)]).catch(console.error);
   }
+
+  revalidatePath('/');
+  revalidatePath('/posts');
+  revalidatePath(`/posts/${post.slug}`);
 
   return NextResponse.json({ post });
 }
