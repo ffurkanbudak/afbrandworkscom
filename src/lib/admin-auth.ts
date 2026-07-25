@@ -101,7 +101,27 @@ export async function currentUser() {
 export async function requireAdmin() {
   const { userId } = await auth();
   if (!userId) redirect('/admin-login');
-  const admin = await db.admin.findUnique({ where: { clerkId: ADMIN_USER_ID } });
-  if (!admin) redirect('/admin-login');
-  return admin;
+
+  const existing = await db.admin.findUnique({ where: { clerkId: ADMIN_USER_ID } });
+  if (existing) return existing;
+
+  // Oturum geçerli olduğu hâlde Admin kaydı yoksa panele hiç girilemez.
+  // Kimlik doğrulaması geçildiği için kaydı ilk girişte oluştururuz.
+  const email = adminEmail();
+  const byEmail = await db.admin.findUnique({ where: { email } });
+  if (byEmail) {
+    return db.admin.update({
+      where: { id: byEmail.id },
+      data: { clerkId: ADMIN_USER_ID },
+    });
+  }
+
+  return db.admin.create({
+    data: {
+      clerkId: ADMIN_USER_ID,
+      email,
+      name: 'Ahmet Furkan Budak',
+      role: 'OWNER',
+    },
+  });
 }
