@@ -7,138 +7,143 @@ const AVATAR_URL =
 
 const KIRMIZI = '#DC2626';
 
-/** Yolculuğun on durağı. */
+/** Yolculuğun on durağı. Tek sırada dizildiği için etiketler kısa tutuldu. */
 const ADIMLAR: { baslik: string; metin: string }[] = [
-  { baslik: 'Tanışma', metin: 'Ücretsiz ön görüşmede sizi ve markanızı dinliyorum.' },
-  { baslik: 'Mevcut durumun analizi', metin: 'Markanın bugün nerede durduğu görünür hâle geliyor.' },
-  { baslik: 'Çalışma modelinin seçimi', metin: 'İhtiyaca ve sürecin yoğunluğuna uygun model belirleniyor.' },
-  { baslik: 'Hedeflerin netleşmesi', metin: 'Öncelikler ve başarı ölçütleri birlikte tanımlanıyor.' },
-  { baslik: 'Stratejik çerçeve', metin: 'Konumlandırma ve farklılaşma ekseni kuruluyor.' },
-  { baslik: 'Kimlik ve mesaj', metin: 'Ses tonu, mesaj mimarisi ve görsel yön netleşiyor.' },
-  { baslik: 'Dijital markalaşma', metin: 'Dijital kanallar markanın tutarlı yansımasına dönüşüyor.' },
-  { baslik: 'Pazarlama ve iletişim', metin: 'Kanal stratejisi ve içerik planı devreye giriyor.' },
-  { baslik: 'Talebin artırılması', metin: 'Bilinirlik ve tercih edilirlik satışa dönüşmeye başlıyor.' },
-  { baslik: 'Sürdürülebilir büyüme', metin: 'Ölçüyor, öğreniyor ve markayı bir üst noktaya taşıyoruz.' },
+  { baslik: 'Tanışma', metin: 'Ücretsiz ön görüşme' },
+  { baslik: 'Mevcut durum', metin: 'Markanın bugünkü konumu' },
+  { baslik: 'Çalışma modeli', metin: 'İhtiyaca uygun seçim' },
+  { baslik: 'Hedefler', metin: 'Öncelikler ve ölçütler' },
+  { baslik: 'Stratejik çerçeve', metin: 'Konumlandırma ve farklılaşma' },
+  { baslik: 'Kimlik ve mesaj', metin: 'Ses tonu ve görsel yön' },
+  { baslik: 'Dijital markalaşma', metin: 'Kanallarda tutarlı yansıma' },
+  { baslik: 'Pazarlama', metin: 'Kanal stratejisi ve içerik' },
+  { baslik: 'Talebin artması', metin: 'Bilinirlik satışa dönüşür' },
+  { baslik: 'Sürdürülebilir büyüme', metin: 'Ölçüyor ve ileri taşıyoruz' },
 ];
 
-const SATIR_YUKSEKLIGI = 104;
+const DALGA_Y = 150;
+const AVATAR_KALDIRMA = 74;
+
+/* Duraklar 1000 birimlik görünüm kutusunda 100 birim arayla; tepe ve çukur dönüşümlü. */
+const X = ADIMLAR.map((_, i) => 50 + i * 100);
+const Y = ADIMLAR.map((_, i) => (i % 2 === 0 ? 30 : 120));
+
+/** Duraklar arasında yumuşak kavisle geçen kesikli yol. */
+const YOL = X.slice(0, -1)
+  .map((x, i) => {
+    const bas = i === 0 ? `M${x},${Y[i]} ` : '';
+    return `${bas}C${x + 50},${Y[i]} ${X[i + 1] - 50},${Y[i + 1]} ${X[i + 1]},${Y[i + 1]}`;
+  })
+  .join(' ');
+
+const SOL = X.map((x) => `${x / 10}%`);
 
 /** Duraklar arasında süzülen avatar; her durakta kısa süre bekler. */
 function SuzulenAvatar() {
-  // Numaranın üstünü kapatmaması için duraktan biraz yukarıda ilerler.
-  const duraklar = ADIMLAR.map((_, i) => i * SATIR_YUKSEKLIGI + SATIR_YUKSEKLIGI / 2 - 38);
+  const solKare: string[] = [];
+  const ustKare: number[] = [];
+  const zaman: number[] = [];
+  const pay = 0.94 / ADIMLAR.length;
 
-  const kareler: number[] = [];
-  const zamanlar: number[] = [];
-  const pay = 0.92 / ADIMLAR.length;
-
-  duraklar.forEach((y, i) => {
-    kareler.push(y, y);
-    zamanlar.push(i * pay, i * pay + pay * 0.55);
+  ADIMLAR.forEach((_, i) => {
+    solKare.push(SOL[i], SOL[i]);
+    ustKare.push(Y[i] - AVATAR_KALDIRMA, Y[i] - AVATAR_KALDIRMA);
+    zaman.push(i * pay, i * pay + pay * 0.5);
   });
-  // Sona gelince başa dönüş
-  kareler.push(duraklar[0]);
-  zamanlar.push(1);
+  solKare.push(SOL[0]);
+  ustKare.push(Y[0] - AVATAR_KALDIRMA);
+  zaman.push(1);
 
   return (
     <motion.div
       aria-hidden
-      className="pointer-events-none absolute left-1/2 z-20 hidden -translate-x-1/2 -translate-y-1/2 md:block"
-      initial={{ top: duraklar[0] }}
-      animate={{ top: kareler }}
-      transition={{
-        duration: 26,
-        times: zamanlar,
-        ease: 'easeInOut',
-        repeat: Infinity,
-      }}
+      className="pointer-events-none absolute z-20 flex -translate-x-1/2 flex-col items-center"
+      initial={{ left: SOL[0], top: Y[0] - AVATAR_KALDIRMA }}
+      animate={{ left: solKare, top: ustKare }}
+      transition={{ duration: 30, times: zaman, ease: 'easeInOut', repeat: Infinity }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={AVATAR_URL}
         alt=""
-        width={44}
-        height={44}
-        className="h-[44px] w-[44px] rounded-full border-2 border-white bg-white object-cover shadow-lg"
+        width={46}
+        height={46}
+        className="h-[46px] w-[46px] rounded-full border-2 border-white bg-white object-cover shadow-lg"
       />
+      <span className="mt-[-5px] h-2.5 w-2.5 rotate-45" style={{ background: KIRMIZI }} aria-hidden />
     </motion.div>
-  );
-}
-
-function Numara({ i }: { i: number }) {
-  return (
-    <span
-      className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold text-white"
-      style={{ background: KIRMIZI }}
-    >
-      {i + 1}
-    </span>
   );
 }
 
 export function BrandJourney() {
   return (
-    <div className="mx-auto w-full max-w-[900px]">
-      {/* Masaüstü: ortada çizgi, iki yana dizilen duraklar, süzülen avatar */}
-      <div
-        className="relative mt-12 hidden md:block"
-        style={{ height: ADIMLAR.length * SATIR_YUKSEKLIGI }}
-      >
-        <span
-          aria-hidden
-          className="absolute top-0 bottom-0 left-1/2 -translate-x-1/2 border-l border-dashed"
-          style={{ borderColor: 'color-mix(in oklab, var(--fg) 22%, transparent)' }}
-        />
+    <>
+      {/* Geniş ekran: tek sırada bombeli dalga, üzerinde süzülen avatar */}
+      <div className="mx-auto hidden w-full max-w-[1360px] px-6 xl:block">
+        <div className="relative mt-20" style={{ height: DALGA_Y }}>
+          <SuzulenAvatar />
 
-        <SuzulenAvatar />
+          <svg
+            className="absolute inset-0 h-full w-full"
+            viewBox="0 0 1000 150"
+            preserveAspectRatio="none"
+            aria-hidden
+          >
+            <path
+              d={YOL}
+              fill="none"
+              style={{ stroke: 'color-mix(in oklab, var(--fg) 20%, transparent)' }}
+              strokeWidth="1.5"
+              strokeDasharray="5 6"
+              vectorEffect="non-scaling-stroke"
+            />
+          </svg>
 
-        <ol>
-          {ADIMLAR.map((adim, i) => {
-            const solda = i % 2 === 0;
-            return (
-              <li
-                key={adim.baslik}
-                className="absolute flex w-full items-center"
-                style={{ top: i * SATIR_YUKSEKLIGI, height: SATIR_YUKSEKLIGI }}
+          {ADIMLAR.map((adim, i) => (
+            <span
+              key={adim.baslik}
+              className="absolute z-10 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[11px] font-semibold text-white"
+              style={{ left: SOL[i], top: Y[i], background: KIRMIZI }}
+            >
+              {i + 1}
+            </span>
+          ))}
+        </div>
+
+        <ol className="mt-7 grid grid-cols-10">
+          {ADIMLAR.map((adim) => (
+            <li key={adim.baslik} className="px-2 text-center">
+              <p
+                className="text-[13px] leading-[1.25] tracking-tight"
+                style={{ color: 'var(--fg)', fontWeight: 600 }}
               >
-                <div
-                  className={`w-1/2 ${solda ? 'pr-14 text-right' : 'ml-auto pl-14 text-left'}`}
-                >
-                  <p
-                    className="text-[15px] leading-[1.3] tracking-tight"
-                    style={{ color: 'var(--fg)', fontWeight: 600 }}
-                  >
-                    {adim.baslik}
-                  </p>
-                  <p
-                    className="mt-1.5 text-[13.5px] leading-[1.5]"
-                    style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
-                  >
-                    {adim.metin}
-                  </p>
-                </div>
-
-                <span
-                  aria-hidden
-                  className={`absolute left-1/2 z-10 -translate-x-1/2 ${solda ? '' : ''}`}
-                >
-                  <Numara i={i} />
-                </span>
-              </li>
-            );
-          })}
+                {adim.baslik}
+              </p>
+              <p
+                className="mt-1.5 text-[11.5px] leading-[1.4]"
+                style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
+              >
+                {adim.metin}
+              </p>
+            </li>
+          ))}
         </ol>
       </div>
 
-      {/* Mobil: dikey liste */}
-      <ol className="mx-auto mt-10 flex max-w-[480px] flex-col gap-3 md:hidden">
+      {/* Dar ekran: numaralı dikey liste */}
+      <ol className="mx-auto mt-10 flex max-w-[480px] flex-col gap-3 px-6 xl:hidden">
         {ADIMLAR.map((adim, i) => (
           <li
             key={adim.baslik}
             className="flex items-start gap-3 rounded-[10px] border px-5 py-4"
             style={{ borderColor: 'var(--border)' }}
           >
-            <Numara i={i} />
+            <span
+              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold text-white"
+              style={{ background: KIRMIZI }}
+            >
+              {i + 1}
+            </span>
             <div>
               <p
                 className="text-[14.5px] leading-[1.3] tracking-tight"
@@ -156,6 +161,6 @@ export function BrandJourney() {
           </li>
         ))}
       </ol>
-    </div>
+    </>
   );
 }

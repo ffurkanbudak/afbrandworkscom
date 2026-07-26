@@ -320,7 +320,7 @@ export default function OneOnOnePage() {
         {/* Marka yolculuğu */}
         <section
           id="randevu"
-          className="mx-auto max-w-[900px] scroll-mt-24 border-t px-0 py-16 md:py-20"
+          className="relative left-1/2 w-screen -translate-x-1/2 scroll-mt-24 border-t py-16 md:py-20"
           style={{ borderColor: 'var(--border)' }}
         >
           <h2
