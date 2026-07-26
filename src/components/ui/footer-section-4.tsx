@@ -116,7 +116,7 @@ export default function Footer4() {
             </div>
 
             <div className="relative z-10 space-y-6">
-              <h3 className="whitespace-nowrap text-[14px] font-bold text-white sm:text-base">{FOOTER_TITLE}</h3>
+              <h3 className="text-[14px] font-bold text-balance text-white 2xl:whitespace-nowrap 2xl:text-base">{FOOTER_TITLE}</h3>
               <SocialCloud className="gap-4 text-white/80" />
               <div className="space-y-1.5">
                 <p className="text-xs text-white/60">

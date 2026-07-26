@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { NavDrawer } from './NavDrawer';
-import { AppointmentButton } from './AppointmentButton';
+import { BrandJourney } from './BrandJourney';
 import { TopicsCloud } from './TopicsCloud';
 import { Packages } from './Packages';
 import { BrandTest } from './BrandTest';
@@ -317,9 +317,25 @@ export default function OneOnOnePage() {
           <Packages />
         </section>
 
-        {/* Final + Randevu */}
-        <section id="randevu" className="mx-auto max-w-[900px] scroll-mt-24 border-t px-0 py-16 md:py-20" style={{ borderColor: 'var(--border)' }}>
-          <AppointmentButton />
+        {/* Marka yolculuğu */}
+        <section
+          id="randevu"
+          className="mx-auto max-w-[900px] scroll-mt-24 border-t px-0 py-16 md:py-20"
+          style={{ borderColor: 'var(--border)' }}
+        >
+          <h2
+            className="font-display text-center text-[24px] tracking-tight md:text-[28px]"
+            style={{ fontWeight: 700 }}
+          >
+            Markanız için doğru kararları birlikte alalım!
+          </h2>
+          <p
+            className="mx-auto mt-4 max-w-[52ch] text-center text-[15px] leading-[1.65]"
+            style={{ color: 'color-mix(in oklab, var(--fg) 70%, transparent)', fontWeight: 300 }}
+          >
+            Tanışmadan sürdürülebilir büyümeye, süreç on adımda ilerliyor.
+          </p>
+          <BrandJourney />
         </section>
       </div>
     </div>
