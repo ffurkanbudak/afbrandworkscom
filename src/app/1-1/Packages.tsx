@@ -1,8 +1,6 @@
 import { Check } from 'lucide-react';
 import { ShineBorder } from '@/components/ui/shine-border';
 
-const RED = '#DC2626';
-
 /* Bölüm ve kartlar tema değişkenlerine bağlı: açık modda beyaz zemin. */
 const MUTED = 'color-mix(in oklab, var(--fg) 68%, transparent)';
 const FAINT = 'color-mix(in oklab, var(--fg) 48%, transparent)';
@@ -116,10 +114,10 @@ function Liste({ maddeler }: { maddeler: string[] }) {
       {maddeler.map((m) => (
         <li key={m} className="flex items-start gap-2.5 text-[13.5px] leading-[1.5]">
           <span
-            className="mt-[3px] flex h-[15px] w-[15px] shrink-0 items-center justify-center rounded-full"
-            style={{ background: RED }}
+            className="mt-[3px] flex h-[15px] w-[15px] shrink-0 items-center justify-center rounded-full border"
+            style={{ background: 'var(--bg)', borderColor: 'var(--fg)' }}
           >
-            <Check className="h-[9px] w-[9px]" strokeWidth={3} style={{ color: '#FFFFFF' }} />
+            <Check className="h-[9px] w-[9px]" strokeWidth={3} style={{ color: 'var(--fg)' }} />
           </span>
           <span style={{ color: MUTED, fontWeight: 400 }}>{m}</span>
         </li>
@@ -219,7 +217,7 @@ export function Packages() {
 
       <div
         className="mt-10 rounded-[16px] border p-7 md:p-8"
-        style={{ background: 'var(--bg-soft)', borderColor: LINE }}
+        style={{ background: 'var(--bg-card)', borderColor: LINE, boxShadow: KART_GOLGE }}
       >
         <Baslik>Çalışma Modeli</Baslik>
         <div className="mt-4 flex flex-col gap-3.5">
