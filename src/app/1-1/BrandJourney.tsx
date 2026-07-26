@@ -9,16 +9,16 @@ const KIRMIZI = '#DC2626';
 
 /** Yolculuğun on durağı. Tek sırada dizildiği için etiketler kısa tutuldu. */
 const ADIMLAR: { baslik: string; metin: string }[] = [
-  { baslik: 'Tanışma', metin: 'Ücretsiz ön görüşme' },
-  { baslik: 'Mevcut durum', metin: 'Markanın bugünkü konumu' },
-  { baslik: 'Çalışma modeli', metin: 'İhtiyaca uygun seçim' },
-  { baslik: 'Hedefler', metin: 'Öncelikler ve ölçütler' },
-  { baslik: 'Stratejik çerçeve', metin: 'Konumlandırma ve farklılaşma' },
-  { baslik: 'Kimlik ve mesaj', metin: 'Ses tonu ve görsel yön' },
-  { baslik: 'Dijital markalaşma', metin: 'Kanallarda tutarlı yansıma' },
-  { baslik: 'Pazarlama', metin: 'Kanal stratejisi ve içerik' },
-  { baslik: 'Talebin artması', metin: 'Bilinirlik satışa dönüşür' },
-  { baslik: 'Sürdürülebilir büyüme', metin: 'Ölçüyor ve ileri taşıyoruz' },
+  { baslik: 'Tanışma', metin: 'Ücretsiz ön görüşmede sizi ve markanızı dinliyorum.' },
+  { baslik: 'Mevcut durum', metin: 'Markanın bugün nerede durduğu görünür hâle geliyor.' },
+  { baslik: 'Çalışma modeli', metin: 'İhtiyaca ve sürecin yoğunluğuna uygun model birlikte belirleniyor.' },
+  { baslik: 'Hedefler', metin: 'Öncelikler ve başarı ölçütleri birlikte tanımlanıyor.' },
+  { baslik: 'Stratejik çerçeve', metin: 'Konumlandırma ve farklılaşma ekseni kuruluyor.' },
+  { baslik: 'Kimlik ve mesaj', metin: 'Ses tonu, mesaj mimarisi ve görsel yön netleşiyor.' },
+  { baslik: 'Dijital markalaşma', metin: 'Dijital kanallar markanın tutarlı yansımasına dönüşüyor.' },
+  { baslik: 'Pazarlama', metin: 'Kanal stratejisi ve içerik planı devreye giriyor.' },
+  { baslik: 'Talebin artması', metin: 'Bilinirlik ve tercih edilirlik satışa dönüşmeye başlıyor.' },
+  { baslik: 'Sürdürülebilir büyüme', metin: 'Ölçüyor, öğreniyor ve markayı bir üst noktaya taşıyoruz.' },
 ];
 
 const DALGA_Y = 150;
@@ -99,31 +99,46 @@ export function BrandJourney() {
             />
           </svg>
 
-          {ADIMLAR.map((adim, i) => (
-            <span
-              key={adim.baslik}
-              className="absolute z-10 flex h-7 w-7 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full text-[11px] font-semibold text-white"
-              style={{ left: SOL[i], top: Y[i], background: KIRMIZI }}
-            >
-              {i + 1}
-            </span>
-          ))}
+          {ADIMLAR.map((adim, i) => {
+            const tepede = Y[i] < 75;
+            return (
+              <span
+                key={adim.baslik}
+                className="group absolute z-10 -translate-x-1/2 -translate-y-1/2"
+                style={{ left: SOL[i], top: Y[i] }}
+              >
+                <button
+                  type="button"
+                  aria-describedby={`adim-${i}`}
+                  className="flex h-7 w-7 cursor-help items-center justify-center rounded-full text-[11px] font-semibold text-white transition group-hover:scale-110 group-focus-within:scale-110"
+                  style={{ background: KIRMIZI }}
+                >
+                  {i + 1}
+                </button>
+
+                <span
+                  id={`adim-${i}`}
+                  role="tooltip"
+                  className={`pointer-events-none absolute left-1/2 z-30 w-[190px] -translate-x-1/2 rounded-[8px] px-3 py-2 text-center text-[12px] leading-[1.45] opacity-0 shadow-lg transition-opacity duration-200 group-hover:opacity-100 group-focus-within:opacity-100 ${
+                    tepede ? 'top-full mt-3' : 'bottom-full mb-3'
+                  }`}
+                  style={{ background: 'var(--fg)', color: 'var(--bg)' }}
+                >
+                  {adim.metin}
+                </span>
+              </span>
+            );
+          })}
         </div>
 
         <ol className="mt-7 grid grid-cols-10">
           {ADIMLAR.map((adim) => (
             <li key={adim.baslik} className="px-2 text-center">
               <p
-                className="text-[13px] leading-[1.25] tracking-tight"
+                className="text-[13.5px] leading-[1.3] tracking-tight"
                 style={{ color: 'var(--fg)', fontWeight: 600 }}
               >
                 {adim.baslik}
-              </p>
-              <p
-                className="mt-1.5 text-[11.5px] leading-[1.4]"
-                style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
-              >
-                {adim.metin}
               </p>
             </li>
           ))}
