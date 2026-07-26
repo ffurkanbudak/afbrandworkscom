@@ -29,16 +29,16 @@ const MODELLER: Model[] = [
     fiyat: '₺34.900',
     eskiFiyat: '₺45.000',
     dahil: [
-      'Ayda 8 saat birebir görüşme (haftada bir gün, iki saat)',
-      'WhatsApp üzerinden öncelikli iletişim',
-      'Her görüşme sonunda yazılı yol haritası',
-      'Markalaşma e-kitabı, ücretsiz',
-      'Görüşme öncesi hazırlık formu',
-      'Görüşmeler arasında stratejik değerlendirmeler',
-      'Marka, pazarlama ve büyüme süreçlerinin birlikte ele alınması',
-      'İş modeli ve konumlandırma istişareleri',
-      'Aylık öncelik takibi',
-      'Meet ya da Zoom üzerinden görüşme',
+      'Aylık 8 saat birebir stratejik görüşme',
+      'Görüşme dışı dönemlerde öncelikli iletişim kanalı',
+      'Her oturum sonunda yazılı aksiyon planı',
+      'Markalaşma e-kitabına erişim',
+      'Oturum öncesi hazırlık dokümanı',
+      'Görüşmeler arasında stratejik değerlendirme',
+      'Marka, pazarlama ve büyüme süreçlerinin bütüncül ele alınması',
+      'İş modeli ve konumlandırma danışmanlığı',
+      'Aylık öncelik ve ilerleme takibi',
+      'Çevrim içi görüşme altyapısı (Meet / Zoom)',
     ],
     kimlerIcin: 'Girişimciler, KOBİ sahipleri, e-ticaret markaları',
   },
@@ -51,17 +51,17 @@ const MODELLER: Model[] = [
     fiyat: '₺59.900',
     eskiFiyat: '₺69.900',
     dahil: [
-      'Ayda 12 saat birebir görüşme (haftada üç gün, birer saat)',
-      'Markanıza özel tek sayfalık analiz raporu',
-      'Gerektiğinde hızlı karar görüşmeleri',
-      'Markalaşma e-kitabı, ücretsiz',
-      'Öncelikli WhatsApp iletişimi',
+      'Aylık 12 saat birebir stratejik görüşme',
+      'Markaya özel tek sayfalık marka analiz raporu',
+      'Kritik kararlarda hızlı erişim ve değerlendirme',
+      'Markalaşma e-kitabına erişim',
+      'Görüşme dışı dönemlerde öncelikli iletişim kanalı',
       'Yönetim kararlarında stratejik değerlendirme',
-      'Ajans ve tedarikçi süreçlerinde görüş',
-      'Sürekli geri bildirim ve gelişim takibi',
-      'Düzenli aksiyon planı',
+      'Ajans ve tedarikçi süreçlerinde denetim desteği',
+      'Düzenli geri bildirim ve performans takibi',
+      'Aylık aksiyon planı ve ilerleme raporlaması',
       'Yıllık marka yol haritası',
-      'Uygun durumlarda yüz yüze görüşme',
+      'Talep hâlinde yüz yüze görüşme',
     ],
     kimlerIcin: 'Ölçeklenen şirketler, kurucu ortaklar, üst düzey yöneticiler',
   },
@@ -191,15 +191,8 @@ export function Packages() {
           className="font-display text-[26px] leading-[1.15] tracking-tight text-white md:whitespace-nowrap md:text-[34px]"
           style={{ fontWeight: 700 }}
         >
-          Birlikte{' '}
-          <span className="italic" style={{ color: VURGU }}>
-            Nasıl Çalışabiliriz?
-          </span>
+          Birlikte nasıl çalışabiliriz?
         </h2>
-        <p className="mx-auto mt-5 max-w-[46ch] text-[14px] leading-[1.65] text-white/60">
-          Her iş birliği, markanızı tanımaya yönelik 15 dakikalık ücretsiz ön görüşme
-          ile başlar.
-        </p>
       </div>
 
       <div className="relative mx-auto mt-14 grid max-w-[980px] items-start gap-6 md:grid-cols-2">
@@ -208,11 +201,6 @@ export function Packages() {
         ))}
       </div>
 
-      <p className="relative mx-auto mt-16 max-w-[62ch] text-center text-[13.5px] leading-[1.7] text-white/50">
-        Kapsam, markanın ihtiyacına ve sürecin yoğunluğuna göre değişebiliyor.
-        İhtiyacınız bu iki modelin dışında kalıyorsa markanıza özel bir teklif
-        hazırlıyorum; detayları ücretsiz ön görüşmede birlikte konuşabiliriz.
-      </p>
     </div>
   );
 }

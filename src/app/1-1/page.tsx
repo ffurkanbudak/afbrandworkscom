@@ -282,7 +282,7 @@ export default function OneOnOnePage() {
         {/* SSS */}
         <section className="mx-auto max-w-[1000px] border-t py-16 md:py-20" style={{ borderColor: 'var(--border)' }}>
           <h2 className="font-display text-center text-[24px] tracking-tight md:text-[28px]" style={{ fontWeight: 700 }}>
-            Sık Sorulan Sorular
+            En çok hangi soruları alıyorum?
           </h2>
           <div className="mt-8 grid items-start gap-3 md:grid-cols-2">
             {FAQ.map((item) => (
