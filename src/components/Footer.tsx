@@ -8,7 +8,6 @@ const EXPLORE: [string, string][] = [
   ['Yazılar', '/posts'],
   ['Öneriler', '/oneriler'],
   ['Hakkımda', '/hakkinda'],
-  ['Künye', '/kunye'],
   ['İletişim', '/iletisim'],
 ];
 

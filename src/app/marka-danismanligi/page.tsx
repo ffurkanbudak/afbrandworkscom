@@ -311,11 +311,8 @@ export default function MarkaDanismanligiPage() {
                 önerilmez; zaten başka kanallar bunu yapar.
               </p>
               <p>
-                Çalışma yöntemi{' '}
-                <Link href="/kunye" className="underline">
-                  Afbrandworks editoryal çerçevesi
-                </Link>{' '}
-                ile tutarlıdır: spekülasyon yerine veri, retorik yerine
+                Çalışma yöntemi Afbrandworks editoryal çerçevesi ile
+                tutarlıdır: spekülasyon yerine veri, retorik yerine
                 somutluk, acele yerine disiplin.
               </p>
             </div>

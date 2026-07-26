@@ -55,7 +55,6 @@ const NAV: NavItem[] = [
     ],
   },
   { href: '/hakkinda', label: 'Hakkımda', match: (p) => p.startsWith('/hakkinda') },
-  { href: '/kunye', label: 'Künye', match: (p) => p.startsWith('/kunye') },
   { href: '/iletisim', label: 'İletişim', match: (p) => p.startsWith('/iletisim') },
 ];
 

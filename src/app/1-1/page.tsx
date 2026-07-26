@@ -151,9 +151,13 @@ function TbiLogo({ className }: { className?: string }) {
 
 export default function OneOnOnePage() {
   return (
-    <div className="fade-in min-h-dvh" style={{ background: 'var(--bg)', color: 'var(--fg)' }}>
+    <>
+      {/* Yan menü, giriş animasyonlu sarmalayıcının dışında durur: animasyon
+          sarmalayıcıya bir transform bıraktığı için içindeki fixed panelin
+          kapsayıcı bloğu viewport yerine sayfanın tamamı oluyordu. */}
       <NavDrawer />
 
+      <div className="fade-in min-h-dvh" style={{ background: 'var(--bg)', color: 'var(--fg)' }}>
       {/* Hero */}
       <section className="relative w-full overflow-hidden" style={{ background: '#0A0A0A' }}>
         <GridPattern
@@ -338,6 +342,7 @@ export default function OneOnOnePage() {
           <BrandJourney />
         </section>
       </div>
-    </div>
+      </div>
+    </>
   );
 }

@@ -21,7 +21,6 @@ Ahmet Furkan Budak; marka stratejisi, konumlandırma, kimlik inşası ve pazarla
 - [Konular](https://afbrandworks.com/konular): Sektör, disiplin ve vaka temelli etiketler.
 - [Öneriler](https://afbrandworks.com/oneriler): Kitap, podcast, video ve etkinlik önerileri.
 - [Hakkımda](https://afbrandworks.com/hakkinda): Biyografi, eğitim, sertifikalar, deneyim.
-- [Künye](https://afbrandworks.com/kunye): Yayın ilkeleri, editoryal çerçeve ve iletişim bilgileri.
 - [İletişim](https://afbrandworks.com/iletisim): Telefon, e-posta ve sosyal medya kanalları.
 - [RSS](https://afbrandworks.com/feed.xml): Yazıların RSS akışı.
 

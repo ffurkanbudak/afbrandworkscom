@@ -54,7 +54,6 @@ içerik yayımlar. Yayın dili Türkçedir.
 - Konular (/konular): Sektör, disiplin ve vaka-temelli etiketler.
 - Öneriler (/oneriler): Kitap, podcast, video ve etkinlik önerileri.
 - Hakkımda (/hakkinda): Biyografi ve profesyonel profil.
-- Künye (/kunye): Yayın politikası, editoryal ilkeler ve iletişim.
 - İletişim (/iletisim): Telefon, e-posta ve sosyal medya kanalları.
 - RSS (/feed.xml): Yazıların RSS akışı.
 

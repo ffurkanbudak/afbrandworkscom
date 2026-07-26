@@ -13,6 +13,8 @@ import { ShareButtons } from '@/components/ShareButtons';
 import { AuthorBio } from '@/components/AuthorBio';
 import { ViewBeacon } from '@/components/ViewBeacon';
 import { PostJsonLd } from '@/components/PostJsonLd';
+import { ImageCreditBadge } from '@/components/ImageCredit';
+import { getImageCredit } from '@/lib/image-credits';
 
 const FALLBACK_AUTHOR = 'Ahmet Furkan Budak';
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
@@ -93,6 +95,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   const renderedHtml = post.contentHtml;
   const primaryTag = post.tags[0]?.tag;
   const shareUrl = `${SITE_URL}/posts/${post.slug}`;
+  const coverCredit = getImageCredit(post.coverImageUrl);
 
   return (
     <div className="xl:grid xl:grid-cols-[minmax(0,1fr)_240px] xl:gap-10">
@@ -239,6 +242,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
             className="object-cover"
             priority
           />
+          {coverCredit && <ImageCreditBadge credit={coverCredit} />}
         </div>
       )}
 

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+import { Handshake, Menu, X } from 'lucide-react';
 import { Logo } from '@/components/Logo';
 import { GoogleCalendarLogo, GmailLogo, WhatsAppGlyph } from '@/components/ui/brand-icons';
 
@@ -13,12 +13,13 @@ const WHATSAPP_URL =
   'https://wa.me/905374349566?text=' +
   encodeURIComponent('Merhaba Ahmet Bey, 1:1 Marka Danışmanlığı hakkında bilgi almak istiyorum.');
 
-const NAV_ITEMS: [string, string][] = [
-  ['Ana Sayfa', '/'],
-  ['Marka Masası', '/1-1'],
-  ['Yazılar', '/posts'],
-  ['Hakkımda', '/hakkinda'],
-  ['İletişim', '/iletisim'],
+/** vurgulu: Marka Masası menüde kırmızı renk ve ikonla öne çıkar. */
+const NAV_ITEMS: { label: string; href: string; vurgulu?: boolean }[] = [
+  { label: 'Ana Sayfa', href: '/' },
+  { label: 'Marka Masası', href: '/1-1', vurgulu: true },
+  { label: 'Yazılar', href: '/posts' },
+  { label: 'Hakkımda', href: '/hakkinda' },
+  { label: 'İletişim', href: '/iletisim' },
 ];
 
 export function NavDrawer() {
@@ -111,14 +112,16 @@ export function NavDrawer() {
           </div>
 
           <nav className="mt-8 flex flex-col gap-1">
-            {NAV_ITEMS.map(([label, href]) => (
+            {NAV_ITEMS.map((item) => (
               <Link
-                key={href}
-                href={href}
+                key={item.href}
+                href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-[8px] px-3 py-2.5 text-[15px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
+                className="inline-flex items-center gap-2 rounded-[8px] px-3 py-2.5 text-[15px] font-medium transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
+                style={item.vurgulu ? { color: '#DC2626' } : undefined}
               >
-                {label}
+                {item.vurgulu && <Handshake className="h-[16px] w-[16px]" strokeWidth={2} />}
+                {item.label}
               </Link>
             ))}
           </nav>

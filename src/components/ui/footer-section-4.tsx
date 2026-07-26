@@ -20,7 +20,6 @@ const footerLinks: FooterSection[] = [
       { label: 'Yazılar', href: '/posts' },
       { label: 'Öneriler', href: '/oneriler' },
       { label: 'Hakkımda', href: '/hakkinda' },
-      { label: 'Künye', href: '/kunye' },
       { label: 'İletişim', href: '/iletisim' },
     ],
   },
