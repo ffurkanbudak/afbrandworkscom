@@ -17,6 +17,9 @@
 
   --color-flame: #EA4E0D;
 
+  /* ShineBorder: kenarda dolaşan ışık bandı */
+  --animate-shine: shine var(--duration, 14s) infinite linear;
+
   --font-serif: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
   --font-sans: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
   --font-display: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
@@ -413,4 +416,10 @@ html[data-theme='dark'] .logo-works { fill: #f2f2f2; }
 }
 .glare-hover:hover .glare-sheen {
   transform: translateX(130%);
+}
+
+@keyframes shine {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
 }

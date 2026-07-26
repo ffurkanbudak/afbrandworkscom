@@ -1,4 +1,5 @@
 import { Check } from 'lucide-react';
+import { ShineBorder } from '@/components/ui/shine-border';
 
 const LINE = 'rgba(255,255,255,0.12)';
 const MUTED = 'rgba(255,255,255,0.66)';
@@ -131,9 +132,11 @@ function Liste({ maddeler }: { maddeler: string[] }) {
 function Kart({ paket }: { paket: Paket }) {
   return (
     <div
-      className="flex h-full flex-col rounded-[14px] p-7"
+      className="relative flex h-full flex-col overflow-hidden rounded-[14px] p-7"
       style={{ background: KART_BG, color: KART_FG }}
     >
+      <ShineBorder borderWidth={2} duration={12} shineColor={[RED, '#F87171', RED]} />
+
       <Baslik koyu>{paket.etiket}</Baslik>
 
       <h3 className="font-display mt-3 text-[19px] leading-[1.2] tracking-tight md:text-[21px]" style={{ fontWeight: 700 }}>
