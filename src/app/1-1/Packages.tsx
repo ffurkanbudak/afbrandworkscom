@@ -191,9 +191,9 @@ export function Packages() {
           className="font-display text-[26px] leading-[1.15] tracking-tight text-white md:whitespace-nowrap md:text-[34px]"
           style={{ fontWeight: 700 }}
         >
-          Birlikte çalışma{' '}
+          Birlikte{' '}
           <span className="italic" style={{ color: VURGU }}>
-            modelleri ve yatırım
+            Nasıl Çalışabiliriz?
           </span>
         </h2>
         <p className="mx-auto mt-5 max-w-[46ch] text-[14px] leading-[1.65] text-white/60">
