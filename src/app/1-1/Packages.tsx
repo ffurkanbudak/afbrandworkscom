@@ -5,6 +5,13 @@ const MUTED = 'rgba(255,255,255,0.66)';
 const FAINT = 'rgba(255,255,255,0.45)';
 const RED = '#DC2626';
 
+/* Model kartları beyaz zeminli: koyu bölüm içinde okunurluk için ters palet. */
+const KART_BG = '#FFFFFF';
+const KART_FG = '#0A0A0A';
+const KART_MUTED = 'rgba(10,10,10,0.68)';
+const KART_FAINT = 'rgba(10,10,10,0.48)';
+const KART_LINE = 'rgba(10,10,10,0.12)';
+
 type Paket = {
   etiket: string;
   baslik: string;
@@ -92,9 +99,12 @@ const CALISMA_MODELI = [
   'İlk adım, ücretsiz 15 dakikalık stratejik ön görüşmedir. Bu görüşmenin ardından ihtiyaç duyulan çalışma modeli belirlenerek danışmanlık süreci başlatılır.',
 ];
 
-function Baslik({ children }: { children: React.ReactNode }) {
+function Baslik({ children, koyu = false }: { children: React.ReactNode; koyu?: boolean }) {
   return (
-    <p className="text-[10.5px] font-semibold tracking-[0.14em] uppercase" style={{ color: FAINT }}>
+    <p
+      className="text-[10.5px] font-semibold tracking-[0.14em] uppercase"
+      style={{ color: koyu ? KART_FAINT : FAINT }}
+    >
       {children}
     </p>
   );
@@ -111,24 +121,20 @@ function Liste({ maddeler }: { maddeler: string[] }) {
           >
             <Check className="h-[9px] w-[9px]" strokeWidth={3} style={{ color: RED }} />
           </span>
-          <span style={{ color: MUTED, fontWeight: 300 }}>{m}</span>
+          <span style={{ color: KART_MUTED, fontWeight: 400 }}>{m}</span>
         </li>
       ))}
     </ul>
   );
 }
 
-function Kart({ paket, vurgulu = false }: { paket: Paket; vurgulu?: boolean }) {
+function Kart({ paket }: { paket: Paket }) {
   return (
     <div
-      className="flex h-full flex-col rounded-[14px] border p-7 md:p-8"
-      style={{
-        background: '#141414',
-        borderColor: vurgulu ? 'color-mix(in oklab, #DC2626 45%, transparent)' : LINE,
-        color: '#FFFFFF',
-      }}
+      className="flex h-full flex-col rounded-[14px] p-7"
+      style={{ background: KART_BG, color: KART_FG }}
     >
-      <Baslik>{paket.etiket}</Baslik>
+      <Baslik koyu>{paket.etiket}</Baslik>
 
       <h3 className="font-display mt-3 text-[19px] leading-[1.2] tracking-tight md:text-[21px]" style={{ fontWeight: 700 }}>
         {paket.baslik}
@@ -139,31 +145,31 @@ function Kart({ paket, vurgulu = false }: { paket: Paket; vurgulu?: boolean }) {
           {paket.fiyat}
         </span>
         {paket.fiyatNot && (
-          <span className="text-[13px]" style={{ color: MUTED, fontWeight: 300 }}>
+          <span className="text-[13px]" style={{ color: KART_MUTED, fontWeight: 400 }}>
             {paket.fiyatNot}
           </span>
         )}
       </p>
 
-      <p className="mt-4 text-[13.5px] leading-[1.65]" style={{ color: MUTED, fontWeight: 300 }}>
+      <p className="mt-4 text-[13.5px] leading-[1.65]" style={{ color: KART_MUTED, fontWeight: 400 }}>
         {paket.aciklama}
       </p>
 
-      <div className="my-6 h-px w-full" style={{ background: LINE }} />
+      <div className="my-6 h-px w-full" style={{ background: KART_LINE }} />
 
-      <Baslik>Kapsam</Baslik>
+      <Baslik koyu>Kapsam</Baslik>
       <Liste maddeler={paket.kapsam} />
 
       {paket.kimlerIcin && (
         <>
-          <div className="my-6 h-px w-full" style={{ background: LINE }} />
-          <Baslik>Kimler İçin?</Baslik>
+          <div className="my-6 h-px w-full" style={{ background: KART_LINE }} />
+          <Baslik koyu>Kimler İçin?</Baslik>
           <ul className="mt-3.5 flex flex-wrap gap-2">
             {paket.kimlerIcin.map((k) => (
               <li
                 key={k}
                 className="rounded-[6px] border px-2.5 py-1 text-[12.5px]"
-                style={{ borderColor: LINE, color: MUTED, fontWeight: 300 }}
+                style={{ borderColor: KART_LINE, color: KART_MUTED, fontWeight: 400 }}
               >
                 {k}
               </li>
@@ -173,7 +179,7 @@ function Kart({ paket, vurgulu = false }: { paket: Paket; vurgulu?: boolean }) {
       )}
 
       {paket.dipnot && (
-        <p className="mt-6 text-[12.5px] leading-[1.6]" style={{ color: FAINT, fontWeight: 300 }}>
+        <p className="mt-6 text-[12.5px] leading-[1.6]" style={{ color: KART_FAINT, fontWeight: 400 }}>
           {paket.dipnot}
         </p>
       )}
@@ -183,7 +189,7 @@ function Kart({ paket, vurgulu = false }: { paket: Paket; vurgulu?: boolean }) {
 
 export function Packages() {
   return (
-    <div className="mx-auto w-full max-w-[1100px] px-6">
+    <div className="mx-auto w-full max-w-[1240px] px-6">
       <h2
         className="font-display text-center text-[24px] tracking-tight text-white md:text-[28px]"
         style={{ fontWeight: 700 }}
@@ -197,13 +203,10 @@ export function Packages() {
         İlk adım ücretsiz ön görüşme; ardından markanıza uygun model birlikte belirlenir.
       </p>
 
-      <div className="mx-auto mt-10 max-w-[640px]">
+      <div className="mt-10 grid gap-5 lg:grid-cols-3">
         <Kart paket={ON_GORUSME} />
-      </div>
-
-      <div className="mt-5 grid items-start gap-5 md:grid-cols-2">
-        {PAKETLER.map((p, i) => (
-          <Kart key={p.etiket} paket={p} vurgulu={i === 1} />
+        {PAKETLER.map((p) => (
+          <Kart key={p.etiket} paket={p} />
         ))}
       </div>
 
