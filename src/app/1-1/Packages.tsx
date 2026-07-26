@@ -132,7 +132,7 @@ function FiyatKarti({ model }: { model: Model }) {
       </div>
 
       <div className="mt-7 border-t pt-6" style={{ borderColor: 'rgba(10,10,10,0.1)' }}>
-        <p className="text-[13px] font-semibold">Neler dahil:</p>
+        <p className="text-[13px] font-semibold">Bu pakete neler dahil?</p>
         <ul className="mt-3.5 flex flex-col gap-2.5">
           {model.dahil.slice(0, GORUNUR).map((d) => (
             <MaddeSatiri key={d} metin={d} />
