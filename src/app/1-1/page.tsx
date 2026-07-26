@@ -312,7 +312,7 @@ export default function OneOnOnePage() {
         {/* Paketler */}
         <section
           className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden py-16 md:py-20"
-          style={{ background: 'var(--bg)' }}
+          style={{ background: '#0A0A0A' }}
         >
           <Packages />
         </section>
