@@ -95,9 +95,11 @@ function FiyatKarti({ model }: { model: Model }) {
       className="rounded-[18px] bg-white p-7 text-[#0A0A0A] md:p-8"
       style={{ boxShadow: '0 2px 6px rgba(0,0,0,.28), 0 40px 80px -32px rgba(0,0,0,.75)' }}
     >
+      {/* Çerçeve, hero'daki "Nasıl İlerliyor?" butonuyla aynı dilde:
+          köşeli 8px yarıçap, %25 opak ince çizgi, dolgusuz. */}
       <span
-        className="inline-flex h-[30px] items-center gap-2 rounded-full border px-3.5 text-[11.5px] font-medium"
-        style={{ borderColor: 'rgba(10,10,10,0.12)', background: 'rgba(10,10,10,0.03)' }}
+        className="inline-flex items-center gap-2 rounded-[8px] border px-3.5 py-2 text-[12px] font-medium"
+        style={{ borderColor: 'rgba(10,10,10,0.25)' }}
       >
         <span className="h-[6px] w-[6px] shrink-0 rounded-full" style={{ background: '#16A34A' }} aria-hidden />
         {model.rozet}
@@ -164,9 +166,9 @@ function FiyatKarti({ model }: { model: Model }) {
       <a
         href="#randevu"
         className="mt-7 flex w-full items-center justify-center gap-2 rounded-[10px] px-6 py-3.5 text-[14px] font-semibold text-white transition hover:opacity-90"
-        style={{ background: VURGU }}
+        style={{ background: '#0A0A0A' }}
       >
-        Ücretsiz ön görüşme planlayın
+        Ücretsiz ön görüşme planlayın!
       </a>
     </div>
   );
