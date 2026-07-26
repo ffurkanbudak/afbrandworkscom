@@ -75,7 +75,7 @@ export function NavDrawer() {
       </header>
 
       <div
-        aria-hidden={!open}
+        inert={!open}
         className={`fixed inset-0 z-50 transition ${open ? '' : 'pointer-events-none'}`}
       >
         {/* Overlay */}

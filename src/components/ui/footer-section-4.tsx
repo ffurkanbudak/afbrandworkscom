@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { motion, Variants } from 'motion/react';
+import Image from 'next/image';
 import { SocialCloud } from '@/components/ui/footer-section-4-utils/social-cloud';
 
 const FOOTER_TITLE = 'Stratejik Marka Danışmanı | Yazar | Girişimci';
@@ -57,29 +57,6 @@ const footerLinks: FooterSection[] = [
   },
 ];
 
-const containerVariants: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.6,
-      ease: 'easeOut',
-    },
-  },
-};
-
 export default function Footer4() {
   const [email, setEmail] = useState('');
   const [status, setStatus] = useState<'idle' | 'loading' | 'ok' | 'error'>('idle');
@@ -104,19 +81,10 @@ export default function Footer4() {
 
   return (
     <footer className="font-sans mt-20 px-4 pb-12 [--color-primary:#0A0A0A]">
-      <motion.div
-        className="mx-auto w-full max-w-[1400px]"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: '-100px' }}
-        variants={containerVariants}
-      >
+      <div className="mx-auto w-full max-w-[1400px]">
         <div className="flex h-full flex-col gap-4 md:flex-row">
           {/* Siyah kart */}
-          <motion.div
-            className="relative flex min-h-[300px] w-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-(--color-primary) p-8 md:min-h-[600px] md:w-1/3 md:p-10"
-            variants={itemVariants}
-          >
+          <div className="reveal-up relative flex min-h-[300px] w-full flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-(--color-primary) p-8 md:min-h-[600px] md:w-1/3 md:p-10">
             {/* SVG noise dokusu */}
             <svg
               className="pointer-events-none absolute inset-0 z-0 h-full w-full opacity-90 mix-blend-multiply"
@@ -140,6 +108,8 @@ export default function Footer4() {
                 <img
                   src="/logo-white.svg"
                   alt="Ahmet Furkan Budak"
+                  width={298}
+                  height={22}
                   style={{ height: 22, width: 'auto' }}
                 />
               </Link>
@@ -161,23 +131,22 @@ export default function Footer4() {
                     aria-label="Toganworks"
                     className="inline-flex items-center transition hover:opacity-80"
                   >
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img
+                    <Image
                       src="/toganworks-dark.png"
                       alt="Toganworks"
+                      width={114}
+                      height={13}
+                      sizes="114px"
                       style={{ height: 13, width: 'auto' }}
                     />
                   </a>
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Bağlantılar kartı */}
-          <motion.div
-            className="flex min-h-[500px] w-full flex-col justify-between rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-8 md:min-h-[600px] md:w-2/3 md:p-12"
-            variants={itemVariants}
-          >
+          <div className="reveal-up reveal-up-delayed flex min-h-[500px] w-full flex-col justify-between rounded-2xl border border-[var(--border)] bg-[var(--bg-card)] p-8 md:min-h-[600px] md:w-2/3 md:p-12">
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-10">
               {footerLinks.map((section) => (
                 <div key={section.title} className="flex flex-col space-y-6">
@@ -239,9 +208,9 @@ export default function Footer4() {
                 <p className="text-sm text-red-500">Bir şeyler ters gitti, lütfen tekrar deneyin.</p>
               )}
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
     </footer>
   );
 }

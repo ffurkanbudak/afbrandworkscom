@@ -1,3 +1,5 @@
+import Image from 'next/image';
+
 const X_URL = 'https://x.com/afbrandworks';
 
 function XIcon({ className }: { className?: string }) {
@@ -40,13 +42,12 @@ export function XCard() {
             className="block h-11 w-11 shrink-0 overflow-hidden rounded-full border"
             style={{ borderColor: 'var(--border)' }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <Image
               src="/ahmetfurkanbudak.jpeg"
               alt=""
-              width={48}
-              height={48}
-              loading="lazy"
+              width={44}
+              height={44}
+              sizes="44px"
               className="h-full w-full object-cover"
               style={{ objectPosition: '50% 20%' }}
             />

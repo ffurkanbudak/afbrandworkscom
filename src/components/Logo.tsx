@@ -12,25 +12,34 @@ type Props = {
  * İki görsel de render edilir; görünürlük CSS ile `html[data-theme]`e göre seçilir.
  * Yükseklik inline style ile sabitlenir; SVG'nin gömülü boyutları header'ı bozamaz.
  */
+/** Logotype'ın kendi en-boy oranı (viewBox 568×42). Genişliği buradan türetiyoruz. */
+const LOGO_RATIO = 568 / 42;
+
 export function Logo({ className, title = 'Ahmet Furkan Budak', height = 30 }: Props) {
+  const width = Math.round(height * LOGO_RATIO);
+
   return (
     <span
       className={`logo-swap inline-flex items-center ${className ?? ''}`}
-      style={{ height }}
+      style={{ height, width }}
       role="img"
       aria-label={title}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/logo-black.svg"
-        alt={title}
+        alt=""
+        width={width}
+        height={height}
         className="logo-on-light"
         style={{ height: '100%', width: 'auto' }}
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/logo-white.svg"
-        alt={title}
+        alt=""
+        width={width}
+        height={height}
         className="logo-on-dark"
         style={{ height: '100%', width: 'auto' }}
       />

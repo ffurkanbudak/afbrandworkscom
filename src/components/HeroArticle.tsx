@@ -27,11 +27,12 @@ export function HeroArticle({
   primaryTag,
   sponsored = false,
 }: Props) {
+  // aria-label vermiyoruz: erişilebilir ad görünür metinden hesaplanır.
+  // Sabit bir etiket, görünür metinle uyuşmadığı için WCAG ihlali üretiyordu.
   return (
     <Link
       href={`/posts/${slug}`}
       className="group block"
-      aria-label={title}
     >
       <article
         className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-8 lg:gap-10"

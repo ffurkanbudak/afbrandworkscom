@@ -360,11 +360,30 @@ html[data-theme='dark'] .logo-works { fill: #f2f2f2; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .fade-up { animation: fadeUp .7s cubic-bezier(.2,.7,.2,1) both; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
+  /* Giriş animasyonları yalnızca transform ile yapılır.
+     opacity: 0'dan başlamak, içerik boyanmış sayılmadığı için LCP'yi
+     animasyon süresi kadar geciktiriyordu (ölçümde LCP hiç oluşmuyordu). */
+  .fade-up { animation: fadeUp .5s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes fadeUp { from { transform: translateY(10px); } to { transform: none; } }
 
-  .fade-in { animation: fadeIn .5s ease both; }
-  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .fade-in { animation: fadeIn .5s cubic-bezier(.2,.7,.2,1) both; }
+  @keyframes fadeIn { from { transform: translateY(6px); } to { transform: none; } }
+
+  /* Görünüm alanına girince beliren bloklar (footer kartları).
+     Daha önce motion kütüphanesiyle yapılıyordu; her sayfaya ~255 KB JS
+     bindirdiği için scroll-driven CSS animasyonuna taşındı.
+     animation-timeline desteklemeyen tarayıcılarda animasyon yüklenirken
+     bir kez oynar ve içerik görünür kalır. */
+  .reveal-up {
+    animation: revealUp .6s ease-out both;
+    animation-timeline: view();
+    animation-range: entry 0% cover 25%;
+  }
+  .reveal-up-delayed { animation-delay: .12s; }
+  @keyframes revealUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: none; }
+  }
 
   .ticker-track { animation: ticker 55s linear infinite; will-change: transform; }
   .ticker-track:hover { animation-play-state: paused; }

@@ -215,8 +215,10 @@ export function Header() {
         </div>
       </header>
 
+      {/* inert: kapalıyken hem odaklanmayı hem erişilebilirlik ağacını kapatır;
+          aria-hidden tek başına odaklanabilir öğeleri erişilebilir bırakıyordu. */}
       <div
-        aria-hidden={!open}
+        inert={!open}
         className="font-sans fixed inset-0 z-50 transition-opacity duration-300"
         style={{
           pointerEvents: open ? 'auto' : 'none',

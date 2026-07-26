@@ -7,6 +7,10 @@ const config: NextConfig = {
     root: path.join(__dirname),
   },
   devIndicators: false,
+  experimental: {
+    // Barrel importları ağaç sallamaya uygun hale getirir (ikon/animasyon paketleri).
+    optimizePackageImports: ['lucide-react', 'motion'],
+  },
   poweredByHeader: false,
   compress: true,
   images: {
