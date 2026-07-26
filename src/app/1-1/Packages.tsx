@@ -121,7 +121,8 @@ function FiyatKarti({ model }: { model: Model }) {
 
       <p className="mt-3.5 text-[13.5px] leading-[1.65] text-[#0A0A0A]/65">{model.aciklama}</p>
 
-      <div className="mt-7 flex flex-wrap items-end justify-between gap-4">
+      {/* Dar ekranda her iki kart da aynı biçimde alt alta dizilir; geniş ekranda yan yana. */}
+      <div className="mt-7 flex flex-col items-start gap-4 sm:flex-row sm:flex-wrap sm:items-end sm:justify-between">
         <div>
           <p className="text-[12px] text-[#0A0A0A]/50">Aylık çalışma bedeli</p>
           <p className="font-display mt-1 text-[30px] leading-none tracking-tight" style={{ fontWeight: 800 }}>
@@ -131,7 +132,7 @@ function FiyatKarti({ model }: { model: Model }) {
             Liste fiyatı <s>{model.eskiFiyat}</s>
           </p>
         </div>
-        <div className="flex flex-col items-end gap-1.5">
+        <div className="flex flex-col items-start gap-1.5 sm:items-end">
           <Yildizlar />
           <p className="text-[12px] text-[#0A0A0A]/55">{model.kimlerIcin.split(',')[0]} ve fazlası</p>
           <AvatarCircles avatarUrls={AVATARLAR} className="-space-x-3 [&_img]:h-7 [&_img]:w-7" />

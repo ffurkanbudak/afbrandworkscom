@@ -24,17 +24,15 @@ export function GoogleCalendarLogo({ className }: IkonProps) {
   );
 }
 
-/** Gmail: beyaz zarf, kırmızı kapak ve iki yanda mavi/yeşil kanatlar. */
+/** Gmail: dört renkli zarf. Zarfın iç yüzeyi saydam, açık zeminde kullanılır. */
 export function GmailLogo({ className }: IkonProps) {
   return (
     <svg viewBox="0 0 24 24" className={className} aria-hidden role="img">
-      <path
-        d="M3.2 5.4h17.6c1.05 0 1.9.85 1.9 1.9v9.4c0 1.05-.85 1.9-1.9 1.9H3.2a1.9 1.9 0 0 1-1.9-1.9V7.3c0-1.05.85-1.9 1.9-1.9Z"
-        fill="#FFFFFF"
-      />
-      <path d="M1.3 7.3c0-1.05.85-1.9 1.9-1.9h.9l6.9 5.2v7.9H3.2a1.9 1.9 0 0 1-1.9-1.9V7.3Z" fill="#4285F4" />
-      <path d="M22.7 7.3c0-1.05-.85-1.9-1.9-1.9h-.9L13 10.6v7.9h7.8c1.05 0 1.9-.85 1.9-1.9V7.3Z" fill="#34A853" />
-      <path d="M1.3 7.3c0-1.6 1.83-2.5 3.1-1.53L12 11.4l7.6-5.63c1.27-.97 3.1-.07 3.1 1.53l-1.9 1.4L12 15.2 3.2 8.7 1.3 7.3Z" fill="#EA4335" />
+      <path fill="#4285F4" d="M1.636 21h3.819V11.73L0 7.909v11.455C0 20.269.732 21 1.636 21Z" />
+      <path fill="#34A853" d="M18.545 21h3.819A1.636 1.636 0 0 0 24 19.364V7.909l-5.455 3.821V21Z" />
+      <path fill="#FBBC04" d="M18.545 4.636v7.094L24 7.909V5.455c0-2.024-2.31-3.178-3.927-1.964l-1.528 1.145Z" />
+      <path fill="#EA4335" d="M5.455 11.73V4.636L12 9.545l6.545-4.909v7.094L12 16.64l-6.545-4.91Z" />
+      <path fill="#C5221F" d="M0 5.455v2.454l5.455 3.821V4.636L3.927 3.491C2.309 2.277 0 3.431 0 5.455Z" />
     </svg>
   );
 }

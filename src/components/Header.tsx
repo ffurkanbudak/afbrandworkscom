@@ -8,6 +8,7 @@ import {
   BookOpen,
   Calendar,
   ChevronDown,
+  Handshake,
   Headphones,
   Instagram,
   Linkedin,
@@ -22,8 +23,9 @@ import {
 import type { LucideIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTheme } from './ThemeProvider';
+import { GoogleCalendarLogo, GmailLogo, WhatsAppGlyph } from '@/components/ui/brand-icons';
 
-type NavLeaf = { href: string; label: string; match: (p: string) => boolean };
+type NavLeaf = { href: string; label: string; match: (p: string) => boolean; vurgulu?: boolean };
 type NavChild = { href: string; label: string; icon: LucideIcon; desc: string };
 type NavBranch = {
   label: string;
@@ -32,10 +34,16 @@ type NavBranch = {
 };
 type NavItem = NavLeaf | NavBranch;
 
+const TAKVIM_URL =
+  'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1um6hda1soZolvF4yY1oTMwugah-W2o-rB-jGgcJ0_eIzeTL8qR5oKuRHr6TcU8YI7oAwmI2eH?gv=true';
+const WHATSAPP_URL =
+  'https://wa.me/905374349566?text=' +
+  encodeURIComponent('Merhaba Ahmet Bey, markam hakkında bilgi almak istiyorum.');
+
 const NAV: NavItem[] = [
   { href: '/', label: 'Ana Sayfa', match: (p) => p === '/' },
   { href: '/posts', label: 'Yazılar', match: (p) => p.startsWith('/posts') },
-  { href: '/1-1', label: 'Marka Masası', match: (p) => p.startsWith('/1-1') },
+  { href: '/1-1', label: 'Marka Masası', match: (p) => p.startsWith('/1-1'), vurgulu: true },
   {
     label: 'Öneriler',
     match: (p) => p.startsWith('/oneriler'),
@@ -154,40 +162,6 @@ export function Header() {
                 <Youtube className="h-[15px] w-[15px]" strokeWidth={1.75} />
               </a>
             </div>
-
-            <Link
-              href="/1-1"
-              className="btn-ghost hidden items-center gap-2 whitespace-nowrap rounded-[6px] px-3 py-1.5 text-[12px] font-medium tracking-tight sm:inline-flex"
-            >
-              <span className="relative flex h-[6px] w-[6px]" aria-hidden>
-                <span
-                  className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70"
-                  style={{ background: '#DC2626' }}
-                />
-                <span
-                  className="relative inline-flex h-[6px] w-[6px] rounded-full"
-                  style={{ background: '#DC2626' }}
-                />
-              </span>
-              Marka Masası
-            </Link>
-
-            <Link
-              href="/#bulten"
-              className="btn-dark group inline-flex items-center gap-2 whitespace-nowrap rounded-[6px] px-3 py-1.5 text-[12px] font-medium tracking-tight"
-            >
-              <span className="relative flex h-[6px] w-[6px]" aria-hidden>
-                <span
-                  className="absolute inline-flex h-full w-full animate-ping rounded-full opacity-70"
-                  style={{ background: '#22C55E' }}
-                />
-                <span
-                  className="relative inline-flex h-[6px] w-[6px] rounded-full"
-                  style={{ background: '#22C55E' }}
-                />
-              </span>
-              Bültene Kaydolun!
-            </Link>
 
             <button
               onClick={toggle}
@@ -330,15 +304,20 @@ export function Header() {
                   onClick={() => setOpen(false)}
                   className="group flex items-center justify-between rounded-[8px] px-3 py-3 text-[15px] font-medium tracking-tight transition"
                   style={{
-                    color: active
-                      ? 'var(--fg)'
-                      : 'color-mix(in oklab, var(--fg) 72%, transparent)',
+                    color: item.vurgulu
+                      ? '#DC2626'
+                      : active
+                        ? 'var(--fg)'
+                        : 'color-mix(in oklab, var(--fg) 72%, transparent)',
                     background: active
                       ? 'color-mix(in oklab, var(--fg) 5%, transparent)'
                       : 'transparent',
                   }}
                 >
-                  {item.label}
+                  <span className="inline-flex items-center gap-2">
+                    {item.vurgulu && <Handshake className="h-[16px] w-[16px]" strokeWidth={2} />}
+                    {item.label}
+                  </span>
                   <ArrowUpRight
                     className="h-[15px] w-[15px] opacity-0 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
                     strokeWidth={1.75}
@@ -347,6 +326,43 @@ export function Header() {
               );
             })}
           </nav>
+
+          <div
+            className="flex items-center gap-2 border-t px-6 py-4"
+            style={{ borderColor: 'var(--border)' }}
+          >
+            <a
+              href={TAKVIM_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Google Takvim üzerinden randevu planlayın"
+              title="Randevu planlayın"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[8px] border transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
+              style={{ borderColor: 'var(--border)' }}
+            >
+              <GoogleCalendarLogo className="h-5 w-5" />
+            </a>
+            <a
+              href="mailto:info@toganworks.com"
+              aria-label="E-posta gönderin"
+              title="E-posta"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[8px] border transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
+              style={{ borderColor: 'var(--border)' }}
+            >
+              <GmailLogo className="h-5 w-5" />
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="WhatsApp üzerinden iletişime geçin"
+              title="WhatsApp"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[8px] text-white transition hover:opacity-90"
+              style={{ background: '#25D366' }}
+            >
+              <WhatsAppGlyph className="h-5 w-5" />
+            </a>
+          </div>
 
           <div
             className="border-t px-6 py-4"
