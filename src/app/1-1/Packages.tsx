@@ -1,17 +1,19 @@
 import { Check } from 'lucide-react';
 import { ShineBorder } from '@/components/ui/shine-border';
 
-const LINE = 'rgba(255,255,255,0.12)';
-const MUTED = 'rgba(255,255,255,0.66)';
-const FAINT = 'rgba(255,255,255,0.45)';
 const RED = '#DC2626';
 
-/* Model kartları beyaz zeminli: koyu bölüm içinde okunurluk için ters palet. */
-const KART_BG = '#FFFFFF';
-const KART_FG = '#0A0A0A';
-const KART_MUTED = 'rgba(10,10,10,0.68)';
-const KART_FAINT = 'rgba(10,10,10,0.48)';
-const KART_LINE = 'rgba(10,10,10,0.12)';
+/* Bölüm ve kartlar tema değişkenlerine bağlı: açık modda beyaz zemin. */
+const MUTED = 'color-mix(in oklab, var(--fg) 68%, transparent)';
+const FAINT = 'color-mix(in oklab, var(--fg) 48%, transparent)';
+const LINE = 'color-mix(in oklab, var(--fg) 12%, transparent)';
+
+/* Kenarda dolaşan iridescent bant — yumuşak gökkuşağı geçişi. */
+const SHINE = ['#A07CFE', '#FE8FB5', '#FFBE7B', '#4D96FF', '#47E5BC', '#A07CFE'];
+
+/* Beyaz zeminde kartı ayırmak için yumuşak yükselti. */
+const KART_GOLGE =
+  '0 1px 2px rgba(10,10,10,.04), 0 14px 36px -14px rgba(10,10,10,.14)';
 
 type Paket = {
   etiket: string;
@@ -100,12 +102,9 @@ const CALISMA_MODELI = [
   'İlk adım, ücretsiz 15 dakikalık stratejik ön görüşmedir. Bu görüşmenin ardından ihtiyaç duyulan çalışma modeli belirlenerek danışmanlık süreci başlatılır.',
 ];
 
-function Baslik({ children, koyu = false }: { children: React.ReactNode; koyu?: boolean }) {
+function Baslik({ children }: { children: React.ReactNode }) {
   return (
-    <p
-      className="text-[10.5px] font-semibold tracking-[0.14em] uppercase"
-      style={{ color: koyu ? KART_FAINT : FAINT }}
-    >
+    <p className="text-[10.5px] font-semibold tracking-[0.14em] uppercase" style={{ color: FAINT }}>
       {children}
     </p>
   );
@@ -122,7 +121,7 @@ function Liste({ maddeler }: { maddeler: string[] }) {
           >
             <Check className="h-[9px] w-[9px]" strokeWidth={3} style={{ color: '#FFFFFF' }} />
           </span>
-          <span style={{ color: KART_MUTED, fontWeight: 400 }}>{m}</span>
+          <span style={{ color: MUTED, fontWeight: 400 }}>{m}</span>
         </li>
       ))}
     </ul>
@@ -132,12 +131,17 @@ function Liste({ maddeler }: { maddeler: string[] }) {
 function Kart({ paket }: { paket: Paket }) {
   return (
     <div
-      className="relative flex h-full flex-col overflow-hidden rounded-[14px] p-7"
-      style={{ background: KART_BG, color: KART_FG }}
+      className="relative flex h-full flex-col overflow-hidden rounded-[16px] p-7"
+      style={{
+        background: 'var(--bg-card)',
+        color: 'var(--fg)',
+        border: `1px solid ${LINE}`,
+        boxShadow: KART_GOLGE,
+      }}
     >
-      <ShineBorder borderWidth={2} duration={12} shineColor={[RED, '#F87171', RED]} />
+      <ShineBorder borderWidth={2} duration={10} shineColor={SHINE} />
 
-      <Baslik koyu>{paket.etiket}</Baslik>
+      <Baslik>{paket.etiket}</Baslik>
 
       <h3 className="font-display mt-3 text-[19px] leading-[1.2] tracking-tight md:text-[21px]" style={{ fontWeight: 700 }}>
         {paket.baslik}
@@ -148,31 +152,31 @@ function Kart({ paket }: { paket: Paket }) {
           {paket.fiyat}
         </span>
         {paket.fiyatNot && (
-          <span className="text-[13px]" style={{ color: KART_MUTED, fontWeight: 400 }}>
+          <span className="text-[13px]" style={{ color: MUTED, fontWeight: 400 }}>
             {paket.fiyatNot}
           </span>
         )}
       </p>
 
-      <p className="mt-4 text-[13.5px] leading-[1.65]" style={{ color: KART_MUTED, fontWeight: 400 }}>
+      <p className="mt-4 text-[13.5px] leading-[1.65]" style={{ color: MUTED, fontWeight: 400 }}>
         {paket.aciklama}
       </p>
 
-      <div className="my-6 h-px w-full" style={{ background: KART_LINE }} />
+      <div className="my-6 h-px w-full" style={{ background: LINE }} />
 
-      <Baslik koyu>Kapsam</Baslik>
+      <Baslik>Kapsam</Baslik>
       <Liste maddeler={paket.kapsam} />
 
       {paket.kimlerIcin && (
         <>
-          <div className="my-6 h-px w-full" style={{ background: KART_LINE }} />
-          <Baslik koyu>Kimler İçin?</Baslik>
+          <div className="my-6 h-px w-full" style={{ background: LINE }} />
+          <Baslik>Kimler İçin?</Baslik>
           <ul className="mt-3.5 flex flex-wrap gap-2">
             {paket.kimlerIcin.map((k) => (
               <li
                 key={k}
                 className="rounded-[6px] border px-2.5 py-1 text-[12.5px]"
-                style={{ borderColor: KART_LINE, color: KART_MUTED, fontWeight: 400 }}
+                style={{ borderColor: LINE, color: MUTED, fontWeight: 400 }}
               >
                 {k}
               </li>
@@ -182,7 +186,7 @@ function Kart({ paket }: { paket: Paket }) {
       )}
 
       {paket.dipnot && (
-        <p className="mt-6 text-[12.5px] leading-[1.6]" style={{ color: KART_FAINT, fontWeight: 400 }}>
+        <p className="mt-6 text-[12.5px] leading-[1.6]" style={{ color: FAINT, fontWeight: 400 }}>
           {paket.dipnot}
         </p>
       )}
@@ -194,14 +198,14 @@ export function Packages() {
   return (
     <div className="mx-auto w-full max-w-[1240px] px-6">
       <h2
-        className="font-display text-center text-[24px] tracking-tight text-white md:text-[28px]"
-        style={{ fontWeight: 700 }}
+        className="font-display text-center text-[24px] tracking-tight md:text-[28px]"
+        style={{ fontWeight: 700, color: 'var(--fg)' }}
       >
         Çalışma modelleri ve yatırım
       </h2>
       <p
         className="mx-auto mt-4 text-center text-[15px] leading-[1.65] md:whitespace-nowrap"
-        style={{ color: MUTED, fontWeight: 300 }}
+        style={{ color: MUTED, fontWeight: 400 }}
       >
         İlk adım ücretsiz ön görüşme; ardından markanıza uygun model birlikte belirlenir.
       </p>
@@ -214,13 +218,13 @@ export function Packages() {
       </div>
 
       <div
-        className="mt-10 rounded-[14px] border p-7 md:p-8"
-        style={{ background: '#141414', borderColor: LINE }}
+        className="mt-10 rounded-[16px] border p-7 md:p-8"
+        style={{ background: 'var(--bg-soft)', borderColor: LINE }}
       >
         <Baslik>Çalışma Modeli</Baslik>
         <div className="mt-4 flex flex-col gap-3.5">
           {CALISMA_MODELI.map((p) => (
-            <p key={p} className="text-[14px] leading-[1.7]" style={{ color: MUTED, fontWeight: 300 }}>
+            <p key={p} className="text-[14px] leading-[1.7]" style={{ color: MUTED, fontWeight: 400 }}>
               {p}
             </p>
           ))}
