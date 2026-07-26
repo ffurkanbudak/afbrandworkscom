@@ -195,8 +195,8 @@ export function Packages() {
           </span>
         </h2>
         <p className="mx-auto mt-5 max-w-[46ch] text-[14px] leading-[1.65] text-white/60">
-          Markanızın bulunduğu aşamaya göre iki farklı ritim. İlk adım her zaman
-          15 dakikalık ücretsiz ön görüşme.
+          Her iş birliği, markanızı tanımaya yönelik 15 dakikalık ücretsiz ön görüşme
+          ile başlar.
         </p>
       </div>
 
