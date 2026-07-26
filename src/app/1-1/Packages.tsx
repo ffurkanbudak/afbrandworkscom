@@ -2,23 +2,17 @@ import { Check, ChevronDown, Star } from 'lucide-react';
 import { AvatarCircles } from '@/components/ui/avatar-circles';
 
 const VURGU = '#DC2626';
-const CARD_LINE = 'rgba(255,255,255,0.09)';
-const CARD_BG = '#121212';
 
 const AVATARLAR = [1, 2, 3, 4].map((n) => ({
   imageUrl: `https://api.dicebear.com/9.x/notionists/svg?seed=danisan-${n}&backgroundColor=ffffff`,
   profileUrl: '#randevu',
 }));
 
-type AkordeonBolum = { baslik: string; sure: string; maddeler: string[] };
-
 type Model = {
   rozet: string;
   baslikDuz: string;
   baslikVurgu: string;
   aciklama: string;
-  toplamSure: string;
-  bolumler: AkordeonBolum[];
   fiyat: string;
   eskiFiyat: string;
   dahil: string[];
@@ -32,51 +26,19 @@ const MODELLER: Model[] = [
     baslikVurgu: 'Mentörlüğü',
     aciklama:
       'Markasını büyütmek isteyen girişimciler, KOBİ sahipleri ve e-ticaret markaları için düzenli bir ritim.',
-    toplamSure: 'Aylık toplam süre: 8 saat',
-    bolumler: [
-      {
-        baslik: 'Görüşme ritmi',
-        sure: '8 saat / ay',
-        maddeler: [
-          'Haftada bir gün',
-          'Haftalık iki saat birebir görüşme',
-          'Meet ya da Zoom üzerinden',
-        ],
-      },
-      {
-        baslik: 'Görüşmeler arasındaki destek',
-        sure: 'Süreklilik',
-        maddeler: [
-          'WhatsApp üzerinden öncelikli iletişim',
-          'Görüşmeler arasında stratejik değerlendirmeler',
-          'Karşılaşılan sorunlara çözüm önerileri',
-        ],
-      },
-      {
-        baslik: 'Birlikte ele aldıklarımız',
-        sure: 'Her görüşme',
-        maddeler: [
-          'Marka, pazarlama ve büyüme süreçleri',
-          'İş modeli ve konumlandırma istişareleri',
-          'Öncelikli aksiyonların belirlenmesi',
-        ],
-      },
-      {
-        baslik: 'Elinizde kalanlar',
-        sure: 'Yazılı çıktı',
-        maddeler: [
-          'Her görüşme sonunda uygulanabilir yol haritası',
-          'Aylık öncelik takibi',
-        ],
-      },
-    ],
     fiyat: '₺34.900',
     eskiFiyat: '₺45.000',
     dahil: [
-      'Ayda 8 saat birebir görüşme',
+      'Ayda 8 saat birebir görüşme (haftada bir gün, iki saat)',
       'WhatsApp üzerinden öncelikli iletişim',
       'Her görüşme sonunda yazılı yol haritası',
+      'Markalaşma e-kitabı, ücretsiz',
+      'Görüşme öncesi hazırlık formu',
+      'Görüşmeler arasında stratejik değerlendirmeler',
+      'Marka, pazarlama ve büyüme süreçlerinin birlikte ele alınması',
+      'İş modeli ve konumlandırma istişareleri',
       'Aylık öncelik takibi',
+      'Meet ya da Zoom üzerinden görüşme',
     ],
     kimlerIcin: 'Girişimciler, KOBİ sahipleri, e-ticaret markaları',
   },
@@ -86,52 +48,36 @@ const MODELLER: Model[] = [
     baslikVurgu: 'Partnerliği',
     aciklama:
       'Ölçeklenme sürecindeki şirketler, kurucu ortaklar ve üst düzey yöneticiler için karar süreçlerine yakın bir çalışma.',
-    toplamSure: 'Aylık toplam süre: 12 saat',
-    bolumler: [
-      {
-        baslik: 'Görüşme ritmi',
-        sure: '12 saat / ay',
-        maddeler: [
-          'Haftada üç gün',
-          'Her görüşme bir saat',
-          'Gerektiğinde hızlı karar görüşmeleri',
-        ],
-      },
-      {
-        baslik: 'Karar süreçlerinde konum',
-        sure: 'Aktif katılım',
-        maddeler: [
-          'Şirket yönetimiyle yakın çalışma',
-          'Yönetim kararlarında stratejik değerlendirme',
-          'Ajans ve tedarikçi süreçlerinde görüş',
-        ],
-      },
-      {
-        baslik: 'Takip ve ölçüm',
-        sure: 'Sürekli',
-        maddeler: [
-          'Sürekli geri bildirim ve gelişim takibi',
-          'Düzenli aksiyon planı',
-          'Öncelikli WhatsApp iletişimi',
-        ],
-      },
-      {
-        baslik: 'Elinizde kalanlar',
-        sure: 'Yazılı çıktı',
-        maddeler: ['Yıllık marka yol haritası', 'Düzenli aksiyon planı'],
-      },
-    ],
     fiyat: '₺59.900',
     eskiFiyat: '₺69.900',
     dahil: [
-      'Ayda 12 saat birebir görüşme',
+      'Ayda 12 saat birebir görüşme (haftada üç gün, birer saat)',
+      'Markanıza özel tek sayfalık analiz raporu',
       'Gerektiğinde hızlı karar görüşmeleri',
+      'Markalaşma e-kitabı, ücretsiz',
+      'Öncelikli WhatsApp iletişimi',
       'Yönetim kararlarında stratejik değerlendirme',
+      'Ajans ve tedarikçi süreçlerinde görüş',
+      'Sürekli geri bildirim ve gelişim takibi',
+      'Düzenli aksiyon planı',
       'Yıllık marka yol haritası',
+      'Uygun durumlarda yüz yüze görüşme',
     ],
     kimlerIcin: 'Ölçeklenen şirketler, kurucu ortaklar, üst düzey yöneticiler',
   },
 ];
+
+/** Kartta ilk bakışta görünen madde sayısı; kalanı açılır pencerede. */
+const GORUNUR = 4;
+
+function MaddeSatiri({ metin }: { metin: string }) {
+  return (
+    <li className="flex items-start gap-2.5 text-[13.5px] leading-[1.5] text-[#0A0A0A]/70">
+      <Check className="mt-[3px] h-[13px] w-[13px] shrink-0" strokeWidth={2.5} style={{ color: VURGU }} />
+      {metin}
+    </li>
+  );
+}
 
 function Yildizlar() {
   return (
@@ -143,47 +89,17 @@ function Yildizlar() {
   );
 }
 
-function Akordeon({ bolumler }: { bolumler: AkordeonBolum[] }) {
-  return (
-    <div className="mt-6 flex flex-col gap-2.5">
-      {bolumler.map((b) => (
-        <details
-          key={b.baslik}
-          className="group rounded-[12px] border px-5 py-4"
-          style={{ background: CARD_BG, borderColor: CARD_LINE }}
-        >
-          <summary className="flex cursor-pointer list-none items-center justify-between gap-4 [&::-webkit-details-marker]:hidden">
-            <span className="text-[14.5px] font-medium text-white">{b.baslik}</span>
-            <span className="flex shrink-0 items-center gap-3">
-              <span className="text-[12.5px] text-white/40">{b.sure}</span>
-              <ChevronDown
-                className="h-4 w-4 text-white/40 transition-transform duration-200 group-open:rotate-180"
-                strokeWidth={2}
-              />
-            </span>
-          </summary>
-          <ul className="mt-4 flex flex-col gap-2.5 border-t pt-4" style={{ borderColor: CARD_LINE }}>
-            {b.maddeler.map((m) => (
-              <li key={m} className="flex items-start gap-2.5 text-[13.5px] leading-[1.5] text-white/65">
-                <Check className="mt-[3px] h-[13px] w-[13px] shrink-0" strokeWidth={2.5} style={{ color: VURGU }} />
-                {m}
-              </li>
-            ))}
-          </ul>
-        </details>
-      ))}
-    </div>
-  );
-}
-
 function FiyatKarti({ model }: { model: Model }) {
   return (
     <div
       className="rounded-[18px] bg-white p-7 text-[#0A0A0A] md:p-8"
       style={{ boxShadow: '0 2px 6px rgba(0,0,0,.28), 0 40px 80px -32px rgba(0,0,0,.75)' }}
     >
-      <span className="inline-flex items-center gap-2 rounded-full bg-[#0A0A0A]/[0.05] px-3 py-1.5 text-[11.5px] font-medium">
-        <span className="h-[6px] w-[6px] rounded-full" style={{ background: '#16A34A' }} aria-hidden />
+      <span
+        className="inline-flex h-[30px] items-center gap-2 rounded-full border px-3.5 text-[11.5px] font-medium"
+        style={{ borderColor: 'rgba(10,10,10,0.12)', background: 'rgba(10,10,10,0.03)' }}
+      >
+        <span className="h-[6px] w-[6px] shrink-0 rounded-full" style={{ background: '#16A34A' }} aria-hidden />
         {model.rozet}
       </span>
 
@@ -216,13 +132,33 @@ function FiyatKarti({ model }: { model: Model }) {
       <div className="mt-7 border-t pt-6" style={{ borderColor: 'rgba(10,10,10,0.1)' }}>
         <p className="text-[13px] font-semibold">Neler dahil:</p>
         <ul className="mt-3.5 flex flex-col gap-2.5">
-          {model.dahil.map((d) => (
-            <li key={d} className="flex items-start gap-2.5 text-[13.5px] leading-[1.5] text-[#0A0A0A]/70">
-              <Check className="mt-[3px] h-[13px] w-[13px] shrink-0" strokeWidth={2.5} style={{ color: VURGU }} />
-              {d}
-            </li>
+          {model.dahil.slice(0, GORUNUR).map((d) => (
+            <MaddeSatiri key={d} metin={d} />
           ))}
         </ul>
+
+        {model.dahil.length > GORUNUR && (
+          <details className="group mt-3">
+            <summary
+              className="flex cursor-pointer list-none items-center gap-1.5 text-[13px] font-semibold [&::-webkit-details-marker]:hidden"
+              style={{ color: VURGU }}
+            >
+              <span className="group-open:hidden">
+                Devamını göster ({model.dahil.length - GORUNUR})
+              </span>
+              <span className="hidden group-open:inline">Daha az göster</span>
+              <ChevronDown
+                className="h-[13px] w-[13px] transition-transform duration-200 group-open:rotate-180"
+                strokeWidth={2.5}
+              />
+            </summary>
+            <ul className="mt-3.5 flex flex-col gap-2.5">
+              {model.dahil.slice(GORUNUR).map((d) => (
+                <MaddeSatiri key={d} metin={d} />
+              ))}
+            </ul>
+          </details>
+        )}
       </div>
 
       <a
@@ -264,18 +200,9 @@ export function Packages() {
         </p>
       </div>
 
-      <div className="relative mt-14 flex flex-col gap-16">
+      <div className="relative mx-auto mt-14 grid max-w-[980px] items-start gap-6 md:grid-cols-2">
         {MODELLER.map((model) => (
-          <div key={model.baslikVurgu} className="grid items-start gap-8 lg:grid-cols-[1fr_440px] lg:gap-10">
-            <div>
-              <p className="text-[11px] font-semibold tracking-[0.14em] text-white/40 uppercase">
-                Kapsam
-              </p>
-              <p className="mt-2 text-[13px] text-white/45">{model.toplamSure}</p>
-              <Akordeon bolumler={model.bolumler} />
-            </div>
-            <FiyatKarti model={model} />
-          </div>
+          <FiyatKarti key={model.baslikVurgu} model={model} />
         ))}
       </div>
 
