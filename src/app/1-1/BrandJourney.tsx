@@ -79,7 +79,7 @@ export function BrandJourney() {
   return (
     <>
       {/* Geniş ekran: tek sırada bombeli dalga, üzerinde süzülen avatar */}
-      <div className="mx-auto hidden w-full max-w-[1360px] px-6 xl:block">
+      <div className="mx-auto hidden w-full max-w-[1440px] px-4 xl:block">
         <div className="relative mt-20" style={{ height: DALGA_Y }}>
           <SuzulenAvatar />
 
@@ -133,10 +133,10 @@ export function BrandJourney() {
 
         <ol className="mt-7 grid grid-cols-10">
           {ADIMLAR.map((adim) => (
-            <li key={adim.baslik} className="px-2 text-center">
+            <li key={adim.baslik} className="px-1 text-center">
               <p
-                className="text-[13.5px] leading-[1.3] tracking-tight"
-                style={{ color: 'var(--fg)', fontWeight: 600 }}
+                className="text-[12px] leading-[1.3] tracking-tight whitespace-nowrap"
+                style={{ color: 'var(--fg)', fontWeight: 300 }}
               >
                 {adim.baslik}
               </p>

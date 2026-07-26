@@ -20,8 +20,8 @@ export function Logo({ className, title = 'Ahmet Furkan Budak', height = 30 }: P
 
   return (
     <span
-      className={`logo-swap inline-flex items-center ${className ?? ''}`}
-      style={{ height, width }}
+      className={`logo-swap inline-flex max-w-full items-center ${className ?? ''}`}
+      style={{ height, maxWidth: width }}
       role="img"
       aria-label={title}
     >
@@ -31,7 +31,7 @@ export function Logo({ className, title = 'Ahmet Furkan Budak', height = 30 }: P
         alt=""
         width={width}
         height={height}
-        className="logo-on-light"
+        className="logo-on-light max-w-full object-contain object-left"
         style={{ height: '100%', width: 'auto' }}
       />
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -40,7 +40,7 @@ export function Logo({ className, title = 'Ahmet Furkan Budak', height = 30 }: P
         alt=""
         width={width}
         height={height}
-        className="logo-on-dark"
+        className="logo-on-dark max-w-full object-contain object-left"
         style={{ height: '100%', width: 'auto' }}
       />
     </span>

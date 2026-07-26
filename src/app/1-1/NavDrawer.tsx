@@ -45,11 +45,11 @@ export function NavDrawer() {
           >
             <Menu className="h-5 w-5" strokeWidth={1.75} />
           </button>
-          <Link href="/" aria-label="Ahmet Furkan Budak" className="flex items-center" style={{ color: 'var(--fg)' }}>
+          <Link href="/" aria-label="Ahmet Furkan Budak" className="flex min-w-0 shrink items-center" style={{ color: 'var(--fg)' }}>
             <Logo height={18} />
           </Link>
 
-          <div className="ml-auto flex items-center gap-2">
+          <div className="ml-auto flex shrink-0 items-center gap-2">
             <a
               href="mailto:info@toganworks.com"
               aria-label="info@toganworks.com adresine e-posta gönderin"
