@@ -4,23 +4,16 @@ const MUTED = 'rgba(255,255,255,0.72)';
 const FAINT = 'rgba(255,255,255,0.42)';
 const LINE = 'rgba(255,255,255,0.14)';
 
-/** Metin akışı içinde öne çıkan tutar. */
-function Fiyat({ eski, yeni, birim }: { eski?: string; yeni: string; birim?: string }) {
+/** Cümle akışı içinde tutar: gövde boyutunda, yalnızca kalın. */
+function Fiyat({ eski, yeni }: { eski: string; yeni: string }) {
   return (
     <span className="whitespace-nowrap">
-      {eski && (
-        <s className="mr-2 text-[15px]" style={{ color: FAINT, fontWeight: 500 }}>
-          {eski}
-        </s>
-      )}
-      <strong className="text-[19px] tracking-tight text-white" style={{ fontWeight: 800 }}>
+      <s className="mr-1.5" style={{ color: FAINT }}>
+        {eski}
+      </s>
+      <strong className="text-white" style={{ fontWeight: 700 }}>
         {yeni}
       </strong>
-      {birim && (
-        <span className="ml-1.5 text-[14px]" style={{ color: MUTED }}>
-          {birim}
-        </span>
-      )}
     </span>
   );
 }
@@ -50,21 +43,19 @@ export function Packages() {
 
       <div className="mt-7 flex flex-col gap-6" style={{ color: MUTED }}>
         <p className={P}>
-          Yılda yalnızca sınırlı sayıda markayla çalışıyorum. Her markanın sektörü,
-          hedefleri, rekabet ortamı ve büyüme potansiyeli birbirinden ayrı olduğu için
-          süreci hazır şablonlar üzerinden yürütmüyorum; masaya oturduğumuz her marka
-          için ayrı hazırlanıyor, ayrı düşünüyorum. Görüşmelerde yalnızca o günün
-          sorunlarını çözmek yerine, uzun vadede marka değeri oluşturacak kararları
-          birlikte değerlendiriyoruz.
+          Aynı dönemde sınırlı sayıda markayla çalışıyorum; böylece her birine yeterli
+          zaman ayırabiliyorum. Süreci hazır şablonlar üzerinden yürütmüyorum — her
+          markanın sektörü, hedefleri ve rekabet ortamı ayrı olduğu için hazırlığı da
+          ayrı yapıyorum. Görüşmelerde yalnızca o günün sorunlarını çözmek yerine, uzun
+          vadede marka değeri oluşturacak kararları birlikte değerlendiriyoruz.
         </p>
 
         <p className={P}>
-          İlk adım her zaman aynı:{' '}
-          <Fiyat yeni="Ücretsiz" birim="15 dakikalık stratejik ön görüşme" />. Burada
-          karşılıklı tanışıyor, markanızın mevcut durumunu kısaca analiz ediyor, temel
-          ihtiyaçlarınızı ve hedeflerinizi konuşuyoruz. Görüşmenin sonunda size uygun
-          çalışma modelini öneriyorum. Bu oturumda detaylı danışmanlık ya da stratejik
-          yol haritası paylaşmıyorum; amacı doğru başlangıcı kurmak.
+          İlk adım, 15 dakikalık ücretsiz bir ön görüşme. Burada karşılıklı tanışıyor,
+          markanızın mevcut durumunu kısaca analiz ediyor, temel ihtiyaçlarınızı ve
+          hedeflerinizi konuşuyoruz. Görüşmenin sonunda size uygun çalışma modelini
+          öneriyorum. Bu oturumda detaylı danışmanlık ya da stratejik yol haritası
+          paylaşmıyorum; amacı doğru başlangıcı kurmak.
         </p>
       </div>
 
@@ -82,10 +73,8 @@ export function Packages() {
             karşılaştığınız sorunlara çözüm öneriyorum. Marka, pazarlama ve büyüme
             süreçlerini birlikte değerlendiriyor; iş modeli ve konumlandırma üzerine
             istişare ediyor, öncelikli aksiyonları belirliyoruz. Her görüşmenin sonunda
-            uygulanabilir bir yol haritası çıkıyor.
-          </p>
-          <p className={P}>
-            Aylık yatırım: <Fiyat eski="₺45.000" yeni="₺34.900" birim="/ ay" />
+            uygulanabilir bir yol haritası çıkıyor. Bu modelin aylık bedeli{' '}
+            <Fiyat eski="₺45.000" yeni="₺34.900" />.
           </p>
         </div>
       </div>
@@ -102,10 +91,8 @@ export function Packages() {
           <p className={P}>
             Öncelikli WhatsApp iletişiminin yanında, gerektiğinde hızlı karar görüşmeleri
             yapıyoruz. Yönetim kararlarını stratejik açıdan değerlendiriyor, sürekli geri
-            bildirim ve gelişim takibiyle düzenli bir aksiyon planı yürütüyoruz.
-          </p>
-          <p className={P}>
-            Aylık yatırım: <Fiyat eski="₺69.900" yeni="₺59.900" birim="/ ay" />
+            bildirim ve gelişim takibiyle düzenli bir aksiyon planı yürütüyoruz. Bu
+            modelin aylık bedeli <Fiyat eski="₺69.900" yeni="₺59.900" />.
           </p>
         </div>
       </div>
