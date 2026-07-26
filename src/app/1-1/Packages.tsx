@@ -117,9 +117,9 @@ function Liste({ maddeler }: { maddeler: string[] }) {
         <li key={m} className="flex items-start gap-2.5 text-[13.5px] leading-[1.5]">
           <span
             className="mt-[3px] flex h-[15px] w-[15px] shrink-0 items-center justify-center rounded-full"
-            style={{ background: 'color-mix(in oklab, #DC2626 16%, transparent)' }}
+            style={{ background: RED }}
           >
-            <Check className="h-[9px] w-[9px]" strokeWidth={3} style={{ color: RED }} />
+            <Check className="h-[9px] w-[9px]" strokeWidth={3} style={{ color: '#FFFFFF' }} />
           </span>
           <span style={{ color: KART_MUTED, fontWeight: 400 }}>{m}</span>
         </li>
