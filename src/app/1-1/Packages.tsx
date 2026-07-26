@@ -17,6 +17,7 @@ type Paket = {
   etiket: string;
   baslik: string;
   fiyat: string;
+  eskiFiyat?: string;
   fiyatNot?: string;
   aciklama: string;
   kapsam: string[];
@@ -45,6 +46,7 @@ const PAKETLER: Paket[] = [
     etiket: 'Paket I',
     baslik: 'Stratejik Marka Mentörlüğü',
     fiyat: '₺34.900',
+    eskiFiyat: '₺45.000',
     fiyatNot: '/ Ay',
     aciklama:
       'Markasını büyütmek isteyen girişimciler, şirket sahipleri ve yöneticiler için düzenli stratejik danışmanlık programı.',
@@ -71,6 +73,7 @@ const PAKETLER: Paket[] = [
     etiket: 'Paket II',
     baslik: 'Stratejik Büyüme Partnerliği',
     fiyat: '₺59.900',
+    eskiFiyat: '₺69.900',
     fiyatNot: '/ Ay',
     aciklama:
       'Şirket yönetimiyle daha yakın çalışan, karar süreçlerine aktif şekilde dahil olunan üst düzey danışmanlık modeli.',
@@ -145,7 +148,12 @@ function Kart({ paket }: { paket: Paket }) {
         {paket.baslik}
       </h3>
 
-      <p className="mt-4 flex items-baseline gap-2">
+      <p className="mt-4 flex flex-wrap items-baseline gap-x-2.5 gap-y-1">
+        {paket.eskiFiyat && (
+          <s className="text-[15px] leading-none" style={{ color: FAINT, fontWeight: 500 }}>
+            {paket.eskiFiyat}
+          </s>
+        )}
         <span className="font-display text-[26px] leading-none tracking-tight" style={{ fontWeight: 800 }}>
           {paket.fiyat}
         </span>
