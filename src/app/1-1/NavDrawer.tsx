@@ -123,22 +123,37 @@ export function NavDrawer() {
             ))}
           </nav>
 
-          <div className="mt-auto space-y-2.5 border-t pt-5" style={{ borderColor: 'var(--border)' }}>
+          <div className="mt-auto flex items-center gap-2 border-t pt-5" style={{ borderColor: 'var(--border)' }}>
+            <a
+              href={TAKVIM_URL}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="Google Takvim üzerinden randevu planlayın"
+              title="Randevu planlayın"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[8px] border transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
+              style={{ borderColor: 'var(--border)' }}
+            >
+              <GoogleCalendarLogo className="h-5 w-5" />
+            </a>
+            <a
+              href="mailto:info@toganworks.com"
+              aria-label="E-posta gönderin"
+              title="E-posta"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[8px] border transition hover:bg-[color-mix(in_oklab,var(--fg)_6%,transparent)]"
+              style={{ borderColor: 'var(--border)' }}
+            >
+              <GmailLogo className="h-5 w-5" />
+            </a>
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 text-[14px] font-medium transition hover:opacity-75"
+              aria-label="WhatsApp üzerinden iletişime geçin"
+              title="WhatsApp"
+              className="inline-flex h-11 w-11 items-center justify-center rounded-[8px] text-white transition hover:opacity-90"
+              style={{ background: '#25D366' }}
             >
-              <WhatsAppGlyph className="h-[15px] w-[15px]" />
-              WhatsApp
-            </a>
-            <a
-              href="mailto:info@toganworks.com"
-              className="flex items-center gap-2 text-[14px] font-medium transition hover:opacity-75"
-            >
-              <GmailLogo className="h-[15px] w-[15px]" />
-              info@toganworks.com
+              <WhatsAppGlyph className="h-5 w-5" />
             </a>
           </div>
         </div>
