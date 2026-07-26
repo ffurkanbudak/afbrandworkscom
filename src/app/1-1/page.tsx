@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { NavDrawer } from './NavDrawer';
 import { AppointmentButton } from './AppointmentButton';
 import { TopicsCloud } from './TopicsCloud';
-import { Packages } from './Packages';
 import { BrandTest } from './BrandTest';
 import { TextAnimate } from '@/components/ui/text-animate';
 import { AvatarCircles } from '@/components/ui/avatar-circles';
@@ -307,14 +306,6 @@ export default function OneOnOnePage() {
               </details>
             ))}
           </div>
-        </section>
-
-        {/* Paketler */}
-        <section
-          className="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden py-16 md:py-20"
-          style={{ background: '#0A0A0A' }}
-        >
-          <Packages />
         </section>
 
         {/* Final + Randevu */}
