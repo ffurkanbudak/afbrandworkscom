@@ -326,6 +326,20 @@ select.input-base option[value=""][disabled] {
   color: color-mix(in oklab, var(--fg) 82%, transparent);
 }
 
+/* Yazı gövdesine gömülen bağlantılar düz metinden ayrışsın. */
+.post-body a {
+  color: #dc2626;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  text-decoration-color: color-mix(in oklab, #dc2626 45%, transparent);
+  transition: text-decoration-color 0.2s;
+}
+
+.post-body a:hover {
+  text-decoration-color: #dc2626;
+}
+
 .post-body blockquote {
   margin: 1.75em 0;
   padding-left: 1.25em;
