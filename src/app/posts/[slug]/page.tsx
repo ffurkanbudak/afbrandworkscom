@@ -15,6 +15,7 @@ import { ViewBeacon } from '@/components/ViewBeacon';
 import { PostJsonLd } from '@/components/PostJsonLd';
 import { ImageCreditBadge } from '@/components/ImageCredit';
 import { getImageCredit } from '@/lib/image-credits';
+import { varlikBaglantilariniEkle } from '@/lib/entity-links';
 
 const FALLBACK_AUTHOR = 'Ahmet Furkan Budak';
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
@@ -92,7 +93,9 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
     }),
   ]);
 
-  const renderedHtml = post.contentHtml;
+  // Gövde metnindeki kavramlar varlık sayfalarına bağlanır; aynı kaynak
+  // yapısal veride about/mentions olarak da kullanılır.
+  const { html: renderedHtml, varliklar } = varlikBaglantilariniEkle(post.contentHtml);
   const primaryTag = post.tags[0]?.tag;
   const shareUrl = `${SITE_URL}/posts/${post.slug}`;
   const coverCredit = getImageCredit(post.coverImageUrl);
@@ -110,6 +113,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         authorName={post.author?.name ?? FALLBACK_AUTHOR}
         tags={post.tags.map((t) => ({ slug: t.tag.slug, labelTr: t.tag.labelTr }))}
         readingMinutes={post.readingMinutes}
+        varliklar={varliklar}
       />
       <ViewBeacon slug={post.slug} />
       <nav

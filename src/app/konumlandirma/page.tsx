@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { PillarJsonLd } from '@/components/PillarJsonLd';
+import { PillarRelatedPosts } from '@/components/PillarRelatedPosts';
 
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
 
@@ -425,6 +426,7 @@ export default function KonumlandirmaPage() {
             </Link>
           </div>
         </section>
+        <PillarRelatedPosts href="/konumlandirma" baslik="Marka konumlandırma" />
       </div>
     </>
   );
