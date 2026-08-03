@@ -4,6 +4,7 @@ import { BrandJourney } from './BrandJourney';
 import { TopicsCloud } from './TopicsCloud';
 import { Packages } from './Packages';
 import { BrandTest } from './BrandTest';
+import { TestIcerigi } from './TestIcerigi';
 import { TextAnimate } from '@/components/ui/text-animate';
 import { AvatarCircles } from '@/components/ui/avatar-circles';
 import { HeroDock } from './HeroDock';
@@ -253,6 +254,8 @@ export default function OneOnOnePage() {
             <BrandTest whatsappUrl={WHATSAPP_URL} />
           </div>
         </section>
+
+        <TestIcerigi />
 
         {/* Süreç */}
         <section
