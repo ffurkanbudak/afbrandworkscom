@@ -5,18 +5,16 @@ import { useEffect, useState } from 'react';
 type Variant = 'light' | 'dark';
 type Size = 'sm' | 'md';
 
-const ymdFormatter = new Intl.DateTimeFormat('en-CA', {
-  timeZone: 'Europe/Istanbul',
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit',
-});
+/** Rozetin görünmeye devam ettiği gün sayısı. */
+const YENI_GUN_SAYISI = 7;
+const GUN_MS = 24 * 60 * 60 * 1000;
 
-function isToday(publishedAt: Date | string | null | undefined): boolean {
+function yeniSayilir(publishedAt: Date | string | null | undefined): boolean {
   if (!publishedAt) return false;
   const date = typeof publishedAt === 'string' ? new Date(publishedAt) : publishedAt;
   if (Number.isNaN(date.getTime())) return false;
-  return ymdFormatter.format(date) === ymdFormatter.format(new Date());
+  const gecenSure = Date.now() - date.getTime();
+  return gecenSure >= 0 && gecenSure < YENI_GUN_SAYISI * GUN_MS;
 }
 
 export function NewBadge({
@@ -32,7 +30,7 @@ export function NewBadge({
 }) {
   const [show, setShow] = useState(false);
   useEffect(() => {
-    setShow(isToday(publishedAt));
+    setShow(yeniSayilir(publishedAt));
   }, [publishedAt]);
 
   if (!show) return null;
