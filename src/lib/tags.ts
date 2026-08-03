@@ -38,7 +38,7 @@ export const TAXONOMY: TaxonomyEntry[] = [
   { slug: 'noropazarlama-tuketici-psikolojisi', labelTr: 'Nöropazarlama ve Tüketici Psikolojisi', group: 'DISCIPLINE' },
   { slug: 'davranissal-ekonomi', labelTr: 'Davranışsal Ekonomi', group: 'DISCIPLINE' },
   { slug: 'global-marka-konumlandirma', labelTr: 'Global Marka Konumlandırma', group: 'DISCIPLINE' },
-  { slug: 'yapay-zeka-pazarlama-otomasyonu', labelTr: 'Yapay Zeka (AI) ve Pazarlama Otomasyonu', group: 'DISCIPLINE' },
+  { slug: 'yapay-zeka-pazarlama-otomasyonu', labelTr: 'Yapay Zeka (AI)', group: 'DISCIPLINE' },
   { slug: 'dijital-donusum-stratejileri', labelTr: 'Dijital Dönüşüm Stratejileri', group: 'DISCIPLINE' },
   { slug: 'b2b-marka-stratejisi', labelTr: 'B2B Marka Stratejisi', group: 'DISCIPLINE' },
   { slug: 'kurumsal-kimlik-marka-mimarisi', labelTr: 'Kurumsal Kimlik ve Marka Mimarisi', group: 'DISCIPLINE' },
