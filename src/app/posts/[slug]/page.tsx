@@ -20,6 +20,10 @@ import { varlikBaglantilariniEkle } from '@/lib/entity-links';
 const FALLBACK_AUTHOR = 'Ahmet Furkan Budak';
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
 
+// Etiket adı gibi yazı dışındaki veriler değiştiğinde sayfa yeniden
+// derlenmeyi beklemeden tazelensin.
+export const revalidate = 3600;
+
 export async function generateStaticParams() {
   const posts = await db.post.findMany({ where: { status: 'PUBLISHED' }, select: { slug: true } });
   return posts.map((p) => ({ slug: p.slug }));
