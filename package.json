@@ -12,7 +12,8 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "tsx prisma/seed.ts",
     "prisma:studio": "prisma studio",
-    "audit": "npx dotenv-cli -e .env.local -- npx tsx scripts/audit.ts"
+    "audit": "npx dotenv-cli -e .env.local -- npx tsx scripts/audit.ts",
+    "export:posts": "npx dotenv-cli -e .env.local -- npx tsx scripts/export-posts.ts"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.19.0",
