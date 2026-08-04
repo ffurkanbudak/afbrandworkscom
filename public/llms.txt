@@ -15,10 +15,11 @@ Ahmet Furkan Budak; marka stratejisi, konumlandırma, kimlik inşası ve pazarla
 
 ## Ana bölümler
 
-- [Anasayfa](https://afbrandworks.com/): Son yazılar, gündem ve konular.
+- [Anasayfa](https://afbrandworks.com/): Son yazılar ve öne çıkan içerikler.
 - [Yazılar](https://afbrandworks.com/posts): Markalaşma, konumlandırma, iletişim ve büyüme üzerine blog yazıları.
-- [Gündem](https://afbrandworks.com/gundem): Dünyadan marka haberlerinin Türkçe özet ve editör notuyla akışı.
-- [Konular](https://afbrandworks.com/konular): Sektör, disiplin ve vaka temelli etiketler.
+- [Marka Masası](https://afbrandworks.com/1-1): Birebir marka danışmanlığı; üç marka değerlendirme testi, on adımlı çalışma süreci ve çalışma modelleri.
+- [Hizmetler](https://afbrandworks.com/hizmetler): Marka danışmanlığı hizmet başlıkları.
+- [Marka Sözlüğü](https://afbrandworks.com/sozluk): Markalaşma ve pazarlama terimlerinin tanımları.
 - [Öneriler](https://afbrandworks.com/oneriler): Kitap, podcast, video ve etkinlik önerileri.
 - [Hakkımda](https://afbrandworks.com/hakkinda): Biyografi, eğitim, sertifikalar, deneyim.
 - [İletişim](https://afbrandworks.com/iletisim): Telefon, e-posta ve sosyal medya kanalları.
@@ -95,7 +96,7 @@ Konumlandırma stratejisi, marka kimliği ve isimlendirme, pazarlama iletişimi 
 Erken aşama girişimciler, kurucular, marka kuran işletmeler, iletişim ve pazarlama ekipleri, kurumsal yöneticiler.
 
 **İçerikler hangi dilde?**
-Birincil dil Türkçedir. Gündem bölümünde çevrilmiş uluslararası haberler yer alır.
+Yayın dili Türkçedir.
 
 **Nasıl iletişime geçilir?**
 Telefon (+90 537 434 95 66) veya e-posta (info@toganworks.com) ile doğrudan; ayrıca sosyal medya kanalları üzerinden.

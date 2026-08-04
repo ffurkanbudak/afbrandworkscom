@@ -49,9 +49,11 @@ içerik yayımlar. Yayın dili Türkçedir.
 
 - Anasayfa: Son yazılar, gündem haberleri ve öne çıkan içerikler.
 - Yazılar (/posts): Markalaşma blog yazıları.
-- Gündem (/gundem): Dünyadan marka haberlerinin Türkçe özet ve editör notuyla
-  akışı. RSS ve Google News kaynaklarından toplanır, editoryal süreçten geçer.
-- Konular (/konular): Sektör, disiplin ve vaka-temelli etiketler.
+- Marka Masası (/1-1): Birebir marka danışmanlığı sayfası. Üç marka
+  değerlendirme testi (marka kurma hazırlığı, büyüme engeli, ölçeklenme),
+  on adımlı çalışma süreci ve çalışma modelleri yer alır.
+- Hizmetler (/hizmetler): Marka danışmanlığı hizmet başlıkları.
+- Marka Sözlüğü (/sozluk): Markalaşma ve pazarlama terimlerinin tanımları.
 - Öneriler (/oneriler): Kitap, podcast, video ve etkinlik önerileri.
 - Hakkımda (/hakkinda): Biyografi ve profesyonel profil.
 - İletişim (/iletisim): Telefon, e-posta ve sosyal medya kanalları.
