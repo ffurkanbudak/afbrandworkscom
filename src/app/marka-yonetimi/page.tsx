@@ -10,6 +10,10 @@ const TITLE = 'Marka Yönetimi — Ahmet Furkan Budak';
 const DESCRIPTION =
   'Marka yönetimi; marka stratejisinin günlük operasyonda disiplinli biçimde uygulanmasıdır. Marka tutarlılığı, marka sağlığı ve marka genişlemesi üzerine yazılar, rehberler ve danışmanlık.';
 
+// İlgili yazılar bloğu veritabanından beslenir; yeni yazı eklendiğinde
+// sayfanın yeniden derlenmesini beklemeden tazelensin.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Marka Yönetimi',
   description: DESCRIPTION,

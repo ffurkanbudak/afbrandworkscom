@@ -10,6 +10,10 @@ const TITLE = 'Dijital Markalaşma — Ahmet Furkan Budak';
 const DESCRIPTION =
   'Dijital markalaşma; marka stratejisinin web, sosyal medya, arama, bülten ve uygulamalarda tutarlı biçimde uygulanmasıdır. Dijital kanallar markanın yansımasıdır, kendi başına strateji değildir.';
 
+// İlgili yazılar bloğu veritabanından beslenir; yeni yazı eklendiğinde
+// sayfanın yeniden derlenmesini beklemeden tazelensin.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Dijital Markalaşma',
   description: DESCRIPTION,

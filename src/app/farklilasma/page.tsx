@@ -10,6 +10,10 @@ const TITLE = 'Marka Farklılaşması — Rehber';
 const DESCRIPTION =
   'Marka farklılaşması nedir, nasıl kurulur, hangi eksenler işler? Farklılaşma ekseni, kategori içinde ayrışma, kanıt stratejisi ve yaygın hatalar. Ahmet Furkan Budak rehberi.';
 
+// İlgili yazılar bloğu veritabanından beslenir; yeni yazı eklendiğinde
+// sayfanın yeniden derlenmesini beklemeden tazelensin.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Marka Farklılaşması',
   description: DESCRIPTION,

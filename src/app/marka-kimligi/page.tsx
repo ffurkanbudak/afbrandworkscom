@@ -10,6 +10,10 @@ const TITLE = 'Marka Kimliği — Rehber';
 const DESCRIPTION =
   'Marka kimliği nedir, nasıl oluşturulur, hangi bileşenlerden oluşur? Logo, tipografi, renk paleti, sesin tonu ve görsel sistem. Ahmet Furkan Budak rehberi.';
 
+// İlgili yazılar bloğu veritabanından beslenir; yeni yazı eklendiğinde
+// sayfanın yeniden derlenmesini beklemeden tazelensin.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Marka Kimliği',
   description: DESCRIPTION,

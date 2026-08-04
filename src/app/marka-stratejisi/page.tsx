@@ -10,6 +10,10 @@ const TITLE = 'Marka Stratejisi — Ahmet Furkan Budak';
 const DESCRIPTION =
   'Marka stratejisi; konumlandırma, farklılaşma ekseni, değer önerisi ve hedef kitle tanımından oluşan uzun vadeli planlama disiplinidir. Ahmet Furkan Budak marka stratejisi üzerine yazar ve danışmanlık sunar.';
 
+// İlgili yazılar bloğu veritabanından beslenir; yeni yazı eklendiğinde
+// sayfanın yeniden derlenmesini beklemeden tazelensin.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Marka Stratejisi',
   description: DESCRIPTION,

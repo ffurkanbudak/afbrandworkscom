@@ -10,6 +10,10 @@ const TITLE = 'Marka Konumlandırma — Rehber';
 const DESCRIPTION =
   'Marka konumlandırma nedir, nasıl yapılır, hangi yöntemler işler? Konumlandırma ekseninin kurulması, değer önerisiyle ilişkisi ve yaygın hatalar. Ahmet Furkan Budak rehberi.';
 
+// İlgili yazılar bloğu veritabanından beslenir; yeni yazı eklendiğinde
+// sayfanın yeniden derlenmesini beklemeden tazelensin.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Marka Konumlandırma',
   description: DESCRIPTION,

@@ -10,6 +10,10 @@ const TITLE = 'Marka Danışmanlığı — Ahmet Furkan Budak';
 const DESCRIPTION =
   'Stratejik marka danışmanlığı: konumlandırma, marka kimliği, pazarlama iletişimi ve sürdürülebilir büyüme. Ahmet Furkan Budak Toganworks yönetiminde kurumlara ve girişimcilere marka danışmanlığı sunar.';
 
+// İlgili yazılar bloğu veritabanından beslenir; yeni yazı eklendiğinde
+// sayfanın yeniden derlenmesini beklemeden tazelensin.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Marka Danışmanlığı',
   description: DESCRIPTION,

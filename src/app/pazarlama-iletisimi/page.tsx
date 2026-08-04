@@ -10,6 +10,10 @@ const TITLE = 'Pazarlama İletişimi — Rehber';
 const DESCRIPTION =
   'Pazarlama iletişimi nedir, bütünleşik pazarlama iletişimi (BPİ) nasıl kurulur? Reklam, halkla ilişkiler, içerik, dijital, etkinlik; kanal seçimi, mesaj tutarlılığı ve ölçümleme. Ahmet Furkan Budak rehberi.';
 
+// İlgili yazılar bloğu veritabanından beslenir; yeni yazı eklendiğinde
+// sayfanın yeniden derlenmesini beklemeden tazelensin.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Pazarlama İletişimi',
   description: DESCRIPTION,

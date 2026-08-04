@@ -10,6 +10,10 @@ const TITLE = 'Marka Sağlığı — Rehber';
 const DESCRIPTION =
   'Marka sağlığı nedir, nasıl ölçülür? Farkındalık, hatırlanma, tercih, güven ve sadakat metrikleri; sağlık taraması (brand health tracking), ölçüm yöntemleri ve yorumlama. Ahmet Furkan Budak rehberi.';
 
+// İlgili yazılar bloğu veritabanından beslenir; yeni yazı eklendiğinde
+// sayfanın yeniden derlenmesini beklemeden tazelensin.
+export const revalidate = 3600;
+
 export const metadata: Metadata = {
   title: 'Marka Sağlığı',
   description: DESCRIPTION,
