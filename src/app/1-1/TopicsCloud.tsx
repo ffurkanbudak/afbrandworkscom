@@ -16,6 +16,18 @@ const TOPICS = [
   'Yeni pazarlar',
   'Kurucu kişisel markası',
   'Yönetim kararları',
+  'Yapay zekâ markalaşması',
+  'Dijital markalaşma',
+  'Marka kimliği',
+  'Kurumsal iletişim',
+  'Sosyal medya',
+  'İçerik stratejisi',
+  'Arama motoru görünürlüğü',
+  'E-ticaret',
+  'Müşteri deneyimi',
+  'Marka yenileme',
+  'Franchise',
+  'Yatırımcı iletişimi',
 ];
 
 export function TopicsCloud() {

@@ -4,6 +4,10 @@ import Link from 'next/link';
 import { Handshake } from 'lucide-react';
 import { SocialCloud } from '@/components/ui/footer-section-4-utils/social-cloud';
 
+const MAPS_URL =
+  'https://www.google.com/maps/search/?api=1&query=' +
+  encodeURIComponent('Quasar İstanbul, Büyükdere Cad. No: 76, Mecidiyeköy, Şişli, İstanbul');
+
 type FooterLink = { label: string; href: string; vurgulu?: boolean };
 type FooterSection = { title: string; links: FooterLink[] };
 
@@ -111,6 +115,41 @@ export default function Footer4({ bitisik = false }: { bitisik?: boolean }) {
               ))}
             </div>
 
+            {/* Ofis ve iletişim bilgileri: kartın sağ altında */}
+            <div className="mt-10 border-t border-[var(--border)] pt-6 md:ml-auto md:w-full md:max-w-[520px]">
+              <div className="grid gap-6 text-[12.5px] leading-[1.6] sm:grid-cols-2 sm:text-[13.5px] text-[color-mix(in_oklab,var(--fg)_65%,transparent)]">
+                <div>
+                  <h4 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--fg)]">Ofis</h4>
+                  <address className="mt-2.5 not-italic">
+                    <a
+                      href={MAPS_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="transition-colors hover:text-[var(--fg)]"
+                    >
+                      Fulya Mah. Büyükdere Cad. Quasar İstanbul No: 76 Kat: 13 D. No: 188
+                      <br />
+                      Mecidiyeköy, Şişli, İstanbul, Türkiye
+                    </a>
+                  </address>
+                </div>
+                <div>
+                  <h4 className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--fg)]">İletişim</h4>
+                  <ul className="mt-2.5 space-y-1">
+                    <li>
+                      <a href="mailto:info@toganworks.com" className="transition-colors hover:text-[var(--fg)]">
+                        info@toganworks.com
+                      </a>
+                    </li>
+                    <li>
+                      <a href="tel:+905374349566" className="whitespace-nowrap transition-colors hover:text-[var(--fg)]">
+                        +90 (537) 434 95 66
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

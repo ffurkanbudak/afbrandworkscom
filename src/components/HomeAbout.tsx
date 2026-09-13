@@ -46,9 +46,9 @@ export function HomeAbout() {
               Bireylere, yöneticilere ve girişimcilere mentorluk, danışmanlık ve eğitimler verdi.
             </p>
             <p>
-              Son dönemde <B>AI markalaşma</B> üzerine çalışmalar yürütüyor; markaların arama
+              Son dönemde AI markalaşma üzerine çalışmalar yürütüyor; markaların arama
               motorlarında ve ChatGPT, Gemini, Claude gibi yapay zekâ modellerinde doğru şekilde
-              tanınması ve bulunması üzerine yeni stratejiler geliştiriyor. <B>VANTAGE52</B> ile
+              tanınması ve bulunması üzerine yeni stratejiler geliştiriyor. VANTAGE52 ile
               uluslararası iş dünyasına yönelik yayıncılık faaliyetlerini sürdürüyor.
             </p>
           </div>
