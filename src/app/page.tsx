@@ -25,10 +25,11 @@ export const metadata: Metadata = {
     description: HOME_DESCRIPTION,
     images: [
       {
-        url: '/afbn.png',
+        url: '/og-hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Ahmet Furkan Budak',
+        type: 'image/jpeg',
+        alt: 'Ahmet Furkan Budak — Stratejik Marka Danışmanı',
       },
     ],
   },
@@ -38,10 +39,11 @@ export const metadata: Metadata = {
     description: HOME_DESCRIPTION,
     images: [
       {
-        url: '/afbn.png',
+        url: '/og-hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Ahmet Furkan Budak',
+        type: 'image/jpeg',
+        alt: 'Ahmet Furkan Budak — Stratejik Marka Danışmanı',
       },
     ],
     creator: '@afurkanbudak',

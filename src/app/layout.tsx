@@ -66,10 +66,11 @@ export const metadata: Metadata = {
       "Türkiye'nin stratejik marka danışmanı ve Toganworks Stratejik Marka Danışmanlığı Ofisi kurucusu Ahmet Furkan Budak'ın resmi kişisel web sitesi. Markalaşma, marka yönetimi, pazarlama, kurumsal iletişim ve iş dünyasına yönelik stratejik analizler ile özgün içerikler.",
     images: [
       {
-        url: '/afbn.png',
+        url: '/og-hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Ahmet Furkan Budak',
+        type: 'image/jpeg',
+        alt: 'Ahmet Furkan Budak — Stratejik Marka Danışmanı',
       },
     ],
   },
@@ -80,10 +81,11 @@ export const metadata: Metadata = {
       "Türkiye'nin stratejik marka danışmanı ve Toganworks Stratejik Marka Danışmanlığı Ofisi kurucusu Ahmet Furkan Budak'ın resmi kişisel web sitesi. Markalaşma, marka yönetimi, pazarlama, kurumsal iletişim ve iş dünyasına yönelik stratejik analizler ile özgün içerikler.",
     images: [
       {
-        url: '/afbn.png',
+        url: '/og-hero.jpg',
         width: 1200,
         height: 630,
-        alt: 'Ahmet Furkan Budak',
+        type: 'image/jpeg',
+        alt: 'Ahmet Furkan Budak — Stratejik Marka Danışmanı',
       },
     ],
     creator: '@afurkanbudak',
