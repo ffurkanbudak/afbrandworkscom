@@ -29,7 +29,7 @@ const contactSchema = {
   about: {
     '@type': 'Person',
     name: 'Ahmet Furkan Budak',
-    url: `${SITE_URL}/hakkinda`,
+    url: `${SITE_URL}/#hakkinda`,
   },
   mainEntity: {
     '@type': 'Person',
@@ -37,7 +37,7 @@ const contactSchema = {
     jobTitle: 'Stratejik Marka Danışmanı',
     email: 'info@toganworks.com',
     telephone: '+905374349566',
-    url: `${SITE_URL}/hakkinda`,
+    url: `${SITE_URL}/#hakkinda`,
     worksFor: { '@type': 'Organization', name: 'Toganworks' },
     sameAs: [
       'https://www.linkedin.com/in/ahmetfurkanbudak/',

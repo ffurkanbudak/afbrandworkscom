@@ -405,12 +405,7 @@ export default function SozlukPage() {
               </Link>
             </li>
             <li>
-              <Link href="/posts" className="hover:underline">
-                Tüm yazılar
-              </Link>
-            </li>
-            <li>
-              <Link href="/hakkinda" className="hover:underline">
+              <Link href="/#hakkinda" className="hover:underline">
                 Yazar hakkında
               </Link>
             </li>

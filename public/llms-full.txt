@@ -48,13 +48,11 @@ içerik yayımlar. Yayın dili Türkçedir.
 **Ana bölümler**
 
 - Anasayfa: Son yazılar, gündem haberleri ve öne çıkan içerikler.
-- Yazılar (/posts): Markalaşma blog yazıları.
 - Marka Masası (/1-1): Birebir marka danışmanlığı sayfası. Üç marka
   değerlendirme testi (marka kurma hazırlığı, büyüme engeli, ölçeklenme),
   on adımlı çalışma süreci ve çalışma modelleri yer alır.
 - Hizmetler (/hizmetler): Marka danışmanlığı hizmet başlıkları.
 - Marka Sözlüğü (/sozluk): Markalaşma ve pazarlama terimlerinin tanımları.
-- Öneriler (/oneriler): Kitap, podcast, video ve etkinlik önerileri.
 - Hakkımda (/hakkinda): Biyografi ve profesyonel profil.
 - İletişim (/iletisim): Telefon, e-posta ve sosyal medya kanalları.
 - RSS (/feed.xml): Yazıların RSS akışı.

@@ -101,7 +101,7 @@ export function AuthorBio() {
         </div>
         <div className="flex flex-wrap items-center gap-2">
           <Link
-            href="/hakkinda"
+            href="/#hakkinda"
             className="inline-flex items-center gap-1 text-[12.5px] font-medium"
             style={{ color: 'var(--fg)' }}
           >

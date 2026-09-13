@@ -16,11 +16,9 @@ Ahmet Furkan Budak; marka stratejisi, konumlandırma, kimlik inşası ve pazarla
 ## Ana bölümler
 
 - [Anasayfa](https://afbrandworks.com/): Son yazılar ve öne çıkan içerikler.
-- [Yazılar](https://afbrandworks.com/posts): Markalaşma, konumlandırma, iletişim ve büyüme üzerine blog yazıları.
 - [Marka Masası](https://afbrandworks.com/1-1): Birebir marka danışmanlığı; üç marka değerlendirme testi, on adımlı çalışma süreci ve çalışma modelleri.
 - [Hizmetler](https://afbrandworks.com/hizmetler): Marka danışmanlığı hizmet başlıkları.
 - [Marka Sözlüğü](https://afbrandworks.com/sozluk): Markalaşma ve pazarlama terimlerinin tanımları.
-- [Öneriler](https://afbrandworks.com/oneriler): Kitap, podcast, video ve etkinlik önerileri.
 - [Hakkımda](https://afbrandworks.com/hakkinda): Biyografi, eğitim, sertifikalar, deneyim.
 - [İletişim](https://afbrandworks.com/iletisim): Telefon, e-posta ve sosyal medya kanalları.
 - [RSS](https://afbrandworks.com/feed.xml): Yazıların RSS akışı.

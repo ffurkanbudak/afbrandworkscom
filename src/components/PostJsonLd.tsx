@@ -88,8 +88,7 @@ export function PostJsonLd({
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Anasayfa', item: SITE_URL },
-      { '@type': 'ListItem', position: 2, name: 'Yazılar', item: `${SITE_URL}/posts` },
-      { '@type': 'ListItem', position: 3, name: title, item: url },
+      { '@type': 'ListItem', position: 2, name: title, item: url },
     ],
   };
 

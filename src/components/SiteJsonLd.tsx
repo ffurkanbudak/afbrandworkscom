@@ -208,7 +208,7 @@ export function SiteJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'Blog',
     '@id': `${SITE_URL}/#blog`,
-    url: `${SITE_URL}/posts`,
+    url: SITE_URL,
     name: 'Markalaşma Günlüğü',
     description:
       'Konumlandırma, farklılaşma ve sürdürülebilir büyüme üzerine günlük markalaşma yazıları.',

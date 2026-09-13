@@ -2,11 +2,10 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import Image from 'next/image';
 import type { Metadata } from 'next';
-import { ArrowRight, Hash, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
+import { Hash, Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
 import { db } from '@/lib/db';
 import { getRelatedPosts } from '@/lib/related';
 import { formatDateCaps } from '@/lib/format';
-import { Newsletter } from '@/components/Newsletter';
 import { FeaturedCard } from '@/components/FeaturedCard';
 import { NewBadge } from '@/components/NewBadge';
 import { ShareButtons } from '@/components/ShareButtons';
@@ -86,9 +85,8 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   });
   if (!post || post.status !== 'PUBLISHED') return notFound();
 
-  const [related, subscriberCount, latestPosts] = await Promise.all([
+  const [related, latestPosts] = await Promise.all([
     getRelatedPosts(post.id, 3),
-    db.subscriber.count({ where: { status: 'CONFIRMED' } }),
     db.post.findMany({
       where: { status: 'PUBLISHED', id: { not: post.id } },
       orderBy: { publishedAt: 'desc' },
@@ -126,8 +124,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
       >
         <Link href="/" className="transition hover:underline">Anasayfa</Link>
-        <span className="opacity-50">/</span>
-        <Link href="/posts" className="transition hover:underline">Yazılar</Link>
         <span className="opacity-50">/</span>
         <span className="truncate" style={{ color: 'var(--fg)' }}>{post.title}</span>
       </nav>
@@ -296,14 +292,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 İlgili yazılar
               </h2>
             </div>
-            <Link
-              href="/posts"
-              className="hidden shrink-0 items-center gap-1.5 text-[14px] font-medium md:inline-flex"
-              style={{ color: 'var(--fg)' }}
-            >
-              Tümünü gör
-              <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
-            </Link>
           </div>
 
           <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
@@ -322,10 +310,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           </div>
         </section>
       )}
-
-      <section className="mt-20">
-        <Newsletter readerCount={Math.max(subscriberCount, 300)} />
-      </section>
       </article>
 
       <aside className="hidden xl:block">
@@ -354,14 +338,6 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
               </li>
             ))}
           </ul>
-          <Link
-            href="/posts"
-            className="mt-5 inline-flex items-center gap-1.5 text-[12px] font-medium"
-            style={{ color: 'var(--fg)' }}
-          >
-            Tüm yazılar
-            <ArrowRight className="h-[11px] w-[11px]" strokeWidth={2.25} />
-          </Link>
         </div>
       </aside>
     </div>

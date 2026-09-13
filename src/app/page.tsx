@@ -1,13 +1,13 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
-import { ArrowRight } from 'lucide-react';
 import { db } from '@/lib/db';
 import { ArticleRowCard } from '@/components/ArticleRowCard';
 import { HeroArticle } from '@/components/HeroArticle';
-import { FeaturedCard } from '@/components/FeaturedCard';
 import { PostListItem } from '@/components/PostListItem';
-import { Newsletter } from '@/components/Newsletter';
 import { HomeJsonLd } from '@/components/HomeJsonLd';
+import { HomeHero } from '@/components/HomeHero';
+import { HomeAbout } from '@/components/HomeAbout';
+import { MarkaMasasiHero } from './1-1/MarkaMasasiHero';
+import { MarkaMasasiIcerik } from './1-1/MarkaMasasiIcerik';
 
 const AUTHOR = 'Ahmet Furkan Budak';
 const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://www.afbrandworks.com').trim().replace(/\/+$/, '');
@@ -53,7 +53,9 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [topRow, heroPost, spotlight, recent, subscriberCount] = await Promise.all([
+  // Veritabanı yoksa (ör. DATABASE_URL tanımsız yerel ortam) sayfa çökmez;
+  // yazı bölümleri gizlenir, geri kalan içerik yine görünür.
+  const [topRow, heroPost, spotlight, recent] = await Promise.all([
     db.post.findMany({
       where: { status: 'PUBLISHED' },
       orderBy: { publishedAt: 'desc' },
@@ -78,13 +80,12 @@ export default async function HomePage() {
       skip: 6,
       take: 4,
     }),
-    db.subscriber.count({ where: { status: 'CONFIRMED' } }),
-  ]);
+  ]).catch(() => [[], null, [], []] as const);
 
   const hero = heroPost ?? topRow[0] ?? null;
 
   return (
-    <div className="fade-up pt-6 md:pt-10">
+    <div className="fade-up">
       <HomeJsonLd
         featured={spotlight.slice(0, 10).map((p) => ({
           slug: p.slug,
@@ -94,9 +95,17 @@ export default async function HomePage() {
           coverImageUrl: p.coverImageUrl,
         }))}
       />
+
+      <HomeHero />
+
+      <HomeAbout />
+
+      <MarkaMasasiHero headingAs="h2" gorselBaslik />
+      <MarkaMasasiIcerik />
+
       {topRow.length > 0 && (
         <section
-          className="py-6"
+          className="pt-16 pb-6"
           style={{ borderBottom: '1px solid var(--border)' }}
         >
           <div className="-mx-6 md:-mx-10 lg:-mx-14">
@@ -137,50 +146,6 @@ export default async function HomePage() {
         </section>
       )}
 
-      <section className="mt-16">
-        <div className="flex items-end justify-between gap-6">
-          <div>
-            <p className="eyebrow">Bu hafta öne çıkanlar</p>
-            <h2
-              className="font-display mt-3 text-[22px] leading-[1.12] tracking-tight md:text-[27px]"
-              style={{ fontWeight: 800 }}
-            >
-              Markaya dair okumaya değer notlar
-            </h2>
-          </div>
-          <Link
-            href="/posts"
-            className="hidden shrink-0 items-center gap-1.5 text-[14px] font-medium md:inline-flex"
-            style={{ color: 'var(--fg)' }}
-          >
-            Tüm yazılar
-            <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
-          </Link>
-        </div>
-
-        {spotlight.length > 0 && (
-          <div className="mt-8 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {spotlight.slice(0, 6).map((p) => (
-              <FeaturedCard
-                key={p.id}
-                slug={p.slug}
-                title={p.title}
-                excerpt={p.excerpt}
-                publishedAt={p.publishedAt}
-                authorName={p.author?.name ?? AUTHOR}
-                coverImageUrl={p.coverImageUrl}
-                coverImageAlt={p.coverImageAlt}
-                primaryTag={p.tags?.[0]?.tag.labelTr}
-              />
-            ))}
-          </div>
-        )}
-      </section>
-
-      <section id="bulten" className="mt-16 scroll-mt-24">
-        <Newsletter readerCount={Math.max(subscriberCount, 300)} />
-      </section>
-
       {recent.length > 0 && (
         <section className="mt-16">
           <div className="flex items-end justify-between gap-6">
@@ -193,14 +158,6 @@ export default async function HomePage() {
                 Son yayımlanan yazılar
               </h2>
             </div>
-            <Link
-              href="/posts"
-              className="hidden shrink-0 items-center gap-1.5 text-[14px] font-medium md:inline-flex"
-              style={{ color: 'var(--fg)' }}
-            >
-              Tüm arşiv
-              <ArrowRight className="h-[13px] w-[13px]" strokeWidth={2.25} />
-            </Link>
           </div>
 
           <div className="mt-8">
@@ -220,51 +177,6 @@ export default async function HomePage() {
           </div>
         </section>
       )}
-
-      <section className="mt-16">
-        <p className="eyebrow">Rehberler</p>
-        <h2
-          className="font-display mt-3 text-[22px] leading-[1.12] tracking-tight md:text-[27px]"
-          style={{ fontWeight: 800 }}
-        >
-          Markalaşmanın temel alanları
-        </h2>
-        <p
-          className="mt-4 max-w-[56ch] text-[15px] leading-[1.6]"
-          style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
-        >
-          Marka danışmanlığı, strateji, yönetim ve dijital markalaşma üzerine
-          uçtan uca çerçeveler. Her rehber; tanım, süreç ve sık sorulanlarla
-          bir disiplini bütün olarak ele alıyor.
-        </p>
-        <ul className="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            ['Marka Danışmanlığı', '/marka-danismanligi', 'Konumlandırma, kimlik ve büyüme için stratejik danışmanlık.'],
-            ['Marka Stratejisi', '/marka-stratejisi', 'Konumlandırma, farklılaşma ve değer önerisinin inşası.'],
-            ['Marka Yönetimi', '/marka-yonetimi', 'Stratejinin günlük uygulamaya dönüştüğü disiplin.'],
-            ['Dijital Markalaşma', '/dijital-markalasma', 'Dijital kanalların markanın yansımasına dönüşmesi.'],
-          ].map(([label, href, desc]) => (
-            <li
-              key={href}
-              className="group border-t pt-5"
-              style={{ borderColor: 'var(--border)' }}
-            >
-              <Link href={href} className="block" style={{ color: 'var(--fg)' }}>
-                <h3 className="font-display text-[18px] leading-[1.25] tracking-tight group-hover:underline">
-                  {label}
-                </h3>
-                <p
-                  className="mt-2 text-[14px] leading-[1.6]"
-                  style={{ color: 'color-mix(in oklab, var(--fg) 62%, transparent)' }}
-                >
-                  {desc}
-                </p>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-
     </div>
   );
 }

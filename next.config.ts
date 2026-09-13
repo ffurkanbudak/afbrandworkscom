@@ -22,7 +22,9 @@ const config: NextConfig = {
   },
   async redirects() {
     return [
-      { source: '/kunye', destination: '/hakkinda', permanent: true },
+      { source: '/kunye', destination: '/#hakkinda', permanent: true },
+      { source: '/posts', destination: '/', permanent: false },
+      { source: '/hakkinda', destination: '/#hakkinda', permanent: false },
       { source: '/contact', destination: '/iletisim', permanent: true },
       { source: '/contact/:path*', destination: '/iletisim/:path*', permanent: true },
     ];

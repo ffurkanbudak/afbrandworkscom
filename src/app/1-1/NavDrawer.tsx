@@ -13,12 +13,10 @@ const WHATSAPP_URL =
   'https://wa.me/905374349566?text=' +
   encodeURIComponent('Merhaba Ahmet Bey, 1:1 Marka Danışmanlığı hakkında bilgi almak istiyorum.');
 
-/** vurgulu: Marka Masası menüde kırmızı renk ve ikonla öne çıkar. */
+/** vurgulu: Ana Sayfa menüde kırmızı renk ve ikonla öne çıkar. */
 const NAV_ITEMS: { label: string; href: string; vurgulu?: boolean }[] = [
-  { label: 'Ana Sayfa', href: '/' },
-  { label: 'Marka Masası', href: '/1-1', vurgulu: true },
-  { label: 'Yazılar', href: '/posts' },
-  { label: 'Hakkımda', href: '/hakkinda' },
+  { label: 'Ana Sayfa', href: '/', vurgulu: true },
+  { label: 'Hakkımda', href: '/#hakkinda' },
   { label: 'İletişim', href: '/iletisim' },
 ];
 

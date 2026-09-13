@@ -430,13 +430,6 @@ export default function MarkaKimligiPage() {
             >
               Marka Masası
             </Link>
-            <Link
-              href="/#bulten"
-              className="inline-flex items-center gap-2 whitespace-nowrap rounded-[6px] border px-4 py-2.5 text-[13px] font-medium"
-              style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
-            >
-              Bültene Kaydolun!
-            </Link>
           </div>
         </section>
         <PillarRelatedPosts href="/marka-kimligi" baslik="Marka kimliği" />

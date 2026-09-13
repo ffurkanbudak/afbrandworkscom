@@ -2,37 +2,23 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Logo } from './Logo';
 import {
   ArrowUpRight,
-  BookOpen,
-  Calendar,
-  ChevronDown,
   Handshake,
-  Headphones,
   Instagram,
   Linkedin,
   Menu,
   Moon,
-  PlayCircle,
   Sun,
   Twitter,
   X,
   Youtube,
 } from 'lucide-react';
-import type { LucideIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { useTheme } from './ThemeProvider';
 import { GoogleCalendarLogo, GmailLogo, WhatsAppGlyph } from '@/components/ui/brand-icons';
 
-type NavLeaf = { href: string; label: string; match: (p: string) => boolean; vurgulu?: boolean };
-type NavChild = { href: string; label: string; icon: LucideIcon; desc: string };
-type NavBranch = {
-  label: string;
-  match: (p: string) => boolean;
-  children: NavChild[];
-};
-type NavItem = NavLeaf | NavBranch;
+type NavItem = { href: string; label: string; match: (p: string) => boolean; vurgulu?: boolean };
 
 const TAKVIM_URL =
   'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1um6hda1soZolvF4yY1oTMwugah-W2o-rB-jGgcJ0_eIzeTL8qR5oKuRHr6TcU8YI7oAwmI2eH?gv=true';
@@ -41,31 +27,14 @@ const WHATSAPP_URL =
   encodeURIComponent('Merhaba Ahmet Bey, markam hakkında bilgi almak istiyorum.');
 
 const NAV: NavItem[] = [
-  { href: '/', label: 'Ana Sayfa', match: (p) => p === '/' },
-  { href: '/posts', label: 'Yazılar', match: (p) => p.startsWith('/posts') },
-  { href: '/1-1', label: 'Marka Masası', match: (p) => p.startsWith('/1-1'), vurgulu: true },
-  {
-    label: 'Öneriler',
-    match: (p) => p.startsWith('/oneriler'),
-    children: [
-      { href: '/oneriler/kitaplar', label: 'Kitaplar', icon: BookOpen, desc: 'Okuma listesi' },
-      { href: '/oneriler/podcastler', label: 'Podcastler', icon: Headphones, desc: 'Dinlenesi sohbetler' },
-      { href: '/oneriler/videolar', label: 'Videolar', icon: PlayCircle, desc: 'Arşivlik yayınlar' },
-      { href: '/oneriler/etkinlikler', label: 'Etkinlikler', icon: Calendar, desc: 'Takvimdeki buluşmalar' },
-    ],
-  },
-  { href: '/hakkinda', label: 'Hakkımda', match: (p) => p.startsWith('/hakkinda') },
+  { href: '/', label: 'Ana Sayfa', match: (p) => p === '/', vurgulu: true },
+  { href: '/#hakkinda', label: 'Hakkımda', match: () => false },
   { href: '/iletisim', label: 'İletişim', match: (p) => p.startsWith('/iletisim') },
 ];
 
-function isBranch(item: NavItem): item is NavBranch {
-  return 'children' in item;
-}
-
-export function Header() {
+export function Header({ overlay = false }: { overlay?: boolean }) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [mobileDropOpen, setMobileDropOpen] = useState(false);
   const { theme, toggle } = useTheme();
   const isDark = theme === 'dark';
 
@@ -86,38 +55,26 @@ export function Header() {
   return (
     <>
       <header
-        className="font-sans sticky top-0 z-40"
-        style={{
-          background: 'color-mix(in oklab, var(--bg) 82%, transparent)',
-          backdropFilter: 'blur(18px)',
-          WebkitBackdropFilter: 'blur(18px)',
-          borderBottom: '1px solid color-mix(in oklab, var(--border) 60%, transparent)',
-        }}
+        className={
+          overlay
+            ? 'hero-chrome font-sans absolute inset-x-0 top-0 z-40'
+            : 'font-sans sticky top-0 z-40'
+        }
+        style={
+          overlay
+            ? { background: 'transparent' }
+            : {
+                background: 'color-mix(in oklab, var(--bg) 82%, transparent)',
+                backdropFilter: 'blur(18px)',
+                WebkitBackdropFilter: 'blur(18px)',
+                borderBottom: '1px solid color-mix(in oklab, var(--border) 60%, transparent)',
+              }
+        }
       >
-        <div className="mx-auto flex w-full max-w-[1400px] items-center justify-between gap-6 px-6 py-4 md:px-10 lg:px-14">
-          <div className="flex items-center gap-3.5">
-            <a
-              href="/"
-              aria-label="Ahmet Furkan Budak"
-              className="flex items-center"
-              style={{ color: 'var(--fg)' }}
-            >
-              <Logo height={18} />
-            </a>
-            <span
-              className="hidden border-l pl-3.5 text-[10.5px] font-medium tracking-[0.03em] md:inline-block"
-              style={{
-                borderColor: 'color-mix(in oklab, var(--border) 85%, transparent)',
-                color: 'color-mix(in oklab, var(--fg) 56%, transparent)',
-              }}
-            >
-              Stratejik Marka Danışmanı • Yazar • Girişimci
-            </span>
-          </div>
-
+        <div className="mx-auto flex w-full max-w-[1400px] items-center justify-end gap-6 px-6 py-4 md:px-10 lg:px-14">
           <div className="flex items-center gap-1.5">
             <div
-              className="mr-1 hidden items-center gap-0.5 pr-1 sm:flex"
+              className="header-divider mr-1 hidden items-center gap-0.5 pr-1 sm:flex"
               style={{ borderRight: '1px solid color-mix(in oklab, var(--border) 75%, transparent)' }}
             >
               <a
@@ -236,65 +193,8 @@ export function Header() {
             </button>
           </div>
 
-          <div
-            className="border-b px-6 py-5"
-            style={{ borderColor: 'var(--border)' }}
-          >
-            <Logo height={20} />
-            <p
-              className="mt-2.5 text-[11px] font-medium tracking-[0.03em]"
-              style={{ color: 'color-mix(in oklab, var(--fg) 55%, transparent)' }}
-            >
-              Stratejik Marka Danışmanı • Yazar • Girişimci
-            </p>
-          </div>
-
           <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-4 py-6">
             {NAV.map((item) => {
-              if (isBranch(item)) {
-                const active = item.match(pathname);
-                return (
-                  <div key={item.label}>
-                    <button
-                      onClick={() => setMobileDropOpen((v) => !v)}
-                      className="flex w-full items-center justify-between rounded-[8px] px-3 py-3 text-[15px] font-medium tracking-tight transition"
-                      style={{
-                        color: active
-                          ? 'var(--fg)'
-                          : 'color-mix(in oklab, var(--fg) 72%, transparent)',
-                      }}
-                    >
-                      <span>{item.label}</span>
-                      <ChevronDown
-                        className="h-[16px] w-[16px] transition"
-                        strokeWidth={2}
-                        style={{ transform: mobileDropOpen ? 'rotate(180deg)' : 'rotate(0)' }}
-                      />
-                    </button>
-                    {mobileDropOpen && (
-                      <div className="ml-3 flex flex-col gap-0.5 border-l pl-3" style={{ borderColor: 'var(--border)' }}>
-                        {item.children.map((c) => {
-                          const Icon = c.icon;
-                          return (
-                            <Link
-                              key={c.href}
-                              href={c.href}
-                              onClick={() => setOpen(false)}
-                              className="flex items-center gap-2.5 rounded-[8px] px-3 py-2.5 text-[15px] font-medium tracking-tight transition"
-                              style={{
-                                color: 'color-mix(in oklab, var(--fg) 70%, transparent)',
-                              }}
-                            >
-                              <Icon className="h-[15px] w-[15px] opacity-70" strokeWidth={1.75} />
-                              {c.label}
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
               const active = item.match(pathname);
               return (
                 <Link
@@ -361,19 +261,6 @@ export function Header() {
             >
               <WhatsAppGlyph className="h-5 w-5" />
             </a>
-          </div>
-
-          <div
-            className="border-t px-6 py-4"
-            style={{ borderColor: 'var(--border)' }}
-          >
-            <Link
-              href="/#bulten"
-              onClick={() => setOpen(false)}
-              className="btn-dark flex w-full items-center justify-center rounded-[6px] px-3 py-2.5 text-center text-[13px] font-medium"
-            >
-              Bültene Kaydolun!
-            </Link>
           </div>
 
           <div

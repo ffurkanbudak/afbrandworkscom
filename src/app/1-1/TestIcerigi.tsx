@@ -14,7 +14,7 @@ import { BRAND_TESTS } from '@/lib/brand-tests';
 export function TestIcerigi() {
   return (
     <section
-      className="mx-auto max-w-[1000px] border-t px-6 py-14 md:py-16"
+      className="mx-auto max-w-[1000px] px-6 py-14 md:py-16"
       style={{ borderColor: 'var(--border)' }}
       aria-labelledby="test-icerigi-baslik"
     >

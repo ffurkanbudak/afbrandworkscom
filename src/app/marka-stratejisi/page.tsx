@@ -312,12 +312,7 @@ export default function MarkaStratejisiPage() {
               <Link href="/dijital-markalasma" className="underline">
                 dijital markalaşma
               </Link>{' '}
-              sayfalarıyla birlikte okunmak üzere hazırlanmıştır. Günlük
-              yazılar için{' '}
-              <Link href="/posts" className="underline">
-                blog arşivine
-              </Link>{' '}
-              göz atabilirsiniz.
+              sayfalarıyla birlikte okunmak üzere hazırlanmıştır.
             </p>
           </section>
         </div>
@@ -352,13 +347,6 @@ export default function MarkaStratejisiPage() {
               style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
             >
               Marka Masası
-            </Link>
-            <Link
-              href="/#bulten"
-              className="inline-flex items-center gap-2 whitespace-nowrap rounded-[8px] border px-5 py-3 text-[13.5px] font-medium"
-              style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
-            >
-              Bültene Kaydolun!
             </Link>
           </div>
         </section>

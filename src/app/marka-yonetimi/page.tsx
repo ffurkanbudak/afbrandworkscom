@@ -310,12 +310,7 @@ export default function MarkaYonetimiPage() {
               <Link href="/dijital-markalasma" className="underline">
                 dijital markalaşma
               </Link>{' '}
-              sayfaları bu konunun tamamlayıcı çerçevelerini sunar. Günlük
-              yazılar için{' '}
-              <Link href="/posts" className="underline">
-                blog arşivine
-              </Link>{' '}
-              bakabilirsiniz.
+              sayfaları bu konunun tamamlayıcı çerçevelerini sunar.
             </p>
           </section>
         </div>
@@ -350,13 +345,6 @@ export default function MarkaYonetimiPage() {
               style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
             >
               Marka Masası
-            </Link>
-            <Link
-              href="/#bulten"
-              className="inline-flex items-center gap-2 whitespace-nowrap rounded-[8px] border px-5 py-3 text-[13.5px] font-medium"
-              style={{ borderColor: 'var(--border)', color: 'var(--fg)' }}
-            >
-              Bültene Kaydolun!
             </Link>
           </div>
         </section>

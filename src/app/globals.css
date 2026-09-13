@@ -62,6 +62,11 @@ html {
   text-size-adjust: 100%;
 }
 
+/* Sayfa içi bağlantılar (ör. #marka-masasi) yumuşak kayar. */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
 body {
   min-height: 100dvh;
 }
@@ -367,6 +372,127 @@ html[data-theme='dark'] .logo-works { fill: #f2f2f2; }
   opacity: 1;
 }
 
+/* --- Ana sayfa hero --- */
+
+/* Ortalanmış max-width kapsayıcının içinden uçtan uca taşma.
+   html/body'de overflow-x: clip olduğu için yatay kaydırma oluşturmaz. */
+.full-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* Varsayılan (dar / dikey ekran): portre üstte, tipografi altta siyah zeminde.
+   Dikey ekranda uçtan uca kaplama, portreyi kompozisyonu bozacak kadar
+   büyütüp kırptığı için bu ekranlarda yığılmış yerleşim kullanılır. */
+.home-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  min-height: 100svh;
+  background: #000000;
+}
+
+.home-hero-media {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 52svh;
+  pointer-events: none;
+}
+
+/* Görsel hiçbir şekilde değiştirilmez; yalnızca çerçevelenir. */
+.home-hero-img {
+  object-fit: cover;
+  object-position: 92% center;
+  user-select: none;
+}
+
+.home-hero-fade {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 34svh;
+  height: 20svh;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, #000000 100%);
+}
+
+.home-hero-content {
+  position: relative;
+  z-index: 10;
+  width: 100%;
+  padding: 0 24px 60px;
+}
+
+.home-hero-col {
+  max-width: 100%;
+}
+
+/* İsim + unvan imza görseli (şeffaf zeminli PNG). */
+.home-hero-imza {
+  margin: 0;
+  line-height: 0;
+}
+
+.home-hero-imza-img {
+  display: block;
+  width: min(100%, 560px);
+  height: auto;
+}
+
+/* Dikey tablet: yığılmış yerleşim korunur, ancak tipografi kolonu
+   genişletilir; aksi halde başlık gereksiz dar sarılıyor. */
+@media (min-width: 600px) and (max-aspect-ratio: 5 / 4) {
+  .home-hero-content { padding: 0 40px 72px; }
+  .home-hero-col { max-width: 70%; }
+}
+
+/* Yatay / geniş ekran: görsel tüm ekranı kaplar, portre sağda,
+   tipografi soldaki siyah negatif alanda dikey ortalanır. */
+@media (min-width: 768px) and (min-aspect-ratio: 5 / 4) {
+  .home-hero { align-items: center; }
+  .home-hero-media {
+    bottom: 0;
+    height: auto;
+  }
+  .home-hero-img { object-position: right center; }
+  .home-hero-fade { display: none; }
+  .home-hero-content { padding: 0 40px; }
+  .home-hero-col { max-width: 54%; }
+}
+
+@media (min-width: 1024px) and (min-aspect-ratio: 5 / 4) {
+  .home-hero-content { padding: 0 56px; }
+  .home-hero-col { max-width: 48%; }
+}
+
+@media (min-width: 1280px) and (min-aspect-ratio: 5 / 4) {
+  .home-hero-col { max-width: 44%; }
+}
+
+/* Hero üzerindeki saydam header: her temada beyaz okunur. */
+.hero-chrome,
+.hero-chrome a,
+.hero-chrome button,
+.hero-chrome span,
+.hero-chrome svg {
+  color: #FFFFFF !important;
+}
+.hero-chrome .header-divider {
+  border-color: rgba(255, 255, 255, 0.26) !important;
+}
+.hero-chrome a:hover,
+.hero-chrome button:hover {
+  background-color: rgba(255, 255, 255, 0.14) !important;
+}
+/* Logo her zaman beyaz varyant. */
+.hero-chrome .logo-on-light { display: none; }
+.hero-chrome .logo-on-dark { display: block; }
+
 .hero-overlay-top {
   background: linear-gradient(to bottom, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0) 40%);
 }
@@ -429,5 +555,6 @@ html[data-theme='dark'] .logo-works { fill: #f2f2f2; }
 .glare-hover:hover .glare-sheen {
   transform: translateX(130%);
 }
+
 
 

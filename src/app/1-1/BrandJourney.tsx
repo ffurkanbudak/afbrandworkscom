@@ -92,7 +92,7 @@ export function BrandJourney() {
             <path
               d={YOL}
               fill="none"
-              style={{ stroke: 'color-mix(in oklab, var(--fg) 20%, transparent)' }}
+              style={{ stroke: 'color-mix(in oklab, var(--fg) 35%, transparent)' }}
               strokeWidth="1.5"
               strokeDasharray="5 6"
               vectorEffect="non-scaling-stroke"
@@ -110,8 +110,7 @@ export function BrandJourney() {
                 <button
                   type="button"
                   aria-describedby={`adim-${i}`}
-                  className="flex h-7 w-7 cursor-help items-center justify-center rounded-full text-[11px] font-semibold text-white transition group-hover:scale-110 group-focus-within:scale-110"
-                  style={{ background: KIRMIZI }}
+                  className="flex h-7 w-7 cursor-help items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#0A0A0A] transition group-hover:scale-110 group-focus-within:scale-110"
                 >
                   {i + 1}
                 </button>
@@ -154,8 +153,7 @@ export function BrandJourney() {
             style={{ borderColor: 'var(--border)' }}
           >
             <span
-              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[11px] font-semibold text-white"
-              style={{ background: KIRMIZI }}
+              className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-[11px] font-semibold text-[#0A0A0A]"
             >
               {i + 1}
             </span>
