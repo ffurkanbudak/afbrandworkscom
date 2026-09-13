@@ -1,90 +1,58 @@
 import type { BrandTest } from '@/lib/brand-tests';
 
 /*
- * Notion tarzı, elle çizilmiş hissi veren özel duotone ikonlar.
- * Zemin ve çerçeve, testin ana renginden türetilir.
+ * Notion tarzı, kalın ve yuvarlak uçlu çizgilerle çizilmiş beyaz ikonlar.
+ * Hafif beyaz dolgu, çizimi tek renkte derinlikli gösterir.
  */
 
-function SproutGlyph({ color }: { color: string }) {
+const CIZGI = {
+  stroke: '#FFFFFF',
+  strokeWidth: 1.9,
+  strokeLinecap: 'round' as const,
+  strokeLinejoin: 'round' as const,
+};
+const DOLGU = { fill: '#FFFFFF', fillOpacity: 0.16 };
+
+/** Marka Kurma: tepeye dikilen bayrak. */
+function FlagGlyph() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className="h-[56%] w-[56%]" aria-hidden>
-      <path d="M12 20.5v-7" stroke={color} strokeWidth={1.6} strokeLinecap="round" />
-      <path
-        d="M12 13.5C12 9.3 9 6.8 4.8 6.8c0 4.2 3 6.7 7.2 6.7Z"
-        fill={color}
-        fillOpacity={0.22}
-        stroke={color}
-        strokeWidth={1.6}
-        strokeLinejoin="round"
-      />
-      <path
-        d="M12 11.2c0-3.1 2.4-5.7 6.4-5.7 0 3.7-2.4 5.7-6.4 5.7Z"
-        fill={color}
-        fillOpacity={0.22}
-        stroke={color}
-        strokeWidth={1.6}
-        strokeLinejoin="round"
-      />
-      <path d="M5.5 20.5h13" stroke={color} strokeWidth={1.6} strokeLinecap="round" />
+    <svg viewBox="0 0 24 24" fill="none" style={{ width: "64%", height: "64%" }} aria-hidden>
+      <path d="M3 20.5c2.6-2.6 7.4-2.6 10 0" {...CIZGI} />
+      <path d="M8 19V3.8" {...CIZGI} />
+      <path d="M8 4.5h10l-2.4 3.4L18 11.3H8Z" {...DOLGU} {...CIZGI} />
+      <path d="M15.5 20.5H21" {...CIZGI} />
     </svg>
   );
 }
 
-function CeilingGlyph({ color }: { color: string }) {
+/** Büyüme Engeli: duvarın üzerinden atlayan ok. */
+function WallGlyph() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className="h-[56%] w-[56%]" aria-hidden>
-      <path
-        d="M3.5 4.5h17"
-        stroke={color}
-        strokeWidth={1.6}
-        strokeLinecap="round"
-        strokeDasharray="2.6 3"
-      />
-      <path
-        d="M3.5 18.5 9 13l3.5 3.5 7-7"
-        stroke={color}
-        strokeWidth={1.6}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <path
-        d="M15.5 9.5h4v4"
-        stroke={color}
-        strokeWidth={1.6}
-        strokeLinecap="round"
-        strokeLinejoin="round"
-      />
-      <circle cx="9" cy="13" r="1.5" fill={color} fillOpacity={0.28} />
+    <svg viewBox="0 0 24 24" fill="none" style={{ width: "64%", height: "64%" }} aria-hidden>
+      <rect x="9.3" y="11" width="5.4" height="9.5" rx="1.2" {...DOLGU} {...CIZGI} />
+      <path d="M9.3 14.2h5.4M9.3 17.4h5.4M12 11v3.2M12 17.4v3.1" {...CIZGI} strokeWidth={1.4} />
+      <path d="M3.5 20.5C4.5 10.5 8 6.5 12 6.5s7.5 4 8.5 12" {...CIZGI} />
+      <path d="M18.2 16.6l2.3 2.3 2-2.6" {...CIZGI} />
     </svg>
   );
 }
 
-function ScaleGlyph({ color }: { color: string }) {
+/** Ölçeklenme: yükselen roket. */
+function RocketGlyph() {
   return (
-    <svg viewBox="0 0 24 24" fill="none" className="h-[56%] w-[56%]" aria-hidden>
-      <rect
-        x="9.3"
-        y="9.3"
-        width="5.4"
-        height="5.4"
-        rx="1.2"
-        fill={color}
-        fillOpacity={0.28}
-        stroke={color}
-        strokeWidth={1.5}
-      />
-      <path d="M4 9V5.6A1.6 1.6 0 0 1 5.6 4H9" stroke={color} strokeWidth={1.6} strokeLinecap="round" />
-      <path d="M15 4h3.4A1.6 1.6 0 0 1 20 5.6V9" stroke={color} strokeWidth={1.6} strokeLinecap="round" />
-      <path d="M20 15v3.4a1.6 1.6 0 0 1-1.6 1.6H15" stroke={color} strokeWidth={1.6} strokeLinecap="round" />
-      <path d="M9 20H5.6A1.6 1.6 0 0 1 4 18.4V15" stroke={color} strokeWidth={1.6} strokeLinecap="round" />
+    <svg viewBox="0 0 24 24" fill="none" style={{ width: "64%", height: "64%" }} aria-hidden>
+      <path d="M12 2.8c3.1 2.3 4.7 5.6 4.7 9.4v3.5H7.3v-3.5c0-3.8 1.6-7.1 4.7-9.4Z" {...DOLGU} {...CIZGI} />
+      <circle cx="12" cy="9.6" r="1.8" {...CIZGI} />
+      <path d="M7.3 12.6 4.6 15.4v3l2.7-1.3M16.7 12.6l2.7 2.8v3l-2.7-1.3" {...CIZGI} />
+      <path d="M10.2 18.4c0 1.4.7 2.4 1.8 3.2 1.1-.8 1.8-1.8 1.8-3.2" {...CIZGI} />
     </svg>
   );
 }
 
-const GLYPHS: Record<BrandTest['icon'], (p: { color: string }) => React.ReactElement> = {
-  sprout: SproutGlyph,
-  gauge: CeilingGlyph,
-  rocket: ScaleGlyph,
+const GLYPHS: Record<BrandTest['icon'], () => React.ReactElement> = {
+  sprout: FlagGlyph,
+  gauge: WallGlyph,
+  rocket: RocketGlyph,
 };
 
 export function BrandTestIcon({
@@ -106,11 +74,11 @@ export function BrandTestIcon({
         width: size,
         height: size,
         borderRadius: radius,
-        background: `color-mix(in oklab, ${test.color} 13%, transparent)`,
-        border: `1px solid color-mix(in oklab, ${test.color} 34%, transparent)`,
+        background: 'rgba(255, 255, 255, 0.06)',
+        border: '1px solid rgba(255, 255, 255, 0.18)',
       }}
     >
-      <Glyph color={test.color} />
+      <Glyph />
     </div>
   );
 }
