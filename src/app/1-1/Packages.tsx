@@ -202,15 +202,6 @@ function FiyatKarti({ model }: { model: Model }) {
 export function Packages() {
   return (
     <div className="relative mx-auto w-full max-w-[1180px] px-6">
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-x-0 -top-24 h-[420px]"
-        style={{
-          background:
-            'radial-gradient(ellipse 60% 60% at 50% 0%, rgba(220,38,38,0.15), transparent 70%)',
-        }}
-      />
-
       <div className="relative text-center">
         <h2
           className="font-display text-[26px] leading-[1.15] tracking-tight text-white md:whitespace-nowrap md:text-[34px]"
