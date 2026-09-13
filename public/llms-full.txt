@@ -54,6 +54,7 @@ içerik yayımlar. Yayın dili Türkçedir.
 - Hizmetler (/hizmetler): Marka danışmanlığı hizmet başlıkları.
 - Marka Sözlüğü (/sozluk): Markalaşma ve pazarlama terimlerinin tanımları.
 - Hakkımda (/hakkinda): Biyografi ve profesyonel profil.
+- Makaleler (/makaleler): Markalaşma, konumlandırma ve büyüme üzerine tüm makaleler.
 - İletişim (/iletisim): Telefon, e-posta ve sosyal medya kanalları.
 - RSS (/feed.xml): Yazıların RSS akışı.
 

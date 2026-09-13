@@ -27,11 +27,11 @@ export function PostListItem({
   return (
     <Link
       href={`/posts/${slug}`}
-      className="group flex items-start gap-6 py-6 md:py-7"
+      className="group flex items-start gap-4 py-5 md:gap-6 md:py-7"
       style={{ borderBottom: '1px solid var(--border)' }}
     >
       <div
-        className="relative aspect-[16/9] w-[132px] flex-shrink-0 overflow-hidden rounded-[6px] md:w-[170px]"
+        className="relative aspect-[16/9] w-[112px] flex-shrink-0 overflow-hidden rounded-[6px] md:w-[170px]"
         style={{ background: 'var(--bg-soft)' }}
       >
         {coverImageUrl ? (
@@ -39,7 +39,7 @@ export function PostListItem({
             src={coverImageUrl}
             alt={coverImageAlt ?? title}
             fill
-            sizes="(min-width: 768px) 170px, 132px"
+            sizes="(min-width: 768px) 170px, 112px"
             className="object-contain transition duration-500 group-hover:scale-[1.04]"
           />
         ) : (
@@ -56,7 +56,7 @@ export function PostListItem({
       <div className="min-w-0 flex-1 pt-0.5">
         {primaryTag && (
           <span
-            className="inline-flex items-center whitespace-nowrap rounded-[4px] border px-2 py-[3px] text-[9px] font-semibold tracking-[0.1em] uppercase"
+            className="hidden items-center whitespace-nowrap rounded-[4px] border px-2 py-[3px] text-[9px] font-semibold tracking-[0.1em] uppercase md:inline-flex"
             style={{
               borderColor: 'var(--border)',
               color: 'color-mix(in oklab, var(--fg) 78%, transparent)',
@@ -66,19 +66,19 @@ export function PostListItem({
           </span>
         )}
         <h3
-          className={`font-display text-[18px] leading-[1.25] transition group-hover:opacity-75 md:text-[20px] ${primaryTag ? 'mt-2.5' : ''}`}
+          className={`font-display text-[16px] leading-[1.25] transition group-hover:opacity-75 md:text-[20px] ${primaryTag ? 'md:mt-2.5' : ''}`}
           style={{ fontWeight: 700 }}
         >
           {title}
         </h3>
         <p
-          className="mt-2 max-w-[62ch] text-[14.5px] leading-[1.6] line-clamp-2"
+          className="mt-2 hidden max-w-[62ch] text-[14.5px] leading-[1.6] line-clamp-2 md:block"
           style={{ color: 'color-mix(in oklab, var(--fg) 60%, transparent)' }}
         >
           {excerpt}
         </p>
         <p
-          className="mt-3 flex flex-wrap items-center gap-x-2 text-[11px] font-medium tracking-[0.01em]"
+          className="mt-2 flex flex-wrap items-center gap-x-2 text-[11px] font-medium tracking-[0.01em] md:mt-3"
           style={{ color: 'color-mix(in oklab, var(--fg) 52%, transparent)' }}
         >
           {authorName && <span>{authorName}</span>}

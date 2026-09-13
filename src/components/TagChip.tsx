@@ -22,7 +22,7 @@ export function TagChip({
   const Icon = (group && ICONS[group]) || AtSign;
   return (
     <Link
-      href={`/posts?tag=${slug}`}
+      href={`/makaleler?tag=${slug}`}
       className="group inline-flex items-center gap-1.5 rounded-[6px] border px-2.5 py-1 text-[12px] font-medium tracking-tight transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
       style={{
         borderColor: active

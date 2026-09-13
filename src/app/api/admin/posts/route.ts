@@ -58,7 +58,7 @@ export async function POST(req: Request) {
   }
 
   revalidatePath('/');
-  revalidatePath('/posts');
+  revalidatePath('/makaleler');
   revalidatePath(`/posts/${post.slug}`);
 
   return NextResponse.json({ post });

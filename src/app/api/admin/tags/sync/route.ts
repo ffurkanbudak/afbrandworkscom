@@ -39,7 +39,7 @@ export async function POST() {
   }
 
   revalidatePath('/');
-  revalidatePath('/posts');
+  revalidatePath('/makaleler');
   // Etiket adı bütün yazı sayfalarında görünür; dinamik segmentin tamamı tazelenir.
   revalidatePath('/posts/[slug]', 'page');
 

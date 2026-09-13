@@ -29,6 +29,7 @@ const WHATSAPP_URL =
 const NAV: NavItem[] = [
   { href: '/', label: 'Ana Sayfa', match: (p) => p === '/', vurgulu: true },
   { href: '/#hakkinda', label: 'Hakkımda', match: () => false },
+  { href: '/makaleler', label: 'Makaleler', match: (p) => p.startsWith('/makaleler') || p.startsWith('/posts') },
   { href: '/iletisim', label: 'İletişim', match: (p) => p.startsWith('/iletisim') },
 ];
 

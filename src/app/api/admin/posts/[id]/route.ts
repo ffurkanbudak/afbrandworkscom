@@ -7,7 +7,7 @@ import { pingIndexNow, postUrl } from '@/lib/indexnow';
 /** Yazı değişince statik sayfaları tazele; aksi hâlde site yeni deploy'a kadar eski hâlini gösterir. */
 function refreshPostPages(...slugs: (string | null | undefined)[]) {
   revalidatePath('/');
-  revalidatePath('/posts');
+  revalidatePath('/makaleler');
   for (const slug of slugs) {
     if (slug) revalidatePath(`/posts/${slug}`);
   }

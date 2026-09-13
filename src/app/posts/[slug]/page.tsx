@@ -125,13 +125,15 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
       >
         <Link href="/" className="transition hover:underline">Anasayfa</Link>
         <span className="opacity-50">/</span>
+        <Link href="/makaleler" className="transition hover:underline">Makaleler</Link>
+        <span className="opacity-50">/</span>
         <span className="truncate" style={{ color: 'var(--fg)' }}>{post.title}</span>
       </nav>
       <header className="mx-auto max-w-[720px]">
         <div className="flex flex-wrap items-center gap-x-2.5 gap-y-1.5">
           {primaryTag && (
             <Link
-              href={`/posts?tag=${primaryTag.slug}`}
+              href={`/makaleler?tag=${primaryTag.slug}`}
               className="inline-flex items-center gap-1 text-[11px] font-semibold tracking-[0.1em] uppercase transition hover:opacity-70"
               style={{ color: '#DC2626' }}
             >
@@ -261,7 +263,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
           {post.tags.map(({ tag }) => (
             <Link
               key={tag.id}
-              href={`/posts?tag=${tag.slug}`}
+              href={`/makaleler?tag=${tag.slug}`}
               className="inline-flex items-center gap-1.5 rounded-[6px] border px-2.5 py-1 text-[12px] font-medium tracking-tight transition hover:bg-[color-mix(in_oklab,var(--fg)_5%,transparent)]"
               style={{ borderColor: 'var(--border)', color: 'color-mix(in oklab, var(--fg) 78%, transparent)' }}
             >
