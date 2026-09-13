@@ -1,3 +1,4 @@
+import { Lightbulb } from 'lucide-react';
 import type { BrandTest } from '@/lib/brand-tests';
 
 /*
@@ -13,16 +14,9 @@ const CIZGI = {
 };
 const DOLGU = { fill: '#FFFFFF', fillOpacity: 0.16 };
 
-/** Marka Kurma: tepeye dikilen bayrak. */
-function FlagGlyph() {
-  return (
-    <svg viewBox="0 0 24 24" fill="none" style={{ width: "64%", height: "64%" }} aria-hidden>
-      <path d="M3 20.5c2.6-2.6 7.4-2.6 10 0" {...CIZGI} />
-      <path d="M8 19V3.8" {...CIZGI} />
-      <path d="M8 4.5h10l-2.4 3.4L18 11.3H8Z" {...DOLGU} {...CIZGI} />
-      <path d="M15.5 20.5H21" {...CIZGI} />
-    </svg>
-  );
+/** Marka Kurma: fikir ampulü (Lucide "Lightbulb", ISC lisanslı). */
+function IdeaGlyph() {
+  return <Lightbulb color="#FFFFFF" strokeWidth={1.9} style={{ width: '60%', height: '60%' }} aria-hidden />;
 }
 
 /** Büyüme Engeli: duvarın üzerinden atlayan ok. */
@@ -50,7 +44,7 @@ function RocketGlyph() {
 }
 
 const GLYPHS: Record<BrandTest['icon'], () => React.ReactElement> = {
-  sprout: FlagGlyph,
+  sprout: IdeaGlyph,
   gauge: WallGlyph,
   rocket: RocketGlyph,
 };
