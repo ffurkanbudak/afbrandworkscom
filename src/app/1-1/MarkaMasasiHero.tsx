@@ -5,7 +5,7 @@ import { HeroDock } from './HeroDock';
 import { SectionEtiket } from '@/components/SectionEtiket';
 import { KART_STILI } from './kartStili';
 
-const WHATSAPP_MESSAGE = 'Merhaba Ahmet Bey, 1:1 Marka Danışmanlığı hakkında bilgi almak istiyorum.';
+const WHATSAPP_MESSAGE = 'Ahmet Furkan Bey Merhaba, size bir konuda danışmanlık istiyorum.';
 export const WHATSAPP_URL = `https://wa.me/905374349566?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`;
 
 /**

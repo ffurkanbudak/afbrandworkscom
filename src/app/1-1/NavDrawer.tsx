@@ -11,7 +11,7 @@ const TAKVIM_URL =
 
 const WHATSAPP_URL =
   'https://wa.me/905374349566?text=' +
-  encodeURIComponent('Merhaba Ahmet Bey, 1:1 Marka Danışmanlığı hakkında bilgi almak istiyorum.');
+  encodeURIComponent('Ahmet Furkan Bey Merhaba, size bir konuda danışmanlık istiyorum.');
 
 /** vurgulu: Ana Sayfa menüde kırmızı renk ve ikonla öne çıkar. */
 const NAV_ITEMS: { label: string; href: string; vurgulu?: boolean }[] = [

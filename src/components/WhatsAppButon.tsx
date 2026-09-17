@@ -2,7 +2,7 @@ import { WhatsAppGlyph } from '@/components/ui/brand-icons';
 
 const WHATSAPP_URL =
   'https://wa.me/905374349566?text=' +
-  encodeURIComponent('Merhaba Ahmet Bey, markanız hakkında konuşmak istiyorum.');
+  encodeURIComponent('Ahmet Furkan Bey Merhaba, size bir konuda danışmanlık istiyorum.');
 
 /** Her sayfanın sağ alt köşesinde sabit duran WhatsApp düğmesi. */
 export function WhatsAppButon() {

@@ -6,7 +6,7 @@ import { SocialCloud } from '@/components/ui/footer-section-4-utils/social-cloud
 
 const WHATSAPP_URL =
   'https://wa.me/905374349566?text=' +
-  encodeURIComponent('Merhaba Ahmet Bey, markanız hakkında konuşmak istiyorum.');
+  encodeURIComponent('Ahmet Furkan Bey Merhaba, size bir konuda danışmanlık istiyorum.');
 
 type FooterLink = { label: string; href: string; vurgulu?: boolean };
 type FooterSection = { title: string; links: FooterLink[] };

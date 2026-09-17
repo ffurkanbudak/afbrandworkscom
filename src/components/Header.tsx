@@ -24,7 +24,7 @@ const TAKVIM_URL =
   'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1um6hda1soZolvF4yY1oTMwugah-W2o-rB-jGgcJ0_eIzeTL8qR5oKuRHr6TcU8YI7oAwmI2eH?gv=true';
 const WHATSAPP_URL =
   'https://wa.me/905374349566?text=' +
-  encodeURIComponent('Merhaba Ahmet Bey, markam hakkında bilgi almak istiyorum.');
+  encodeURIComponent('Ahmet Furkan Bey Merhaba, size bir konuda danışmanlık istiyorum.');
 
 const NAV: NavItem[] = [
   { href: '/', label: 'Ana Sayfa', match: (p) => p === '/', vurgulu: true },

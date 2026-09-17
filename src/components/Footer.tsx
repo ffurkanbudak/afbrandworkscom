@@ -7,7 +7,7 @@ const EXPLORE: [string, string][] = [
   ['Ana Sayfa', '/'],
   ['Hakkımda', '/#hakkinda'],
   ['Makaleler', '/makaleler'],
-  ['İletişim', 'https://wa.me/905374349566'],
+  ['İletişim', 'https://wa.me/905374349566?text=Ahmet%20Furkan%20Bey%20Merhaba%2C%20size%20bir%20konuda%20dan%C4%B1%C5%9Fmanl%C4%B1k%20istiyorum.'],
 ];
 
 const GUIDES: [string, string][] = [
