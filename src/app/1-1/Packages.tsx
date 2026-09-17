@@ -1,6 +1,7 @@
 import { Check, ChevronDown, Star } from 'lucide-react';
 import { AvatarCircles } from '@/components/ui/avatar-circles';
 import { GoogleCalendarLogo, WhatsAppGlyph } from '@/components/ui/brand-icons';
+import { SectionEtiket } from '@/components/SectionEtiket';
 
 const VURGU = '#DC2626';
 
@@ -203,6 +204,7 @@ export function Packages() {
   return (
     <div className="relative mx-auto w-full max-w-[1180px] px-6">
       <div className="relative text-center">
+        <SectionEtiket tema="koyu">Çalışma Modelleri</SectionEtiket>
         <h2
           className="font-display text-[26px] leading-[1.15] tracking-tight text-white md:whitespace-nowrap md:text-[34px]"
           style={{ fontWeight: 700 }}

@@ -3,6 +3,7 @@
 import { usePathname } from 'next/navigation';
 import { Header } from './Header';
 import Footer4 from '@/components/ui/footer-section-4';
+import { WhatsAppButon } from '@/components/WhatsAppButon';
 
 export function SiteChrome({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -22,6 +23,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
       <div className="flex min-h-dvh flex-col">
         <div className="flex-1">{children}</div>
         <Footer4 bitisik />
+        <WhatsAppButon />
       </div>
     );
   }
@@ -39,6 +41,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         {children}
       </main>
       <Footer4 bitisik={isHome} />
+      <WhatsAppButon />
     </div>
   );
 }

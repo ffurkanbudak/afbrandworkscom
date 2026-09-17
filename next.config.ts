@@ -25,8 +25,9 @@ const config: NextConfig = {
       { source: '/kunye', destination: '/#hakkinda', permanent: true },
       { source: '/posts', destination: '/makaleler', permanent: false },
       { source: '/hakkinda', destination: '/#hakkinda', permanent: false },
-      { source: '/contact', destination: '/iletisim', permanent: true },
-      { source: '/contact/:path*', destination: '/iletisim/:path*', permanent: true },
+      { source: '/iletisim', destination: '/', permanent: false },
+      { source: '/contact', destination: '/', permanent: true },
+      { source: '/contact/:path*', destination: '/', permanent: true },
     ];
   },
   async headers() {

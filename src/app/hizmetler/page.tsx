@@ -239,7 +239,7 @@ export default function HizmetlerPage() {
           </p>
         </div>
         <Link
-          href="/iletisim"
+          href="https://wa.me/905374349566"
           className="btn-red inline-flex shrink-0 items-center gap-2 rounded-[8px] px-5 py-3 text-[13.5px] font-medium"
         >
           İletişime Geçin

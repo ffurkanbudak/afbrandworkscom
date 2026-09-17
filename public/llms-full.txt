@@ -55,7 +55,6 @@ içerik yayımlar. Yayın dili Türkçedir.
 - Marka Sözlüğü (/sozluk): Markalaşma ve pazarlama terimlerinin tanımları.
 - Hakkımda (/hakkinda): Biyografi ve profesyonel profil.
 - Makaleler (/makaleler): Markalaşma, konumlandırma ve büyüme üzerine tüm makaleler.
-- İletişim (/iletisim): Telefon, e-posta ve sosyal medya kanalları.
 - RSS (/feed.xml): Yazıların RSS akışı.
 
 ## 3. Yayın Politikası
@@ -180,8 +179,7 @@ kanallar markanın yansımasıdır; kendi başına strateji değildir.
 
 **Marka danışmanlığı hizmeti için nasıl iletişim kurulur?**
 Telefon (+90 537 434 95 66) veya e-posta (info@toganworks.com) ile doğrudan
-iletişim kurulabilir; ayrıca afbrandworks.com/iletisim sayfasındaki kanallar
-kullanılabilir.
+iletişim kurulabilir; ofis adresi ve iletişim bilgileri site altında yer alır.
 
 ## 8. Rehberler (Pillar Sayfalar)
 

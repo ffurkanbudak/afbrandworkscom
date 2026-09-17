@@ -2,10 +2,10 @@ import { BrandJourney } from './BrandJourney';
 import { TopicsCloud } from './TopicsCloud';
 import { Packages } from './Packages';
 import { BrandTest } from './BrandTest';
-import { TestIcerigi } from './TestIcerigi';
 import { ProcessFlow } from './ProcessFlow';
 import { WHATSAPP_URL } from './MarkaMasasiHero';
 import { KART_STILI } from './kartStili';
+import { SectionEtiket } from '@/components/SectionEtiket';
 
 const MUTED = { color: 'var(--fg)', fontWeight: 300 };
 
@@ -136,23 +136,22 @@ export function MarkaMasasiIcerik() {
   return (
     <>
       {/* Marka sahibi ya da girişimciyseniz — öz değerlendirme testi */}
-      {/* Beyaz zemin, kart çerçevesi korunur; test kartları koyu kalır. */}
       <section
-        className="py-16 md:py-20"
+        id="marka-testi"
+        className="scroll-mt-20 py-16 md:py-20"
         style={{ ...KART_STILI, background: '#FFFFFF', border: '1px solid #E6E6E6' }}
       >
-        <div className="mx-auto w-full max-w-[900px] px-6">
-          <h2 className="font-display text-center text-[24px] tracking-tight text-[#0A0A0A] md:text-[28px]" style={{ fontWeight: 700 }}>
+        <div className="mx-auto w-full max-w-[1060px] px-6">
+          <SectionEtiket tema="acik">Marka Testi</SectionEtiket>
+          <h2 className="font-display text-center text-[24px] tracking-tight md:text-[28px]" style={{ fontWeight: 700, color: '#0A0A0A' }}>
             Markanızın birebir görüşmeye ihtiyacı var mı?
           </h2>
-          <p className="mx-auto mt-4 text-center text-[15px] leading-[1.65] text-[#0A0A0A]/70 md:whitespace-nowrap" style={{ fontWeight: 300 }}>
+          <p className="mx-auto mt-4 text-center text-[15px] leading-[1.65] md:whitespace-nowrap" style={{ fontWeight: 300, color: 'rgba(10,10,10,0.7)' }}>
             Size uygun testi seçin ve 10 temel soruyu yanıtlayın!
           </p>
           <BrandTest whatsappUrl={WHATSAPP_URL} />
         </div>
       </section>
-
-      <TestIcerigi />
 
       {/* Çalışma modelleri */}
       <section
@@ -168,6 +167,7 @@ export function MarkaMasasiIcerik() {
         className="mx-auto max-w-[900px] scroll-mt-24 py-16 md:py-20"
         style={{ borderColor: 'var(--border)' }}
       >
+        <SectionEtiket tema="tema">Süreç</SectionEtiket>
         <h2 className="font-display text-center text-[24px] tracking-tight md:text-[28px]" style={{ fontWeight: 700 }}>
           Bu süreç nasıl ilerliyor?
         </h2>
@@ -185,6 +185,7 @@ export function MarkaMasasiIcerik() {
         className="py-16 md:py-20"
         style={{ ...KART_STILI, background: '#0A0A0A' }}
       >
+        <SectionEtiket tema="koyu">Konular</SectionEtiket>
         <h2 className="font-display text-center text-[24px] tracking-tight text-white md:text-[28px]" style={{ fontWeight: 700 }}>
           Hangi başlıklarda konuşuyoruz?
         </h2>
@@ -193,6 +194,7 @@ export function MarkaMasasiIcerik() {
 
       {/* SSS */}
       <section className="mx-auto max-w-[1000px] py-16 md:py-20">
+        <SectionEtiket tema="tema">Sık Sorulanlar</SectionEtiket>
         <h2 className="font-display text-center text-[24px] tracking-tight md:text-[28px]" style={{ fontWeight: 700 }}>
           En çok hangi soruları alıyorum?
         </h2>
@@ -237,6 +239,7 @@ export function MarkaMasasiIcerik() {
           } as React.CSSProperties
         }
       >
+        <SectionEtiket tema="koyu">Yol Haritası</SectionEtiket>
         <h2
           className="font-display text-center text-[24px] tracking-tight md:text-[28px]"
           style={{ fontWeight: 700 }}

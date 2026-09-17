@@ -333,7 +333,7 @@ export default function MarkaYonetimiPage() {
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
             <Link
-              href="/iletisim"
+              href="https://wa.me/905374349566"
               className="btn-red inline-flex items-center gap-2 rounded-[8px] px-5 py-3 text-[14px] font-semibold"
             >
               İletişime geçin

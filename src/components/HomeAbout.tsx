@@ -1,4 +1,5 @@
 import { Handshake } from 'lucide-react';
+import { SectionEtiket } from './SectionEtiket';
 
 function B({ children }: { children: React.ReactNode }) {
   return <strong className="font-semibold text-black">{children}</strong>;
@@ -19,12 +20,12 @@ export function HomeAbout() {
       <div className="mx-auto w-full max-w-[1400px] px-6 py-12 md:px-10 md:py-16 lg:px-14">
         <div className="grid gap-6 lg:grid-cols-12 lg:gap-12">
           <div className="lg:col-span-5">
-            <h2
-              id="hakkinda-baslik"
-              className="text-[11px] font-semibold uppercase tracking-[0.18em] text-black/50"
-            >
+            <h2 id="hakkinda-baslik" className="sr-only">
               Hakkında
             </h2>
+            <SectionEtiket tema="acik" ortali={false}>
+              Hakkında
+            </SectionEtiket>
             <p
               className="font-display mt-4 text-[clamp(24px,2.7vw,34px)] leading-[1.15] tracking-tight text-black/80"
               style={{ fontWeight: 300 }}

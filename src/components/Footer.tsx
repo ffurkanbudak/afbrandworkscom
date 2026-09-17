@@ -7,7 +7,7 @@ const EXPLORE: [string, string][] = [
   ['Ana Sayfa', '/'],
   ['Hakkımda', '/#hakkinda'],
   ['Makaleler', '/makaleler'],
-  ['İletişim', '/iletisim'],
+  ['İletişim', 'https://wa.me/905374349566'],
 ];
 
 const GUIDES: [string, string][] = [

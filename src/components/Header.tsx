@@ -18,7 +18,7 @@ import { useEffect, useState } from 'react';
 import { useTheme } from './ThemeProvider';
 import { GoogleCalendarLogo, GmailLogo, WhatsAppGlyph } from '@/components/ui/brand-icons';
 
-type NavItem = { href: string; label: string; match: (p: string) => boolean; vurgulu?: boolean };
+type NavItem = { href: string; label: string; match: (p: string) => boolean; vurgulu?: boolean; dis?: boolean };
 
 const TAKVIM_URL =
   'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1um6hda1soZolvF4yY1oTMwugah-W2o-rB-jGgcJ0_eIzeTL8qR5oKuRHr6TcU8YI7oAwmI2eH?gv=true';
@@ -30,7 +30,7 @@ const NAV: NavItem[] = [
   { href: '/', label: 'Ana Sayfa', match: (p) => p === '/', vurgulu: true },
   { href: '/#hakkinda', label: 'Hakkımda', match: () => false },
   { href: '/makaleler', label: 'Makaleler', match: (p) => p.startsWith('/makaleler') || p.startsWith('/posts') },
-  { href: '/iletisim', label: 'İletişim', match: (p) => p.startsWith('/iletisim') },
+  { href: WHATSAPP_URL, label: 'İletişim', match: () => false, dis: true },
 ];
 
 export function Header({ overlay = false }: { overlay?: boolean }) {
@@ -72,7 +72,35 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
               }
         }
       >
-        <div className="mx-auto flex w-full max-w-[1400px] items-center justify-end gap-6 px-6 py-4 md:px-10 lg:px-14">
+        <div
+          className={`mx-auto flex w-full max-w-[1400px] items-center gap-6 px-6 py-4 md:px-10 lg:px-14 ${
+            overlay ? 'justify-end' : 'justify-between'
+          }`}
+        >
+          {/* Ana sayfa dışında: hero'daki isim ve unvan imzası, küçük boyutta */}
+          {!overlay && (
+            <Link href="/" aria-label="Ahmet Furkan Budak — Ana Sayfa" className="flex shrink-0 items-center">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hero-imza-siyah.png"
+                alt="Ahmet Furkan Budak — Stratejik Marka Danışmanı"
+                width={1229}
+                height={283}
+                className="logo-on-light"
+                style={{ height: 30, width: 'auto' }}
+              />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/hero-imza.png"
+                alt=""
+                aria-hidden
+                width={1229}
+                height={283}
+                className="logo-on-dark"
+                style={{ height: 30, width: 'auto' }}
+              />
+            </Link>
+          )}
           <div className="flex items-center gap-1.5">
             <div
               className="header-divider mr-1 hidden items-center gap-0.5 pr-1 sm:flex"
@@ -197,11 +225,13 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
           <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-4 py-6">
             {NAV.map((item) => {
               const active = item.match(pathname);
+              const Component = item.dis ? 'a' : Link;
               return (
-                <Link
+                <Component
                   key={item.href}
                   href={item.href}
                   onClick={() => setOpen(false)}
+                  {...(item.dis ? { target: '_blank', rel: 'noreferrer' } : {})}
                   className="group flex items-center justify-between rounded-[8px] px-3 py-3 text-[15px] font-medium tracking-tight transition"
                   style={{
                     color: item.vurgulu
@@ -222,7 +252,7 @@ export function Header({ overlay = false }: { overlay?: boolean }) {
                     className="h-[15px] w-[15px] opacity-0 transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:opacity-100"
                     strokeWidth={1.75}
                   />
-                </Link>
+                </Component>
               );
             })}
           </nav>

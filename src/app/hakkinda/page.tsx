@@ -175,7 +175,7 @@ const FAQS: { question: string; answer: string }[] = [
   {
     question: 'Kendisiyle nasıl iletişime geçilir?',
     answer:
-      'afbrandworks.com/iletisim sayfası üzerinden veya info@toganworks.com adresinden danışmanlık, konuşma, mentörlük ve iş birliği talepleri için ulaşılabilir.',
+      'Site altındaki iletişim bilgileri üzerinden veya info@toganworks.com adresinden danışmanlık, konuşma, mentörlük ve iş birliği talepleri için ulaşılabilir.',
   },
 ];
 
@@ -394,7 +394,7 @@ export default function AboutPage() {
 
         <div className="mt-8 flex flex-wrap items-center gap-4">
           <Link
-            href="/iletisim"
+            href="https://wa.me/905374349566"
             className="btn-red inline-flex items-center gap-2 rounded-[6px] px-4 py-2.5 text-[13px] font-medium"
           >
             Merhaba De

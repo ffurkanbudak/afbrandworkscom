@@ -2,6 +2,7 @@ import Image from 'next/image';
 import { TextAnimate } from '@/components/ui/text-animate';
 import { AvatarCircles } from '@/components/ui/avatar-circles';
 import { HeroDock } from './HeroDock';
+import { SectionEtiket } from '@/components/SectionEtiket';
 import { KART_STILI } from './kartStili';
 
 const WHATSAPP_MESSAGE = 'Merhaba Ahmet Bey, 1:1 Marka Danışmanlığı hakkında bilgi almak istiyorum.';
@@ -26,6 +27,7 @@ export function MarkaMasasiHero({
       style={{ ...KART_STILI, background: '#0A0A0A' }}
     >
       <div className="relative z-10 mx-auto flex max-w-[760px] flex-col items-center px-6 pb-20 pt-16 text-center md:pt-20">
+        <SectionEtiket tema="koyu">Birebir Danışmanlık</SectionEtiket>
         <AvatarCircles
           numPeople={30}
           avatarUrls={[1, 2, 3, 4].map((n) => ({

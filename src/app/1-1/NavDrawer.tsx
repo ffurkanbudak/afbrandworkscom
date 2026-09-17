@@ -18,7 +18,7 @@ const NAV_ITEMS: { label: string; href: string; vurgulu?: boolean }[] = [
   { label: 'Ana Sayfa', href: '/', vurgulu: true },
   { label: 'Hakkımda', href: '/#hakkinda' },
   { label: 'Makaleler', href: '/makaleler' },
-  { label: 'İletişim', href: '/iletisim' },
+  { label: 'İletişim', href: WHATSAPP_URL },
 ];
 
 export function NavDrawer() {

@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { Handshake } from 'lucide-react';
 import { SocialCloud } from '@/components/ui/footer-section-4-utils/social-cloud';
 
-const MAPS_URL =
-  'https://www.google.com/maps/search/?api=1&query=' +
-  encodeURIComponent('Quasar İstanbul, Büyükdere Cad. No: 76, Mecidiyeköy, Şişli, İstanbul');
+const WHATSAPP_URL =
+  'https://wa.me/905374349566?text=' +
+  encodeURIComponent('Merhaba Ahmet Bey, markanız hakkında konuşmak istiyorum.');
 
 type FooterLink = { label: string; href: string; vurgulu?: boolean };
 type FooterSection = { title: string; links: FooterLink[] };
@@ -18,7 +18,7 @@ const footerLinks: FooterSection[] = [
       { label: 'Ana Sayfa', href: '/', vurgulu: true },
       { label: 'Hakkımda', href: '/#hakkinda' },
       { label: 'Makaleler', href: '/makaleler' },
-      { label: 'İletişim', href: '/iletisim' },
+      { label: 'İletişim', href: WHATSAPP_URL },
     ],
   },
   {
@@ -115,44 +115,6 @@ export default function Footer4({ bitisik = false }: { bitisik?: boolean }) {
               ))}
             </div>
 
-            {/* Ofis ve iletişim bilgileri: kartın sağ altında, soldaki siyah kartla aynı görünümde */}
-            <div
-              className="mt-10 rounded-2xl p-5 sm:p-6 md:ml-auto md:w-full md:max-w-[560px]"
-              style={{ background: '#0A0A0A', border: '1px solid rgba(255, 255, 255, 0.1)' }}
-            >
-              <div className="grid gap-6 text-[12.5px] leading-[1.6] sm:grid-cols-2 sm:text-[13.5px]" style={{ color: 'rgba(255, 255, 255, 0.65)' }}>
-                <div>
-                  <h4 className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: '#FFFFFF' }}>Ofis</h4>
-                  <address className="mt-2.5 not-italic">
-                    <a href={MAPS_URL} target="_blank" rel="noreferrer" className="transition-colors hover:text-white">
-                      Fulya Mah. Büyükdere Cad. Quasar İstanbul No: 76 Kat: 13 D. No: 188
-                      <br />
-                      Mecidiyeköy, Şişli, İstanbul, Türkiye
-                    </a>
-                  </address>
-                </div>
-                <div>
-                  <h4 className="text-[11px] font-semibold uppercase tracking-[0.14em]" style={{ color: '#FFFFFF' }}>İletişim</h4>
-                  <ul className="mt-2.5 space-y-1">
-                    <li>
-                      <a href="mailto:info@toganworks.com" className="transition-colors hover:text-white">
-                        info@toganworks.com
-                      </a>
-                    </li>
-                    <li>
-                      <a href="tel:+905374349566" className="whitespace-nowrap transition-colors hover:text-white">
-                        +90 (537) 434 95 66
-                      </a>
-                    </li>
-                    <li>
-                      <a href="tel:+905433490699" className="whitespace-nowrap transition-colors hover:text-white">
-                        +90 (543) 349 06 99
-                      </a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
